@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+            http://java.sun.com/xml/ns/j2ee  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd
+         ">
+
+	<context-param>
+		<param-name>loggingRoot</param-name>
+		<param-value>${loggingRoot}</param-value>
+	</context-param>
+	<context-param>
+		<param-name>loggingLevel</param-name>
+		<param-value>${loggingLevel}</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>loggingCharset</param-name>
+		<param-value>UTF-8</param-value>
+	</context-param>
+
+
+	<listener>
+		<listener-class>com.alibaba.citrus.logconfig.LogConfiguratorListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>com.alibaba.citrus.webx.context.WebxContextLoaderListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>mdc</filter-name>
+		<filter-class>com.alibaba.citrus.webx.servlet.SetLoggingContextFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>webx</filter-name>
+		<filter-class>com.alibaba.citrus.webx.servlet.WebxFrameworkFilter</filter-class>
+		<init-param>
+			<param-name>excludes</param-name>
+			<param-value>crossdomain.xml, *.jpg, *.gif, *.png, /test</param-value>
+		</init-param>
+		<init-param>
+			<param-name>passthru</param-name>
+			<param-value>/upload</param-value>
+		</init-param>
+	</filter>
+	
+	<filter>
+		<filter-name>cross</filter-name>
+		<filter-class>com.weigu.nsp.platform.filter.CrossDomainFilter</filter-class>
+	</filter>
+
+
+	<!-- 跨域设置 -->
+	<filter-mapping>
+		<filter-name>cross</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>mdc</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+
+	<filter-mapping>
+		<filter-name>webx</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>webx</filter-name>
+		<url-pattern>/common/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>webx</filter-name>
+		<url-pattern>/doc/*</url-pattern>
+	</filter-mapping>
+
+	
+	<servlet> 
+		<servlet-name>Test</servlet-name> 
+		<servlet-class>com.weigu.nsp.platform.webx.servlet.TestServlet</servlet-class> 
+	</servlet>
+	<servlet-mapping> 
+		<servlet-name>Test</servlet-name> 
+		<url-pattern>/test</url-pattern> 
+	</servlet-mapping> 
+	<welcome-file-list>
+		<welcome-file>admin/login.html</welcome-file>
+	</welcome-file-list>
+</web-app>
