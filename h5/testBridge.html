@@ -10,11 +10,11 @@
   if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
     bridge.registerHandler('getTest', {'param': '222'}, function(data) { alert(data) })
   } else {
-    var container = document.querySelector(".html");
+    // var container = document.querySelector(".html");
     if (window.WebViewJavascriptBridge) {
       WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function(responseData) {
         alert(123)
-          container.innerHTML = responseData;
+          // container.innerHTML = responseData;
           alert(responseData)
         }
       );
@@ -24,7 +24,7 @@
           alert(100)
           WebViewJavascriptBridge.callHandler('getTest', {'param': '222'}, function(responseData) {
             alert(111)
-            container.innerHTML = responseData;
+            // container.innerHTML = responseData;
             alert(responseData)
           })
         },
