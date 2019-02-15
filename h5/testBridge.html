@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+</head>
+<body>
+<script>
+  var container = document.querySelector(".html");
+  if (window.WebViewJavascriptBridge) {
+    WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function(responseData) {
+        container.innerHTML = responseData;
+        alert(responseData)
+      }
+    );
+  } else {
+    document.addEventListener('WebViewJavascriptBridgeReady',
+      function() {
+        WebViewJavascriptBridge.callHandler('getTest', {'param': '222'}, function(responseData) {
+          container.innerHTML = responseData;
+          alert(responseData)
+        })
+      },
+      false
+    );
+  }
+</script>
+</body>
+</html>
