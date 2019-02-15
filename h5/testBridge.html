@@ -6,23 +6,28 @@
 </head>
 <body>
 <script>
-  var container = document.querySelector(".html");
-  if (window.WebViewJavascriptBridge) {
-    WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function(responseData) {
-        container.innerHTML = responseData;
-        alert(responseData)
-      }
-    );
+  // iOS终端
+  if (!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+    bridge.registerHandler('getTest', {'param': '222'}, function(data) { alert(data) })
   } else {
-    document.addEventListener('WebViewJavascriptBridgeReady',
-      function() {
-        WebViewJavascriptBridge.callHandler('getTest', {'param': '222'}, function(responseData) {
+    var container = document.querySelector(".html");
+    if (window.WebViewJavascriptBridge) {
+      WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function(responseData) {
           container.innerHTML = responseData;
           alert(responseData)
-        })
-      },
-      false
-    );
+        }
+      );
+    } else {
+      document.addEventListener('WebViewJavascriptBridgeReady',
+        function() {
+          WebViewJavascriptBridge.callHandler('getTest', {'param': '222'}, function(responseData) {
+            container.innerHTML = responseData;
+            alert(responseData)
+          })
+        },
+        false
+      );
+    }
   }
 </script>
 </body>
