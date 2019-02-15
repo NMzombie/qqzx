@@ -13,6 +13,7 @@
     var container = document.querySelector(".html");
     if (window.WebViewJavascriptBridge) {
       WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function(responseData) {
+        alert(123)
           container.innerHTML = responseData;
           alert(responseData)
         }
@@ -21,6 +22,7 @@
       document.addEventListener('WebViewJavascriptBridgeReady',
         function() {
           WebViewJavascriptBridge.callHandler('getTest', {'param': '222'}, function(responseData) {
+            alert(111)
             container.innerHTML = responseData;
             alert(responseData)
           })
