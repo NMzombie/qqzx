@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>test iOS3</title>
+  <title>test iOS4</title>
 </head>
 <body>
 <script>
   // iOS终端
-  alert(navigator.userAgent)
   if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
     alert(111)
     if (window.WebViewJavascriptBridge) {
+      alert(101)
       WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function(responseData) {
           alert(123)
           // container.innerHTML = responseData;
