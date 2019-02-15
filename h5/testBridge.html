@@ -45,7 +45,9 @@
   function myfunction (){
     // 你的方法调用
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function (response) {})
+      window.WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function (response) {
+        alert(response)
+      })
     } else {
       setTimeout(() => {
         myfunction()
