@@ -10,10 +10,6 @@
   if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
     bridge.registerHandler('getTest', {'param': '222'}, function(data) { alert(data) })
   } else {
-    bridge.init(function(message, responseCallback) {
-      alert(message);
-      responseCallback({'getTest': 111});
-    });
     var container = document.querySelector(".html");
     if (window.WebViewJavascriptBridge) {
       WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function(responseData) {
