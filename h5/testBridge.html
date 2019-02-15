@@ -21,6 +21,7 @@
     } else {
       document.addEventListener('WebViewJavascriptBridgeReady',
         function() {
+          alert(100)
           WebViewJavascriptBridge.callHandler('getTest', {'param': '222'}, function(responseData) {
             alert(111)
             container.innerHTML = responseData;
