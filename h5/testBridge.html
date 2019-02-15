@@ -2,29 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>test iOS4</title>
+  <title>test iOS5</title>
 </head>
 <body>
 <script>
+  function setupWebViewJavascriptBridge(callback) {
+    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+    window.WVJBCallbacks = [callback];
+    var WVJBIframe = document.createElement('iframe');
+    WVJBIframe.style.display = 'none';
+    WVJBIframe.src = 'https://__bridge_loaded__';
+    document.documentElement.appendChild(WVJBIframe);
+    setTimeout(function () { document.documentElement.removeChild(WVJBIframe) }, 0)
+  }
   // iOS终端
   if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
     alert(111)
     if (window.WebViewJavascriptBridge) {
       alert(101)
-      WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function(responseData) {
+      setupWebViewJavascriptBridge(function (bridge) {
+        bridge.callHandler('getTest', {'param': '123'}, function (responseData) {
           alert(123)
           // container.innerHTML = responseData;
           alert(responseData)
-        }
-      );
+        })
+      })
     } else {
       document.addEventListener('WebViewJavascriptBridgeReady',
         function() {
           alert(100)
-          WebViewJavascriptBridge.callHandler('getTest', {'param': '222'}, function(responseData) {
-            alert(111)
-            // container.innerHTML = responseData;
-            alert(responseData)
+          setupWebViewJavascriptBridge(function (bridge) {
+            bridge.callHandler('getTest', {'param': '222'}, function (responseData) {
+              alert(111)
+              // container.innerHTML = responseData;
+              alert(responseData)
+            })
           })
         },
         false
