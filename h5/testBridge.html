@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>test iOS userAgent</title>
+  <title>test iOS2</title>
 </head>
 <body>
 <script>
@@ -10,7 +10,7 @@
   alert(navigator.userAgent)
   if (!!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
     alert(111)
-    bridge.callHandler('getTest', {'param': '222'}, function(data) { alert(data) })
+    WebViewJavascriptBridge.callHandler('getTest', {'param': '222'}, function(data) { alert(data) })
   } else {
     // var container = document.querySelector(".html");
     if (window.WebViewJavascriptBridge) {
