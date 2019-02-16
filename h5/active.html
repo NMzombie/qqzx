@@ -2,9 +2,190 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,telephone=no">
   <title>暖心情人节</title>
+  <link rel="stylesheet" href="css/active.css">
+  <script>
+    fnResize()
+    window.onresize = function () {
+      fnResize()
+    }
+    function fnResize () {
+      var deviceWidth = document.documentElement.clientWidth || window.innerWidth
+      if (deviceWidth >= 750) {
+        deviceWidth = 750
+      }
+      if (deviceWidth <= 320) {
+        deviceWidth = 320
+      }
+      document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px'
+    }
+  </script>
 </head>
 <body>
-
+<div class="header">
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550227401126&di=c71da042c8413046922f2e5751cd2226&imgtype=0&src=http%3A%2F%2Fimg.qqzhi.com%2Fuploads%2F2018-12-29%2F145607665.jpg" alt="" />
+</div>
+<div class="active-main">
+  <div class="coupon clearfix">
+    <img class="card" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550823530&di=5252d841c9a8dc32c4c1a33acc998f96&imgtype=jpg&er=1&src=http%3A%2F%2Fcuimg.zuyushop.com%3A8014%2FcuxiaoPic%2Fimage%2FmmbAdmin%2F20160617093737_5285.png" />
+    <img class="card" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550823530&di=5252d841c9a8dc32c4c1a33acc998f96&imgtype=jpg&er=1&src=http%3A%2F%2Fcuimg.zuyushop.com%3A8014%2FcuxiaoPic%2Fimage%2FmmbAdmin%2F20160617093737_5285.png" />
+    <img class="card" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550823530&di=5252d841c9a8dc32c4c1a33acc998f96&imgtype=jpg&er=1&src=http%3A%2F%2Fcuimg.zuyushop.com%3A8014%2FcuxiaoPic%2Fimage%2FmmbAdmin%2F20160617093737_5285.png" />
+  </div>
+  <div class="desc">注：限8.9-9.12可用</div>
+  <nav class="nav">
+    <div class="tab-area clearfix">
+    </div>
+  </nav>
+  <div class="act-con">
+  </div>
+</div>
+<script src="./js/jquery-1.10.2.js"></script>
+<script src="./js/jquery.navScroll.js"></script>
+<script src="./js/util.js"></script>
+<script type="text/javascript">
+  const buyNow = (value) => {
+    alert(value)
+  }
+  // 商品所有数据（type为样式类型分别对应0,1,2，仅此三种）
+  const list = [
+    {
+      id: 0,
+      name: '必购清单',
+      type: 0,
+      list: [{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '23000'
+      },{
+        id: 1,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '23000'
+      },{
+        id: 1,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '23000'
+      }]
+    },
+    {
+      id: 1,
+      name: '必买专区',
+      type: 1,
+      list: [{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '22000'
+      },{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '22000'
+      }]
+    },
+    {
+      id: 2,
+      name: '超值专区',
+      type: 2,
+      list: [{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '21000'
+      },{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '21000'
+      },{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '21000'
+      },{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '21000'
+      }]
+    },
+    {
+      id: 3,
+      name: '爆款专区',
+      type: 2,
+      list: [{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '20000'
+      },{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '20000'
+      },{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '20000'
+      },{
+        id: 0,
+        img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
+        itemName: '2瓶装| Byphasse 蓓昂斯 四 一卸妆水500毫的卸妆水asfasfasfasgfeswtgewtwet',
+        marketPrice: '23300',
+        memberPrice: '20000'
+      }]
+    }
+  ]
+  for (let i = 0; i < list.length; i++) {
+    // 插入标题区块
+    $('.tab-area').append(`<a href="#tab${list[i].id}">${list[i].name}</a>`)
+    // 插入题目
+    $('.act-con').append(`<div class="act-title">// ${list[i].name} //</div>`)
+    // 插入内容区块
+    const fir = `<div class="type-${list[i].type} clearfix" id="tab${list[i].id}">`
+    let sec = ''
+    const thi = `</div>`
+    // 全部商品插入区
+    for (let o = 0; o < list[i].list.length; o++) {
+      if (list[i].type === 1) {
+        sec = sec + `<div class="type-goods-${list[i].type} clearfix"><img class="type-img-${list[i].type}" src="${list[i].list[o].img}" /><div class="type-title-${list[i].type} txt-cut">${list[i].list[o].itemName}</div><div class="type-price-${list[i].type} clearfix"><div class="market">¥${priceFormat(list[i].list[o].marketPrice)}</div><div class="member">¥${priceFormat(list[i].list[o].memberPrice)}</div></div><div><input class="type-buy-${list[i].type}" type="button" value="立即购买" onclick="buyNow(${list[i].list[o].id})" /></div></div>`
+      } else {
+        sec = sec + `<div class="type-goods-${list[i].type} clearfix"><img class="type-img-${list[i].type}" src="${list[i].list[o].img}" /><div class="type-title-${list[i].type} txt-cut">${list[i].list[o].itemName}</div><div class="type-price-${list[i].type} clearfix"><div class="member">¥${priceFormat(list[i].list[o].memberPrice)}</div><div class="market">¥${priceFormat(list[i].list[o].marketPrice)}</div></div><div><input class="type-buy-${list[i].type}" type="button" value="立即购买" onclick="buyNow(${list[i].list[o].id})" /></div></div>`
+      }
+    }
+    $('.act-con').append(fir + sec + thi)
+  }
+  const getDiv_md = $(".tab-area");
+  const offSet = getDiv_md.offset().top;
+  $(window).scroll(function(){
+    if ($(window).scrollTop() > offSet){
+      getDiv_md.css({"position":"fixed","top":"10px","z-index":"2"});
+    }else{
+      getDiv_md.css({"position":"","left":"0px","top":"","z-index":""});
+    }
+  })
+  $('.nav').navScroll({
+    mobileDropdown: true,
+    mobileBreakpoint: 768,
+    scrollSpy: true
+  });
+</script>
 </body>
 </html>
+

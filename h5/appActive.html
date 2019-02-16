@@ -33,18 +33,8 @@
   </div>
 </div>
 <script src="./js/jquery-1.10.2.js"></script>
+<script src="./js/util.js"></script>
 <script type="text/javascript">
-  const priceFormat = (value) => {
-    if (value < 100) {
-      return `${value / 100}`
-    } else {
-      if (value % 100 === 0) {
-        return `${value / 100}.00`
-      } else {
-        return `${value / 100}`
-      }
-    }
-  }
   const buyNow = (value) => {
     alert(value)
   }
