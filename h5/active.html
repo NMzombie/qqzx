@@ -171,15 +171,18 @@
     }
     $('.act-con').append(fir + sec + thi)
   }
+  // 滚动动销
   const getDiv_md = $(".tab-area");
   const offSet = getDiv_md.offset().top;
   $(window).scroll(function(){
+    // 浮层效果
     if ($(window).scrollTop() > offSet){
       getDiv_md.css({"position":"fixed","top":"10px","z-index":"2"});
     }else{
       getDiv_md.css({"position":"","left":"0px","top":"","z-index":""});
     }
   })
+  // 滚动实例化
   $('.nav').navScroll({
     mobileDropdown: true,
     mobileBreakpoint: 768,
