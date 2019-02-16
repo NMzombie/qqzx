@@ -37,6 +37,42 @@ $(function() {
                 }
         })
 	});
+	
+	$(".translateRecord").bind("click", function(e) {
+		e.preventDefault(); // 阻止默认的打开事件
+		// 注意 $(e.target) == $(this)
+		var disname = $(e.target).attr("disname");
+		var methodname = $(e.target).attr("methodname");
+		var dataid = $(e.target).attr("dataid");
+		var entity= $(e.target).attr("entity");
+		var skuValue= $(e.target).attr("skuValue");
+        swal({
+            title: "确认审核通过"+disname+"吗?",
+            showCancelButton: true,
+            showCloseButton: true,
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            confirmButtonClass: 'confirmbtn',
+            cancelButtonClass: 'canclebtn',
+            buttonsStyling: false,
+            width:400,
+            cancelButtonAriaLabel: 'Thumbs down'
+        }).then((result) => {
+                if(result.value){
+                    var url = "/admin/ajax/" + methodname ;
+                    $.post(url, {
+                        "id" : dataid,
+                        "entity":entity
+                    }, function(result) {
+                        if (result.success) {
+                            $("#object_" + dataid).hide(1000);
+                        } else {
+                            swal(result.errorInfo)
+                        }
+                    })
+                }
+        })
+	});
 
 	$(".deleteRecordLiitBuy").bind("click", function(e) {
 		e.preventDefault(); // 阻止默认的打开事件
