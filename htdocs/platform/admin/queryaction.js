@@ -268,6 +268,55 @@ $(function() {
         }
 
     });
+    
+    
+    //优惠券上下架
+    $(".ajaxCouponEnableShangjia").bind("click", function(e) {
+        e.preventDefault(); // 阻止默认的打开事件
+        // 注意 $(e.target) == $(this)
+
+        var truemsg=$(e.target).attr("truemsg");
+        var falsemsg=$(e.target).attr("falsemsg");
+
+        var mcid = $(e.target).attr("id");// mcid:message_contain_id
+        var entity = $(e.target).attr("entity");
+        var status = $(e.target).attr("status");
+        var dataid = $(e.target).attr("dataid");
+        var url = "/admin/ajax/couponEnableShangjia.json";
+        swal({
+            title: '确认要'+(status =="true" ?falsemsg : truemsg)+'吗?',
+            showCancelButton: true,
+            showCloseButton: true,
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            confirmButtonClass: 'confirmbtn',
+            cancelButtonClass: 'canclebtn',
+            buttonsStyling: false,
+            width:400,
+            cancelButtonAriaLabel: 'Thumbs down'
+        }).then((result) => {
+            if(result.value){
+                $.post(url, {
+                    "id" : dataid,
+                    "entity" : entity,
+                    "enable" : (status =="true"? false: true)
+                }, function(result) {
+                    if (result.success) {
+                        var currentStatus=result.data.enable;
+                        if(currentStatus){
+                            $("#" + mcid).html(truemsg);
+                        }
+                        else{
+                            $("#" + mcid).html(falsemsg);
+                        }
+                        $("#" + mcid).attr("status",currentStatus);
+                    } else {
+                        swal(result.errorInfo);
+                    }
+                })
+            }
+        })
+    });
 
 
     //是否包邮
