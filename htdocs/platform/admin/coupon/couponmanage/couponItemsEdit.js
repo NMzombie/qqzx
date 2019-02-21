@@ -6,7 +6,7 @@ $(function(){
 	$("#select_pro").bind("click", function(e) {
 		var page = '';
 		getArr();
-		getitemSerach(page);
+		getitemSerach(page,false);
 	});
 
     $("#select_category_recommend").bind("click", function(e) {
@@ -23,7 +23,7 @@ $(function(){
 	
 	$(".select_pro").bind("click",function(e){
 		var page = '';
-		getitemSerach(page);
+		getitemSerach(page,false);
 	});
 	
 	//关联会员
@@ -31,6 +31,12 @@ $(function(){
 		var page = '';
 		getmemberSerach(page);
 	});
+
+    //关联单个商品
+    $("#select_single_item").bind("click",function(e){
+        var page = '';
+        getitemSerach(page,true);
+    });
 	
 	//选择订单sku
 	 $('[id^="select_sku_"]').bind("click", function(e) {
@@ -414,7 +420,7 @@ $(function(){
 
 
     //获取商品信息
-	function getitemSerach(page){
+	function getitemSerach(page,isSingle){
 		var id = $('#good_id').val();
 	 	var name = $('#good_name').val();
 		$.ajax({
@@ -447,9 +453,16 @@ $(function(){
 						}
 						$('#goodList').html(tpl);
 	        		}
-	        		pages(data.pages, data.page);
-	        		getArr();
-	        		ckIs();
+
+                    if(isSingle){
+                        pages(data.pages, data.page,isSingle);
+                        ckItemIs();
+                    }else {
+                        pages(data.pages, data.page,isSingle);
+                        getArr();
+                        ckIs();
+                    }
+
                 }
             }
         });
@@ -497,7 +510,7 @@ $(function(){
 	}
 
 	//分页
-	function pages(pages,page){
+	function pages(pages,page,isSingle){
 		var pageCount = pages;
         var currentPage = page;
         var options = {
@@ -519,7 +532,7 @@ $(function(){
                 }
             },//点击事件，用于通过Ajax来刷新整个list列表
             onPageClicked: function (event, originalEvent, type, page) {
-            	getitemSerach(page);
+            	getitemSerach(page,isSingle);
             }
         };
         $('#example').bootstrapPaginator(options);
@@ -688,8 +701,23 @@ $(function(){
 			});
      	}); 
 	}
-	
-	//单选国家
+    //单选商品
+    function ckItemIs(){
+        $("input[type='checkbox']").each(function() {
+            $(this).on("click",function(){
+                $("input[type='checkbox']").each(function() {
+                    this.checked = false;
+                });
+                this.checked = true;
+                ckAll_goodId = {};
+                ckAll_goodId[this.value] = this.value;
+
+            });
+        });
+    }
+
+
+    //单选国家
 	function ckCountryIs(){
 		$("input[type='checkbox']").each(function() {  
 			$(this).on("click",function(){
@@ -707,7 +735,7 @@ $(function(){
 	//搜索
 	$('#search_good').bind('click',function(){
 	 	var page = '';
-		getitemSerach(page);
+		getitemSerach(page,false);
 	});
 	
 	//搜索会员
