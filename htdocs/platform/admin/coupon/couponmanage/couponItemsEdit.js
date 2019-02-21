@@ -1,12 +1,29 @@
 $(function(){
 	var ckAll_goodId = {};
+	var ckAll_goodIdForActivity_1 = {};
+	var ckAll_goodIdForActivity_2 = {};
+	var ckAll_goodIdForActivity_3 = {};
+	var ckAll_goodIdForActivity_4 = {};
+	var ckAll_goodIdForActivity_5 = {};
 	var ckAll_countryCode = {};
 	var ckAll_memberID = {};
+	
 	//选择关联商品信息
 	$("#select_pro").bind("click", function(e) {
+		
 		var page = '';
 		getArr();
 		getitemSerach(page,false);
+	});
+	
+	 $('[id^="select_pro_"]').bind("click", function(e) {
+		 	
+			var idArr = $(this).attr("id").split("_");
+			var num = idArr[2];
+			var page = '';
+			getArrForActivity(num);
+			getitemSerachForActivity(page,false,num);
+			
 	});
 
     $("#select_category_recommend").bind("click", function(e) {
@@ -418,15 +435,17 @@ $(function(){
         });
     }
 
-
+    
     //获取商品信息
 	function getitemSerach(page,isSingle){
+		
 		var id = $('#good_id').val();
 	 	var name = $('#good_name').val();
 		$.ajax({
             url: "/admin/commondatamanage/itemSerach.json?page=" + page +"&cid=" +id+ "&name="+name,
             type: "get",
             success: function (data) {
+            	
                 if (data != null) {
                   	var data = data.data;
 	        		var goodList = data.recordList;
@@ -461,6 +480,55 @@ $(function(){
                         pages(data.pages, data.page,isSingle);
                         getArr();
                         ckIs();
+                    }
+
+                }
+            }
+        });
+	}
+    
+  //获取活动商品信息
+	function getitemSerachForActivity(page,isSingle,num){
+		var id = $('#good_id_'+num).val();
+	 	var name = $('#good_name_'+num).val();
+		$.ajax({
+            url: "/admin/commondatamanage/itemSerach.json?page=" + page +"&cid=" +id+ "&name="+name,
+            type: "get",
+            success: function (data) {
+                if (data != null) {
+                  	var data = data.data;
+	        		var goodList = data.recordList;
+	        		var tpl = '';
+	        		if(goodList.length > 0 ){
+	        			for(var i = 0; i < goodList.length; i++){
+				    		var tr1 = '<tr>'+
+									  '<td><input type="checkbox" class="ckid" value="'+ goodList[i].id +'"/></td>'+
+									  '<td><img class="left rowimg" src='+pictureFormat(goodList[i].picUrls[0],200)+' /></td>'+
+									  '<td>'+ goodList[i].id +'</td>'+
+									  '<td>'+ goodList[i].name +'</td>'+
+							 	      '</tr>';
+				    		for (var j in eval("ckAll_goodIdForActivity_"+num)) {
+				    			if(j == goodList[i].id){
+						            tr1 = '<tr>'+
+									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
+									 '<td><img class="left rowimg" src='+pictureFormat(goodList[i].picUrls[0],200)+' /></td>'+
+									 '<td>'+ goodList[i].id +'</td>'+
+									 '<td>'+ goodList[i].name +'</td>'+
+							 	     '</tr>';
+						        }
+				    		}
+				    		tpl += tr1;
+						}
+						$('#goodList_'+num).html(tpl);
+	        		}
+
+                    if(isSingle){
+                    	pagesForActivity(data.pages, data.page,isSingle,num);
+                    	ckItemIsForActivity(num);
+                    }else {
+                    	pagesForActivity(data.pages, data.page,isSingle,num);
+                        getArrForActivity(num);
+                        ckIsForActivity(num);
                     }
 
                 }
@@ -536,6 +604,35 @@ $(function(){
             }
         };
         $('#example').bootstrapPaginator(options);
+	}
+	
+	//分页 活动商品
+	function pagesForActivity(pages,page,isSingle,num){
+		var pageCount = pages;
+        var currentPage = page;
+        var options = {
+            bootstrapMajorVersion: 2, //版本
+            currentPage: currentPage, //当前页数
+            totalPages: pageCount, //总页数
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "上一页";
+                    case "next":
+                        return "下一页";
+                    case "last":
+                        return "末页";
+                    case "page":
+                        return page;
+                }
+            },//点击事件，用于通过Ajax来刷新整个list列表
+            onPageClicked: function (event, originalEvent, type, page) {
+            	getitemSerachForActivity(page,isSingle,num);
+            }
+        };
+        $('#example_'+num).bootstrapPaginator(options);
 	}
 	
 	//会员分页
@@ -619,6 +716,18 @@ $(function(){
 	    	}
     	}
 	}
+	
+	//将用户之前选定的活动商品id放到公共的数组里面
+	function getArrForActivity(num){
+		var arr = [];
+    	var str = $('#goodsId_'+num).val();
+    	if(str != "" && str != "undefined"){
+    		arr = str.split(",");
+	    	for(var m = 0; m < arr.length; m++){
+	    		eval("ckAll_goodIdForActivity_"+num)[arr[m]] = arr[m];
+	    	}
+    	}
+	}
 
 	//确定按钮事件
 	$('#btn_ok').bind("click", function() {
@@ -631,6 +740,23 @@ $(function(){
 		}
 		
 	    $('#myModal').removeClass('in');
+	});
+	
+
+	
+	//活动商品选定按钮事件
+	$('[id^="btn_ok_"]').bind("click", function() {
+		var idArr = $(this).attr("id").split("_");
+		var num = idArr[2];
+		
+		delete eval("ckAll_goodIdForActivity_"+num)['on'];
+		var list_goodId = [];
+		for(var i in eval("ckAll_goodIdForActivity_"+num)){
+			list_goodId.push(i);
+			$('#goodsId_'+num).val(list_goodId);
+		}
+		
+	    $('#myModal_'+num).removeClass('in');
 	});
 	
 	$('#member_btn_ok').bind("click", function() {
@@ -662,6 +788,20 @@ $(function(){
 					delete ckAll_goodId[this.value];
 		 		} else{
 		 			ckAll_goodId[this.value] = this.value;
+	 			}  
+			});
+     	}); 
+	}
+	
+	function ckIsForActivity(num){
+		$("input[type='checkbox']").each(function() {  
+			$(this).on("click",function(){
+				if(!this.checked){
+					isCheckAll = false;
+					$('#swapCheck').attr('checked',false);
+					delete eval("ckAll_goodIdForActivity_"+num)[this.value];
+		 		} else{
+		 			eval("ckAll_goodIdForActivity_"+num)[this.value] = this.value;
 	 			}  
 			});
      	}); 
@@ -715,6 +855,20 @@ $(function(){
             });
         });
     }
+    
+    function ckItemIsForActivity(num){
+        $("input[type='checkbox']").each(function() {
+            $(this).on("click",function(){
+                $("input[type='checkbox']").each(function() {
+                    this.checked = false;
+                });
+                this.checked = true;
+                eval("ckAll_goodIdForActivity_"+num) = {};
+                eval("ckAll_goodIdForActivity_"+num)[this.value] = this.value;
+
+            });
+        });
+    }
 
 
     //单选国家
@@ -736,6 +890,14 @@ $(function(){
 	$('#search_good').bind('click',function(){
 	 	var page = '';
 		getitemSerach(page,false);
+	});
+	
+	//搜索
+	$('[id^="search_good_"]').bind('click',function(){
+	 	var page = '';
+	 	var idArr = $(this).attr("id").split("_");
+		var num = idArr[2];
+		getitemSerachForActivity(page,false,num);
 	});
 	
 	//搜索会员
