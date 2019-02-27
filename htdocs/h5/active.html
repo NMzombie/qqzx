@@ -84,13 +84,13 @@
         if (response.message) {
           swal({
             title: '提示',
-            text: response.message,
+            text: JSON.parse(response).message,
             customClass: "sweetAlert",
           })
         } else {
           swal({
             title: '提示',
-            text: response.errorMsg,
+            text: JSON.parse(response).errorMsg,
             customClass: "sweetAlert",
           })
         }
