@@ -27,32 +27,153 @@
   <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550227401126&di=c71da042c8413046922f2e5751cd2226&imgtype=0&src=http%3A%2F%2Fimg.qqzhi.com%2Fuploads%2F2018-12-29%2F145607665.jpg" alt="" />
 </div>
 <div class="active-main">
-  <div class="coupon clearfix">
-    <img class="card" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550823530&di=5252d841c9a8dc32c4c1a33acc998f96&imgtype=jpg&er=1&src=http%3A%2F%2Fcuimg.zuyushop.com%3A8014%2FcuxiaoPic%2Fimage%2FmmbAdmin%2F20160617093737_5285.png" />
-    <img class="card" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550823530&di=5252d841c9a8dc32c4c1a33acc998f96&imgtype=jpg&er=1&src=http%3A%2F%2Fcuimg.zuyushop.com%3A8014%2FcuxiaoPic%2Fimage%2FmmbAdmin%2F20160617093737_5285.png" />
-    <img class="card" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550823530&di=5252d841c9a8dc32c4c1a33acc998f96&imgtype=jpg&er=1&src=http%3A%2F%2Fcuimg.zuyushop.com%3A8014%2FcuxiaoPic%2Fimage%2FmmbAdmin%2F20160617093737_5285.png" />
-  </div>
-  <div class="desc">注：限8.9-9.12可用</div>
+  <div class="coupon clearfix"></div>
+  <div class="desc">注：限<span class="start-date"></span>-<span class="end-date"></span>可用</div>
   <nav class="nav">
-    <div class="tab-area clearfix">
-    </div>
+    <div class="tab-area clearfix"></div>
   </nav>
-  <div class="act-con">
-  </div>
+  <div class="act-con"></div>
 </div>
 <script src="./js/jquery-1.10.2.js"></script>
 <script src="./js/jquery.navScroll.js"></script>
 <script src="./js/util.js"></script>
 <script type="text/javascript">
+  // 立即购买
   const buyNow = (value) => {
     alert(value)
   }
+  // webview连接
+  function connectWebViewJavascriptBridge (callback) {
+    if (window.WebViewJavascriptBridge) {
+      callback(window.WebViewJavascriptBridge)
+    } else {
+      document.addEventListener('WebViewJavascriptBridgeReady', function () {
+        callback(window.WebViewJavascriptBridge)
+      }, false)
+      if (window.WVJBCallbacks) {
+        return window.WVJBCallbacks.push(callback)
+      }
+      window.WVJBCallbacks = [callback]
+      var WVJBIframe = document.createElement('iframe')
+      WVJBIframe.style.display = 'none'
+      WVJBIframe.src = 'https://__bridge_loaded__'
+      document.documentElement.appendChild(WVJBIframe)
+      setTimeout(function () {
+        document.documentElement.removeChild(WVJBIframe)
+      }, 0)
+    }
+  }
+  // 注册回调函数，第一次连接时调用 初始化函数
+  // bridge.init 只有android需要调用初始化，可以使用Object.keys(bridge) 打开查看对象，ios没有init方法
+  connectWebViewJavascriptBridge(function (bridge) {
+    try {
+      bridge.init(function (message, responseCallback) {
+        console.log('JS got a message', message)
+        var data = {
+          'Javascript Responds': 'CMYH!'
+        }
+        console.log('JS responding with', data)
+        responseCallback(data)
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  })
+  // 获取优惠券信息
+  function getTicket (id){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getTicket', {'id': `${id}`}, function (response) {
+      })
+    } else {
+      setTimeout(() => {
+        getTicket(id)
+      }, 50)
+    }
+  }
+  // 获取客户端url跳转
+  function getUrlTo (index){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUrlTo', {'page': `wg://push.chuang.co?page=prodDetail&prodId=${index}`}, function (response) {
+      })
+    } else {
+      setTimeout(() => {
+        getUrlTo(index)
+      }, 50)
+    }
+  }
+  // 获取客户端用户信息
+  function getUserInfo (){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
+        const userInfo = response.userInfo
+        alert(userInfo.userName)
+      })
+    } else {
+      setTimeout(() => {
+        getUrlTo()
+      }, 50)
+    }
+  }
+  getUserInfo()
+  // 活动数据拉取
+  const activityId = {
+    activityId: getQueryString('activityId')
+  }
+  // const baseUrl = window.location.host
+  const baseUrl = 'http://qqzx.xc2018.com.cn'
+  $.ajax({
+    type : 'post',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    url: `${baseUrl}/doc/api/common/activity/findActivity.json`,
+    data: `data=${JSON.stringify(activityId)}`,
+    success: (res) => {
+      const data = res.data.activityVO
+      const startDate = `${new Date(data.activity.startDate).getMonth()}.${new Date(data.activity.startDate).getDay()}`
+      const endDate = `${new Date(data.activity.endDate).getMonth()}.${new Date(data.activity.endDate).getDay()}`
+      $('.start-date').html(startDate)
+      $('.end-date').html(endDate)
+      const couponList = data.couponDOList
+      // 优惠券遍历
+      for (let i = 0; i < couponList.length; i++) {
+        if (couponList.length === 1) {
+          $('.coupon').append(`<img class="large-card" src="${couponList[i].picUrl}" />`)
+        } else {
+          // 偶数优惠券
+          if (couponList.length % 2 === 0) {
+            if (i % 2 === 0) {
+              $('.coupon').append(`<img class="small-card" src="${couponList[i].picUrl}" />`)
+            } else {
+              $('.coupon').append(`<img class="small-card m-l12" src="${couponList[i].picUrl}" />`)
+            }
+          } else {
+            // 奇数优惠券
+            if (couponList.length !== i + 1) {
+              // 非最后一行
+              if (i % 2 === 0) {
+                $('.coupon').append(`<img class="small-card" src="${couponList[i].picUrl}" />`)
+              } else {
+                $('.coupon').append(`<img class="small-card m-l12" src="${couponList[i].picUrl}" />`)
+              }
+            } else {
+              //  最后一行
+              $('.coupon').append(`<img class="large-card" src="${couponList[i].picUrl}" />`)
+            }
+          }
+        }
+      }
+      // 商品清单
+      const list = data.itemGroups
+    }
+  })
+
   // 商品所有数据（type为样式类型分别对应0,1,2，仅此三种）
   const list = [
     {
       id: 0,
-      name: '必购清单',
-      type: 0,
+      groupName: '必购清单',
+      styleType: 0,
       list: [{
         id: 0,
         img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
@@ -75,8 +196,8 @@
     },
     {
       id: 1,
-      name: '必买专区',
-      type: 1,
+      groupName: '必买专区',
+      styleType: 1,
       list: [{
         id: 0,
         img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
@@ -93,8 +214,8 @@
     },
     {
       id: 2,
-      name: '超值专区',
-      type: 2,
+      groupName: '超值专区',
+      styleType: 2,
       list: [{
         id: 0,
         img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
@@ -123,8 +244,8 @@
     },
     {
       id: 3,
-      name: '爆款专区',
-      type: 2,
+      groupName: '爆款专区',
+      styleType: 2,
       list: [{
         id: 0,
         img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550231153154&di=c494db676ce974f6d81fae95b7a93ff4&imgtype=0&src=http%3A%2F%2Fimg10.360buyimg.com%2FpopWaterMark%2Fjfs%2Ft292%2F228%2F1942614163%2F151045%2F318f7fa2%2F5447685aN8b793d8e.jpg',
@@ -154,19 +275,19 @@
   ]
   for (let i = 0; i < list.length; i++) {
     // 插入标题区块
-    $('.tab-area').append(`<a href="#tab${list[i].id}">${list[i].name}</a>`)
+    $('.tab-area').append(`<a href="#tab${list[i].id}">${list[i].groupName}</a>`)
     // 插入题目
-    $('.act-con').append(`<div class="act-title">// ${list[i].name} //</div>`)
+    $('.act-con').append(`<div class="act-title">// ${list[i].groupName} //</div>`)
     // 插入内容区块
-    const fir = `<div class="type-${list[i].type} clearfix" id="tab${list[i].id}">`
+    const fir = `<div class="type-${list[i].styleType} clearfix" id="tab${list[i].id}">`
     let sec = ''
     const thi = `</div>`
     // 全部商品插入区
     for (let o = 0; o < list[i].list.length; o++) {
-      if (list[i].type === 1) {
-        sec = sec + `<div class="type-goods-${list[i].type} clearfix"><img class="type-img-${list[i].type}" src="${list[i].list[o].img}" /><div class="type-title-${list[i].type} txt-cut">${list[i].list[o].itemName}</div><div class="type-price-${list[i].type} clearfix"><div class="market">¥${priceFormat(list[i].list[o].marketPrice)}</div><div class="member">¥${priceFormat(list[i].list[o].memberPrice)}</div></div><div><input class="type-buy-${list[i].type}" type="button" value="立即购买" onclick="buyNow(${list[i].list[o].id})" /></div></div>`
+      if (list[i].styleType === 1) {
+        sec = sec + `<div class="type-goods-${list[i].styleType} clearfix"><img class="type-img-${list[i].styleType}" src="${list[i].list[o].picUrls[0]}" /><div class="type-title-${list[i].styleType} txt-cut">${list[i].list[o].itemName}</div><div class="type-price-${list[i].styleType} clearfix"><div class="market">¥${priceFormat(list[i].list[o].marketPrice)}</div><div class="member">¥${priceFormat(list[i].list[o].memberPrice)}</div></div><div><input class="type-buy-${list[i].styleType}" type="button" value="立即购买" onclick="buyNow(${list[i].list[o].id})" /></div></div>`
       } else {
-        sec = sec + `<div class="type-goods-${list[i].type} clearfix"><img class="type-img-${list[i].type}" src="${list[i].list[o].img}" /><div class="type-title-${list[i].type} txt-cut">${list[i].list[o].itemName}</div><div class="type-price-${list[i].type} clearfix"><div class="member">¥${priceFormat(list[i].list[o].memberPrice)}</div><div class="market">¥${priceFormat(list[i].list[o].marketPrice)}</div></div><div><input class="type-buy-${list[i].type}" type="button" value="立即购买" onclick="buyNow(${list[i].list[o].id})" /></div></div>`
+        sec = sec + `<div class="type-goods-${list[i].styleType} clearfix"><img class="type-img-${list[i].styleType}" src="${list[i].list[o].picUrls[0]}" /><div class="type-title-${list[i].styleType} txt-cut">${list[i].list[o].itemName}</div><div class="type-price-${list[i].styleType} clearfix"><div class="member">¥${priceFormat(list[i].list[o].memberPrice)}</div><div class="market">¥${priceFormat(list[i].list[o].marketPrice)}</div></div><div><input class="type-buy-${list[i].styleType}" type="button" value="立即购买" onclick="buyNow(${list[i].list[o].id})" /></div></div>`
       }
     }
     $('.act-con').append(fir + sec + thi)
