@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,telephone=no">
   <title>暖心情人节</title>
   <link rel="stylesheet" href="css/active.css">
+  <link rel="stylesheet" href="css/sweetalert.css">
   <script>
     fnResize()
     window.onresize = function () {
@@ -36,6 +37,7 @@
 </div>
 <script src="./js/jquery-1.10.2.js"></script>
 <script src="./js/jquery.navScroll.js"></script>
+<script src="./js/sweetalert.min.js"></script>
 <script src="./js/util.js"></script>
 <script type="text/javascript">
   // webview连接
@@ -79,9 +81,20 @@
   function getTicket (id){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getTicket', {'id': `${id}`}, function (response) {
-        alert(response)
+        if (response.message) {
+          swal({
+            title: '提示',
+            text: response.message,
+            customClass: "sweetAlert",
+          })
+        } else {
+          swal({
+            title: '提示',
+            text: response.errorMsg,
+            customClass: "sweetAlert",
+          })
+        }
       })
-      return
     } else {
       setTimeout(() => {
         getTicket(id)
@@ -93,7 +106,6 @@
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUrlTo', {'page': `wg://push.chuang.co?page=prodDetail&prodId=${id}`}, function (response) {
       })
-      return
     } else {
       setTimeout(() => {
         buyNow(id)
@@ -187,7 +199,6 @@
           }
         })
       })
-      return
     } else {
       setTimeout(() => {
         getUserInfo()

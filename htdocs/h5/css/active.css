@@ -31,6 +31,13 @@ a {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.sweetAlert {
+  margin: -2rem auto !important;
+  width: 3rem !important;
+}
+.sweet-alert fieldset {
+  padding: 0 !important;
+}
 .header {
   height: 3.75rem;
   width: 100%;
