@@ -891,7 +891,12 @@ $(function(){
 	 	var page = '';
 		getitemSerach(page,false);
 	});
-	
+
+
+    $('#select_single_item1').bind('click',function(){
+        var page = '';
+        getitemSerach(page,true);
+    });
 	//搜索
 	$('[id^="search_good_"]').bind('click',function(){
 	 	var page = '';
