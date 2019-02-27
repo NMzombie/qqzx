@@ -105,8 +105,8 @@
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
-        const userInfo = response
-        alert(userInfo)
+        const userInfo = JSON.parse(response)
+        alert(userInfo.level)
       })
     } else {
       setTimeout(() => {
