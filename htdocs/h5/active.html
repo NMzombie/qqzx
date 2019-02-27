@@ -81,6 +81,7 @@
       window.WebViewJavascriptBridge.callHandler('getTicket', {'id': `${id}`}, function (response) {
         alert(response)
       })
+      return
     } else {
       setTimeout(() => {
         getTicket(id)
@@ -92,6 +93,7 @@
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUrlTo', {'page': `wg://push.chuang.co?page=prodDetail&prodId=${id}`}, function (response) {
       })
+      return
     } else {
       setTimeout(() => {
         buyNow(id)
@@ -126,27 +128,27 @@
             // 优惠券遍历
             for (let i = 0; i < couponList.length; i++) {
               if (couponList.length === 1) {
-                $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="large-card" src="${couponList[i].picUrl}" /></a>`)
+                $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="large-card" src="${couponList[i].picUrl}" /></a>`)
               } else {
                 // 偶数优惠券
                 if (couponList.length % 2 === 0) {
                   if (i % 2 === 0) {
-                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="small-card" src="${couponList[i].picUrl}" /></a>`)
+                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card" src="${couponList[i].picUrl}" /></a>`)
                   } else {
-                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="small-card m-l12" src="${couponList[i].picUrl}" /></a>`)
+                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card m-l12" src="${couponList[i].picUrl}" /></a>`)
                   }
                 } else {
                   // 奇数优惠券
                   if (couponList.length !== i + 1) {
                     // 非最后一行
                     if (i % 2 === 0) {
-                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="small-card" src="${couponList[i].picUrl}" /></a>`)
+                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card" src="${couponList[i].picUrl}" /></a>`)
                     } else {
-                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="small-card m-l12" src="${couponList[i].picUrl}" /></a>`)
+                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card m-l12" src="${couponList[i].picUrl}" /></a>`)
                     }
                   } else {
                     //  最后一行
-                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="large-card" src="${couponList[i].picUrl}" /></a>`)
+                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="large-card" src="${couponList[i].picUrl}" /></a>`)
                   }
                 }
               }
@@ -185,6 +187,7 @@
           }
         })
       })
+      return
     } else {
       setTimeout(() => {
         getUserInfo()
