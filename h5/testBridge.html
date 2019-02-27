@@ -42,19 +42,29 @@
       console.log(e)
     }
   })
-  function myfunction (){
-    // 你的方法调用
+  function getRedirect (id){
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getTest', {'param': '123'}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getRedirect', {'id': `${id}`}, function (response) {
         alert(response)
       })
     } else {
       setTimeout(() => {
-        myfunction()
+        getRedirect()
       }, 50)
     }
   }
-  myfunction()
+  function getUrlTo (index){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUrlTo', {'page': `wg://push.chuang.co?page=prodDetail&prodId=${index}`}, function (response) {
+      })
+    } else {
+      setTimeout(() => {
+        getUrlTo()
+      }, 50)
+    }
+  }
+  getUrlTo()
+  getRedirect()
 </script>
 </body>
 </html>
