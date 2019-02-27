@@ -37,7 +37,6 @@
 </div>
 <script src="./js/jquery-1.10.2.js"></script>
 <script src="./js/jquery.navScroll.js"></script>
-<script src="./js/sweetalert.min.js"></script>
 <script src="./js/util.js"></script>
 <script type="text/javascript">
   // webview连接
@@ -81,19 +80,6 @@
   function getTicket (id){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getTicket', {'id': `${id}`}, function (response) {
-        if (response.message) {
-          swal({
-            title: '提示',
-            text: JSON.parse(response).message,
-            customClass: "sweetAlert",
-          })
-        } else {
-          swal({
-            title: '提示',
-            text: JSON.parse(response).errorMsg,
-            customClass: "sweetAlert",
-          })
-        }
       })
     } else {
       setTimeout(() => {
