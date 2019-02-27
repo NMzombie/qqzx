@@ -38,10 +38,6 @@
 <script src="./js/jquery.navScroll.js"></script>
 <script src="./js/util.js"></script>
 <script type="text/javascript">
-  // 立即购买
-  const buyNow = (value) => {
-    alert(value)
-  }
   // webview连接
   function connectWebViewJavascriptBridge (callback) {
     if (window.WebViewJavascriptBridge) {
@@ -83,6 +79,7 @@
   function getTicket (id){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getTicket', {'id': `${id}`}, function (response) {
+        alert(response)
       })
     } else {
       setTimeout(() => {
@@ -91,13 +88,13 @@
     }
   }
   // 获取客户端url跳转
-  function getUrlTo (index){
+  function buyNow (id){
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getUrlTo', {'page': `wg://push.chuang.co?page=prodDetail&prodId=${index}`}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getUrlTo', {'page': `wg://push.chuang.co?page=prodDetail&prodId=${id}`}, function (response) {
       })
     } else {
       setTimeout(() => {
-        getUrlTo(index)
+        buyNow(id)
       }, 50)
     }
   }
@@ -129,27 +126,27 @@
             // 优惠券遍历
             for (let i = 0; i < couponList.length; i++) {
               if (couponList.length === 1) {
-                $('.coupon').append(`<img class="large-card" src="${couponList[i].picUrl}" />`)
+                $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="large-card" src="${couponList[i].picUrl}" /></a>`)
               } else {
                 // 偶数优惠券
                 if (couponList.length % 2 === 0) {
                   if (i % 2 === 0) {
-                    $('.coupon').append(`<img class="small-card" src="${couponList[i].picUrl}" />`)
+                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="small-card" src="${couponList[i].picUrl}" /></a>`)
                   } else {
-                    $('.coupon').append(`<img class="small-card m-l12" src="${couponList[i].picUrl}" />`)
+                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="small-card m-l12" src="${couponList[i].picUrl}" /></a>`)
                   }
                 } else {
                   // 奇数优惠券
                   if (couponList.length !== i + 1) {
                     // 非最后一行
                     if (i % 2 === 0) {
-                      $('.coupon').append(`<img class="small-card" src="${couponList[i].picUrl}" />`)
+                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="small-card" src="${couponList[i].picUrl}" /></a>`)
                     } else {
-                      $('.coupon').append(`<img class="small-card m-l12" src="${couponList[i].picUrl}" />`)
+                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="small-card m-l12" src="${couponList[i].picUrl}" /></a>`)
                     }
                   } else {
                     //  最后一行
-                    $('.coupon').append(`<img class="large-card" src="${couponList[i].picUrl}" />`)
+                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(couponList[i].id)"><img class="large-card" src="${couponList[i].picUrl}" /></a>`)
                   }
                 }
               }
@@ -202,7 +199,7 @@
   $(window).scroll(function(){
     // 浮层效果
     if ($(window).scrollTop() > offSet){
-      getDiv_md.css({"position":"fixed","top":"10px","z-index":"2"});
+      getDiv_md.css({"position":"fixed","top":"0","z-index":"2"});
     }else{
       getDiv_md.css({"position":"","left":"0px","top":"","z-index":""});
     }
