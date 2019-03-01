@@ -118,10 +118,11 @@
           data: `data=${JSON.stringify(activityId)}`,
           success: (res) => {
             const data = res.data.activityVO
-            const startDate = `${new Date(data.activity.startDate).getMonth()}.${new Date(data.activity.startDate).getDay()}`
-            const endDate = `${new Date(data.activity.endDate).getMonth()}.${new Date(data.activity.endDate).getDay()}`
+            const startDate = `${new Date(data.activity.startDate).getMonth() + 1}.${new Date(data.activity.startDate).getDate()}`
+            const endDate = `${new Date(data.activity.endDate).getMonth() + 1}.${new Date(data.activity.endDate).getDate()}`
             $('.start-date').html(startDate)
             $('.end-date').html(endDate)
+            $('title').html(data.activity.name)
             const couponList = data.couponDOList
             // 优惠券遍历
             for (let i = 0; i < couponList.length; i++) {
