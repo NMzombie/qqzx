@@ -128,27 +128,27 @@
             // 优惠券遍历
             for (let i = 0; i < couponList.length; i++) {
               if (couponList.length === 1) {
-                $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="large-card" src="${couponList[i].picUrl}" /></a>`)
+                $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="large-card" src="http://file.wegoomall.cn/platform/manager/pic/20190301/11819809026341627.png" /></a>`)
               } else {
                 // 偶数优惠券
                 if (couponList.length % 2 === 0) {
                   if (i % 2 === 0) {
-                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card" src="${couponList[i].picUrl}" /></a>`)
+                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card" src="http://file.wegoomall.cn/platform/manager/pic/20190301/11819826824024180.png" /></a>`)
                   } else {
-                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card m-l12" src="${couponList[i].picUrl}" /></a>`)
+                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card m-l12" src="http://file.wegoomall.cn/platform/manager/pic/20190301/11819826824024180.png" /></a>`)
                   }
                 } else {
                   // 奇数优惠券
                   if (couponList.length !== i + 1) {
                     // 非最后一行
                     if (i % 2 === 0) {
-                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card" src="${couponList[i].picUrl}" /></a>`)
+                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card" src="http://file.wegoomall.cn/platform/manager/pic/20190301/11819826824024180.png" /></a>`)
                     } else {
-                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card m-l12" src="${couponList[i].picUrl}" /></a>`)
+                      $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="small-card m-l12" src="http://file.wegoomall.cn/platform/manager/pic/20190301/11819826824024180.png" /></a>`)
                     }
                   } else {
                     //  最后一行
-                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="large-card" src="${couponList[i].picUrl}" /></a>`)
+                    $('.coupon').append(`<a href="javascript:void(0);" onclick="getTicket(${couponList[i].id})"><img class="large-card" src="http://file.wegoomall.cn/platform/manager/pic/20190301/11819809026341627.png" /></a>`)
                   }
                 }
               }

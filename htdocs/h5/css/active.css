@@ -50,14 +50,12 @@ a {
   position: relative;
   float: left;
   width: 7.26rem;
-  height: 1.5rem;
 }
 .small-card {
   position: relative;
   float: left;
   margin-bottom: 0.12rem;
   width: 3.58rem;
-  height: 1.64rem;
 }
 .desc {
   padding-bottom: 0.17rem;
