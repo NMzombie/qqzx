@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="header">
-  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550227401126&di=c71da042c8413046922f2e5751cd2226&imgtype=0&src=http%3A%2F%2Fimg.qqzhi.com%2Fuploads%2F2018-12-29%2F145607665.jpg" alt="" />
+  <img class="activity-pic" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550227401126&di=c71da042c8413046922f2e5751cd2226&imgtype=0&src=http%3A%2F%2Fimg.qqzhi.com%2Fuploads%2F2018-12-29%2F145607665.jpg" alt="" />
 </div>
 <div class="active-main">
   <div class="coupon clearfix"></div>
@@ -122,6 +122,7 @@
             const endDate = `${new Date(data.activity.endDate).getMonth() + 1}.${new Date(data.activity.endDate).getDate()}`
             $('.start-date').html(startDate)
             $('.end-date').html(endDate)
+            $('.activity-pic').attr('src', data.activity.picUrl)
             $('title').html(data.activity.name)
             const couponList = data.couponDOList
             // 优惠券遍历
