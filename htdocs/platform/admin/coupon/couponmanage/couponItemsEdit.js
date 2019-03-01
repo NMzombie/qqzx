@@ -275,15 +275,14 @@ $(function(){
             url: "/admin/base/commissionmanage/commissionMonthDetailByMid.json?page="+page+"&mid=" + mid+"&yearMonth="+yearMonth,
             type: "get",
             success: function (data) {
+            	debugger
                 if (data != null) {
-                	console.info("===========");
-                	console.info(data);
+                	$('#skuDetailList').html('');
+        			$('#memberSkuDetailList').html('');
                   	var comOrderCommissionSkuDetailList = data.data;
 	        		var tpl = '';
-	        		if(comOrderCommissionSkuDetailList.length > 0 ){
+	        		if(comOrderCommissionSkuDetailList&&comOrderCommissionSkuDetailList.length > 0 ){
 	        			var totalCommissionPrice = 0;
-	        			$('#skuDetailList').html('');
-	        			$('#memberSkuDetailList').html('');
 	        			for(var i = 0; i < comOrderCommissionSkuDetailList.length; i++){   
 	        				var trStar = '<tr>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemName+'</td>'+
@@ -330,14 +329,12 @@ $(function(){
             success: function (data) {
             	
                 if (data != null) {
-                	console.info("===========");
-                	console.info(data);
+                	$('#skuDetailList').html('');
+        			$('#memberSkuDetailList').html('');
                   	var comOrderCommissionSkuDetailList = data.data;
 	        		var tpl = '';
 	        		var totalCommissionPrice = 0;
 	        		if(comOrderCommissionSkuDetailList&&comOrderCommissionSkuDetailList.length > 0 ){
-	        			$('#skuDetailList').html('');
-	        			$('#memberSkuDetailList').html('');
 	        			for(var i = 0; i < comOrderCommissionSkuDetailList.length; i++){   
 	        				var trStar = '<tr>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemName+'</td>'+
