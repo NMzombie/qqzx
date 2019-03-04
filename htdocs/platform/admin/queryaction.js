@@ -65,7 +65,7 @@ $(function() {
                         "entity":entity
                     }, function(result) {
                         if (result.success) {
-                            $("#object_" + dataid).hide(1000);
+                       
                         } else {
                             swal(result.errorInfo)
                         }
