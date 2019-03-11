@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>test iOS6</title>
-  <div style="width:200px;height: 50px;line-height: 50px;border:1px solid #fafafa;" class="getRedirect">getRedirect</div>
+  <div style="width:200px;height: 50px;line-height: 50px;border:1px solid #fafafa;" class="getTicket">getTicket</div>
   <div style="width:200px;height: 50px;line-height: 50px;border:1px solid #fafafa;" class="getUrlTo">getUrlTo</div>
   <div style="width:200px;height: 50px;line-height: 50px;border:1px solid #fafafa;" class="getUserInfo">getUserInfo</div>
 </head>
@@ -46,14 +46,14 @@
       console.log(e)
     }
   })
-  function getRedirect (id){
+  function getTicket (id){
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getRedirect', {'id': `${id}`}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getTicket', {'id': `${id}`}, function (response) {
         alert(response)
       })
     } else {
       setTimeout(() => {
-        getRedirect()
+        getTicket()
       }, 50)
     }
   }
@@ -78,8 +78,8 @@
       }, 50)
     }
   }
-  $('.getRedirect').click(() => {
-    getRedirect(15)
+  $('.getTicket').click(() => {
+    getTicket(15)
   })
   $('.getUrlTo').click(() => {
     getUrlTo('5162')
