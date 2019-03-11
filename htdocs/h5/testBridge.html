@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>test iOS6</title>
+  <div style="width:200px;height: 50px" class="getRedirect">getRedirect</div>
+  <div style="width:200px;height: 50px" class="getUrlTo">getUrlTo</div>
+  <div style="width:200px;height: 50px" class="getUserInfo">getUserInfo</div>
 </head>
 <body>
 <script>
@@ -63,8 +66,26 @@
       }, 50)
     }
   }
-  getUrlTo()
-  getRedirect()
+  function getUserInfo (){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
+        alert(response)
+      })
+    } else {
+      setTimeout(() => {
+        getUserInfo()
+      }, 50)
+    }
+  }
+  $('.getRedirect').click(() => {
+    getRedirect(15)
+  })
+  $('.getUrlTo').click(() => {
+    getUrlTo('5162')
+  })
+  $('.getUserInfo').click(() => {
+    getUserInfo()
+  })
 </script>
 </body>
 </html>
