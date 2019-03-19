@@ -12,8 +12,14 @@ $(function(){
 	$("#select_pro").bind("click", function(e) {
 		
 		var page = '';
-		getArr();
 		getitemSerach(page,false);
+	});
+	
+	//选择关联优惠券运营赠送信息
+	$("#select_coupon").bind("click", function(e) {
+		
+		var page = '';
+		getoperationgivingCouponSerach(page,false);
 	});
 	
 	 $('[id^="select_pro_"]').bind("click", function(e) {
@@ -275,7 +281,7 @@ $(function(){
             url: "/admin/base/commissionmanage/commissionMonthDetailByMid.json?page="+page+"&mid=" + mid+"&yearMonth="+yearMonth,
             type: "get",
             success: function (data) {
-            	debugger
+            	
                 if (data != null) {
                 	$('#skuDetailList').html('');
         			$('#memberSkuDetailList').html('');
@@ -479,6 +485,52 @@ $(function(){
                         ckIs();
                     }
 
+                }
+            }
+        });
+	}
+	
+	//获取运营赠送优惠券信息
+	function getoperationgivingCouponSerach(page,isSingle){
+		var id = $('#coupon_id').val();
+	 	var name = $('#coupon_name').val();
+		$.ajax({
+            url: "/admin/activity/couponmanage/operationgivingCoupon.json?page=" + page +"&couponId=" +id+ "&name="+name,
+            type: "get",
+            success: function (data) {
+                if (data != null) {
+                  	var data = data.data;
+	        		var couponList = data.recordList;
+	        		var tpl = '';
+	        		if(couponList.length > 0 ){
+	        			for(var i = 0; i < couponList.length; i++){
+				    		var tr1 = '<tr>'+
+									  '<td><input type="checkbox" class="ckid" value="'+ couponList[i].id +'"/></td>'+
+									  '<td>'+ couponList[i].id +'</td>'+
+									  '<td>'+ couponList[i].name +'</td>'+
+							 	      '</tr>';
+				    		for (var j in ckAll_goodId) {
+				    			if(j == couponList[i].id){
+						            tr1 = '<tr>'+
+									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
+									 '<td>'+ couponList[i].id +'</td>'+
+									 '<td>'+ couponList[i].name +'</td>'+
+							 	     '</tr>';
+						        }
+				    		}
+				    		tpl += tr1;
+						}
+						$('#couponList').html(tpl);
+	        		}
+
+                    if(isSingle){
+                        pages(data.pages, data.page,isSingle);
+                        ckItemIs();
+                    }else {
+                        pages(data.pages, data.page,isSingle);
+                        getArr();
+                        ckIs();
+                    }
                 }
             }
         });
@@ -738,6 +790,32 @@ $(function(){
 		
 	    $('#myModal').removeClass('in');
 	});
+	
+	//确定按钮事件
+	$('#coupon_btn_ok').bind("click", function() {
+		delete ckAll_goodId['on'];
+		var list_couponId = [];
+		for(var i in ckAll_goodId){
+			list_couponId.push(i);
+		}
+		
+	    $('#myModal').removeClass('in');
+	    
+	    $.ajax({
+	    	url: "/admin/activity/couponmanage/givingCoupon.json?couponIds=" + list_couponId +"&mid=" + $('#memberCoupon').val(),
+            type: "get",
+            success: function (data) {
+            	
+                if (data != null&&data.success) {
+                	swal('赠送成功!')
+                }else{
+                	swal('赠送失败,请检查优惠券数量!')
+                }
+            }
+	    });
+	});
+	
+	
 	
 
 	
