@@ -62,7 +62,7 @@ ul {
   text-align: center;
   width: 100%;
   background: rgba(255, 255, 255, 1);
-  border-radius: 30px 30px 0 0;
+  border-radius: 0.3rem 0.3rem 0 0;
 }
 .today-list .header-img {
   position: absolute;
@@ -116,11 +116,8 @@ ul {
   width: 1.2rem;
   height: 1.2rem;
 }
-.list .list-goods .middle-left, .list .list-goods .middle-right {
-  padding-top: 0.8rem;
-}
-.list-goods .right {
-  padding-top: 0.8rem;
+.list .list-goods .middle-left, .list .list-goods .middle-right, .list .list-goods .right {
+  padding-top: 0.4rem;
 }
 .list-goods .right a {
   cursor: pointer;
