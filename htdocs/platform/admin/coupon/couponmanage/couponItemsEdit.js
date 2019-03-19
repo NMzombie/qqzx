@@ -19,7 +19,7 @@ $(function(){
 	$("#select_coupon").bind("click", function(e) {
 		
 		var page = '';
-		getoperationgivingCouponSerach(page,false);
+		getoperationgivingCouponSerach(page,true);
 	});
 	
 	 $('[id^="select_pro_"]').bind("click", function(e) {
@@ -478,11 +478,8 @@ $(function(){
 
                     if(isSingle){
                         pages(data.pages, data.page,isSingle);
-                        ckItemIs();
                     }else {
                         pages(data.pages, data.page,isSingle);
-                        getArr();
-                        ckIs();
                     }
 
                 }
@@ -525,7 +522,7 @@ $(function(){
 
                     if(isSingle){
                         pages(data.pages, data.page,isSingle);
-                        ckItemIs();
+                        ckOperCoupons();
                     }else {
                         pages(data.pages, data.page,isSingle);
                         getArr();
@@ -798,7 +795,7 @@ $(function(){
 		for(var i in ckAll_goodId){
 			list_couponId.push(i);
 		}
-		
+		 $('#myModal').hide();
 	    $('#myModal').removeClass('in');
 	    
 	    $.ajax({
@@ -807,10 +804,15 @@ $(function(){
             success: function (data) {
             	
                 if (data != null&&data.success) {
-                	swal('赠送成功!')
+                	swal('赠送成功!');
+                	setTimeout(function(){
+                		window.location = $('#couponGive').attr("href");
+                	},500)
                 }else{
-                	swal('赠送失败,请检查优惠券数量!')
+                	swal('赠送失败,已领过或优惠券数量发放完毕!')
                 }
+                $('#myModal').hide();
+               
             }
 	    });
 	});
@@ -918,6 +920,21 @@ $(function(){
 	}
     //单选商品
     function ckItemIs(){
+        $("input[type='checkbox']").each(function() {
+            $(this).on("click",function(){
+                $("input[type='checkbox']").each(function() {
+                    this.checked = false;
+                });
+                this.checked = true;
+                ckAll_goodId = {};
+                ckAll_goodId[this.value] = this.value;
+
+            });
+        });
+    }
+    
+    //单选运营优惠券
+    function ckOperCoupons(){
         $("input[type='checkbox']").each(function() {
             $(this).on("click",function(){
                 $("input[type='checkbox']").each(function() {
