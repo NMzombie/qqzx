@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <title>排行榜详情</title>
+  <script src="js/flexible.js"></script>
+  <link rel="stylesheet" href="css/ranking-detail.css">
+  <script src="js/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<div class="top_menu">
+  <div class="common liactive">1</div>
+  <div class="common" style="border-left:1px solid #7E8C8D;border-right:1px solid #7E8C8D;">2</div>
+  <div class="common">3</div>
+  <div class="common">4</div>
+</div>
+<div class="ul">
+  <div class="bottom_content" style="left: 0%;">
+    <div class="body_1" style="background-color: #CCCCCC;">1a</div>
+    <div class="body_1" style="background-color: #1E64FD;">2a</div>
+    <div class="body_1" style="background-color: #3B3B3B;">3a</div>
+    <div class="body_1" style="background-color: #3B3B3B;">4a</div>
+  </div>
+</div>
+<script type="text/javascript">
+  //console.log("left -右滑",(parseInt($('.bottom_content')[0].style.left)));
+  $('.bottom_content')[0].style.left = "0%";
+  var startX = '',disX ='';
+  $('.top_menu').on('click','.common',function(){
+    var index = $(this).index();
+    $('.bottom_content').css('left','-' + index * 100 + '%');
+    $('.top_menu .common').eq(index).addClass('liactive').siblings().removeClass('liactive')
+  });
+  $('.bottom_content').on('touchstart','.body_1',function(e){
+    startX = e.originalEvent.changedTouches[0].clientX;
+  });
+  $('.bottom_content').on('touchmove','.body_1',function(e){
+    e.stopPropagation()
+  })
+  $('.bottom_content').on('touchend','.body_1',function(e){
+    disX = e.originalEvent.changedTouches[0].clientX - startX;
+    var leftNum = parseInt($('.bottom_content')[0].style.left);
+    if(disX > 0 && disX > 100) {
+      if(leftNum <= -100) {
+        $('.bottom_content')[0].style.left = leftNum + 100 + "%";
+        var order = -parseInt($('.bottom_content')[0].style.left)/100;
+        $('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+      }
+    } else if(disX < 0 && disX < -100) {
+      if(leftNum >= -200) {
+        $('.bottom_content')[0].style.left = leftNum - 100 + "%";
+        var order = (-parseInt($('.bottom_content')[0].style.left))/100;
+        $('.top_menu .common').eq(order).addClass('liactive').siblings().removeClass('liactive')
+      }
+    }
+  })
+</script>
+</body>
+</html>
