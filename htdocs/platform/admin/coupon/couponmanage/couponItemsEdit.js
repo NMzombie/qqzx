@@ -12,6 +12,7 @@ $(function(){
 	$("#select_pro").bind("click", function(e) {
 		
 		var page = '';
+		getArr();
 		getitemSerach(page,false);
 	});
 	
@@ -478,8 +479,11 @@ $(function(){
 
                     if(isSingle){
                         pages(data.pages, data.page,isSingle);
+                        ckItemIs();
                     }else {
                         pages(data.pages, data.page,isSingle);
+                        getArr();
+                        ckIs();
                     }
 
                 }
