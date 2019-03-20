@@ -149,6 +149,7 @@ ul {
 .ranking-list .item .ranking-img {
   position: relative;
   float: left;
+  top: 0.4rem;
   width: 0.48rem;
   height: 0.34rem;
 }
