@@ -12,6 +12,7 @@ $(function(){
 	$("#select_pro").bind("click", function(e) {
 		
 		var page = '';
+		getArr();
 		getitemSerach(page,false);
 	});
 	
@@ -209,8 +210,8 @@ $(function(){
 	        		if(comOrderCommissionSkuDetailList.length > 0 ){
 	        			$('#skuDetailList').html('');
 	        			for(var i = 0; i < comOrderCommissionSkuDetailList.length; i++){   
-	        				var trStar = '<tr>'+
-	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemName+'</td>'+
+	        				var trStar = '<tr>'+ 
+	        							 '<td title="'+comOrderCommissionSkuDetailList[i].itemName+'" rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemName.substring(0, 10)+'</td>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemSkuName+'</td>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].amount+'</td>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+priceFormat(comOrderCommissionSkuDetailList[i].sellPrice)+'</td>'+
@@ -478,8 +479,11 @@ $(function(){
 
                     if(isSingle){
                         pages(data.pages, data.page,isSingle);
+                        ckItemIs();
                     }else {
                         pages(data.pages, data.page,isSingle);
+                        getArr();
+                        ckIs();
                     }
 
                 }
@@ -505,6 +509,7 @@ $(function(){
 									  '<td><input type="checkbox" class="ckid" value="'+ couponList[i].id +'"/></td>'+
 									  '<td>'+ couponList[i].id +'</td>'+
 									  '<td>'+ couponList[i].name +'</td>'+
+									   '<td>'+ couponList[i].denomination +'</td>'+
 							 	      '</tr>';
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponList[i].id){
@@ -512,6 +517,7 @@ $(function(){
 									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
 									 '<td>'+ couponList[i].id +'</td>'+
 									 '<td>'+ couponList[i].name +'</td>'+
+									 '<td>'+ couponList[i].denomination +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
