@@ -209,7 +209,7 @@ $(function(){
 	        		if(comOrderCommissionSkuDetailList.length > 0 ){
 	        			$('#skuDetailList').html('');
 	        			for(var i = 0; i < comOrderCommissionSkuDetailList.length; i++){   
-	        				var trStar = '<tr>'+
+	        				var trStar = '<tr>'+ 
 	        							 '<td title="'+comOrderCommissionSkuDetailList[i].itemName+'" rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemName.substring(0, 10)+'</td>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemSkuName+'</td>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].amount+'</td>'+
