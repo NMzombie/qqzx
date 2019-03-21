@@ -103,6 +103,16 @@ ul {
   font-weight: 500;
   color:rgba(26,22,21,1);
 }
+
+.li-active .bottom-line {
+  position: absolute;
+  width: 0.8rem;
+  height: 0.04rem;
+  left: 0.85rem;
+  bottom: 0.01rem;
+  background-color: #fff;
+}
+
 .body_1 .left-item {
   position: relative;
   float: left;
@@ -122,14 +132,6 @@ ul {
 }
 .r-left {
   text-align: right;
-}
-.li-active .bottom-line {
-  position: absolute;
-  width: 0.8rem;
-  height: 0.04rem;
-  left: 0.85rem;
-  bottom: 0.01rem;
-  background-color: #fff;
 }
 .ranking-list {
   height: 1.32rem;

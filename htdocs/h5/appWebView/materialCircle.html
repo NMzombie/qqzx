@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <title>素材圈</title>
+  <script src="../js/flexible.js"></script>
+  <link rel="stylesheet" href="material-circle.css">
+  <script src="../js/jquery-1.10.2.js"></script>
+  <script src="../js/moment.min.js"></script>
+  <script src="../js/cn.js"></script>
+</head>
+<body>
+
+<div class="top_menu">
+  <div class="common li-active">最新发布<div class="bottom-line"></div></div>
+  <div class="common">最多下载<div class="bottom-line"></div></div>
+  <div class="common">官方素材<div class="bottom-line"></div></div>
+</div>
+<div class="ul">
+  <div class="bottom_content" style="left: 0;">
+    <div class="body_1">
+      <div class="content">
+        <div class="header-item clearfix">
+          <img class="header-img" src="https://timgsa.baidu.com/timg?image&quality=80" alt="" />
+          <div class="name-item">
+            <div class="name">Mary Anderson</div>
+            <div class="time">1小时前发布</div>
+          </div>
+        </div>
+        <div class="art">
+          <div class="content-item">
+            <div class="content-title clearfix">
+              <div class="content-tag">置顶</div>
+              <div class="title one-txt-cut">精选春季美妆单品</div>
+            </div>
+            <div class="detail txt-cut">
+              清明节小假期马上来临，许多仙女们是不是已经安排了出行计划呢?下面就给大家介绍一款适合春夏出行的蜜桃色眼妆，一起来看看吧！清明节小假期马上来临，许多仙女们是不是已经安排了出行计划呢?下面就给大家介绍一款适合
+              清明节小假期马上来临，许多仙女们是不是已经安排了出行计划呢?下面就给大家介绍一款适合春夏出行的蜜桃色眼妆，一起来看看吧！清明节小假期马上来临，许多仙女们是不是已经安排了出行计划呢?下面就给大家介绍一款适合
+            </div>
+            <div class="open"><a href="javascript:void(0)" onclick="seeMore(0)">全文</a></div>
+          </div>
+        </div>
+        <div class="img-list">
+          <div class="image clearfix">
+            <img class="img-item" src="https://timgsa.baidu.com/timg?image&quality=80" />
+            <img class="img-item" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000" />
+            <img class="img-item" src="https://timgsa.baidu.com/timg?image&quality=80" />
+          </div>
+          <div class="image clearfix">
+            <img class="img-item" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000" />
+            <img class="img-item" src="https://timgsa.baidu.com/timg?image&quality=80" />
+            <img class="img-item" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000" />
+          </div>
+        </div>
+        <div class="operate clearfix">
+          <a href="javascript:void(0)" onclick="zanOperate(0, 0)">
+            <div class="operate-item clearfix">
+              <img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />
+              <div class="value">点赞</div>
+            </div>
+          </a>
+          <a href="javascript:void(0)" onclick="downloadOperate(0, 0)">
+            <div class="operate-item clearfix">
+              <img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />
+              <div class="value">下载</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="body_1">
+      <div class="content"></div>
+    </div>
+    <div class="body_1">
+      <div class="content"></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  // 时间戳计算
+  // $('.time').html(moment('20111130', 'YYYYMMDD').fromNow())
+  function seeMore(index) {
+    $('.content').eq(index).find('.open').hide()
+    $('.content').eq(index).find('.detail').removeClass('txt-cut')
+  }
+  // 点赞功能
+  function zanOperate(index, num) {
+    const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
+    const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
+    if (att.attr('src').indexOf('zan.png') > -1) {
+      ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
+      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
+    } else {
+      ht.html() === '1' ? ht.html('点赞') : ht.html(num)
+      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
+    }
+  }
+  // 下载功能
+  function downloadOperate(index, num) {
+    const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
+    if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
+      ht.html(num + 1)
+    }
+  }
+
+  // tab切换功能（滑动）
+  $('.bottom_content')[0].style.left = "0%"
+  var startX = '',disX =''
+  $('.top_menu').on('click','.common',function(){
+    var index = $(this).index()
+    $('.bottom_content').css('left','-' + index * 100 + '%')
+    $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
+  })
+  $('.bottom_content').on('touchstart','.body_1',function(e){
+    startX = e.originalEvent.changedTouches[0].clientX
+  })
+  $('.bottom_content').on('touchmove','.body_1',function(e){
+    e.stopPropagation()
+  })
+  $('.bottom_content').on('touchend','.body_1',function(e){
+    disX = e.originalEvent.changedTouches[0].clientX - startX
+    var leftNum = parseInt($('.bottom_content')[0].style.left)
+    if(disX > 0 && disX > 100) {
+      if(leftNum <= -100) {
+        $('.bottom_content')[0].style.left = leftNum + 100 + "%"
+        var order = -parseInt($('.bottom_content')[0].style.left)/100
+        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+      }
+    } else if(disX < 0 && disX < -100) {
+      if(leftNum >= -100) {
+        $('.bottom_content')[0].style.left = leftNum - 100 + "%"
+        var order = (-parseInt($('.bottom_content')[0].style.left))/100
+        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+      }
+    }
+  })
+</script>
+</body>
+</html>
