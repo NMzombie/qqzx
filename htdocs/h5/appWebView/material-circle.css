@@ -116,6 +116,7 @@ ul {
 .content-title .content-tag {
   position: relative;
   float: left;
+  margin-top: 0.07rem;
   margin-right: 0.14rem;
   padding: 0 0.05rem;
   font-size: 0.22rem;
@@ -131,8 +132,13 @@ ul {
   position: relative;
   float: left;
   width: 5rem;
+  font-size: 0.32rem;
+  font-family: PingFangSC-Medium, sans-serif;
+  font-weight: 500;
+  color: rgba(26,22,21,1);
 }
 .content-item .detail {
+  line-height: 0.48rem;
   -webkit-line-clamp: 5;
   margin-top: 0.09rem;
 }
