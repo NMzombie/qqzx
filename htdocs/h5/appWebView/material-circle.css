@@ -116,6 +116,7 @@ ul {
 .content-title .content-tag {
   position: relative;
   float: left;
+  margin-right: 0.14rem;
   padding: 0 0.05rem;
   font-size: 0.22rem;
   font-family: PingFangSC-Medium, sans-serif;
@@ -129,7 +130,6 @@ ul {
 .content-title .title {
   position: relative;
   float: left;
-  margin-left: 0.14rem;
   width: 5rem;
 }
 .content-item .detail {
@@ -137,11 +137,11 @@ ul {
   margin-top: 0.09rem;
 }
 .content .image {
-  padding: 0 0.24rem 0 1.24rem;
   margin-top: 0.1rem;
 }
 .content .img-list {
   margin-top: 0.16rem;
+  padding: 0 0.14rem 0 1.24rem;
   margin-bottom: 0.3rem;
 }
 .content .operate {
@@ -174,9 +174,10 @@ ul {
 .content .image .img-item {
   position: relative;
   float: left;
+  margin-right: 0.1rem;
+  margin-bottom: 0.1rem;
   width: 1.94rem;
   height: 1.94rem;
-  margin-right: 0.1rem;
 }
 .image .img-item:last-child {
   margin-right: 0;
