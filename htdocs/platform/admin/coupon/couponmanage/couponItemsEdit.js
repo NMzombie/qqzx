@@ -12,6 +12,7 @@ $(function(){
 	$("#select_pro").bind("click", function(e) {
 		
 		var page = '';
+		getArr();
 		getitemSerach(page,false);
 	});
 	
@@ -478,8 +479,11 @@ $(function(){
 
                     if(isSingle){
                         pages(data.pages, data.page,isSingle);
+                        ckItemIs();
                     }else {
                         pages(data.pages, data.page,isSingle);
+                        getArr();
+                        ckIs();
                     }
 
                 }
@@ -505,6 +509,7 @@ $(function(){
 									  '<td><input type="checkbox" class="ckid" value="'+ couponList[i].id +'"/></td>'+
 									  '<td>'+ couponList[i].id +'</td>'+
 									  '<td>'+ couponList[i].name +'</td>'+
+									   '<td>'+ couponList[i].denomination +'</td>'+
 							 	      '</tr>';
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponList[i].id){
@@ -512,6 +517,7 @@ $(function(){
 									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
 									 '<td>'+ couponList[i].id +'</td>'+
 									 '<td>'+ couponList[i].name +'</td>'+
+									 '<td>'+ couponList[i].denomination +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
