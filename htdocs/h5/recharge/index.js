@@ -1,6 +1,6 @@
 let mobileValue, userInfo,errState
-    BASEAPI = 'http://qqzx.xc2018.com.cn'
-// BASEAPI = 'http://192.168.0.165'
+BASEAPI = 'http://qqzx.xc2018.com.cn'
+// BASEAPI = 'http://192.168.0.162'
 // 校验手机号
 function checkPhone(){
     console.log('sadas')
@@ -58,7 +58,7 @@ function back() {
 }
 // 去支付
 function topay() {
-    if (browser.versions === 'wx') {
+    if (browser.versions.wx) {
         const data = {
             mobile: userInfo.mobile,
             payType:2,
@@ -71,8 +71,9 @@ function topay() {
             dataType : "json",
             type: "post",
             success: function (res) {
-                const payReturn = res.data.memberPrechargeVO.weixinBackVO
-                if (payReturn.payType === 2) {
+                const data = res.data
+                const payReturn = data.memberPrechargeVO.weixinBackVO
+                if (data.memberPrechargeVO.payType === 2) {
                     wxPay(payReturn)
                 }
             },
@@ -81,27 +82,7 @@ function topay() {
             }
         })
     } else {
-        const data = {
-            mobile: userInfo.mobile,
-            payType:1,
-            rechargeType: ''
-        }
-        $.ajax({
-            url:BASEAPI+"/doc/api/h5/memberPrecharge/payPrecharge.json",
-            data:data,
-            async : false,
-            dataType : "json",
-            type: "post",
-            success: function (res) {
-                const payReturn = res.data.memberPrechargeVO
-                if (payReturn.payType === 1) {
-                    window.location.href = `http://qqzx.xc2018.com.cn/admin/wap/prechargeWap.htm?mobile=${payReturn.mobile}&rechargeType=20`
-                }
-            },
-            fail: function (err) {
-                console.log(err)
-            }
-        })
+        window.location.href = `${BASEAPI}/doc/wap/prechargeWap.html?mobile=${userInfo.mobile}&rechargeType=20`
     }
 }
 // 微信支付
