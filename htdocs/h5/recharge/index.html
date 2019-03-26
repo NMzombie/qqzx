@@ -26,14 +26,14 @@
 <body>
 <div class="warpper">
     <img src="http://file.wchoosemall.com/platform/manager/pic/20190320/6983247288393134.jpg" alt="">
-    <div class="bar" onclick="getPhone()">一键充值</div>
+    <div class="bar" onTouch="getPhone()" onclick="getPhone()">一键充值</div>
 </div>
 <div class="warpper-modal"></div>
 <!--模态框-->
     <div class="modal-mobile" id="mobile">
         <div class="modal-top">
             请输入你要充值的手机号
-            <img class="close" src="../../h5/imges/close.png" onclick="cancel()" alt="">
+            <img class="close" src="../../h5/imges/close.png" onclick="cancel()" onTouch="cancel()" alt="">
         </div>
         <div class="warpper-input">
              <input class="modal-input" placeholder="请输入" oninput="checkPhone()" type="text" value="" id="phone">
@@ -41,22 +41,22 @@
         <div class="wrong-num">
             <span>您的手机号输入有误</span>
         </div>
-        <div class="bar" onclick="getUserInfo()">下一步</div>
+        <div class="bar" onclick="getUserInfo()" ontouch="getUserInfo()">下一步</div>
     </div>
     <div class="modal-mobile" id="userInfo">
         <div class="modal-top">
                     请确认你的账户信息
-                     <img class="back" src="../../h5/imges/back.png" onclick="back()" alt="">
-                     <img class="close" src="../../h5/imges/close.png" onclick="cancelPay()" alt="">
+                     <img class="back" src="../../h5/imges/back.png" onclick="back()" onTouch="back()" alt="">
+                     <img class="close" src="../../h5/imges/close.png" onclick="cancelPay()" onTouch="cancelPay()" alt="">
         </div>
         <div class="userInfo">
-            <img src="https://ss1.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=1e6cee14c73d70cf53faac0dc8dcd1ba/024f78f0f736afc318638348bd19ebc4b74512ab.jpg" alt="">
+            <img id="imgId" alt="">
             <div class="userInfo-des">
-                <div class="userInfo-des-nickname">条纹波点控条纹波点控</div>
-                <div  class="userInfo-des-id">ID：55555</div>
+                <div id="name" class="userInfo-des-nickname"></div>
+                <div id="userId"  class="userInfo-des-id"></div>
             </div>
         </div>
-        <div class="bar" onclick="topay()">确认充值</div>
+        <div class="bar" onclick="topay()" ontouch="topay()">确认充值</div>
     </div>
 </body>
 </html>

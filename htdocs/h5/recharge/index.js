@@ -1,14 +1,15 @@
-let mobileValue, userInfo,errState
-BASEAPI = 'http://qqzx.xc2018.com.cn'
-// BASEAPI = 'http://192.168.0.162'
+let mobileValue, userInfo,phoneType = false
+// BASEAPI = 'http://qqzx.xc2018.com.cn'
+BASEAPI = 'http://192.168.0.162'
 // 校验手机号
 function checkPhone(){
-    console.log('sadas')
     mobileValue =  document.getElementById('phone').value
     if(!(/^1[34578]\d{9}$/.test(mobileValue))){
         $(".wrong-num").css('display','block')
+        phoneType = false
     } else {
         $(".wrong-num").css('display','none')
+        phoneType = true
     }
 }
 
@@ -19,27 +20,34 @@ function getPhone() {
 }
 // 获取用户信息
 function getUserInfo() {
-    $("#mobile").css('display','none')
-    $("#userInfo").css('display','block')
-    const data = {
-        mobile: mobileValue
-    }
-    $.ajax({
-        url:BASEAPI+"/doc/api/h5/memberPrecharge/findMemberInfo.json",
-        data:data,
-        async : false,
-        dataType : "json",
-        type: "post",
-        success: function (res) {
-            const data = res.data
-            userInfo = data.memberPrechargeVO
-            $(".modal").css("display","block")
-            $(".outer").css("background",'#ccc')
-        },
-        fail: function (err) {
-            console.log(err)
+    if (phoneType) {
+        $("#mobile").css('display','none')
+        $("#userInfo").css('display','block')
+        const data = {
+            mobile: mobileValue
         }
-    })
+        $.ajax({
+            url:BASEAPI+"/doc/api/h5/memberPrecharge/findMemberInfo.json",
+            data:data,
+            async : false,
+            dataType : "json",
+            type: "post",
+            success: function (res) {
+                const data = res.data
+                userInfo = data.memberPrechargeVO
+                $("#imgId").attr("src",userInfo.avater)
+                $("#name").html(userInfo.nickName)
+                $("#userId").html("ID：" + userInfo.mid)
+                $(".modal").css("display","block")
+                $(".outer").css("background",'#ccc')
+            },
+            fail: function (err) {
+                console.log(err)
+            }
+        })
+    }else {
+        $(".wrong-num").css('display','block')
+    }
 }
 // 取消
 function cancel() {
