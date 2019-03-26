@@ -1,6 +1,6 @@
 let mobileValue, userInfo,phoneType = false
-// BASEAPI = 'http://qqzx.xc2018.com.cn'
-BASEAPI = 'http://192.168.0.162'
+BASEAPI = 'http://qqzx.xc2018.com.cn'
+// BASEAPI = 'http://192.168.0.162'
 // 校验手机号
 function checkPhone(){
     mobileValue =  document.getElementById('phone').value

@@ -26,14 +26,14 @@
 <body>
 <div class="warpper">
     <img src="http://file.wchoosemall.com/platform/manager/pic/20190320/6983247288393134.jpg" alt="">
-    <div class="bar" onTouch="getPhone()" onclick="getPhone()">一键充值</div>
+    <div class="bar" onclick="getPhone()">一键充值</div>
 </div>
 <div class="warpper-modal"></div>
 <!--模态框-->
     <div class="modal-mobile" id="mobile">
         <div class="modal-top">
             请输入你要充值的手机号
-            <img class="close" src="../../h5/imges/close.png" onclick="cancel()" onTouch="cancel()" alt="">
+            <img class="close" src="../../h5/imges/close.png" onclick="cancel()" alt="">
         </div>
         <div class="warpper-input">
              <input class="modal-input" placeholder="请输入" oninput="checkPhone()" type="text" value="" id="phone">
@@ -41,13 +41,13 @@
         <div class="wrong-num">
             <span>您的手机号输入有误</span>
         </div>
-        <div class="bar" onclick="getUserInfo()" ontouch="getUserInfo()">下一步</div>
+        <div class="bar" onclick="getUserInfo()">下一步</div>
     </div>
     <div class="modal-mobile" id="userInfo">
         <div class="modal-top">
                     请确认你的账户信息
-                     <img class="back" src="../../h5/imges/back.png" onclick="back()" onTouch="back()" alt="">
-                     <img class="close" src="../../h5/imges/close.png" onclick="cancelPay()" onTouch="cancelPay()" alt="">
+                     <img class="back" src="../../h5/imges/back.png" onclick="back()" alt="">
+                     <img class="close" src="../../h5/imges/close.png" onclick="cancelPay()" alt="">
         </div>
         <div class="userInfo">
             <img id="imgId" alt="">
@@ -56,7 +56,7 @@
                 <div id="userId"  class="userInfo-des-id"></div>
             </div>
         </div>
-        <div class="bar" onclick="topay()" ontouch="topay()">确认充值</div>
+        <div class="bar" onclick="topay()">确认充值</div>
     </div>
 </body>
 </html>
