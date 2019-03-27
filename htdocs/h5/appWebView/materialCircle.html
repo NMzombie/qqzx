@@ -154,7 +154,7 @@
           for (let j = 0; j < data[i].picUrls.length; j++) {
             sec += `<img class="img-item" src="${data[i].picUrls[j]}" />`
           }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" /><div class="value">点赞</div></div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, 0)"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" /><div class="value">点赞</div></div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].picUrls})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
           let zan = ``
           data[i].downloadNum === 0 ? zan += `<div class="value">下载</div>` : zan = `<div class="value">data[i].downloadNum</div>`
           const last = `</div></a></div></div>`
@@ -165,15 +165,17 @@
   }
 
   // app js bridge
-  // if (window.WebViewJavascriptBridge) {
-  //   window.WebViewJavascriptBridge.callHandler('getMaterialPic', {id: 1}, function (response) {
-  //     alert(response)
-  //   })
-  // } else {
-  //   setTimeout(() => {
-  //     getUserInfo()
-  //   }, 50)
-  // }
+  function getMaterialPic (id) {
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {id}, function (response) {
+        alert(response)
+      })
+    } else {
+      setTimeout(() => {
+        getMaterialPic()
+      }, 50)
+    }
+  }
 
 </script>
 </body>
