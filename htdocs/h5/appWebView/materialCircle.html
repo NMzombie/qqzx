@@ -114,18 +114,20 @@
         $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
       }
     }
-    if (order === 1) {
-      $('.body_1').eq(0).html('')
-      $('.body_1').eq(2).html('')
-      addData(1, moreInd)
-    } else if (order === 2) {
-      $('.body_1').eq(0).html('')
-      $('.body_1').eq(1).html('')
-      addData(2, basicInd)
-    } else {
-      $('.body_1').eq(1).html('')
-      $('.body_1').eq(2).html('')
-      addData(0, newInd)
+    if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
+      if (order === 1) {
+        $('.body_1').eq(0).html('')
+        $('.body_1').eq(2).html('')
+        addData(1, moreInd)
+      } else if (order === 2) {
+        $('.body_1').eq(0).html('')
+        $('.body_1').eq(1).html('')
+        addData(2, basicInd)
+      } else {
+        $('.body_1').eq(1).html('')
+        $('.body_1').eq(2).html('')
+        addData(0, newInd)
+      }
     }
   })
 
