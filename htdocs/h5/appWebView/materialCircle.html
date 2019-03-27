@@ -98,46 +98,34 @@
     //   $('.body_1').eq(2).html('')
     //   addData(0, basicInd)
     // }
+    let order
     if(disX > 0 && disX > 100) {
       if(leftNum <= -100) {
         console.log(233)
         $('.bottom_content')[0].style.left = leftNum + 100 + "%"
-        var order = -parseInt($('.bottom_content')[0].style.left)/100
+        order = -parseInt($('.bottom_content')[0].style.left)/100
         $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
-        if (order === 1) {
-          $('.body_1').eq(0).html('')
-          $('.body_1').eq(2).html('')
-          addData(1, newInd)
-        } else if (order === 2) {
-          $('.body_1').eq(1).html('')
-          $('.body_1').eq(2).html('')
-          addData(0, basicInd)
-        } else {
-          $('.body_1').eq(1).html('')
-          $('.body_1').eq(2).html('')
-          addData(0, basicInd)
-        }
       }
     } else if(disX < 0 && disX < -100) {
       if(leftNum >= -100) {
         console.log(244)
         $('.bottom_content')[0].style.left = leftNum - 100 + "%"
-        var order = (-parseInt($('.bottom_content')[0].style.left))/100
+        order = (-parseInt($('.bottom_content')[0].style.left))/100
         $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
       }
-      if (order === 1) {
-        $('.body_1').eq(0).html('')
-        $('.body_1').eq(2).html('')
-        addData(1, newInd)
-      } else if (order === 2) {
-        $('.body_1').eq(1).html('')
-        $('.body_1').eq(2).html('')
-        addData(0, basicInd)
-      } else {
-        $('.body_1').eq(1).html('')
-        $('.body_1').eq(2).html('')
-        addData(0, basicInd)
-      }
+    }
+    if (order === 1) {
+      $('.body_1').eq(0).html('')
+      $('.body_1').eq(2).html('')
+      addData(1, moreInd)
+    } else if (order === 2) {
+      $('.body_1').eq(0).html('')
+      $('.body_1').eq(1).html('')
+      addData(0, basicInd)
+    } else {
+      $('.body_1').eq(1).html('')
+      $('.body_1').eq(2).html('')
+      addData(0, newInd)
     }
   })
 
