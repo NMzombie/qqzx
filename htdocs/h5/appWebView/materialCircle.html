@@ -162,6 +162,21 @@
 <script type="text/javascript">
   // 时间戳计算
   // $('.time').html(moment('20111130', 'YYYYMMDD').fromNow())
+  const baseUrl = 'http://qqzx.xc2018.com.cn'
+  const data = {
+    type: 0
+  }
+  // 数据拼接
+  $.ajax({
+    type: 'post',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json`,
+    data: `data=${JSON.stringify(data)}`,
+    success: (res) => {
+    }
+  })
   function seeMore(index) {
     $('.content').eq(index).find('.open').hide()
     $('.content').eq(index).find('.detail').removeClass('txt-cut')
@@ -186,10 +201,22 @@
     }
   }
 
+  // app js bridge
+  if (window.WebViewJavascriptBridge) {
+    window.WebViewJavascriptBridge.callHandler('getMaterialPic', {id: 1}, function (response) {
+      alert(response)
+    })
+  } else {
+    setTimeout(() => {
+      getUserInfo()
+    }, 50)
+  }
+  // const
   // tab切换功能（滑动）
   $('.bottom_content')[0].style.left = "0%"
   var startX = '',disX =''
   $('.top_menu').on('click','.common',function(){
+    console.log(111)
     var index = $(this).index()
     $('.bottom_content').css('left','-' + index * 100 + '%')
     $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
