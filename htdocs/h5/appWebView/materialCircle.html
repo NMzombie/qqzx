@@ -86,6 +86,19 @@
     disX = e.originalEvent.changedTouches[0].clientX - startX
     var leftNum = parseInt($('.bottom_content')[0].style.left)
     console.log(111, leftNum)
+    if (leftNum === 0) {
+      $('.body_1').eq(0).html('')
+      $('.body_1').eq(2).html('')
+      addData(1, newInd)
+    } else if (leftNum === -100) {
+      $('.body_1').eq(0).html('')
+      $('.body_1').eq(1).html('')
+      addData(2, moreInd)
+    } else {
+      $('.body_1').eq(1).html('')
+      $('.body_1').eq(2).html('')
+      addData(0, basicInd)
+    }
     if(disX > 0 && disX > 100) {
       if(leftNum <= -100) {
         $('.bottom_content')[0].style.left = leftNum + 100 + "%"
