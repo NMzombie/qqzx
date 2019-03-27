@@ -130,8 +130,8 @@
     url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json`,
     data: `data=${JSON.stringify(data)}`,
     success: (res) => {
-      const data = res.data
-      for (let i = 0; i < data.list.length; i++) {
+      const data = res.data.list
+      for (let i = 0; i < data.length; i++) {
         const fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="https://timgsa.baidu.com/timg?image&quality=80" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">1小时前发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div><div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div></div></div><div class="img-list"><div class="image clearfix">`
         let sec = ``
         for (let j = 0; j < data[i].picUrls.length; j++) {
