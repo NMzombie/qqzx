@@ -25,6 +25,7 @@
   </div>
 </div>
 <script type="text/javascript">
+  let allList = []
   // 时间戳计算
   // $('.time').html(moment('20111130', 'YYYYMMDD').fromNow())
   const baseUrl = 'http://qqzx.xc2018.com.cn'
@@ -59,8 +60,8 @@
     }
   }
   // 下载功能
-  function downloadOperate(index, num, group) {
-    console.log(1, group)
+  function downloadOperate(index, num) {
+    console.log(1, allList[index].picUrls)
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
     if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
       ht.html(num + 1)
@@ -144,6 +145,7 @@
       url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
+        allList = res.data.list
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
           let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">1小时前发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
@@ -155,7 +157,7 @@
           for (let j = 0; j < data[i].picUrls.length; j++) {
             sec += `<img class="img-item" src="${data[i].picUrls[j]}" />`
           }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" /><div class="value">点赞</div></div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].customLabel})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" /><div class="value">点赞</div></div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
           let zan = ``
           data[i].downloadNum === 0 ? zan += `<div class="value">下载</div>` : zan = `<div class="value">data[i].downloadNum</div>`
           const last = `</div></a></div></div>`
