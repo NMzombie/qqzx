@@ -85,16 +85,17 @@
   $('.bottom_content').on('touchend','.body_1',function(e){
     disX = e.originalEvent.changedTouches[0].clientX - startX
     var leftNum = parseInt($('.bottom_content')[0].style.left)
+    console.log(111, disX)
     console.log(111, leftNum)
-    if (leftNum === 0 || leftNum === -200) {
+    if (leftNum === 0 || leftNum === -200 && disX >= 100) {
       $('.body_1').eq(0).html('')
       $('.body_1').eq(2).html('')
       addData(1, newInd)
-    } else if (leftNum === -100) {
+    } else if (leftNum === -100 && disX >= 100) {
       $('.body_1').eq(0).html('')
       $('.body_1').eq(1).html('')
       addData(2, moreInd)
-    } else {
+    } else if (leftNum === 100 && disX >= 100) {
       $('.body_1').eq(1).html('')
       $('.body_1').eq(2).html('')
       addData(0, basicInd)
