@@ -26,8 +26,6 @@
 </div>
 <script type="text/javascript">
   let allList = []
-  // 时间戳计算
-  // $('.time').html(moment('20111130', 'YYYYMMDD').fromNow())
   const baseUrl = 'http://qqzx.xc2018.com.cn'
   addData(0, 1)
   function seeMore(index) {
@@ -152,7 +150,7 @@
         allList = res.data.list
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
-          let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">1小时前发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
+          let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
           if (data[i].recommendedReason.length >= 105) {
             fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
           }
@@ -161,11 +159,13 @@
           for (let j = 0; j < data[i].picUrls.length; j++) {
             sec += `<img class="img-item" src="${data[i].picUrls[j]}" />`
           }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" /><div class="value">点赞</div></div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
           let zan = ``
-          data[i].downloadNum === 0 ? zan += `<div class="value">下载</div>` : zan = `<div class="value">data[i].downloadNum</div>`
+          data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
+          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+          data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down = `<div class="value">data[i].downloadNum</div>`
           const last = `</div></a></div></div>`
-          $('.body_1').eq(index).append(fir + sec + thi + zan + last)
+          $('.body_1').eq(index).append(fir + sec + thi + zan + down + last)
         }
       }
     })
