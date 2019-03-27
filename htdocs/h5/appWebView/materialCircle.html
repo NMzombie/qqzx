@@ -86,7 +86,7 @@
     disX = e.originalEvent.changedTouches[0].clientX - startX
     var leftNum = parseInt($('.bottom_content')[0].style.left)
     console.log(111, leftNum)
-    if (leftNum === 0) {
+    if (leftNum === 0 || leftNum === -200) {
       $('.body_1').eq(0).html('')
       $('.body_1').eq(2).html('')
       addData(1, newInd)
