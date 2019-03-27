@@ -34,12 +34,25 @@
     $('.content').eq(index).find('.detail').removeClass('txt-cut')
   }
   // 点赞功能
-  function zanOperate(index, num) {
+  function zanOperate(index, num, id) {
     const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
     const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
     if (att.attr('src').indexOf('zan.png') > -1) {
       ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
       att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
+      const data = {
+        id
+      }
+      $.ajax({
+        type: 'post',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json`,
+        data: `data=${JSON.stringify(data)}`,
+        success: (res) => {
+        }
+      })
     } else {
       ht.html() === '1' ? ht.html('点赞') : ht.html(num)
       att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
@@ -85,30 +98,15 @@
   $('.bottom_content').on('touchend','.body_1',function(e){
     disX = e.originalEvent.changedTouches[0].clientX - startX
     var leftNum = parseInt($('.bottom_content')[0].style.left)
-    // if ((leftNum === 0 || leftNum === -200) && (disX >= 100 || disX <= -100)) {
-    //   $('.body_1').eq(0).html('')
-    //   $('.body_1').eq(2).html('')
-    //   addData(1, newInd)
-    // } else if ((leftNum === -100) && (disX >= 100 || disX <= -100)) {
-    //   $('.body_1').eq(0).html('')
-    //   $('.body_1').eq(1).html('')
-    //   addData(2, moreInd)
-    // } else if ((leftNum === 100) && (disX >= 100 || disX <= -100)) {
-    //   $('.body_1').eq(1).html('')
-    //   $('.body_1').eq(2).html('')
-    //   addData(0, basicInd)
-    // }
     let order
     if(disX > 0 && disX > 100) {
       if(leftNum <= -100) {
-        console.log(233)
         $('.bottom_content')[0].style.left = leftNum + 100 + "%"
         order = -parseInt($('.bottom_content')[0].style.left)/100
         $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
       }
     } else if(disX < 0 && disX < -100) {
       if(leftNum >= -100) {
-        console.log(244)
         $('.bottom_content')[0].style.left = leftNum - 100 + "%"
         order = (-parseInt($('.bottom_content')[0].style.left))/100
         $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
