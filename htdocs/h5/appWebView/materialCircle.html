@@ -155,7 +155,7 @@
           for (let j = 0; j < data[i].picUrls.length; j++) {
             sec += `<img class="img-item" src="${data[i].picUrls[j]}" />`
           }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" /><div class="value">点赞</div></div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${JSON.stringify(data[i].picUrls)})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" /><div class="value">点赞</div></div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].picUrls.join(',')})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
           let zan = ``
           data[i].downloadNum === 0 ? zan += `<div class="value">下载</div>` : zan = `<div class="value">data[i].downloadNum</div>`
           const last = `</div></a></div></div>`
