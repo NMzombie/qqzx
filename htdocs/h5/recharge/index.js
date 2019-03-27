@@ -1,5 +1,5 @@
 let mobileValue, userInfo,phoneType = false
-BASEAPI = 'http://qqzx.xc2018.com.cn'
+BASEAPI = 'http://wchoosemall.cn'
 // BASEAPI = 'http://192.168.0.162'
 // 校验手机号
 function checkPhone(){
