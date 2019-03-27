@@ -61,9 +61,13 @@
   }
   // 下载功能
   function downloadOperate(index, num) {
-    console.log(1, allList[index].picUrls)
+    let group = ''
+    for (let i = 0; i < allList[index].picUrls.length; i++) {
+      group += allList[index].picUrls[i]
+    }
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
     if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
+      getMaterialPic(group)
       ht.html(num + 1)
     }
   }
@@ -171,7 +175,7 @@
   function getMaterialPic (id) {
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getMaterialPic', {id}, function (response) {
-        alert(response)
+        console.log(1, response)
       })
     } else {
       setTimeout(() => {
