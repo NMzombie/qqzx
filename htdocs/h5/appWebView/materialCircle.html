@@ -59,7 +59,8 @@
     }
   }
   // 下载功能
-  function downloadOperate(index, num) {
+  function downloadOperate(index, num, group) {
+    console.log(1, group)
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
     if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
       ht.html(num + 1)
