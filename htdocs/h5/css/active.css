@@ -187,8 +187,7 @@ a {
 .type-img-1 {
   position: relative;
   float: left;
-  width: 2.38rem;
-  height: 2.38rem;
+  width: 33.3%;
   margin: 0.21rem 0.34rem 0.21rem 0.2rem;
 }
 .type-title-1 {
@@ -257,7 +256,7 @@ a {
 }
 .type-title-2 {
   margin: 0 0.14rem 0 0.14rem;
-  width: 2.07rem;
+  width: 92%;
   height: 0.6rem;
   line-height: 0.3rem;
   font-size: 0.22rem;
