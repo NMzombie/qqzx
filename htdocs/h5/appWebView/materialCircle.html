@@ -9,6 +9,7 @@
   <script src="../js/jquery-1.10.2.js"></script>
   <script src="../js/moment.min.js"></script>
   <script src="../js/cn.js"></script>
+  <script src="../js/util.js"></script>
 </head>
 <body>
 
@@ -27,7 +28,22 @@
 <script type="text/javascript">
   let allList = []
   const baseUrl = 'http://qqzx.xc2018.com.cn'
+  // 默认信息
   addData(0, 1)
+  // 绑定token
+  getUserInfo()
+  function getUserInfo (){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
+        setCookie('token', response)
+      })
+    } else {
+      setTimeout(() => {
+        getUserInfo()
+      }, 50)
+    }
+  }
+  // 查看全文
   function seeMore(index) {
     $('.content').eq(index).find('.open').hide()
     $('.content').eq(index).find('.detail').removeClass('txt-cut')
@@ -132,7 +148,6 @@
       }
     }
   })
-
   // 数据拼接
   function addData (index, page) {
     const data = {
