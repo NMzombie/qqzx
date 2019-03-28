@@ -223,8 +223,8 @@ a {
   line-height: 0.4rem;
 }
 .type-buy-1 {
-  float: left;
-  margin-left: 1rem;
+  float: right;
+  margin-right: 0.3rem;
   margin-top: 0.3rem;
   width: 1.73rem;
   height: 0.54rem;

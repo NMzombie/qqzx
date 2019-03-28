@@ -269,7 +269,7 @@
       const list = data.itemGroups
       for (let i = 0; i < list.length; i++) {
         // 插入标题区块
-        $('.tab-area').append(`<a href="#tab${list[i].id}">${list[i].groupName}</a>`)
+        $('.tab-area').append(`<a href="#tab${i}">${list[i].groupName}</a>`)
         // 插入题目
         $('.act-con').append(`<div class="act-title"><img class="icon-title" src="http://file.wegoomall.cn/platform/manager/pic/20190306/12247689919643960.png" alt="" /> ${list[i].groupName} <img class="icon-title" src="http://file.wegoomall.cn/platform/manager/pic/20190306/12247689919643960.png" alt="" /></div>`)
         // 插入内容区块
