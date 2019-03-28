@@ -35,7 +35,7 @@
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
-        setCookie('token', response)
+        setCookie('token', response.token)
       })
     } else {
       setTimeout(() => {
