@@ -121,6 +121,9 @@
             const endDate = `${new Date(data.activity.endDate).getMonth() + 1}.${new Date(data.activity.endDate).getDate()}`
             $('.start-date').html(startDate)
             $('.end-date').html(endDate)
+            if (data.couponDOList.length === 0) {
+              $('.desc').hide()
+            }
             $('.activity-pic').attr('src', data.activity.picUrl)
             $('title').html(data.activity.name)
             const couponList = data.couponDOList
