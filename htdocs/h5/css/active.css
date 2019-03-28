@@ -178,6 +178,7 @@ a {
   padding: 0 0.22rem;
 }
 .type-goods-1 {
+  position: relative;
   margin-bottom: 0.3rem;
   width: 100%;
   height: 2.8rem;
