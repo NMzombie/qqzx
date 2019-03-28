@@ -12,13 +12,20 @@
         body{
             margin: 0;
         }
+        .wrapper{
+            min-width: 1024px;
+        }
         .top{
-            width:1650px;
             margin: 0 auto;
             display: flex;
             justify-content:flex-start;
             height: 50px;
             align-items: center;
+        }
+        .inner-head{
+            margin: 0 auto;
+            width: 1000px;
+            display: flex;
         }
         .top-des{
             font-size:48px;
@@ -29,6 +36,9 @@
         .top-img-des{
             width: 287px;
             margin-top: 5px;
+        }
+        .QrImg{
+            display: flex;
         }
         .QrImg img{
             width: 152px;
@@ -50,9 +60,6 @@
             font-size: 14px;
             color: #666;
             cursor: pointer;
-        }
-        .body{
-
         }
         .body-top{
             display: flex;
@@ -168,9 +175,11 @@
   <body>
     <div class="wrapper">
         <div class="top">
-            <img class="top-icon" src="http://file.wchoosemall.com/platform/manager/pic/20190325/7583136973355011.png" alt="">
-            <div class="top-menu" id='index' href="" onclick="changeMenu(0)">首页</div>
-            <div class="top-menu" id='center'href="" onclick="changeMenu(1)">帮助中心</div>
+            <div class="inner-head">
+                <img class="top-icon" src="http://file.wchoosemall.com/platform/manager/pic/20190325/7583136973355011.png" alt="">
+                <div class="top-menu" id='index' href="" onclick="changeMenu(0)">首页</div>
+                <div class="top-menu" id='center'href="" onclick="changeMenu(1)">帮助中心</div>
+            </div>
         </div>
         <div class="body">
             <div class="body-top">
@@ -241,7 +250,7 @@
                 <div class="bottom-wrapper">
                     <div class="des">杭州自选科技有限公司</div>
                     <div class="des">公司地址：浙江省杭州市富阳区银湖街道富闲路9号银湖创新中心5号楼2楼</div>
-                    <div class="des">电话：0571-86161826</div>
+                    <div class="des">电话：0571-87565212 </div>
                 </div>
             </div>
         </div>
