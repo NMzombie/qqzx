@@ -187,7 +187,7 @@ a {
 .type-img-1 {
   position: relative;
   float: left;
-  width: 33.3%;
+  width: 33%;
   margin: 0.21rem 0.34rem 0.21rem 0.2rem;
 }
 .type-title-1 {
@@ -195,7 +195,7 @@ a {
   float: left;
   margin-top: 0.22rem;
   margin-bottom: 0.71rem;
-  width: 55.6%;
+  width: 56.6%;
   font-size: 0.28rem;
   font-family: PingFangSC-Regular, serif;
   font-weight: 400;
