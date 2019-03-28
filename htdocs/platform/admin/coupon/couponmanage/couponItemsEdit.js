@@ -840,6 +840,8 @@ $(function(){
 		}
 		
 	    $('#myModal_'+num).removeClass('in');
+	    //触发表格input事件
+	    $('#goodsId_'+num).trigger("change");
 	});
 	
 	$('#member_btn_ok').bind("click", function() {
