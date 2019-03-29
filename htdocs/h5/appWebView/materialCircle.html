@@ -163,7 +163,10 @@
       url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
-        alert(res)
+        alert(`token===>${token}`)
+        alert(`success===>${res.success}`)
+        alert(`errorMsg===>${res.errorMsg}`)
+        alert(res.data)
         alert(res.data.list)
         allList = res.data.list
         const data = res.data.list
