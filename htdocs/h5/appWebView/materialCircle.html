@@ -34,7 +34,6 @@
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         const token = response.token
-        alert(response)
         // 默认信息
         addData(0, 1, token)
 
@@ -164,7 +163,8 @@
       url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
-        alert(`======>${res}`)
+        alert(res)
+        alert(res.data.list)
         allList = res.data.list
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
