@@ -33,8 +33,8 @@
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
-        const token = response.token
-        alert(`first===>${response}`)
+        const token = JSON.parse(response).token
+        alert(`first===>${JSON.parse(response)}`)
         alert(`sec===>${response.token}`)
         // 默认信息
         addData(0, 1, token)
