@@ -34,6 +34,7 @@
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         const token = response.token
+        alert(`first===>${token}`)
         // 默认信息
         addData(0, 1, token)
 
