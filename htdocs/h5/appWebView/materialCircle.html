@@ -33,8 +33,7 @@
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
-        const token = response.token
-        alert(`first===>${token}`)
+        const token = JSON.parse(response).token
         // 默认信息
         addData(0, 1, token)
 
@@ -49,15 +48,15 @@
           if (index === 1) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(2).html('')
-            addData(1, newInd)
+            addData(1, newInd, token)
           } else if (index === 2) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(1).html('')
-            addData(2, moreInd)
+            addData(2, moreInd, token)
           } else {
             $('.body_1').eq(1).html('')
             $('.body_1').eq(2).html('')
-            addData(0, basicInd)
+            addData(0, basicInd, token)
           }
           $('.bottom_content').css('left','-' + index * 100 + '%')
           $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
@@ -89,15 +88,15 @@
             if (order === 1) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(2).html('')
-              addData(1, moreInd)
+              addData(1, moreInd, token)
             } else if (order === 2) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(1).html('')
-              addData(2, basicInd)
+              addData(2, basicInd, token)
             } else {
               $('.body_1').eq(1).html('')
               $('.body_1').eq(2).html('')
-              addData(0, newInd)
+              addData(0, newInd, token)
             }
           }
         })
@@ -140,13 +139,9 @@
   }
   // 下载功能
   function downloadOperate(index, num) {
-    let group = ''
-    for (let i = 0; i < allList[index].picUrls.length; i++) {
-      group += allList[index].picUrls[i]
-    }
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
     if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
-      getMaterialPic(group)
+      getMaterialPic(allList[index].picUrls)
       ht.html(num + 1)
     }
   }
@@ -164,11 +159,6 @@
       url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
-        alert(`token===>${token}`)
-        alert(`success===>${res.success}`)
-        alert(`errorMsg===>${res.errorMsg}`)
-        alert(res.data)
-        alert(res.data.list)
         allList = res.data.list
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
@@ -181,7 +171,7 @@
           for (let j = 0; j < data[i].picUrls.length; j++) {
             sec += `<img class="img-item" src="${data[i].picUrls[j]}" />`
           }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id}, token)"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
+          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id}, ${token})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
           let zan = ``
           data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
           let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
@@ -194,14 +184,14 @@
   }
 
   // app js bridge
-  function getMaterialPic (id) {
+  function getMaterialPic (picUrls) {
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {id}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls}, function (response) {
         console.log(1, response)
       })
     } else {
       setTimeout(() => {
-        getMaterialPic()
+        getMaterialPic(picUrls)
       }, 50)
     }
   }
