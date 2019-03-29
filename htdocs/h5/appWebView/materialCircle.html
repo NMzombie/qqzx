@@ -9,6 +9,7 @@
   <script src="../js/jquery-1.10.2.js"></script>
   <script src="../js/moment.min.js"></script>
   <script src="../js/cn.js"></script>
+  <!--<script src="../js/util.js"></script>-->
 </head>
 <body>
 
@@ -27,13 +28,92 @@
 <script type="text/javascript">
   let allList = []
   const baseUrl = 'http://qqzx.xc2018.com.cn'
-  addData(0, 1)
+  // 绑定token
+  getUserInfo()
+  function getUserInfo (){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
+        const token = response.token
+        // 默认信息
+        addData(0, 1, token)
+
+        let newInd = 1
+        let moreInd = 1
+        let basicInd = 1
+        // tab切换功能（滑动）
+        $('.bottom_content')[0].style.left = "0%"
+        var startX = '',disX =''
+        $('.top_menu').on('click','.common',function(){
+          var index = $(this).index()
+          if (index === 1) {
+            $('.body_1').eq(0).html('')
+            $('.body_1').eq(2).html('')
+            addData(1, newInd)
+          } else if (index === 2) {
+            $('.body_1').eq(0).html('')
+            $('.body_1').eq(1).html('')
+            addData(2, moreInd)
+          } else {
+            $('.body_1').eq(1).html('')
+            $('.body_1').eq(2).html('')
+            addData(0, basicInd)
+          }
+          $('.bottom_content').css('left','-' + index * 100 + '%')
+          $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
+        })
+        $('.bottom_content').on('touchstart','.body_1',function(e){
+          startX = e.originalEvent.changedTouches[0].clientX
+        })
+        $('.bottom_content').on('touchmove','.body_1',function(e){
+          e.stopPropagation()
+        })
+        $('.bottom_content').on('touchend','.body_1',function(e){
+          disX = e.originalEvent.changedTouches[0].clientX - startX
+          var leftNum = parseInt($('.bottom_content')[0].style.left)
+          let order
+          if(disX > 0 && disX > 100) {
+            if(leftNum <= -100) {
+              $('.bottom_content')[0].style.left = leftNum + 100 + "%"
+              order = -parseInt($('.bottom_content')[0].style.left)/100
+              $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+            }
+          } else if(disX < 0 && disX < -100) {
+            if(leftNum >= -100) {
+              $('.bottom_content')[0].style.left = leftNum - 100 + "%"
+              order = (-parseInt($('.bottom_content')[0].style.left))/100
+              $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+            }
+          }
+          if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
+            if (order === 1) {
+              $('.body_1').eq(0).html('')
+              $('.body_1').eq(2).html('')
+              addData(1, moreInd)
+            } else if (order === 2) {
+              $('.body_1').eq(0).html('')
+              $('.body_1').eq(1).html('')
+              addData(2, basicInd)
+            } else {
+              $('.body_1').eq(1).html('')
+              $('.body_1').eq(2).html('')
+              addData(0, newInd)
+            }
+          }
+        })
+      })
+    } else {
+      setTimeout(() => {
+        getUserInfo()
+      }, 50)
+    }
+  }
+  // 查看全文
   function seeMore(index) {
     $('.content').eq(index).find('.open').hide()
     $('.content').eq(index).find('.detail').removeClass('txt-cut')
   }
   // 点赞功能
-  function zanOperate(index, num, id) {
+  function zanOperate(index, num, id, token) {
     const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
     const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
     if (att.attr('src').indexOf('zan.png') > -1) {
@@ -47,7 +127,7 @@
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json`,
+        url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
         data: `data=${JSON.stringify(data)}`,
         success: (res) => {
         }
@@ -69,72 +149,8 @@
       ht.html(num + 1)
     }
   }
-  let newInd = 1
-  let moreInd = 1
-  let basicInd = 1
-  // tab切换功能（滑动）
-  $('.bottom_content')[0].style.left = "0%"
-  var startX = '',disX =''
-  $('.top_menu').on('click','.common',function(){
-    var index = $(this).index()
-    if (index === 1) {
-      $('.body_1').eq(0).html('')
-      $('.body_1').eq(2).html('')
-      addData(1, newInd)
-    } else if (index === 2) {
-      $('.body_1').eq(0).html('')
-      $('.body_1').eq(1).html('')
-      addData(2, moreInd)
-    } else {
-      $('.body_1').eq(1).html('')
-      $('.body_1').eq(2).html('')
-      addData(0, basicInd)
-    }
-    $('.bottom_content').css('left','-' + index * 100 + '%')
-    $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
-  })
-  $('.bottom_content').on('touchstart','.body_1',function(e){
-    startX = e.originalEvent.changedTouches[0].clientX
-  })
-  $('.bottom_content').on('touchmove','.body_1',function(e){
-    e.stopPropagation()
-  })
-  $('.bottom_content').on('touchend','.body_1',function(e){
-    disX = e.originalEvent.changedTouches[0].clientX - startX
-    var leftNum = parseInt($('.bottom_content')[0].style.left)
-    let order
-    if(disX > 0 && disX > 100) {
-      if(leftNum <= -100) {
-        $('.bottom_content')[0].style.left = leftNum + 100 + "%"
-        order = -parseInt($('.bottom_content')[0].style.left)/100
-        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
-      }
-    } else if(disX < 0 && disX < -100) {
-      if(leftNum >= -100) {
-        $('.bottom_content')[0].style.left = leftNum - 100 + "%"
-        order = (-parseInt($('.bottom_content')[0].style.left))/100
-        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
-      }
-    }
-    if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
-      if (order === 1) {
-        $('.body_1').eq(0).html('')
-        $('.body_1').eq(2).html('')
-        addData(1, moreInd)
-      } else if (order === 2) {
-        $('.body_1').eq(0).html('')
-        $('.body_1').eq(1).html('')
-        addData(2, basicInd)
-      } else {
-        $('.body_1').eq(1).html('')
-        $('.body_1').eq(2).html('')
-        addData(0, newInd)
-      }
-    }
-  })
-
   // 数据拼接
-  function addData (index, page) {
+  function addData (index, page, token) {
     const data = {
       type: index,
       page
@@ -144,9 +160,14 @@
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json`,
+      url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
+        alert(`token===>${token}`)
+        alert(`success===>${res.success}`)
+        alert(`errorMsg===>${res.errorMsg}`)
+        alert(res.data)
+        alert(res.data.list)
         allList = res.data.list
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
@@ -159,7 +180,7 @@
           for (let j = 0; j < data[i].picUrls.length; j++) {
             sec += `<img class="img-item" src="${data[i].picUrls[j]}" />`
           }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
+          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id}, token)"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
           let zan = ``
           data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
           let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
