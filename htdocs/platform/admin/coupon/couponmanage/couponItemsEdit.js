@@ -788,11 +788,22 @@ $(function(){
 		var list_goodId = [];
 		for(var i in ckAll_goodId){
 			list_goodId.push(i);
-			$('#goodsId').val(list_goodId);
 		}
+		list_goodId.sort(compareGoodId);
+		$('#goodsId').val(list_goodId);
 		
 	    $('#myModal').removeClass('in');
 	});
+	
+	function compareGoodId(value1,value2){
+		if (value1 < value2){
+		return 1;
+		}else if (value1 > value2){
+		return -1;
+		}else{
+		return 0;
+		}
+	}
 	
 	//确定按钮事件
 	$('#coupon_btn_ok').bind("click", function() {
@@ -840,6 +851,8 @@ $(function(){
 		}
 		
 	    $('#myModal_'+num).removeClass('in');
+	    //触发表格input事件
+	    $('#goodsId_'+num).trigger("change");
 	});
 	
 	$('#member_btn_ok').bind("click", function() {

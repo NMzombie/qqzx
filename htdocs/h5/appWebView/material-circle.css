@@ -49,13 +49,15 @@ ul {
   width: 100%
 }
 .top_menu {
+  position: fixed;
+  z-index: 2;
   width: 100%;
   height: 0.86rem;
   display: flex;
   text-align: center;
   font-size: 0.28rem;
   font-family: PingFangSC-Medium, sans-serif;
-  font-weight:500;
+  font-weight: 600;
   color: #333333;
   line-height: 0.86rem;
   background-color: #fff;
@@ -70,6 +72,7 @@ ul {
   overflow-x: hidden
 }
 .bottom_content {
+  margin-top: 0.86rem;
   width: 300%;
   min-height: 4rem;
   display: flex;
@@ -88,7 +91,7 @@ ul {
 .body_1 .content {
   margin-top: 0.2rem;
   background-color: #fff;
-  min-height: 6rem;
+  min-height: 5rem;
 }
 .header-item {
   padding: 0.3rem 0.24rem;
@@ -103,6 +106,7 @@ ul {
 .header-item .name-item {
   position: relative;
   float: left;
+  margin-top: 0.05rem;
   margin-left: 0.2rem;
 }
 .header-item .content-item {
@@ -116,7 +120,6 @@ ul {
 .content-title .content-tag {
   position: relative;
   float: left;
-  margin-top: 0.07rem;
   margin-right: 0.14rem;
   padding: 0 0.05rem;
   font-size: 0.22rem;
@@ -132,9 +135,11 @@ ul {
   position: relative;
   float: left;
   width: 5rem;
+  height: 0.3rem;
+  line-height: 0.3rem;
   font-size: 0.32rem;
-  font-family: PingFangSC-Medium, sans-serif;
-  font-weight: 500;
+  font-family: PingFangSC-Medium, serif;
+  font-weight: 600;
   color: rgba(26,22,21,1);
 }
 .content-item .detail {
@@ -171,9 +176,16 @@ ul {
   margin-top: 0.22rem;
   width: 0.26rem;
 }
+
+.operate-item .zan {
+  margin-top: 0.25rem!important;
+}
 .operate-item .value {
   position: relative;
   float: left;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight:400;
+  font-size: 0.26rem;
   margin-left: 0.15rem;
   color: #1A1615;
 }
@@ -210,10 +222,10 @@ ul {
   color: rgba(102,102,102,1);
 }
 .li-active .bottom-line {
-  position: absolute;
+  position: relative;
   width: 0.8rem;
   height: 0.06rem;
-  left: 0.85rem;
-  bottom: 0.01rem;
+  margin: 0 auto;
+  bottom: 0.07rem;
   background-color: #F79C20;
 }

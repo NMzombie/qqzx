@@ -1,14 +1,15 @@
-let mobileValue, userInfo,errState
-    BASEAPI = 'http://qqzx.xc2018.com.cn'
-// BASEAPI = 'http://192.168.0.165'
+let mobileValue, userInfo,phoneType = false
+BASEAPI = 'http://wchoosemall.cn'
+// BASEAPI = 'http://192.168.0.162'
 // 校验手机号
 function checkPhone(){
-    console.log('sadas')
     mobileValue =  document.getElementById('phone').value
     if(!(/^1[34578]\d{9}$/.test(mobileValue))){
         $(".wrong-num").css('display','block')
+        phoneType = false
     } else {
         $(".wrong-num").css('display','none')
+        phoneType = true
     }
 }
 
@@ -19,27 +20,34 @@ function getPhone() {
 }
 // 获取用户信息
 function getUserInfo() {
-    $("#mobile").css('display','none')
-    $("#userInfo").css('display','block')
-    const data = {
-        mobile: mobileValue
-    }
-    $.ajax({
-        url:BASEAPI+"/doc/api/h5/memberPrecharge/findMemberInfo.json",
-        data:data,
-        async : false,
-        dataType : "json",
-        type: "post",
-        success: function (res) {
-            const data = res.data
-            userInfo = data.memberPrechargeVO
-            $(".modal").css("display","block")
-            $(".outer").css("background",'#ccc')
-        },
-        fail: function (err) {
-            console.log(err)
+    if (phoneType) {
+        $("#mobile").css('display','none')
+        $("#userInfo").css('display','block')
+        const data = {
+            mobile: mobileValue
         }
-    })
+        $.ajax({
+            url:BASEAPI+"/doc/api/h5/memberPrecharge/findMemberInfo.json",
+            data:data,
+            async : false,
+            dataType : "json",
+            type: "post",
+            success: function (res) {
+                const data = res.data
+                userInfo = data.memberPrechargeVO
+                $("#imgId").attr("src",userInfo.avater)
+                $("#name").html(userInfo.nickName)
+                $("#userId").html("ID：" + userInfo.mid)
+                $(".modal").css("display","block")
+                $(".outer").css("background",'#ccc')
+            },
+            fail: function (err) {
+                console.log(err)
+            }
+        })
+    }else {
+        $(".wrong-num").css('display','block')
+    }
 }
 // 取消
 function cancel() {
@@ -58,7 +66,7 @@ function back() {
 }
 // 去支付
 function topay() {
-    if (browser.versions === 'wx') {
+    if (browser.versions.wx) {
         const data = {
             mobile: userInfo.mobile,
             payType:2,
@@ -71,8 +79,9 @@ function topay() {
             dataType : "json",
             type: "post",
             success: function (res) {
-                const payReturn = res.data.memberPrechargeVO.weixinBackVO
-                if (payReturn.payType === 2) {
+                const data = res.data
+                const payReturn = data.memberPrechargeVO.weixinBackVO
+                if (data.memberPrechargeVO.payType === 2) {
                     wxPay(payReturn)
                 }
             },
@@ -81,27 +90,7 @@ function topay() {
             }
         })
     } else {
-        const data = {
-            mobile: userInfo.mobile,
-            payType:1,
-            rechargeType: ''
-        }
-        $.ajax({
-            url:BASEAPI+"/doc/api/h5/memberPrecharge/payPrecharge.json",
-            data:data,
-            async : false,
-            dataType : "json",
-            type: "post",
-            success: function (res) {
-                const payReturn = res.data.memberPrechargeVO
-                if (payReturn.payType === 1) {
-                    window.location.href = `http://qqzx.xc2018.com.cn/admin/wap/prechargeWap.htm?mobile=${payReturn.mobile}&rechargeType=20`
-                }
-            },
-            fail: function (err) {
-                console.log(err)
-            }
-        })
+        window.location.href = `${BASEAPI}/doc/wap/prechargeWap.html?mobile=${userInfo.mobile}&rechargeType=20`
     }
 }
 // 微信支付
