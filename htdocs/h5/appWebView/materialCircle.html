@@ -117,7 +117,7 @@
   }
   // 数据拼接
   function addData (index, page, token) {
-    const data = {
+    const para = {
       type: index,
       page
     }
@@ -127,12 +127,11 @@
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
-      data: `data=${JSON.stringify(data)}`,
+      data: `data=${JSON.stringify(para)}`,
       success: (res) => {
         allList = res.data.list
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
-          alert(i)
           alert(data[i].favoriteNum)
           alert(data[i].id)
           alert(token)
