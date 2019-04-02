@@ -86,7 +86,7 @@ ul {
 
 .bottom_content {
   width: 200%;
-  min-height: 6rem;
+  min-height: 12.3rem;
   display: flex;
   transition: all .5s ease;
   position: relative;
