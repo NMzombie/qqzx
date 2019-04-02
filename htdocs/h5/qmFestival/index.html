@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>清明节通知</title>
+  <script>
+      fnResize()
+      window.onresize = function () {
+        fnResize()
+      }
+
+      function fnResize() {
+        var deviceWidth = document.documentElement.clientWidth || window.innerWidth
+        if (deviceWidth >= 750) {
+          deviceWidth = 750
+        }
+        if (deviceWidth <= 320) {
+          deviceWidth = 320
+        }
+        document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px'
+      }
+</script>
+</head>
+<style>
+    body{
+        margin: 0;
+        height: 100%;
+    }
+    .wrapper{
+
+    }
+    .wrapper-des{
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        padding: 0 50px;
+    }
+    .wrapper-flex{
+        display: flex;
+        justify-content: center;
+        margin-top: 200px;
+    }
+    img{
+        width: 100%;
+    }
+    .wrapper-des-title{
+        width: 640px;
+        height: 190px;
+        background: #fff;
+        text-align: center;
+        padding-top: 30px;
+    }
+    .title-first{
+        font-size: 58px;
+        color: #031a25;
+    }
+    .title-second{
+        font-size: 66px;
+        color: #031a25;
+        font-weight: bold;
+    }
+    h3{
+        font-size: 45px;
+        color: #031a25;
+    }
+    p{
+        font-size: 28px;
+        color: #031a25;
+        line-height: 60px;
+        font-weight: 600;
+    }
+    .remark-word{
+        font-size: 40px;
+        color: #031a25;
+        text-align: right;
+        font-weight: 600;
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <img src="http://file.wchoosemall.com/platform/manager/pic/20190401/8048205355967189.jpg" alt="">
+        <div class="wrapper-des">
+            <div class="wrapper-flex">
+                <div class="wrapper-des-title">
+                    <div class="title-first">清明节期间</div>
+                    <div class="title-second">快递发货通知</div>
+                </div>
+            </div>
+            <h3>尊敬的全球自选客户：</h3>
+            <p>
+                由于清明节部分商家、海关等工作人员放假休息，假日期间(2019.4.5- -2019.4.7) 收发货物操作暂时停止，因此部分商品可能会有延误、停发现象，快递比
+                   正常到货时间要长，请您耐心等待!
+                   预计清明节假期结束后快递恢复正常，因节假日原因
+                   给您带来的不便请谅解!
+            </p>
+            <p>预计清明节假期结束后快递恢复正常，因节假日原因给您带来的不便请谅解!</p>
+            <div class="remark-word">全球自选</div>
+            <div class="remark-word">2019.4.1</div>
+        </div>
+    </div>
+</body>
+</html>
