@@ -81,8 +81,8 @@ ul {
   float: left;
   text-align: right;
   font-size: 0.28rem;
-  font-family: PingFangSC-Medium, serif;
-  font-weight: 500;
+  font-family: PingFangSC-Medium, sans-serif;
+  font-weight: 600;
   color: rgba(26,22,21,1);
 }
 .list .left {
