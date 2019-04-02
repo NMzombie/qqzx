@@ -148,56 +148,6 @@
     $('.content').eq(index).find('.open').hide()
     $('.content').eq(index).find('.detail').removeClass('txt-cut')
   }
-  // 点赞功能
-  function zanOperate(index, num, id, token) {
-    const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
-    const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
-    if (att.attr('src').indexOf('zan.png') > -1) {
-      ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
-      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
-      const data = {
-        id
-      }
-      $.ajax({
-        type: 'post',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
-        data: `data=${JSON.stringify(data)}`,
-        success: (res) => {
-        }
-      })
-    } else {
-      ht.html() === '1' ? ht.html('点赞') : ht.html(num)
-      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
-    }
-  }
-  // 下载功能
-  function downloadOperate(index, num, content) {
-    const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
-    alert(ht.html())
-    if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
-      getMaterialPic(allList[index].picUrls, content)
-      ht.html(num + 1)
-    }
-  }
-
-  // app js bridge
-  function getMaterialPic (picUrls, content) {
-    alert(picUrls)
-    alert(content)
-    if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls, content}, function (response) {
-        console.log(1, response)
-      })
-    } else {
-      setTimeout(() => {
-        getMaterialPic(picUrls)
-      }, 50)
-    }
-  }
-
   // 数据拼接
   function addData (index, page, token) {
     const data = {
@@ -234,6 +184,54 @@
         }
       }
     })
+  }
+  // 点赞功能
+  function zanOperate(index, num, id, token) {
+    const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
+    const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
+    if (att.attr('src').indexOf('zan.png') > -1) {
+      ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
+      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
+      const data = {
+        id
+      }
+      $.ajax({
+        type: 'post',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
+        data: `data=${JSON.stringify(data)}`,
+        success: (res) => {
+        }
+      })
+    } else {
+      ht.html() === '1' ? ht.html('点赞') : ht.html(num)
+      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
+    }
+  }
+  // 下载功能
+  function downloadOperate(index, num, content) {
+    const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
+    alert(ht.html())
+    if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
+      getMaterialPic(allList[index].picUrls, content)
+      ht.html(num + 1)
+    }
+  }
+  // app js bridge
+  function getMaterialPic (picUrls, content) {
+    alert(picUrls)
+    alert(content)
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls, content}, function (response) {
+        console.log(1, response)
+      })
+    } else {
+      setTimeout(() => {
+        getMaterialPic(picUrls)
+      }, 50)
+    }
   }
   getUserInfo()
 </script>
