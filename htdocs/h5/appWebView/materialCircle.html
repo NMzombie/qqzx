@@ -37,7 +37,6 @@
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         const token = JSON.parse(response).token
         // 默认信息
-        alert(token)
         addData(0, 1, token)
 
         let newInd = 1
@@ -193,7 +192,6 @@
   }
   // 点赞功能
   function zanOperate(index, num, id, token) {
-    alert(token)
     const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
     const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
     att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
@@ -234,7 +232,6 @@
   }
   // 下载功能
   function downloadOperate(index, num, id, token) {
-    alert(token)
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
     if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
       ht.html(num + 1)
@@ -268,6 +265,7 @@
       url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
+        alert(token)
         allList = res.data.list
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
