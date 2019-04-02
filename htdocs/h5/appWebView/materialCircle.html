@@ -139,11 +139,12 @@
   }
   // 下载功能
   function downloadOperate(index, num, content) {
+    getMaterialPic(allList[index].picUrls, content)
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
     if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
       getMaterialPic(allList[index].picUrls, content)
-      ht.html(num + 1)
     }
+    ht.html(num + 1)
   }
   // 数据拼接
   function addData (index, page, token) {
