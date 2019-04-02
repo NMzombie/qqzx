@@ -62,11 +62,11 @@ ul {
   width: 100%;
   overflow: hidden;
   text-align: center;
-  height: 4rem;
+  height: 4.5rem;
   background:linear-gradient(151deg,rgba(255,141,0,1) 0%,rgba(255,76,61,1) 100%);
 }
 .header img {
-  margin-top: 1.1rem;
+  margin-top: 1.6rem;
   width: 3.8rem;
   height: 0.65rem;
 }
@@ -88,7 +88,7 @@ ul {
   border: 0.08rem solid rgba(255,255,255,0.32)
 }
 .today-list .list {
-  padding: 1.2rem 0.36rem 0.5rem 0.36rem;
+  padding: 1.2rem 0.36rem 0.5rem 0.1rem;
 }
 .list .list-title .item{
   position: relative;
@@ -100,7 +100,7 @@ ul {
   color: rgba(26,22,21,1);
 }
 .list .left {
-  width: 1.5rem;
+  width: 1.8rem;
   margin-right: 0.4rem;
 }
 .list .middle-left {
@@ -112,7 +112,7 @@ ul {
   margin-right: 0.5rem;
 }
 .list .right {
-  width: 1.5rem;
+  width: 1.4rem;
 }
 .list-goods {
   margin-top: 0.6rem;
