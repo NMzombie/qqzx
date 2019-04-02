@@ -114,10 +114,8 @@
   }
   // 点赞功能
   function zanOperate(index, num, id, token) {
-    alert(1)
     const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
     const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
-    alert(att)
     if (att.attr('src').indexOf('zan.png') > -1) {
       ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
       att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
@@ -188,7 +186,7 @@
   // app js bridge
   function getMaterialPic (picUrls, content) {
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls, content}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {'picUrls': picUrls, 'content': content}, function (response) {
         console.log(1, response)
       })
     } else {
