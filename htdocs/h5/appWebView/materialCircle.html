@@ -65,11 +65,83 @@
   let allList = []
   let baseUrl = ''
   getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
+  // 点赞功能
+  function zanOperate(index, num, id, token) {
+    alert(111)
+    const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
+    const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
+    if (att.attr('src').indexOf('zan.png') > -1) {
+      ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
+      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
+      const data = {
+        id
+      }
+      $.ajax({
+        type: 'post',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
+        data: `data=${JSON.stringify(data)}`,
+        success: (res) => {
+        }
+      })
+    } else {
+      ht.html() === '1' ? ht.html('点赞') : ht.html(num)
+      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
+    }
+  }
+  // 下载功能
+  function downloadOperate(index, num, content) {
+    alert(111)
+    const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
+    alert(ht.html())
+    if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
+      getMaterialPic(allList[index].picUrls, content)
+      ht.html(num + 1)
+    }
+  }
+  // 数据拼接
+  function addData (index, page, token) {
+    const data = {
+      type: index,
+      page
+    }
+    $.ajax({
+      type: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
+      data: `data=${JSON.stringify(data)}`,
+      success: (res) => {
+        allList = res.data.list
+        const data = res.data.list
+        for (let i = 0; i < data.length; i++) {
+          let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
+          if (data[i].recommendedReason.length >= 105) {
+            fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
+          }
+          fir += `</div></div><div class="img-list"><div class="image clearfix">`
+          let sec = ``
+          for (let j = 0; j < data[i].picUrls.length; j++) {
+            sec += `<img class="img-item" src="${data[i].picUrls[j]}" />`
+          }
+          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id}, ${token})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
+          let zan = ``
+          data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
+          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].recommendedReason})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+          data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down = `<div class="value">data[i].downloadNum</div>`
+          const last = `</div></a></div></div>`
+          $('.body_1').eq(index).append(fir + sec + thi + zan + down + last)
+        }
+      }
+    })
+  }
   // 绑定token
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
-        alert(response)
         const token = JSON.parse(response).token
         // 默认信息
         addData(0, 1, token)
@@ -147,77 +219,6 @@
   function seeMore(index) {
     $('.content').eq(index).find('.open').hide()
     $('.content').eq(index).find('.detail').removeClass('txt-cut')
-  }
-  // 数据拼接
-  function addData (index, page, token) {
-    const data = {
-      type: index,
-      page
-    }
-    $.ajax({
-      type: 'post',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
-      data: `data=${JSON.stringify(data)}`,
-      success: (res) => {
-        allList = res.data.list
-        const data = res.data.list
-        for (let i = 0; i < data.length; i++) {
-          let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
-          if (data[i].recommendedReason.length >= 105) {
-            fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
-          }
-          fir += `</div></div><div class="img-list"><div class="image clearfix">`
-          let sec = ``
-          for (let j = 0; j < data[i].picUrls.length; j++) {
-            sec += `<img class="img-item" src="${data[i].picUrls[j]}" />`
-          }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id}, ${token})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
-          let zan = ``
-          data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
-          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].recommendedReason})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
-          data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down = `<div class="value">data[i].downloadNum</div>`
-          const last = `</div></a></div></div>`
-          $('.body_1').eq(index).append(fir + sec + thi + zan + down + last)
-        }
-      }
-    })
-  }
-  // 点赞功能
-  function zanOperate(index, num, id, token) {
-    const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
-    const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
-    if (att.attr('src').indexOf('zan.png') > -1) {
-      ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
-      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
-      const data = {
-        id
-      }
-      $.ajax({
-        type: 'post',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
-        data: `data=${JSON.stringify(data)}`,
-        success: (res) => {
-        }
-      })
-    } else {
-      ht.html() === '1' ? ht.html('点赞') : ht.html(num)
-      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
-    }
-  }
-  // 下载功能
-  function downloadOperate(index, num, content) {
-    const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
-    alert(ht.html())
-    if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
-      getMaterialPic(allList[index].picUrls, content)
-      ht.html(num + 1)
-    }
   }
   // app js bridge
   function getMaterialPic (picUrls, content) {
