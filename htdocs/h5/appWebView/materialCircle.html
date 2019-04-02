@@ -37,6 +37,7 @@
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         const token = JSON.parse(response).token
         // 默认信息
+        alert(token)
         addData(0, 1, token)
 
         let newInd = 1
@@ -192,6 +193,7 @@
   }
   // 点赞功能
   function zanOperate(index, num, id, token) {
+    alert(token)
     const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
     const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
     att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
@@ -232,6 +234,7 @@
   }
   // 下载功能
   function downloadOperate(index, num, id, token) {
+    alert(token)
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
     if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
       ht.html(num + 1)
@@ -280,7 +283,7 @@
           const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id}, token)"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
           let zan = ``
           data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
-          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].id},  token)"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].id}, token)"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
           data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down += `<div class="value">${data[i].downloadNum}</div>`
           const last = `</div></a></div></div>`
           $('.body_1').eq(index).append(fir + sec + thi + zan + down + last)
