@@ -66,15 +66,12 @@
   let baseUrl = ''
   getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
   // 绑定token
-  getUserInfo()
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
-        alert(response)
         const token = JSON.parse(response).token
         // 默认信息
         addData(0, 1, token)
-
         let newInd = 1
         let moreInd = 1
         let basicInd = 1
@@ -234,6 +231,7 @@
     }
   }
 
+  getUserInfo()
 </script>
 </body>
 </html>
