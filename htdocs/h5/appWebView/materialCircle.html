@@ -132,7 +132,6 @@
         allList = res.data.list
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
-          alert(token)
           let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
           if (data[i].recommendedReason.length >= 105) {
             fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
@@ -152,6 +151,11 @@
         }
       }
     })
+  }
+  // 查看全文
+  function seeMore(index) {
+    $('.content').eq(index).find('.open').hide()
+    $('.content').eq(index).find('.detail').removeClass('txt-cut')
   }
   // 绑定token
   function getUserInfo (){
@@ -229,11 +233,6 @@
         getUserInfo()
       }, 50)
     }
-  }
-  // 查看全文
-  function seeMore(index) {
-    $('.content').eq(index).find('.open').hide()
-    $('.content').eq(index).find('.detail').removeClass('txt-cut')
   }
   getUserInfo()
 </script>
