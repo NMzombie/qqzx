@@ -28,6 +28,7 @@
 <script type="text/javascript">
   let allList = []
   const baseUrl = 'http://qqzx.xc2018.com.cn'
+  alert(getQueryString('dev'))
   // 绑定token
   getUserInfo()
   function getUserInfo (){
@@ -139,7 +140,8 @@
   }
   // 下载功能
   function downloadOperate(index, num, content) {
-    getMaterialPic(allList[index].picUrls, content)
+    alert(content)
+    getMaterialPic(allList[index].picUrls)
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
     if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
       getMaterialPic(allList[index].picUrls, content)
@@ -185,14 +187,14 @@
   }
 
   // app js bridge
-  function getMaterialPic (picUrls, content) {
+  function getMaterialPic (picUrls) {
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls}, function (response) {
         console.log(1, response)
       })
     } else {
       setTimeout(() => {
-        getMaterialPic(picUrls, content)
+        getMaterialPic(picUrls)
       }, 50)
     }
   }
