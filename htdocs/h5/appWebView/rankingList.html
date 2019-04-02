@@ -6,13 +6,14 @@
   <title>今日爆款</title>
   <link rel="stylesheet" href="ranking-list.css">
   <script src="../js/jquery-1.10.2.js"></script>
+  <script src="../js/util.js"></script>
 </head>
 <body>
 <div class="header">
   <img src="http://file.wchoosemall.com/platform/manager/pic/ranking-title.png" alt="" />
 </div>
 <div class="today-list">
-  <img class="header-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552985714268&di=e74d4776a8b4041a858430f3cb67ca41&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fq_70%2Cc_zoom%2Cw_640%2Fimages%2F20190212%2F60a70abf421744c9865614771a1085b9.jpeg" alt="">
+  <img class="header-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000" alt="" />
   <div class="list clearfix">
     <div class="list-title clearfix">
       <div class="item left">爆款商品</div>
@@ -28,47 +29,62 @@
   <div class="share-list"></div>
 </div>
 <script type="text/javascript">
-  const rankingList = [
-    {
-      name: 'ESTĒE LAUDER 雅诗兰黛 特润修护精ESTĒE LAUDER 雅诗兰黛 特润修护精',
-      img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552987429896&di=f9bcd623440f40f08e14c20641e14cb1&imgtype=0&src=http%3A%2F%2Fweb.kunmingbc.com%2Fkmgbdst%2Fupload%2FImage%2Fmrtp%2F8d2f77a1ae53494caeeecb0e70ce432e.jpg%3F1551842501650',
-      sellPrice: 33333,
-      earnPrice: 1111,
-      id: 1,
-      memberPrice: 1111,
-      marketPrice: 2222
-    },
-    {
-      name: 'ESTĒE LAUDER 雅诗兰黛 特润修护精ESTĒE LAUDER 雅诗兰黛 特润修护精',
-      img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552990339474&di=4189aab26fa347edcb4f69161bbd7a95&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201501%2F12%2F20150112184209_kSyud.jpeg',
-      sellPrice: 2222,
-      earnPrice: 1050,
-      id: 2,
-      memberPrice: 1111,
-      marketPrice: 2222
-    },
-    {
-      name: '特斯特试探试探公司当个算的更多送过去前提是东方红',
-      img: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1552990531017&di=2a94a8ab5ed3195569fa05bc3004bb6c&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201507%2F18%2F20150718183223_QmwYB.jpeg',
-      sellPrice: 21344,
-      earnPrice: 1050,
-      id: 3,
-      memberPrice: 1111,
-      marketPrice: 2222
+
+  const baseUrl = 'http://qqzx.xc2018.com.cn'
+  getUserInfo()
+  function getUserInfo (){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
+        const token = JSON.parse(response).token
+        const level = JSON.parse(response).level
+        $('.header-img').attr('src', JSON.parse(response).avatar)
+        $.ajax({
+          type: 'post',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          url: `${baseUrl}/doc/api/common/auth/memberSales/getItemSales.json?token=${token}`,
+          success: (res) => {
+            const rankingList = res.data.list
+            for (let i = 0; i < rankingList.length; i++) {
+              $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}" alt="" /></a></div><div class="item middle-left">￥${priceFormat(rankingList[i].memberSalesDTO.salesPrice)}</div><div class="item middle-right">￥${priceFormat(rankingList[i].memberSalesDTO.incomePrice)}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
+              if (level >= 10) {
+                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].itemRankDTO.itemId})"><div class="share">分享</div></a></div></div></div>`)
+              } else {
+                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].itemRankDTO.itemId})"><div class="share">分享</div></a></div></div></div>`)
+              }
+             }
+          }
+        })
+      })
+    } else {
+      setTimeout(() => {
+        getUserInfo()
+      }, 50)
     }
-  ]
-  for (let i = 0; i < rankingList.length; i++) {
-    $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].id})" ><img src="${rankingList[i].img}" alt="" /></a></div><div class="item middle-left">￥${rankingList[i].sellPrice}</div><div class="item middle-right">￥${rankingList[i].earnPrice}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].id})" >查看排行</a></div></div>`)
-    $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].id})" ><img class="left" src="${rankingList[i].img}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].name}</div><div class="content clearfix"><div class="member">￥${rankingList[i].memberPrice}</div><div class="market">￥${rankingList[i].marketPrice}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].id})"><div class="share">分享</div></a></div></div></div>`)
   }
   function loadMore(id) {
-    alert(`view goods ===> ${id}`)
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUrlTo', {'page': `wg://push.chuang.co?page=prodDetail&prodId=${id}`}, function (response) {
+      })
+    } else {
+      setTimeout(() => {
+        loadMore(id)
+      }, 50)
+    }
   }
   function loadRanking(id) {
-    alert(`view ranking ===> ${id}`)
+    window.location.href = `./rankingDetail.html?activityId=${id}`
   }
   function shareItem(id) {
-    alert(`share goods ===> ${id}`)
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'itemId': `${id}`}, function (response) {
+      })
+    } else {
+      setTimeout(() => {
+        shareItem(id)
+      }, 50)
+    }
   }
 </script>
 </body>
