@@ -1,6 +1,20 @@
 html {
-  font-size: 50px!important;
   background-color: #F7F7F7;
+}
+@media only screen and (min-width: 310px){
+  html {
+    font-size: 42px !important;
+  }
+}
+@media only screen and (min-width: 375px){
+  html {
+    font-size: 50px !important;
+  }
+}
+@media only screen and (min-width: 414px){
+  html {
+    font-size: 55px !important;
+  }
 }
 body {
   margin: 0;
@@ -86,19 +100,19 @@ ul {
   color: rgba(26,22,21,1);
 }
 .list .left {
-  width: 1.18rem;
+  width: 1.5rem;
   margin-right: 0.4rem;
 }
 .list .middle-left {
-  width: 1.77rem;
-  margin-right: 0.74rem;
+  width: 2.5rem;
+  margin-right: 0.7rem;
 }
 .list .middle-right {
-  width: 1.12rem;
+  width: 1.15rem;
   margin-right: 0.5rem;
 }
 .list .right {
-  width: 1.07rem;
+  width: 1.5rem;
 }
 .list-goods {
   margin-top: 0.6rem;

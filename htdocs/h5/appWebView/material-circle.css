@@ -1,7 +1,22 @@
 html {
-  font-size: 50px !important;
   background-color: #F7F7F7;
 }
+@media only screen and (min-width: 310px){
+  html {
+    font-size: 42px !important;
+  }
+}
+@media only screen and (min-width: 375px){
+  html {
+    font-size: 50px !important;
+  }
+}
+@media only screen and (min-width: 414px){
+  html {
+    font-size: 55px !important;
+  }
+}
+
 body {
   margin: 0;
   width: 100%;
@@ -129,7 +144,7 @@ ul {
   border-radius: 0.05rem;
   height: 0.3rem;
   line-height: 0.3rem;
-  border: 0.01rem solid rgba(247,156,32,1);
+  border: 1px solid rgba(247,156,32,1);
 }
 .content-title .title {
   position: relative;
@@ -146,6 +161,7 @@ ul {
   line-height: 0.48rem;
   -webkit-line-clamp: 5;
   margin-top: 0.09rem;
+  font-family: PingFangSC-Regular, sans-serif;
 }
 .content .image {
   margin-top: 0.1rem;
@@ -173,12 +189,12 @@ ul {
   position: relative;
   float: left;
   margin-left: 1.05rem;
-  margin-top: 0.22rem;
+  margin-top: 0.24rem;
   width: 0.26rem;
 }
 
 .operate-item .zan {
-  margin-top: 0.25rem!important;
+  margin-top: 0.26rem!important;
 }
 .operate-item .value {
   position: relative;
