@@ -91,6 +91,20 @@
       att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
     }
   }
+  // app js bridge
+  function getMaterialPic (picUrls, content) {
+    alert(picUrls)
+    alert(content)
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls, content}, function (response) {
+        console.log(1, response)
+      })
+    } else {
+      setTimeout(() => {
+        getMaterialPic(picUrls)
+      }, 50)
+    }
+  }
   // 下载功能
   function downloadOperate(index, num, content) {
     alert(111)
@@ -115,8 +129,7 @@
       url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
-        alert(res)
-        console.log(res)
+        alert(res.data)
         allList = res.data.list
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
@@ -221,20 +234,6 @@
   function seeMore(index) {
     $('.content').eq(index).find('.open').hide()
     $('.content').eq(index).find('.detail').removeClass('txt-cut')
-  }
-  // app js bridge
-  function getMaterialPic (picUrls, content) {
-    alert(picUrls)
-    alert(content)
-    if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls, content}, function (response) {
-        console.log(1, response)
-      })
-    } else {
-      setTimeout(() => {
-        getMaterialPic(picUrls)
-      }, 50)
-    }
   }
   getUserInfo()
 </script>
