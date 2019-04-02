@@ -187,7 +187,7 @@
   // app js bridge
   function getMaterialPic (picUrls, content) {
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {'picUrls': picUrls, 'content': content}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls}, function (response) {
         console.log(1, response)
       })
     } else {
