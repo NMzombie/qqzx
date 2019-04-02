@@ -106,9 +106,8 @@
         const activityId = {
           activityId: getQueryString('activityId')
         }
-        //const baseUrl = window.location.host
-
-        const baseUrl = 'http://api.wchoosemall.com'
+        let baseUrl = ''
+        getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
 
         $.ajax({
           type : 'post',
