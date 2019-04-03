@@ -151,12 +151,7 @@
   }
   function shareItem(ind) {
     if (window.WebViewJavascriptBridge) {
-      let imgList = ''
-      for (let i = 0; i < rankingList[ind].itemRankDTO.picUrls.length; i++) {
-        imgList += `${rankingList[ind].itemRankDTO.picUrls[i]},`
-      }
-      imgList = imgList.substring(0,imgList.length - 1)
-      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'itemId': `${rankingList[ind].itemRankDTO.itemId}`, 'title': `${rankingList[ind].itemRankDTO.name}`, 'desc': `${rankingList[ind].itemRankDTO.name}`, 'img': `${imgList}`, 'price': `${rankingList[ind].itemRankDTO.marketPrice}`}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'itemId': `${rankingList[ind].itemRankDTO.itemId}`, 'title': `${rankingList[ind].itemRankDTO.name}`, 'desc': `${rankingList[ind].itemRankDTO.name}`, 'img': `${rankingList[ind].itemRankDTO.picUrls[0]}`, 'price': `${rankingList[ind].itemRankDTO.marketPrice}`}, function (response) {
       })
     } else {
       setTimeout(() => {
