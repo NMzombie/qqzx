@@ -93,109 +93,95 @@
 
   let baseUrl = ''
   getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
-  let token = 'bdfb862ec2df4a358cb24193711574'
-  let test = []
-  // 总监排行（至尊）
-  const extremeData = {
-    activityId: getQueryString('activityId'),
-    level: 30
-  }
-  $.ajax({
-    type: 'post',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    url: `${baseUrl}/doc/api/common/auth/memberSales/getItemRanking.json?token=${token}`,
-    data: `data=${JSON.stringify(extremeData)}`,
-    success: (res) => {
-      const extremeList = res.data.list
-      for (let i = 0; i < extremeList.length; i++) {
-        const fir = `<div class="item clearfix"><div class="left-item t-left">`
-        let sec = ''
-        if (i === 0) {
-          sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/first.png" alt="" />`
-        } else if (i === 1) {
-          sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/second.png" alt="" />`
-        } else if (i === 2) {
-          sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/third.png" alt="" />`
-        } else if (i >= 3 && i < 9) {
-          sec = `<div class="ranking-num">0${i + 1}</div>`
-        } else{
-          sec = `<div class="ranking-num">${i + 1}</div>`
+  getUserInfo()
+  function getUserInfo (){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
+        const token = JSON.parse(response).token
+        // 总监排行（至尊）
+        const extremeData = {
+          activityId: getQueryString('activityId'),
+          level: 30
         }
-        const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left">${extremeList[i].nickName}</div><div class="right-item t-right">¥${priceFormat(extremeList[i].salesPrice)}</div></div>`
-        $('.ranking-list').eq(0).append(fir + sec + thi)
-      }
-    }
-  })
-  // 经理排行（超级）
-  const superData = {
-    activityId: getQueryString('activityId'),
-    level: 20
-  }
-  $.ajax({
-    type: 'post',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    url: `${baseUrl}/doc/api/common/auth/memberSales/getItemRanking.json?token=${token}`,
-    data: `data=${JSON.stringify(superData)}`,
-    success: (res) => {
-      const superList = res.data.list
-      for (let i = 0; i < superList.length; i++) {
-        const fir = `<div class="item clearfix"><div class="left-item t-left">`
-        let sec = ``
-        if (i === 0) {
-          sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/first.png" alt="" />`
-        } else if (i === 1) {
-          sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/second.png" alt="" />`
-        } else if (i === 2) {
-          sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/third.png" alt="" />`
-        } else if (i >= 3 && i < 9) {
-          sec = `<div class="ranking-num">0${i + 1}</div>`
-        } else{
-          sec = `<div class="ranking-num">${i + 1}</div>`
+        // 经理排行（超级）
+        const superData = {
+          activityId: getQueryString('activityId'),
+          level: 20
         }
-        const thi = `<img class="ranking-header" src="${superList[i].avatar}" /></div><div class="middle-item t-left">${superList[i].nickName}</div><div class="right-item t-right">¥${priceFormat(superList[i].salesPrice)}</div></div>`
-        $('.ranking-list').eq(1).append(fir + sec + thi)
-      }
+        getData(extremeData, 0, token)
+        getData(superData, 1, token)
+      })
+    } else {
+      setTimeout(() => {
+        getUserInfo()
+      }, 50)
     }
-  })
-  //console.log("left -右滑",(parseInt($('.bottom_content')[0].style.left)));
-  // tab切换功能（滑动）
-  $('.bottom_content')[0].style.left = "0%"
-  var startX = '',disX =''
-  $('.top_menu').on('click','.common',function(){
-    var index = $(this).index()
-    $('.bottom_content').css('left','-' + index * 100 + '%')
-    $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
-  })
-  $('.bottom_content').on('touchstart','.body_1',function(e){
-    startX = e.originalEvent.changedTouches[0].clientX
-  })
-  $('.bottom_content').on('touchmove','.body_1',function(e){
-    e.stopPropagation()
-  })
-  $('.bottom_content').on('touchend','.body_1',function(e){
-    disX = e.originalEvent.changedTouches[0].clientX - startX
-    var leftNum = parseInt($('.bottom_content')[0].style.left)
-    if(disX > 0 && disX > 100) {
-      if(leftNum <= -100) {
-        $('.bottom_content')[0].style.left = leftNum + 100 + "%"
-        var order = -parseInt($('.bottom_content')[0].style.left)/100
-        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+  }
+  function getData (data, type, token) {
+    $.ajax({
+      type: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: `${baseUrl}/doc/api/common/auth/memberSales/getItemRanking.json?token=${token}`,
+      data: `data=${JSON.stringify(data)}`,
+      success: (res) => {
+        const extremeList = res.data.list
+        for (let i = 0; i < extremeList.length; i++) {
+          const fir = `<div class="item clearfix"><div class="left-item t-left">`
+          let sec = ''
+          if (i === 0) {
+            sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/first.png" alt="" />`
+          } else if (i === 1) {
+            sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/second.png" alt="" />`
+          } else if (i === 2) {
+            sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/third.png" alt="" />`
+          } else if (i >= 3 && i < 9) {
+            sec = `<div class="ranking-num">0${i + 1}</div>`
+          } else{
+            sec = `<div class="ranking-num">${i + 1}</div>`
+          }
+          const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left">${extremeList[i].nickName}</div><div class="right-item t-right">¥${priceFormat(extremeList[i].salesPrice)}</div></div>`
+          $('.ranking-list').eq(type).append(fir + sec + thi)
+        }
+
+        // tab切换功能（滑动）
+        $('.bottom_content')[0].style.left = "0%"
+        var startX = '',disX =''
+        $('.top_menu').on('click','.common',function(){
+          var index = $(this).index()
+          $('.bottom_content').css('left','-' + index * 100 + '%')
+          $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
+        })
+        $('.bottom_content').on('touchstart','.body_1',function(e){
+          startX = e.originalEvent.changedTouches[0].clientX
+        })
+        $('.bottom_content').on('touchmove','.body_1',function(e){
+          e.stopPropagation()
+        })
+        $('.bottom_content').on('touchend','.body_1',function(e){
+          disX = e.originalEvent.changedTouches[0].clientX - startX
+          var leftNum = parseInt($('.bottom_content')[0].style.left)
+          if(disX > 0 && disX > 100) {
+            if(leftNum <= -100) {
+              $('.bottom_content')[0].style.left = leftNum + 100 + "%"
+              var order = -parseInt($('.bottom_content')[0].style.left)/100
+              $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+            }
+          } else if(disX < 0 && disX < -100) {
+            if ((-parseInt($('.bottom_content')[0].style.left))/100 === 1) {
+              return
+            }
+            if(leftNum >= -100) {
+              $('.bottom_content')[0].style.left = leftNum - 100 + "%"
+              var order = (-parseInt($('.bottom_content')[0].style.left))/100
+              $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+            }
+          }
+        })
       }
-    } else if(disX < 0 && disX < -100) {
-      if ((-parseInt($('.bottom_content')[0].style.left))/100 === 1) {
-        return
-      }
-      if(leftNum >= -100) {
-        $('.bottom_content')[0].style.left = leftNum - 100 + "%"
-        var order = (-parseInt($('.bottom_content')[0].style.left))/100
-        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
-      }
-    }
-  })
+    })
+  }
 </script>
 </body>
 </html>
