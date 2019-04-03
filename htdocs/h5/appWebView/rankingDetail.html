@@ -10,7 +10,12 @@
   <script src="../js/util.js"></script>
 </head>
 <body>
-
+<div class="header">
+  <div class="swiper clearfix">
+    <div class="left select">今日排行</div>
+    <div class="right">总排行</div>
+  </div>
+</div>
 <div class="top_menu">
   <div class="common li-active">至尊VIP<div class="bottom-line"></div></div>
   <div class="common">超级VIP<div class="bottom-line"></div></div>
@@ -33,69 +38,12 @@
         <div class="right-item t-right">销售额</div>
       </div>
       <div class="ranking-list">
-        <!--<div class="item clearfix">-->
-          <!--<div class="left-item t-left">-->
-            <!--<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/first.png" alt="" />-->
-            <!--&lt;!&ndash;<div class="ranking-num">01</div>&ndash;&gt;-->
-            <!--<img class="ranking-header" src="https://timgsa.baidu.com/timg?image&quality=80" />-->
-          <!--</div>-->
-          <!--<div class="middle-item t-left">xxxxx</div>-->
-          <!--<div class="right-item t-right">¥12,560.00</div>-->
-        <!--</div>-->
-        <!--<div class="item clearfix">-->
-          <!--<div class="left-item t-left">-->
-            <!--<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/second.png" alt="" />-->
-            <!--&lt;!&ndash;<div class="ranking-num">01</div>&ndash;&gt;-->
-            <!--<img class="ranking-header" src="https://timgsa.baidu.com/timg?image&quality=80" />-->
-          <!--</div>-->
-          <!--<div class="middle-item t-left">xxxxx</div>-->
-          <!--<div class="right-item t-right">¥12,560.00</div>-->
-        <!--</div>-->
-        <!--<div class="item clearfix">-->
-          <!--<div class="left-item t-left">-->
-            <!--<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/third.png" alt="" />-->
-            <!--&lt;!&ndash;<div class="ranking-num">01</div>&ndash;&gt;-->
-            <!--<img class="ranking-header" src="https://timgsa.baidu.com/timg?image&quality=80" />-->
-          <!--</div>-->
-          <!--<div class="middle-item t-left">xxxxx</div>-->
-          <!--<div class="right-item t-right">¥12,560.00</div>-->
-        <!--</div>-->
-        <!--<div class="item clearfix">-->
-          <!--<div class="left-item t-left">-->
-            <!--&lt;!&ndash;<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/first.png" alt="" />&ndash;&gt;-->
-            <!--<div class="ranking-num">4</div>-->
-            <!--<img class="ranking-header" src="https://timgsa.baidu.com/timg?image&quality=80" />-->
-          <!--</div>-->
-          <!--<div class="middle-item t-left">xxxxx</div>-->
-          <!--<div class="right-item t-right">¥12,560.00</div>-->
-        <!--</div>-->
-        <!--<div class="item clearfix">-->
-          <!--<div class="left-item t-left">-->
-            <!--&lt;!&ndash;<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/first.png" alt="" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/second.png" alt="" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/third.png" alt="" />&ndash;&gt;-->
-            <!--<div class="ranking-num">5</div>-->
-            <!--<img class="ranking-header" src="https://timgsa.baidu.com/timg?image&quality=80" />-->
-          <!--</div>-->
-          <!--<div class="middle-item t-left">xxxxx</div>-->
-          <!--<div class="right-item t-right">¥12,560.00</div>-->
-        <!--</div>-->
-        <!--<div class="item clearfix">-->
-          <!--<div class="left-item t-left">-->
-            <!--&lt;!&ndash;<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/first.png" alt="" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/second.png" alt="" />&ndash;&gt;-->
-            <!--&lt;!&ndash;<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/third.png" alt="" />&ndash;&gt;-->
-            <!--<div class="ranking-num">6</div>-->
-            <!--<img class="ranking-header" src="https://timgsa.baidu.com/timg?image&quality=80" />-->
-          <!--</div>-->
-          <!--<div class="middle-item t-left">xxxxx</div>-->
-          <!--<div class="right-item t-right">¥12,560.00</div>-->
-        <!--</div>-->
       </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
+  $('.header').find('.right').click()
   function connectWebViewJavascriptBridge (callback) {
     if (window.WebViewJavascriptBridge) {
       callback(window.WebViewJavascriptBridge)
