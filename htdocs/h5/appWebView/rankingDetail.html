@@ -84,7 +84,7 @@
     if (type === 0) {
       $('.header').find('.left').removeClass('select')
       $('.header').find('.right').addClass('select')
-      $('.ranking-list').eq(type).html('')
+      $('.ranking-list').eq(1).html('')
       type++
       getUserInfo(type)
     }
@@ -94,7 +94,7 @@
     if (type === 1) {
       $('.header').find('.left').addClass('select')
       $('.header').find('.right').removeClass('select')
-      $('.ranking-list').eq(type).html('')
+      $('.ranking-list').eq(0).html('')
       type--
       getUserInfo(type)
     }
