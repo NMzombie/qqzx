@@ -147,7 +147,7 @@
     }
   }
   function loadRanking(id) {
-    window.location.href = `./rankingDetail.html?activityId=${id}&fullscreen=1`
+    getQueryString('dev') ? window.location.href = `./rankingDetail.html?activityId=${id}&fullscreen=1&dev=1` : window.location.href = `./rankingDetail.html?activityId=${id}&fullscreen=1`
   }
   function shareItem(ind) {
     if (window.WebViewJavascriptBridge) {
