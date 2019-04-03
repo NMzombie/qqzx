@@ -88,7 +88,7 @@ ul {
   border: 0.08rem solid rgba(255,255,255,0.32)
 }
 .today-list .list {
-  padding: 1.2rem 0.36rem 0.5rem 0.1rem;
+  padding: 1.2rem 0.1rem 0.5rem 0.1rem;
 }
 .list .list-title .item{
   position: relative;
@@ -169,6 +169,7 @@ ul {
   margin-left: 0.3rem;
 }
 .share-list .right .title {
+  float: right;
   font-size: 0.28rem;
   font-family: PingFangSC-Regular, sans-serif;
   font-weight: 400;
