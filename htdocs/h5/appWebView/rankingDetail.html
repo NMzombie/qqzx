@@ -86,6 +86,7 @@
       $('.header').find('.right').addClass('select')
       $('.ranking-list').eq(0).html('')
       $('.ranking-list').eq(1).html('')
+      $('.top_menu .common').eq(0).addClass('li-active').siblings().removeClass('li-active')
       type++
       getUserInfo(type)
     }
@@ -97,6 +98,7 @@
       $('.header').find('.right').removeClass('select')
       $('.ranking-list').eq(0).html('')
       $('.ranking-list').eq(1).html('')
+      $('.top_menu .common').eq(0).addClass('li-active').siblings().removeClass('li-active')
       type--
       getUserInfo(type)
     }
