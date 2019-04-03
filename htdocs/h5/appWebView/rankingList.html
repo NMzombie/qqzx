@@ -85,7 +85,7 @@
             for (let i = 0; i < rankingList.length; i++) {
               $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}" alt="" /></a></div><div class="item middle-left">￥${priceFormat(rankingList[i].memberSalesDTO.salesPrice)}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
               if (level >= 10) {
-                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].itemRankDTO.itemId})"><div class="share">分享</div></a></div></div></div>`)
+                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].itemRankDTO.itemId}, ${rankingList[i].itemRankDTO})"><div class="share">分享</div></a></div></div></div>`)
               } else {
                 $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].itemRankDTO.itemId})"><div class="share">分享</div></a></div></div></div>`)
               }
@@ -100,6 +100,41 @@
     }
   }
 
+
+
+
+
+
+
+  const token = 'bdfb862ec2df4a358cb24193711574'
+  const level = JSON.parse(response).level
+  $('.header-img').attr('src', JSON.parse(response).avatar)
+  $.ajax({
+    type: 'post',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    url: `${baseUrl}/doc/api/common/auth/memberSales/getItemSales.json?token=${token}`,
+    success: (res) => {
+      const rankingList = res.data.list
+      for (let i = 0; i < rankingList.length; i++) {
+        $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}" alt="" /></a></div><div class="item middle-left">￥${priceFormat(rankingList[i].memberSalesDTO.salesPrice)}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
+        if (level >= 10) {
+          $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].itemRankDTO.itemId}, ${rankingList[i].itemRankDTO})"><div class="share">分享</div></a></div></div></div>`)
+        } else {
+          $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].itemRankDTO.itemId})"><div class="share">分享</div></a></div></div></div>`)
+        }
+      }
+    }
+  })
+
+
+
+
+
+
+
+
   function loadMore(id) {
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUrlTo', {'page': `wg://push.chuang.co?page=prodDetail&prodId=${id}`}, function (response) {
@@ -113,13 +148,13 @@
   function loadRanking(id) {
     window.location.href = `./rankingDetail.html?activityId=${id}&fullscreen=1`
   }
-  function shareItem(id) {
+  function shareItem(id, title, desc, img, price) {
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'itemId': `${id}`}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'itemId': `${id}`, 'title': `${title}`, 'desc': `${desc}`, 'img': `${img}`, 'price': `${price}`}, function (response) {
       })
     } else {
       setTimeout(() => {
-        shareItem(id)
+        shareItem(id, title, desc, img, price)
       }, 50)
     }
   }
