@@ -12,7 +12,7 @@
 <body>
 <div class="header">
   <div class="swiper clearfix">
-    <div class="left">今日排行</div>
+    <div class="left select">今日排行</div>
     <div class="right">总排行</div>
   </div>
 </div>
@@ -43,17 +43,6 @@
   </div>
 </div>
 <script type="text/javascript">
-  if(getQueryString('type')) {
-    $('.header').find('.left').addClass('select')
-  } else {
-    $('.header').find('.right').addClass('select')
-  }
-  $('.header').find('.right').click(() => {
-    getQueryString('dev') ? window.location.href = `rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1&dev=1&type=1` :window.location.href = `/rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1&type=1`
-  })
-  $('.header').find('.left').click(() => {
-    getQueryString('dev') ? window.location.href = `rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1&dev=1` : window.location.href = `rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1`
-  })
   function connectWebViewJavascriptBridge (callback) {
     if (window.WebViewJavascriptBridge) {
       callback(window.WebViewJavascriptBridge)
@@ -90,11 +79,29 @@
       console.log(e)
     }
   })
-
+  let type = 0
+  $('.header').find('.right').click(() => {
+    if (type === 0) {
+      $('.header').find('.left').removeClass('select')
+      $('.header').find('.right').addClass('select')
+      type++
+      getUserInfo(type)
+    }
+    // getQueryString('dev') ? window.location.href = `rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1&dev=1&type=1` :window.location.href = `/rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1&type=1`
+  })
+  $('.header').find('.left').click(() => {
+    if (type === 1) {
+      $('.header').find('.left').addClass('select')
+      $('.header').find('.right').removeClass('select')
+      type--
+      getUserInfo(type)
+    }
+    // getQueryString('dev') ? window.location.href = `rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1&dev=1` : window.location.href = `rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1`
+  })
   let baseUrl = ''
   getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
   getUserInfo()
-  function getUserInfo (){
+  function getUserInfo (type){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         const token = JSON.parse(response).token
@@ -108,8 +115,8 @@
           activityId: getQueryString('activityId'),
           level: 20
         }
-        getData(extremeData, 0, token)
-        getData(superData, 1, token)
+        getData(extremeData, 0, token, type)
+        getData(superData, 1, token, type)
       })
     } else {
       setTimeout(() => {
@@ -131,18 +138,17 @@
   //   activityId: getQueryString('activityId'),
   //   level: 20
   // }
-  // getData(extremeData, 0, token)
-  // getData(superData, 1, token)
+  // getData(extremeData, 0, token, 0)
+  // getData(superData, 1, token, 0)
 
 
 
 
 
 
-  function getData (data, type, token) {
-    const today = getQueryString('type')
+  function getData (data, type, token, dayType) {
     let url = 'getItemRanking'
-    if (today === null) {
+    if (dayType === 0) {
       url = 'getItemRankingToday'
     }
     $.ajax({

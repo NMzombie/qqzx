@@ -85,18 +85,17 @@ ul {
   width: 1.75rem;
   height: 0.62rem;
   line-height: 0.62rem;
-  background-color: #fff;
-  color: #FF7D0F;
+  background-color: #FF7D0F;
+  color: #fff;
   text-align: center;
   font-size: 0.3rem;
   border: 1px solid #fff;
   font-family: PingFangSC-Medium, sans-serif;
   font-weight: 500;
-  color: rgba(255,125,15,1);
 }
 .header .swiper .right {
-  background-color: #fff;
-  color: #FF7D0F;
+  background-color: #FF7D0F;
+  color: #fff;
   border: 1px solid #fff;
   position: relative;
   float: left;
@@ -110,8 +109,8 @@ ul {
 }
 .header .swiper .select {
   border: 1px solid #fff;
-  background-color: #FF7D0F;
-  color: #fff;
+  background-color: #fff;
+  color: #FF7D0F;
 }
 .top_menu {
   width: 100%;
