@@ -118,12 +118,17 @@
     }
   }
   function getData (data, type, token) {
+    const today = getQueryString('type')
+    let url = 'getItemRanking'
+    if (today === null) {
+      url = 'getItemRankingToday'
+    }
     $.ajax({
       type: 'post',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      url: `${baseUrl}/doc/api/common/auth/memberSales/getItemRanking.json?token=${token}`,
+      url: `${baseUrl}/doc/api/common/auth/memberSales/${url}.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
         const extremeList = res.data.list
