@@ -175,7 +175,7 @@
             sec = `<div class="ranking-num">${i + 1}</div>`
           }
           const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left">${extremeList[i].nickName}</div><div class="right-item t-right">¥${priceFormat(extremeList[i].salesPrice)}</div></div>`
-          $('.ranking-list').eq(type).append(fir + sec + thi)
+          $('.ranking-list').eq(type).html(fir + sec + thi)
         }
 
         // tab切换功能（滑动）
