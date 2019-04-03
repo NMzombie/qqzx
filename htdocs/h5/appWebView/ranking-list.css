@@ -142,7 +142,7 @@ ul {
 .share-all {
   margin-top: -0.8rem;
   background-color: #fff;
-  padding: 0.3rem 0.36rem;
+  padding: 0.3rem 5.5%;
 }
 .share-all .share-title {
   font-size: 0.28rem;
@@ -166,7 +166,7 @@ ul {
 .share-list .item .right {
   position: relative;
   float: left;
-  width: 5.1rem;
+  width: 75%;
   margin-left: 0.3rem;
 }
 .share-list .right .title {
