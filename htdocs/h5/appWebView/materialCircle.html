@@ -63,15 +63,16 @@
     }
   })
   let allList = []
+  // const baseUrl = 'http://qqzx.xc2018.com.cn'
   let baseUrl = ''
   getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
   // 绑定token
+  let token = ''
   getUserInfo()
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
-        alert(response)
-        const token = JSON.parse(response).token
+        token = JSON.parse(response).token
         // 默认信息
         addData(0, 1, token)
 
@@ -116,6 +117,9 @@
               $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
             }
           } else if(disX < 0 && disX < -100) {
+            if ((-parseInt($('.bottom_content')[0].style.left))/100 === 2) {
+              return
+            }
             if(leftNum >= -100) {
               $('.bottom_content')[0].style.left = leftNum - 100 + "%"
               order = (-parseInt($('.bottom_content')[0].style.left))/100
@@ -145,43 +149,151 @@
       }, 50)
     }
   }
+
+
+
+
+  // 调试数据
+  // token = 'bdfb862ec2df4a358cb24193711574'
+  // // 默认信息
+  // addData(0, 1, token)
+  //
+  // let newInd = 1
+  // let moreInd = 1
+  // let basicInd = 1
+  // // tab切换功能（滑动）
+  // $('.bottom_content')[0].style.left = "0%"
+  // var startX = '',disX =''
+  // $('.top_menu').on('click','.common',function(){
+  //   var index = $(this).index()
+  //   if (index === 1) {
+  //     $('.body_1').eq(0).html('')
+  //     $('.body_1').eq(2).html('')
+  //     addData(1, newInd, token)
+  //   } else if (index === 2) {
+  //     $('.body_1').eq(0).html('')
+  //     $('.body_1').eq(1).html('')
+  //     addData(2, moreInd, token)
+  //   } else {
+  //     $('.body_1').eq(1).html('')
+  //     $('.body_1').eq(2).html('')
+  //     addData(0, basicInd, token)
+  //   }
+  //   $('.bottom_content').css('left','-' + index * 100 + '%')
+  //   $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
+  // })
+  // $('.bottom_content').on('touchstart','.body_1',function(e){
+  //   startX = e.originalEvent.changedTouches[0].clientX
+  // })
+  // $('.bottom_content').on('touchmove','.body_1',function(e){
+  //   e.stopPropagation()
+  // })
+  // $('.bottom_content').on('touchend','.body_1',function(e){
+  //   disX = e.originalEvent.changedTouches[0].clientX - startX
+  //   var leftNum = parseInt($('.bottom_content')[0].style.left)
+  //   let order
+  //   if(disX > 0 && disX > 100) {
+  //     if(leftNum <= -100) {
+  //       $('.bottom_content')[0].style.left = leftNum + 100 + "%"
+  //       order = -parseInt($('.bottom_content')[0].style.left)/100
+  //       $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+  //     }
+  //   } else if(disX < 0 && disX < -100) {
+  //     if ((-parseInt($('.bottom_content')[0].style.left))/100 === 2) {
+  //       return
+  //     }
+  //     if(leftNum >= -100) {
+  //       $('.bottom_content')[0].style.left = leftNum - 100 + "%"
+  //       order = (-parseInt($('.bottom_content')[0].style.left))/100
+  //       $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+  //     }
+  //   }
+  //   if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
+  //     if (order === 1) {
+  //       $('.body_1').eq(0).html('')
+  //       $('.body_1').eq(2).html('')
+  //       addData(1, moreInd, token)
+  //     } else if (order === 2) {
+  //       $('.body_1').eq(0).html('')
+  //       $('.body_1').eq(1).html('')
+  //       addData(2, basicInd, token)
+  //     } else {
+  //       $('.body_1').eq(1).html('')
+  //       $('.body_1').eq(2).html('')
+  //       addData(0, newInd, token)
+  //     }
+  //   }
+  // })
+
+
+
+
+
   // 查看全文
   function seeMore(index) {
     $('.content').eq(index).find('.open').hide()
     $('.content').eq(index).find('.detail').removeClass('txt-cut')
   }
   // 点赞功能
-  function zanOperate(index, num, id, token) {
+  function zanOperate(index, num, id) {
     const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
     const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
-    if (att.attr('src').indexOf('zan.png') > -1) {
-      ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
-      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
-      const data = {
-        id
-      }
-      $.ajax({
-        type: 'post',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
-        data: `data=${JSON.stringify(data)}`,
-        success: (res) => {
+    att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
+    const data = {
+          id
         }
-      })
-    } else {
-      ht.html() === '1' ? ht.html('点赞') : ht.html(num)
-      att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
-    }
+    ht.html(num + 1)
+    $.ajax({
+      type: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
+      data: `data=${JSON.stringify(data)}`,
+      success: (res) => {
+      }
+    })
+    // if (att.attr('src').indexOf('zan.png') > -1) {
+    //   ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
+    //   att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
+    //   const data = {
+    //     id
+    //   }
+    //   $.ajax({
+    //     type: 'post',
+    //     headers: {
+    //       'Content-Type': 'application/x-www-form-urlencoded'
+    //     },
+    //     url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
+    //     data: `data=${JSON.stringify(data)}`,
+    //     success: (res) => {
+    //     }
+    //   })
+    // } else {
+    //   ht.html() === '1' ? ht.html('点赞') : ht.html(num)
+    //   att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
+    // }
   }
   // 下载功能
-  function downloadOperate(index, num, content) {
+  function downloadOperate(index, num, id) {
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
     if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
-      getMaterialPic(allList[index].picUrls, content)
       ht.html(num + 1)
     }
+    const data = {
+      id
+    }
+    $.ajax({
+      type: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: `${baseUrl}/doc/api/common/auth/materialCircle/addDownloadNum.json?token=${token}`,
+      data: `data=${JSON.stringify(data)}`,
+      success: (res) => {
+      }
+    })
+    getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
   }
   // 数据拼接
   function addData (index, page, token) {
@@ -207,13 +319,13 @@
           fir += `</div></div><div class="img-list"><div class="image clearfix">`
           let sec = ``
           for (let j = 0; j < data[i].picUrls.length; j++) {
-            sec += `<img class="img-item" src="${data[i].picUrls[j]}" />`
+            sec += `<img class="img-item" src="${data[i].picUrls[j]}_400w.jpg" />`
           }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id}, ${token})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
+          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
           let zan = ``
           data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
-          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].recommendedReason})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
-          data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down = `<div class="value">data[i].downloadNum</div>`
+          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+          data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down += `<div class="value">${data[i].downloadNum}</div>`
           const last = `</div></a></div></div>`
           $('.body_1').eq(index).append(fir + sec + thi + zan + down + last)
         }
@@ -229,7 +341,7 @@
       })
     } else {
       setTimeout(() => {
-        getMaterialPic(picUrls)
+        getMaterialPic(picUrls, content)
       }, 50)
     }
   }

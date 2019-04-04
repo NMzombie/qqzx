@@ -13,12 +13,12 @@
   <img src="http://file.wchoosemall.com/platform/manager/pic/ranking-title.png" alt="" />
 </div>
 <div class="today-list">
-  <img class="header-img" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000" alt="" />
+  <img class="header-img" src="http://file.wegoomall.cn/platform/manager/pic/20181213/5058458903637603.png" alt="" />
   <div class="list clearfix">
     <div class="list-title clearfix">
       <div class="item left">爆款商品</div>
       <div class="item middle-left">今日销售</div>
-      <div class="item middle-right">今日收益</div>
+      <!--<div class="item middle-right">今日收益</div>-->
       <div class="item right">详情</div>
     </div>
     <div class="list-all"></div>
@@ -67,6 +67,7 @@
   })
   let baseUrl = ''
   getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
+  let rankingList = ''
   getUserInfo()
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
@@ -81,13 +82,13 @@
           },
           url: `${baseUrl}/doc/api/common/auth/memberSales/getItemSales.json?token=${token}`,
           success: (res) => {
-            const rankingList = res.data.list
+            rankingList = res.data.list
             for (let i = 0; i < rankingList.length; i++) {
-              $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}" alt="" /></a></div><div class="item middle-left">￥${priceFormat(rankingList[i].memberSalesDTO.salesPrice)}</div><div class="item middle-right">￥${priceFormat(rankingList[i].memberSalesDTO.incomePrice)}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
+              $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></a></div><div class="item middle-left">￥${priceFormat(rankingList[i].memberSalesDTO.salesPrice)}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
               if (level >= 10) {
-                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].itemRankDTO.itemId})"><div class="share">分享</div></a></div></div></div>`)
+                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="content clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
               } else {
-                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${rankingList[i].itemRankDTO.itemId})"><div class="share">分享</div></a></div></div></div>`)
+                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="content clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
               }
              }
           }
@@ -99,6 +100,42 @@
       }, 50)
     }
   }
+
+
+
+
+
+
+  // 测试数据
+  // const token = 'ff043e6dafd44904ab6dfa25711629'
+  // const level = 10
+  // // $('.header-img').attr('src', JSON.parse(response).avatar)
+  // $.ajax({
+  //   type: 'post',
+  //   headers: {
+  //     'Content-Type': 'application/x-www-form-urlencoded'
+  //   },
+  //   url: `${baseUrl}/doc/api/common/auth/memberSales/getItemSales.json?token=${token}`,
+  //   success: (res) => {
+  //     rankingList = res.data.list
+  //     for (let i = 0; i < rankingList.length; i++) {
+  //       $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></a></div><div class="item middle-left">￥${priceFormat(rankingList[i].memberSalesDTO.salesPrice)}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
+  //       if (level >= 10) {
+  //         $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
+  //       } else {
+  //         $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
+  //       }
+  //     }
+  //   }
+  // })
+
+
+
+
+
+
+
+
   function loadMore(id) {
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUrlTo', {'page': `wg://push.chuang.co?page=prodDetail&prodId=${id}`}, function (response) {
@@ -110,15 +147,15 @@
     }
   }
   function loadRanking(id) {
-    window.location.href = `./rankingDetail.html?activityId=${id}`
+    getQueryString('dev') ? window.location.href = `./rankingDetail.html?activityId=${id}&fullscreen=1&dev=1` : window.location.href = `./rankingDetail.html?activityId=${id}&fullscreen=1`
   }
-  function shareItem(id) {
+  function shareItem(ind) {
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'itemId': `${id}`}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'itemId': `${rankingList[ind].itemRankDTO.itemId}`, 'title': `${rankingList[ind].itemRankDTO.name}`, 'desc': `${rankingList[ind].itemRankDTO.name}`, 'img': `${rankingList[ind].itemRankDTO.picUrls[0]}`, 'price': `${rankingList[ind].itemRankDTO.marketPrice}`}, function (response) {
       })
     } else {
       setTimeout(() => {
-        shareItem(id)
+        shareItem(ind)
       }, 50)
     }
   }

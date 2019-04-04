@@ -1,6 +1,20 @@
 html {
-  font-size: 50px!important;
   background-color: #F7F7F7;
+}
+@media only screen and (min-width: 310px){
+  html {
+    font-size: 42px !important;
+  }
+}
+@media only screen and (min-width: 375px){
+  html {
+    font-size: 50px !important;
+  }
+}
+@media only screen and (min-width: 414px){
+  html {
+    font-size: 55px !important;
+  }
 }
 body {
   margin: 0;
@@ -43,16 +57,29 @@ ul {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+a {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-user-select: none;
+  -moz-user-focus: none;
+  -moz-user-select: none;
+}
+a,a:hover,a:active,a:visited,a:link,a:focus{
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+  outline:none;
+  background: none;
+  text-decoration: none;
+}
 *{margin:0;padding:0}
 .header {
   width: 100%;
   overflow: hidden;
   text-align: center;
-  height: 4rem;
+  height: 4.5rem;
   background:linear-gradient(151deg,rgba(255,141,0,1) 0%,rgba(255,76,61,1) 100%);
 }
 .header img {
-  margin-top: 1.1rem;
+  margin-top: 1.6rem;
   width: 3.8rem;
   height: 0.65rem;
 }
@@ -74,7 +101,7 @@ ul {
   border: 0.08rem solid rgba(255,255,255,0.32)
 }
 .today-list .list {
-  padding: 1.2rem 0.36rem 0.5rem 0.36rem;
+  padding: 1.2rem 0.1rem 0.5rem 0.1rem;
 }
 .list .list-title .item{
   position: relative;
@@ -86,19 +113,20 @@ ul {
   color: rgba(26,22,21,1);
 }
 .list .left {
-  width: 1.18rem;
+  width: 1.8rem;
   margin-right: 0.4rem;
 }
 .list .middle-left {
-  width: 1.77rem;
-  margin-right: 0.74rem;
+  width: 2.5rem;
 }
 .list .middle-right {
-  width: 1.12rem;
+  width: 1.15rem;
   margin-right: 0.5rem;
 }
 .list .right {
-  width: 1.07rem;
+  float: right!important;
+  right: 0.3rem;
+  width: 1.4rem;
 }
 .list-goods {
   margin-top: 0.6rem;
@@ -127,9 +155,10 @@ ul {
 .share-all {
   margin-top: -0.8rem;
   background-color: #fff;
-  padding: 0.3rem 0.36rem;
+  padding: 0.3rem 0.1rem 0.3rem 0.1rem;
 }
 .share-all .share-title {
+  padding-left: 0.5rem;
   font-size: 0.28rem;
   font-family: PingFangSC-Medium, serif;
   font-weight:500;
@@ -137,7 +166,7 @@ ul {
 }
 .share-all .share-list .item{
   padding: 0.57rem 0;
-  width: 6.86rem;
+  width: 100%;
 }
 .share-all .share-list .bor-b {
   border-bottom: 0.01rem solid #ebebeb;
@@ -145,23 +174,29 @@ ul {
 .share-list .item .left {
   position: relative;
   float: left;
+  margin-left: 0.5rem;
   width: 1.2rem;
   height: 1.2rem;
 }
 .share-list .item .right {
   position: relative;
   float: left;
-  width: 5.1rem;
-  margin-left: 0.3rem;
+  width: 70%;
+  margin-left: 0.2rem;
 }
 .share-list .right .title {
+  float: left;
+  width: 100%;
+  margin-bottom: 0.4rem;
   font-size: 0.28rem;
   font-family: PingFangSC-Regular, sans-serif;
   font-weight: 400;
   color: rgba(26,22,21,1);
 }
 .share-list .right .content {
-  margin-top: 0.38rem;
+  position: relative;
+  float: left;
+  width: 100%;
   height: 0.46rem;
   line-height: 0.46rem;
 }
@@ -192,7 +227,7 @@ ul {
   font-size: 0.24rem;
   font-family: PingFangSC-Regular, sans-serif;
   font-weight:400;
-  line-height: 0.46rem;
+  line-height: 0.5rem;
   background: rgba(247,156,32,1);
   border-radius: 0.23rem;
   color: #fff;
