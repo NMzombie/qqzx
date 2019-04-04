@@ -106,7 +106,7 @@
   })
   let baseUrl = ''
   getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
-  getUserInfo()
+  getUserInfo(0)
   function getUserInfo (type){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
