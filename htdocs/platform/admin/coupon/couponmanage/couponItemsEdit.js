@@ -53,9 +53,14 @@ $(function(){
 	//关联会员
 	$("#select_member").bind("click",function(e){
 		var page = '';
-		getmemberSerach(page);
+		getmemberSerach(page,true);
 	});
 
+    //关联会员多选
+    $("#select_member_pro").bind("click",function(e){
+        var page = '';
+        getmemberSerach(page,false);
+    });
     //关联单个商品
     $("#select_single_item").bind("click",function(e){
         var page = '';
@@ -590,7 +595,7 @@ $(function(){
 	
 	
 	//获取会员信息
-	function getmemberSerach(page){
+	function getmemberSerach(page,isSingle){
 		
 		var mid = $('#member_id').val();
 	 	var name = $('#member_name').val();
@@ -614,7 +619,7 @@ $(function(){
 						            tr1 = '<tr>'+
 									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ memberList[i].id +'"/></td>'+
 									 '<td>'+ memberList[i].id +'</td>'+
-									 '<td>'+ memberList[i].name +'</td>'+
+									 '<td>'+ memberList[i].nickName +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
@@ -622,8 +627,16 @@ $(function(){
 						}
 						$('#memberList').html(tpl);
 	        		}
-	        		memberpages(data.pages, data.page);
-	        		ckMemberIs();
+
+                    if(isSingle){
+                        memberpages(data.pages, data.page,isSingle);
+                        ckMemberIs();
+                    }else {
+                        memberpages(data.pages, data.page,isSingle);
+                        getArrForMember();
+                        ckIsForMember();
+                    }
+
                 }
             }
         });
@@ -688,7 +701,7 @@ $(function(){
 	}
 	
 	//会员分页
-	function memberpages(pages,page){
+	function memberpages(pages,page,isSingle){
 		var pageCount = pages;
         var currentPage = page;
         var options = {
@@ -710,7 +723,7 @@ $(function(){
                 }
             },//点击事件，用于通过Ajax来刷新整个list列表
             onPageClicked: function (event, originalEvent, type, page) {
-            	getmemberSerach(page);
+            	getmemberSerach(page,isSingle);
             }
         };
         $('#example').bootstrapPaginator(options);
@@ -781,6 +794,17 @@ $(function(){
     	}
 	}
 
+    //将用户之前选定的活动商品id放到公共的数组里面
+    function getArrForMember(){
+        var arr = [];
+        var str = $('#memberId').val();
+        if(str != "" && str != "undefined"){
+            arr = str.split(",");
+            for(var m = 0; m < arr.length; m++){
+                ckAll_memberID[arr[m]] = arr[m];
+            }
+        }
+    }
 	//确定按钮事件
 	$('#btn_ok').bind("click", function() {
 		
@@ -861,7 +885,20 @@ $(function(){
 		}
 	    $('#myModal').removeClass('in');
 	});
-	
+
+
+    //确定按钮事件
+    $('#member_pro_btn_ok').bind("click", function() {
+
+        delete ckAll_memberID['on'];
+        var list_memberId = [];
+        for(var i in ckAll_memberID){
+            list_memberId.push(i);
+        }
+        $('#memberId').val(list_memberId);
+
+        $('#myModal').removeClass('in');
+    });
 	
 	$('#country_btn_ok').bind("click", function() {
 		for(var obj in ckAll_countryCode){
@@ -903,6 +940,19 @@ $(function(){
      	}); 
 	}
 
+    function ckIsForMember(){
+        $("input[type='checkbox']").each(function() {
+            $(this).on("click",function(){
+                if(!this.checked){
+                    isCheckAll = false;
+                    $('#swapCheck').attr('checked',false);
+                    delete ckAll_memberID[this.value];
+                } else{
+                    ckAll_memberID[this.value] = this.value;
+                }
+            });
+        });
+    }
 	//全选
 	var isCheckAll = false; 
 	$('#swapCheck').bind("click", function() {
@@ -1019,7 +1069,7 @@ $(function(){
 	//搜索会员
 	$('#search_member').bind('click',function(){
 	 	var page = '';
-	 	getmemberSerach(page);
+	 	getmemberSerach(page,true);
 	});
 	
 	$('#search_country').bind('click',function(){
