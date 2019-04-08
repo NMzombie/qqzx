@@ -154,7 +154,7 @@
 
 
   // 调试数据
-  // token = 'bdfb862ec2df4a358cb24193711574'
+  // token = '47b92f4319a24d3684c6e19f765598'
   // // 默认信息
   // addData(0, 1, token)
   //
@@ -319,7 +319,7 @@
           fir += `</div></div><div class="img-list"><div class="image clearfix">`
           let sec = ``
           for (let j = 0; j < data[i].picUrls.length; j++) {
-            sec += `<img class="img-item" src="${data[i].picUrls[j]}_400w.jpg" />`
+            sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
           }
           const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
           let zan = ``
