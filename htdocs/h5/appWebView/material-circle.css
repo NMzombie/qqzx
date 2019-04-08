@@ -135,27 +135,15 @@ ul {
 .content-title .content-tag {
   position: relative;
   float: left;
-<<<<<<< HEAD
-  margin-right: 0.14rem;
-  padding: 0 0.05rem 0 0.05rem;
-  font-size: 0.22rem;
-=======
   margin-right: 0.2rem;
   padding: 0 0.09rem;
   font-size: 0.3rem;
->>>>>>> 9c584f2a3d1a29178167ceca3e238dd56c9c1c7a
   font-family: PingFangSC-Medium, sans-serif;
   color: rgba(247,156,32,1);
   border-radius: 0.05rem;
-<<<<<<< HEAD
-  height: 0.3rem;
-  line-height: 0.29rem;
-  border: 0.01rem solid rgba(247,156,32,1);
-=======
   height: 0.4rem;
   line-height: 0.4rem;
   border: 1px solid rgba(247,156,32,1);
->>>>>>> 9c584f2a3d1a29178167ceca3e238dd56c9c1c7a
 }
 .content-title .title {
   position: relative;
