@@ -1145,7 +1145,9 @@ $('[id^="withdrawalDetail_"]').bind("click", function(e) {
 			return '提现成功';
 		}else if(withDrawalNum==2){
 			return '提现失败';
-		}
+		} else if(withDrawalNum==3){
+            return '审核通过提现中';
+        }
 	}
 	
 
