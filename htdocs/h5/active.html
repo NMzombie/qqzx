@@ -102,7 +102,9 @@
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
+        alert(response)
         const level = JSON.parse(response).level
+        alert(level)
         // 活动数据拉取
         const activityId = {
           activityId: getQueryString('activityId')
