@@ -180,7 +180,7 @@
           } else{
             sec = `<div class="ranking-num">${i + 1}</div>`
           }
-          const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left one-txt-cut">${extremeList[i].nickName}</div><div class="right-item t-right">{priceFormat(extremeList[i].salesNum)}</div></div>`
+          const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left one-txt-cut">${extremeList[i].nickName}</div><div class="right-item t-right">${extremeList[i].salesNum}</div></div>`
           $('.ranking-list').eq(type).append(fir + sec + thi)
         }
 
