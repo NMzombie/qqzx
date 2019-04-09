@@ -105,8 +105,6 @@
         let level = 0
         if (response !== null) {
           level = JSON.parse(response).level
-        } else {
-          alert(getQueryString('activityId'))
         }
         // 活动数据拉取
         const activityId = {
