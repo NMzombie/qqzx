@@ -137,13 +137,13 @@ ul {
   float: left;
   top: 0;
   margin-right: 0.2rem;
-  padding: 0.03rem 0.09rem 0.04rem 0.09rem;
+  padding: 0 0.09rem 0 0.09rem;
   font-size: 0.3rem;
   font-family: PingFangSC-Regular, sans-serif;
   color: rgba(247,156,32,1);
   border-radius: 0.05rem;
-  /*height: 0.41rem;*/
-  /*line-height: 0.41rem;*/
+  height: 0.41rem;
+  line-height: 0.41rem;
   border: 1px solid rgba(247,156,32,1);
 }
 .content-title .title {
