@@ -136,14 +136,14 @@ ul {
   position: relative;
   float: left;
   margin-right: 0.2rem;
-  padding: 0 0.09rem;
+  padding: 0 0.09rem 0 0.09rem;
   font-size: 0.3rem;
-  font-family: PingFangSC-Medium, sans-serif;
+  /*font-family: PingFangSC-Medium, sans-serif;*/
   color: rgba(247,156,32,1);
   border-radius: 0.05rem;
   height: 0.4rem;
   line-height: 0.4rem;
-  border: 0.02rem solid rgba(247,156,32,1);
+  border: 1px solid rgba(247,156,32,1);
 }
 .content-title .title {
   position: relative;
