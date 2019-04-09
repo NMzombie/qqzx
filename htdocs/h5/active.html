@@ -102,7 +102,6 @@
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
-        alert(response !== null)
         let level = 0
         if (response !== 'null') {
           level = JSON.parse(response).level
@@ -122,6 +121,7 @@
           url: `${baseUrl}/doc/api/common/activity/findActivity.json`,
           data: `data=${JSON.stringify(activityId)}`,
           success: (res) => {
+            alert(res)
             const data = res.data.activityVO
             const startDate = `${new Date(data.activity.startDate).getMonth() + 1}.${new Date(data.activity.startDate).getDate()}`
             const endDate = `${new Date(data.activity.endDate).getMonth() + 1}.${new Date(data.activity.endDate).getDate()}`
