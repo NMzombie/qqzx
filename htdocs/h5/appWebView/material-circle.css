@@ -139,7 +139,6 @@ ul {
 .content-title .content-tag {
   position: relative;
   float: left;
-  top: 0;
   margin-right: 0.2rem;
   padding: 0 0.09rem 0 0.09rem;
   font-size: 0.3rem;
@@ -151,7 +150,6 @@ ul {
 .content-title .title {
   position: relative;
   float: left;
-  top: 0;
   width: 6.6rem;
   font-size: 0.41rem;
   font-family: PingFangSC-Medium, sans-serif;
