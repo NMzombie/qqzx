@@ -121,6 +121,7 @@
           url: `${baseUrl}/doc/api/common/activity/findActivity.json`,
           data: `data=${JSON.stringify(activityId)}`,
           success: (res) => {
+            alert(res.data.activityVO)
             const data = res.data.activityVO
             const startDate = `${new Date(data.activity.startDate).getMonth() + 1}.${new Date(data.activity.startDate).getDate()}`
             const endDate = `${new Date(data.activity.endDate).getMonth() + 1}.${new Date(data.activity.endDate).getDate()}`
