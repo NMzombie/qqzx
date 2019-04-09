@@ -102,8 +102,9 @@
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
+        alert(response !== 'null')
         let level = 0
-        if (response !== null) {
+        if (response !== 'null') {
           level = JSON.parse(response).level
         }
         // 活动数据拉取
