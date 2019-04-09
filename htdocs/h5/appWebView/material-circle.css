@@ -148,6 +148,7 @@ ul {
 .content-title .title {
   position: relative;
   float: left;
+  padding-top: 0.01rem;
   width: 6.6rem;
   height: 0.4rem;
   line-height: 0.41rem;
