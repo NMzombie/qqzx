@@ -106,6 +106,7 @@
         if (response !== null) {
           level = JSON.parse(response).level
         }
+        alert(getQueryString('activityId'))
         // 活动数据拉取
         const activityId = {
           activityId: getQueryString('activityId')
@@ -121,7 +122,6 @@
           url: `${baseUrl}/doc/api/common/activity/findActivity.json`,
           data: `data=${JSON.stringify(activityId)}`,
           success: (res) => {
-            alert(activityId)
             alert(res.data.activityVO)
             const data = res.data.activityVO
             const startDate = `${new Date(data.activity.startDate).getMonth() + 1}.${new Date(data.activity.startDate).getDate()}`
