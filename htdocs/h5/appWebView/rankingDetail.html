@@ -26,7 +26,7 @@
       <div class="title-list clearfix">
         <div class="left-item t-left">排名</div>
         <div class="middle-item t-left">用户</div>
-        <div class="right-item t-right">销售额</div>
+        <div class="right-item t-right">销售数</div>
       </div>
       <div class="ranking-list">
       </div>
@@ -35,7 +35,7 @@
       <div class="title-list clearfix">
         <div class="left-item t-left">排名</div>
         <div class="middle-item t-left">用户</div>
-        <div class="right-item t-right">销售额</div>
+        <div class="right-item t-right">销售数</div>
       </div>
       <div class="ranking-list">
       </div>
@@ -180,7 +180,7 @@
           } else{
             sec = `<div class="ranking-num">${i + 1}</div>`
           }
-          const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left one-txt-cut">${extremeList[i].nickName}</div><div class="right-item t-right">¥${priceFormat(extremeList[i].salesPrice)}</div></div>`
+          const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left one-txt-cut">${extremeList[i].nickName}</div><div class="right-item t-right">{priceFormat(extremeList[i].salesNum)}</div></div>`
           $('.ranking-list').eq(type).append(fir + sec + thi)
         }
 
