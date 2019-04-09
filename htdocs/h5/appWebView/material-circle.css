@@ -141,8 +141,8 @@ ul {
   font-family: PingFangSC-Regular, sans-serif;
   color: rgba(247,156,32,1);
   border-radius: 0.05rem;
-  height: 0.41rem;
-  line-height: 0.41rem;
+  /*height: 0.41rem;*/
+  /*line-height: 0.41rem;*/
   border: 1px solid rgba(247,156,32,1);
 }
 .content-title .title {
@@ -151,7 +151,7 @@ ul {
   padding-top: 0.02rem;
   width: 6.6rem;
   /*height: 0.41rem;*/
-  line-height: 0.42rem;
+  /*line-height: 0.42rem;*/
   font-size: 0.41rem;
   font-family: PingFangSC-Medium, sans-serif;
   font-weight: 600;
