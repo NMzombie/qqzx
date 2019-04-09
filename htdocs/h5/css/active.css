@@ -65,7 +65,7 @@ a {
   width: 100%;
   text-align: center;
   font-size: 0.2rem;
-  font-family: PingFangSC-Medium, serif;
+  font-family: PingFangSC-Medium, sans-serif;
   font-weight: 500;
   color: #fff;
 }
@@ -80,14 +80,14 @@ a {
   line-height: 0.9rem;
   background-color: #fff;
   font-size: 0.26rem;
-  font-family: PingFangSC-Regular, serif;
+  font-family: PingFangSC-Regular, sans-serif;
   font-weight: 400;
   color: #333;
 }
 .tab-area a {
   color: #333333;
   font-size: 0.26rem;
-  font-family: PingFangSC-Regular, serif;
+  font-family: PingFangSC-Regular, sans-serif;
   font-weight: 400;
   margin: 0 0.38rem;
 }
@@ -103,7 +103,7 @@ a {
   padding: 0.36rem 0 0.26rem 0;
   text-align: center;
   font-size: 0.38rem;
-  font-family: PingFangSC-Medium, serif;
+  font-family: PingFangSC-Medium, sans-serif;
   font-weight: 500;
   color: rgba(255,255,255,1);
 }
@@ -136,7 +136,7 @@ a {
   height: 0.76rem;
   line-height: 0.38rem;
   font-size: 0.24rem;
-  font-family: PingFangSC-Regular, serif;
+  font-family: PingFangSC-Regular, sans-serif;
   font-weight: 400;
   color: rgba(51,51,51,1);
 }
@@ -199,7 +199,7 @@ a {
   width: 56.6%;
   height: 0.7rem;
   font-size: 0.28rem;
-  font-family: PingFangSC-Regular, serif;
+  font-family: PingFangSC-Regular, sans-serif;
   font-weight: 400;
   color: #333333;
 }
@@ -262,7 +262,7 @@ a {
   height: 0.6rem;
   line-height: 0.3rem;
   font-size: 0.22rem;
-  font-family: PingFangSC-Regular, serif;
+  font-family: PingFangSC-Regular, sans-serif;
   font-weight: 400;
   color: #333;
 }
