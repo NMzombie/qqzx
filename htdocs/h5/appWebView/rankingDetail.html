@@ -133,7 +133,7 @@
 
 
   // 测试数据
-  // const token = 'ac6e0b60d7994301b12aa4e6311629'
+  // const token = '2bb6720fb83a4287b45992eb768259'
   // // 总监排行（至尊）
   // const extremeData = {
   //   activityId: getQueryString('activityId'),
@@ -180,7 +180,7 @@
           } else{
             sec = `<div class="ranking-num">${i + 1}</div>`
           }
-          const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left">${extremeList[i].nickName}</div><div class="right-item t-right">¥${priceFormat(extremeList[i].salesPrice)}</div></div>`
+          const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left one-txt-cut">${extremeList[i].nickName}</div><div class="right-item t-right">¥${priceFormat(extremeList[i].salesPrice)}</div></div>`
           $('.ranking-list').eq(type).append(fir + sec + thi)
         }
 
