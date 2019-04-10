@@ -170,15 +170,21 @@ ul {
   position: relative;
   float: left;
   width: 2.86rem;
+  font-family: PingFangSC-Medium, sans-serif;
+  font-weight: 800;
 }
 .body_1 .middle-item {
   position: relative;
   float: left;
   width: 2.3rem;
+  font-family: PingFangSC-Medium, sans-serif;
+  font-weight: 800;
 }
 .body_1 .right-item {
   position: relative;
   float: right;
+  font-family: PingFangSC-Medium, sans-serif;
+  font-weight: 800;
 }
 .t-left {
   text-align: left;
