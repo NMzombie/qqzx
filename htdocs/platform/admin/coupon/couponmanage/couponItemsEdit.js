@@ -559,23 +559,23 @@ $(function(){
             url: "/admin/activity/couponcommanage/givingCouponComSerach.json",
             type: "get",
             success: function (data) {
-            	
                 if (data != null) {
                   	var couponComList = data.data;
+                  	$('#couponComList').empty();
 	        		var tpl = '';
 	        		if(couponComList.length > 0 ){
 	        			for(var i = 0; i < couponComList.length; i++){
 				    		var tr1 = '<tr>'+
 									  '<td><input type="checkbox" class="ckid" value="'+ couponComList[i].id +'"/></td>'+
 									  '<td>'+ couponComList[i].name +'</td>'+
-									  '<td>'+ couponComList[i].couponIds +'</td>'+
+									  '<td>'+ couponComList[i].couponIdCounts +'</td>'+
 							 	      '</tr>';
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponComList[i].id){
 						            tr1 = '<tr>'+
-									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
+									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ couponComList[i].id +'"/></td>'+
 									 '<td>'+ couponComList[i].name +'</td>'+
-									 '<td>'+ couponComList[i].couponIds +'</td>'+
+									 '<td>'+ couponComList[i].couponIdCounts +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
