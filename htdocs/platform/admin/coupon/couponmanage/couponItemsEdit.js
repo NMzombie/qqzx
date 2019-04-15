@@ -527,6 +527,7 @@ $(function(){
 									  '<td>'+ couponList[i].id +'</td>'+
 									  '<td>'+ couponList[i].name +'</td>'+
 									   '<td>'+ couponList[i].denomination +'</td>'+
+									   '<td>'+ couponList[i].thresholdPrice +'</td>'+
 							 	      '</tr>';
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponList[i].id){
@@ -535,6 +536,7 @@ $(function(){
 									 '<td>'+ couponList[i].id +'</td>'+
 									 '<td>'+ couponList[i].name +'</td>'+
 									 '<td>'+ couponList[i].denomination +'</td>'+
+									 '<td>'+ couponList[i].thresholdPrice +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
