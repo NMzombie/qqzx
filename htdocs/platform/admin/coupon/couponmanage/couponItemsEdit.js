@@ -24,10 +24,14 @@ $(function(){
 	});
 	
 	//选择优惠券组合信息
-	$("#give_coupon_com").bind("click", function(e) {
+	$('[id^="give_coupon_com_"]').bind("click", function(e) {
 		var page = '';
 		var mid = $(this).attr("mid");
+		var depositId = $(this).attr("depositId");
+		var requestNo = $(this).attr("requestNo");
 		$("#memberCoupon").val(mid);
+		$("#depositId").val(depositId);
+		$("#requestNo").val(requestNo);
 		getgivingCouponComSerach(page,true);
 	});
 	
@@ -923,13 +927,13 @@ $(function(){
 	    $('#myModal').removeClass('in');
 	    
 	    $.ajax({
-	    	url: "/admin/activity/couponcommanage/givingCouponCom.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val(),
+	    	url: "/admin/activity/couponcommanage/givingCouponCom.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val()+"&depositId="+ + $('#depositId').val()+"&requestNo="+$('#requestNo').val(),
             type: "get",
             success: function (data) {
                 if (data != null&&data.success) {
                 	swal('赠送成功!');
                 }else{
-                	swal(data.errorInfo)
+                	swal('已赠送或优惠券已被领完！')
                 }
                 $('#myModal').hide();
             }
