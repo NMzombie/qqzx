@@ -926,11 +926,10 @@ $(function(){
 	    	url: "/admin/activity/couponcommanage/givingCouponCom.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val(),
             type: "get",
             success: function (data) {
-            	
                 if (data != null&&data.success) {
                 	swal('赠送成功!');
                 }else{
-                	swal('赠送失败!')
+                	swal(data.errorInfo)
                 }
                 $('#myModal').hide();
             }
