@@ -23,6 +23,18 @@ $(function(){
 		getoperationgivingCouponSerach(page,true);
 	});
 	
+	//选择优惠券组合信息
+	$('[id^="give_coupon_com_"]').bind("click", function(e) {
+		var page = '';
+		var mid = $(this).attr("mid");
+		var depositId = $(this).attr("depositId");
+		var requestNo = $(this).attr("requestNo");
+		$("#memberCoupon").val(mid);
+		$("#depositId").val(depositId);
+		$("#requestNo").val(requestNo);
+		getgivingCouponComSerach(page,true);
+	});
+	
 	 $('[id^="select_pro_"]').bind("click", function(e) {
 		 	
 			var idArr = $(this).attr("id").split("_");
@@ -543,6 +555,51 @@ $(function(){
             }
         });
 	}
+	
+	
+	//获取优惠券组合信息
+	function getgivingCouponComSerach(page,isSingle){
+		$.ajax({
+            url: "/admin/activity/couponcommanage/givingCouponComSerach.json",
+            type: "get",
+            success: function (data) {
+                if (data != null) {
+                  	var couponComList = data.data;
+                  	$('#couponComList').empty();
+	        		var tpl = '';
+	        		if(couponComList.length > 0 ){
+	        			for(var i = 0; i < couponComList.length; i++){
+				    		var tr1 = '<tr>'+
+									  '<td><input type="checkbox" class="ckid" value="'+ couponComList[i].id +'"/></td>'+
+									  '<td>'+ couponComList[i].name +'</td>'+
+									  '<td>'+ couponComList[i].couponIdCounts +'</td>'+
+							 	      '</tr>';
+				    		for (var j in ckAll_goodId) {
+				    			if(j == couponComList[i].id){
+						            tr1 = '<tr>'+
+									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ couponComList[i].id +'"/></td>'+
+									 '<td>'+ couponComList[i].name +'</td>'+
+									 '<td>'+ couponComList[i].couponIdCounts +'</td>'+
+							 	     '</tr>';
+						        }
+				    		}
+				    		tpl += tr1;
+						}
+						$('#couponComList').html(tpl);
+	        		}
+
+                    if(isSingle){
+                        pages(data.pages, data.page,isSingle);
+                        ckOperCoupons();
+                    }else {
+                        pages(data.pages, data.page,isSingle);
+                        getArr();
+                        ckIs();
+                    }
+                }
+            }
+        });
+	}
     
   //获取活动商品信息
 	function getitemSerachForActivity(page,isSingle,num){
@@ -854,6 +911,31 @@ $(function(){
                 }
                 $('#myModal').hide();
                
+            }
+	    });
+	});
+	
+	
+	//优惠券组合确定按钮事件
+	$('#coupon_com_btn_ok').bind("click", function() {
+		delete ckAll_goodId['on'];
+		var list_couponComId = [];
+		for(var i in ckAll_goodId){
+			list_couponComId.push(i);
+		}
+		$('#myModal').hide();
+	    $('#myModal').removeClass('in');
+	    
+	    $.ajax({
+	    	url: "/admin/activity/couponcommanage/givingCouponCom.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val()+"&depositId="+ + $('#depositId').val()+"&requestNo="+$('#requestNo').val(),
+            type: "get",
+            success: function (data) {
+                if (data != null&&data.success) {
+                	swal('赠送成功!');
+                }else{
+                	swal('已赠送或优惠券已被领完！')
+                }
+                $('#myModal').hide();
             }
 	    });
 	});
