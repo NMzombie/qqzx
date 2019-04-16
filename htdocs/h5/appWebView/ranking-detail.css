@@ -83,8 +83,7 @@ ul {
   position: relative;
   float: left;
   width: 1.75rem;
-  height: 0.62rem;
-  line-height: 0.64rem;
+  line-height: 0.62rem;
   background-color: #FF7D0F;
   color: #fff;
   text-align: center;
@@ -95,12 +94,11 @@ ul {
 }
 .header .swiper .right {
   background-color: #FF7D0F;
-  color: #d2d2d2;
+  color: #fff;
   border: 0.01rem solid #fff;
   position: relative;
   float: left;
   width: 1.75rem;
-  height: 0.62rem;
   line-height: 0.62rem;
   text-align: center;
   font-size: 0.3rem;
@@ -153,10 +151,15 @@ ul {
   width: 100%;
   font-size: 0.28rem;
   font-family: PingFangSC-Medium,sans-serif;
-  font-weight: 500;
+  font-weight: 800;
   color:rgba(26,22,21,1);
 }
-
+.sales-num {
+  font-size: 0.3rem;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight: 400;
+  color: rgba(26,22,21,1);
+}
 .li-active .bottom-line {
   position: relative;
   width: 1rem;
