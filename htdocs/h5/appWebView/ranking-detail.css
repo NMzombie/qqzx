@@ -84,7 +84,7 @@ ul {
   float: left;
   width: 1.75rem;
   height: 0.62rem;
-  line-height: 0.62rem;
+  line-height: 0.64rem;
   background-color: #FF7D0F;
   color: #fff;
   text-align: center;
@@ -95,8 +95,8 @@ ul {
 }
 .header .swiper .right {
   background-color: #FF7D0F;
-  color: #fff;
-  border: 1px solid #fff;
+  color: #d2d2d2;
+  border: 0.01rem solid #fff;
   position: relative;
   float: left;
   width: 1.75rem;
