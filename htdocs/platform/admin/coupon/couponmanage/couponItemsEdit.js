@@ -1,12 +1,48 @@
 $(function(){
 	var ckAll_goodId = {};
+	var ckAll_goodIdForActivity_1 = {};
+	var ckAll_goodIdForActivity_2 = {};
+	var ckAll_goodIdForActivity_3 = {};
+	var ckAll_goodIdForActivity_4 = {};
+	var ckAll_goodIdForActivity_5 = {};
 	var ckAll_countryCode = {};
 	var ckAll_memberID = {};
+	
 	//选择关联商品信息
 	$("#select_pro").bind("click", function(e) {
+		
 		var page = '';
 		getArr();
-		getitemSerach(page);
+		getitemSerach(page,false);
+	});
+	
+	//选择关联优惠券运营赠送信息
+	$("#select_coupon").bind("click", function(e) {
+		
+		var page = '';
+		getoperationgivingCouponSerach(page,true);
+	});
+	
+	//选择优惠券组合信息
+	$('[id^="give_coupon_com_"]').bind("click", function(e) {
+		var page = '';
+		var mid = $(this).attr("mid");
+		var depositId = $(this).attr("depositId");
+		var requestNo = $(this).attr("requestNo");
+		$("#memberCoupon").val(mid);
+		$("#depositId").val(depositId);
+		$("#requestNo").val(requestNo);
+		getgivingCouponComSerach(page,true);
+	});
+	
+	 $('[id^="select_pro_"]').bind("click", function(e) {
+		 	
+			var idArr = $(this).attr("id").split("_");
+			var num = idArr[2];
+			var page = '';
+			getArrForActivity(num);
+			getitemSerachForActivity(page,false,num);
+			
 	});
 
     $("#select_category_recommend").bind("click", function(e) {
@@ -23,14 +59,25 @@ $(function(){
 	
 	$(".select_pro").bind("click",function(e){
 		var page = '';
-		getitemSerach(page);
+		getitemSerach(page,false);
 	});
 	
 	//关联会员
 	$("#select_member").bind("click",function(e){
 		var page = '';
-		getmemberSerach(page);
+		getmemberSerach(page,true);
 	});
+
+    //关联会员多选
+    $("#select_member_pro").bind("click",function(e){
+        var page = '';
+        getmemberSerach(page,false);
+    });
+    //关联单个商品
+    $("#select_single_item").bind("click",function(e){
+        var page = '';
+        getitemSerach(page,true);
+    });
 	
 	//选择订单sku
 	 $('[id^="select_sku_"]').bind("click", function(e) {
@@ -180,8 +227,8 @@ $(function(){
 	        		if(comOrderCommissionSkuDetailList.length > 0 ){
 	        			$('#skuDetailList').html('');
 	        			for(var i = 0; i < comOrderCommissionSkuDetailList.length; i++){   
-	        				var trStar = '<tr>'+
-	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemName+'</td>'+
+	        				var trStar = '<tr>'+ 
+	        							 '<td title="'+comOrderCommissionSkuDetailList[i].itemName+'" rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemName.substring(0, 10)+'</td>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemSkuName+'</td>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].amount+'</td>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+priceFormat(comOrderCommissionSkuDetailList[i].sellPrice)+'</td>'+
@@ -252,15 +299,14 @@ $(function(){
             url: "/admin/base/commissionmanage/commissionMonthDetailByMid.json?page="+page+"&mid=" + mid+"&yearMonth="+yearMonth,
             type: "get",
             success: function (data) {
+            	
                 if (data != null) {
-                	console.info("===========");
-                	console.info(data);
+                	$('#skuDetailList').html('');
+        			$('#memberSkuDetailList').html('');
                   	var comOrderCommissionSkuDetailList = data.data;
 	        		var tpl = '';
-	        		if(comOrderCommissionSkuDetailList.length > 0 ){
+	        		if(comOrderCommissionSkuDetailList&&comOrderCommissionSkuDetailList.length > 0 ){
 	        			var totalCommissionPrice = 0;
-	        			$('#skuDetailList').html('');
-	        			$('#memberSkuDetailList').html('');
 	        			for(var i = 0; i < comOrderCommissionSkuDetailList.length; i++){   
 	        				var trStar = '<tr>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemName+'</td>'+
@@ -307,14 +353,12 @@ $(function(){
             success: function (data) {
             	
                 if (data != null) {
-                	console.info("===========");
-                	console.info(data);
+                	$('#skuDetailList').html('');
+        			$('#memberSkuDetailList').html('');
                   	var comOrderCommissionSkuDetailList = data.data;
 	        		var tpl = '';
 	        		var totalCommissionPrice = 0;
 	        		if(comOrderCommissionSkuDetailList&&comOrderCommissionSkuDetailList.length > 0 ){
-	        			$('#skuDetailList').html('');
-	        			$('#memberSkuDetailList').html('');
 	        			for(var i = 0; i < comOrderCommissionSkuDetailList.length; i++){   
 	        				var trStar = '<tr>'+
 	        							 '<td rowspan='+comOrderCommissionSkuDetailList[i].list.length+'>'+comOrderCommissionSkuDetailList[i].itemName+'</td>'+
@@ -412,15 +456,17 @@ $(function(){
         });
     }
 
-
+    
     //获取商品信息
-	function getitemSerach(page){
+	function getitemSerach(page,isSingle){
+		
 		var id = $('#good_id').val();
 	 	var name = $('#good_name').val();
 		$.ajax({
             url: "/admin/commondatamanage/itemSerach.json?page=" + page +"&cid=" +id+ "&name="+name,
             type: "get",
             success: function (data) {
+            	
                 if (data != null) {
                   	var data = data.data;
 	        		var goodList = data.recordList;
@@ -447,9 +493,160 @@ $(function(){
 						}
 						$('#goodList').html(tpl);
 	        		}
-	        		pages(data.pages, data.page);
-	        		getArr();
-	        		ckIs();
+
+                    if(isSingle){
+                        pages(data.pages, data.page,isSingle);
+                        ckItemIs();
+                    }else {
+                        pages(data.pages, data.page,isSingle);
+                        getArr();
+                        ckIs();
+                    }
+
+                }
+            }
+        });
+	}
+	
+	//获取运营赠送优惠券信息
+	function getoperationgivingCouponSerach(page,isSingle){
+		var id = $('#coupon_id').val();
+	 	var name = $('#coupon_name').val();
+		$.ajax({
+            url: "/admin/activity/couponmanage/operationgivingCoupon.json?page=" + page +"&couponId=" +id+ "&name="+name,
+            type: "get",
+            success: function (data) {
+                if (data != null) {
+                  	var data = data.data;
+	        		var couponList = data.recordList;
+	        		var tpl = '';
+	        		if(couponList.length > 0 ){
+	        			for(var i = 0; i < couponList.length; i++){
+				    		var tr1 = '<tr>'+
+									  '<td><input type="checkbox" class="ckid" value="'+ couponList[i].id +'"/></td>'+
+									  '<td>'+ couponList[i].id +'</td>'+
+									  '<td>'+ couponList[i].name +'</td>'+
+									   '<td>'+ couponList[i].denomination +'</td>'+
+									   '<td>'+ couponList[i].thresholdPrice +'</td>'+
+							 	      '</tr>';
+				    		for (var j in ckAll_goodId) {
+				    			if(j == couponList[i].id){
+						            tr1 = '<tr>'+
+									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
+									 '<td>'+ couponList[i].id +'</td>'+
+									 '<td>'+ couponList[i].name +'</td>'+
+									 '<td>'+ couponList[i].denomination +'</td>'+
+									 '<td>'+ couponList[i].thresholdPrice +'</td>'+
+							 	     '</tr>';
+						        }
+				    		}
+				    		tpl += tr1;
+						}
+						$('#couponList').html(tpl);
+	        		}
+
+                    if(isSingle){
+                        pages(data.pages, data.page,isSingle);
+                        ckOperCoupons();
+                    }else {
+                        pages(data.pages, data.page,isSingle);
+                        getArr();
+                        ckIs();
+                    }
+                }
+            }
+        });
+	}
+	
+	
+	//获取优惠券组合信息
+	function getgivingCouponComSerach(page,isSingle){
+		$.ajax({
+            url: "/admin/activity/couponcommanage/givingCouponComSerach.json",
+            type: "get",
+            success: function (data) {
+                if (data != null) {
+                  	var couponComList = data.data;
+                  	$('#couponComList').empty();
+	        		var tpl = '';
+	        		if(couponComList.length > 0 ){
+	        			for(var i = 0; i < couponComList.length; i++){
+				    		var tr1 = '<tr>'+
+									  '<td><input type="checkbox" class="ckid" value="'+ couponComList[i].id +'"/></td>'+
+									  '<td>'+ couponComList[i].name +'</td>'+
+									  '<td>'+ couponComList[i].couponIdCounts +'</td>'+
+							 	      '</tr>';
+				    		for (var j in ckAll_goodId) {
+				    			if(j == couponComList[i].id){
+						            tr1 = '<tr>'+
+									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ couponComList[i].id +'"/></td>'+
+									 '<td>'+ couponComList[i].name +'</td>'+
+									 '<td>'+ couponComList[i].couponIdCounts +'</td>'+
+							 	     '</tr>';
+						        }
+				    		}
+				    		tpl += tr1;
+						}
+						$('#couponComList').html(tpl);
+	        		}
+
+                    if(isSingle){
+                        pages(data.pages, data.page,isSingle);
+                        ckOperCoupons();
+                    }else {
+                        pages(data.pages, data.page,isSingle);
+                        getArr();
+                        ckIs();
+                    }
+                }
+            }
+        });
+	}
+    
+  //获取活动商品信息
+	function getitemSerachForActivity(page,isSingle,num){
+		var id = $('#good_id_'+num).val();
+	 	var name = $('#good_name_'+num).val();
+		$.ajax({
+            url: "/admin/commondatamanage/itemSerach.json?page=" + page +"&cid=" +id+ "&name="+name,
+            type: "get",
+            success: function (data) {
+                if (data != null) {
+                  	var data = data.data;
+	        		var goodList = data.recordList;
+	        		var tpl = '';
+	        		if(goodList.length > 0 ){
+	        			for(var i = 0; i < goodList.length; i++){
+				    		var tr1 = '<tr>'+
+									  '<td><input type="checkbox" class="ckid" value="'+ goodList[i].id +'"/></td>'+
+									  '<td><img class="left rowimg" src='+pictureFormat(goodList[i].picUrls[0],200)+' /></td>'+
+									  '<td>'+ goodList[i].id +'</td>'+
+									  '<td>'+ goodList[i].name +'</td>'+
+							 	      '</tr>';
+				    		for (var j in eval("ckAll_goodIdForActivity_"+num)) {
+				    			if(j == goodList[i].id){
+						            tr1 = '<tr>'+
+									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
+									 '<td><img class="left rowimg" src='+pictureFormat(goodList[i].picUrls[0],200)+' /></td>'+
+									 '<td>'+ goodList[i].id +'</td>'+
+									 '<td>'+ goodList[i].name +'</td>'+
+							 	     '</tr>';
+						        }
+				    		}
+				    		tpl += tr1;
+						}
+						$('#goodList_'+num).html(tpl);
+	        		}
+
+                    if(isSingle){
+                    	pagesForActivity(data.pages, data.page,isSingle,num);
+                    	ckItemIsForActivity(num);
+                    }else {
+                    	pagesForActivity(data.pages, data.page,isSingle,num);
+                        getArrForActivity(num);
+                        ckIsForActivity(num);
+                    }
+
                 }
             }
         });
@@ -457,7 +654,7 @@ $(function(){
 	
 	
 	//获取会员信息
-	function getmemberSerach(page){
+	function getmemberSerach(page,isSingle){
 		
 		var mid = $('#member_id').val();
 	 	var name = $('#member_name').val();
@@ -481,7 +678,7 @@ $(function(){
 						            tr1 = '<tr>'+
 									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ memberList[i].id +'"/></td>'+
 									 '<td>'+ memberList[i].id +'</td>'+
-									 '<td>'+ memberList[i].name +'</td>'+
+									 '<td>'+ memberList[i].nickName +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
@@ -489,15 +686,23 @@ $(function(){
 						}
 						$('#memberList').html(tpl);
 	        		}
-	        		memberpages(data.pages, data.page);
-	        		ckMemberIs();
+
+                    if(isSingle){
+                        memberpages(data.pages, data.page,isSingle);
+                        ckMemberIs();
+                    }else {
+                        memberpages(data.pages, data.page,isSingle);
+                        getArrForMember();
+                        ckIsForMember();
+                    }
+
                 }
             }
         });
 	}
 
 	//分页
-	function pages(pages,page){
+	function pages(pages,page,isSingle){
 		var pageCount = pages;
         var currentPage = page;
         var options = {
@@ -519,14 +724,14 @@ $(function(){
                 }
             },//点击事件，用于通过Ajax来刷新整个list列表
             onPageClicked: function (event, originalEvent, type, page) {
-            	getitemSerach(page);
+            	getitemSerach(page,isSingle);
             }
         };
         $('#example').bootstrapPaginator(options);
 	}
 	
-	//会员分页
-	function memberpages(pages,page){
+	//分页 活动商品
+	function pagesForActivity(pages,page,isSingle,num){
 		var pageCount = pages;
         var currentPage = page;
         var options = {
@@ -548,7 +753,36 @@ $(function(){
                 }
             },//点击事件，用于通过Ajax来刷新整个list列表
             onPageClicked: function (event, originalEvent, type, page) {
-            	getmemberSerach(page);
+            	getitemSerachForActivity(page,isSingle,num);
+            }
+        };
+        $('#example_'+num).bootstrapPaginator(options);
+	}
+	
+	//会员分页
+	function memberpages(pages,page,isSingle){
+		var pageCount = pages;
+        var currentPage = page;
+        var options = {
+            bootstrapMajorVersion: 2, //版本
+            currentPage: currentPage, //当前页数
+            totalPages: pageCount, //总页数
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "上一页";
+                    case "next":
+                        return "下一页";
+                    case "last":
+                        return "末页";
+                    case "page":
+                        return page;
+                }
+            },//点击事件，用于通过Ajax来刷新整个list列表
+            onPageClicked: function (event, originalEvent, type, page) {
+            	getmemberSerach(page,isSingle);
             }
         };
         $('#example').bootstrapPaginator(options);
@@ -606,7 +840,30 @@ $(function(){
 	    	}
     	}
 	}
+	
+	//将用户之前选定的活动商品id放到公共的数组里面
+	function getArrForActivity(num){
+		var arr = [];
+    	var str = $('#goodsId_'+num).val();
+    	if(str != "" && str != "undefined"){
+    		arr = str.split(",");
+	    	for(var m = 0; m < arr.length; m++){
+	    		eval("ckAll_goodIdForActivity_"+num)[arr[m]] = arr[m];
+	    	}
+    	}
+	}
 
+    //将用户之前选定的活动商品id放到公共的数组里面
+    function getArrForMember(){
+        var arr = [];
+        var str = $('#memberId').val();
+        if(str != "" && str != "undefined"){
+            arr = str.split(",");
+            for(var m = 0; m < arr.length; m++){
+                ckAll_memberID[arr[m]] = arr[m];
+            }
+        }
+    }
 	//确定按钮事件
 	$('#btn_ok').bind("click", function() {
 		
@@ -614,10 +871,101 @@ $(function(){
 		var list_goodId = [];
 		for(var i in ckAll_goodId){
 			list_goodId.push(i);
-			$('#goodsId').val(list_goodId);
 		}
+		list_goodId.sort(compareGoodId);
+		$('#goodsId').val(list_goodId);
 		
 	    $('#myModal').removeClass('in');
+	});
+	
+	function compareGoodId(value1,value2){
+		if (value1 < value2){
+		return 1;
+		}else if (value1 > value2){
+		return -1;
+		}else{
+		return 0;
+		}
+	}
+	
+	//确定按钮事件
+	$('#coupon_btn_ok').bind("click", function() {
+		delete ckAll_goodId['on'];
+		var list_couponId = [];
+		for(var i in ckAll_goodId){
+			list_couponId.push(i);
+		}
+		 $('#myModal').hide();
+	    $('#myModal').removeClass('in');
+	    
+	    $.ajax({
+	    	url: "/admin/activity/couponmanage/givingCoupon.json?couponIds=" + list_couponId +"&mid=" + $('#memberCoupon').val(),
+            type: "get",
+            success: function (data) {
+            	
+                if (data != null&&data.success) {
+                	swal('赠送成功!');
+                	setTimeout(function(){
+                		window.location = $('#couponGive').attr("href");
+                	},500)
+                }else{
+                	swal('赠送失败,已领过或优惠券数量发放完毕!')
+                }
+                $('#myModal').hide();
+               
+            }
+	    });
+	});
+	
+	
+	//优惠券组合确定按钮事件
+	$('#coupon_com_btn_ok').bind("click", function() {
+		delete ckAll_goodId['on'];
+		var list_couponComId = [];
+		for(var i in ckAll_goodId){
+			list_couponComId.push(i);
+		}
+		$('#myModal').hide();
+	    $('#myModal').removeClass('in');
+	    
+	    if(list_couponComId.length==0){
+	    	swal('请选择优惠券组合!');
+	    	return 
+	    }
+	    $.ajax({
+	    	url: "/admin/activity/couponcommanage/givingCouponCom.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val()+"&depositId="+ + $('#depositId').val()+"&requestNo="+$('#requestNo').val(),
+            type: "get",
+            success: function (data) {
+            	
+                if (data != null&&data.success) {
+                	swal('赠送成功!');
+                }else{
+                	swal('赠送失败!'+data.errorInfo)
+                }
+                $('#myModal').hide();
+            }
+	    });
+	});
+	
+	
+	
+
+	
+	//活动商品选定按钮事件
+	$('[id^="btn_ok_"]').bind("click", function() {
+		var idArr = $(this).attr("id").split("_");
+		var num = idArr[2];
+		
+		delete eval("ckAll_goodIdForActivity_"+num)['on'];
+		var list_goodId = [];
+		for(var i in eval("ckAll_goodIdForActivity_"+num)){
+			list_goodId.push(i);
+			$('#goodsId_'+num).val(list_goodId);
+		}
+		
+	    $('#myModal_'+num).removeClass('in');
+	    //触发表格input事件
+	    $('#goodsId_'+num).trigger("change");
 	});
 	
 	$('#member_btn_ok').bind("click", function() {
@@ -626,7 +974,20 @@ $(function(){
 		}
 	    $('#myModal').removeClass('in');
 	});
-	
+
+
+    //确定按钮事件
+    $('#member_pro_btn_ok').bind("click", function() {
+
+        delete ckAll_memberID['on'];
+        var list_memberId = [];
+        for(var i in ckAll_memberID){
+            list_memberId.push(i);
+        }
+        $('#memberId').val(list_memberId);
+
+        $('#myModal').removeClass('in');
+    });
 	
 	$('#country_btn_ok').bind("click", function() {
 		for(var obj in ckAll_countryCode){
@@ -653,7 +1014,34 @@ $(function(){
 			});
      	}); 
 	}
+	
+	function ckIsForActivity(num){
+		$("input[type='checkbox']").each(function() {  
+			$(this).on("click",function(){
+				if(!this.checked){
+					isCheckAll = false;
+					$('#swapCheck').attr('checked',false);
+					delete eval("ckAll_goodIdForActivity_"+num)[this.value];
+		 		} else{
+		 			eval("ckAll_goodIdForActivity_"+num)[this.value] = this.value;
+	 			}  
+			});
+     	}); 
+	}
 
+    function ckIsForMember(){
+        $("input[type='checkbox']").each(function() {
+            $(this).on("click",function(){
+                if(!this.checked){
+                    isCheckAll = false;
+                    $('#swapCheck').attr('checked',false);
+                    delete ckAll_memberID[this.value];
+                } else{
+                    ckAll_memberID[this.value] = this.value;
+                }
+            });
+        });
+    }
 	//全选
 	var isCheckAll = false; 
 	$('#swapCheck').bind("click", function() {
@@ -688,8 +1076,52 @@ $(function(){
 			});
      	}); 
 	}
-	
-	//单选国家
+    //单选商品
+    function ckItemIs(){
+        $("input[type='checkbox']").each(function() {
+            $(this).on("click",function(){
+                $("input[type='checkbox']").each(function() {
+                    this.checked = false;
+                });
+                this.checked = true;
+                ckAll_goodId = {};
+                ckAll_goodId[this.value] = this.value;
+
+            });
+        });
+    }
+    
+    //单选运营优惠券
+    function ckOperCoupons(){
+        $("input[type='checkbox']").each(function() {
+            $(this).on("click",function(){
+                $("input[type='checkbox']").each(function() {
+                    this.checked = false;
+                });
+                this.checked = true;
+                ckAll_goodId = {};
+                ckAll_goodId[this.value] = this.value;
+
+            });
+        });
+    }
+    
+    function ckItemIsForActivity(num){
+        $("input[type='checkbox']").each(function() {
+            $(this).on("click",function(){
+                $("input[type='checkbox']").each(function() {
+                    this.checked = false;
+                });
+                this.checked = true;
+                eval("ckAll_goodIdForActivity_"+num) = {};
+                eval("ckAll_goodIdForActivity_"+num)[this.value] = this.value;
+
+            });
+        });
+    }
+
+
+    //单选国家
 	function ckCountryIs(){
 		$("input[type='checkbox']").each(function() {  
 			$(this).on("click",function(){
@@ -707,13 +1139,26 @@ $(function(){
 	//搜索
 	$('#search_good').bind('click',function(){
 	 	var page = '';
-		getitemSerach(page);
+		getitemSerach(page,false);
+	});
+
+
+    $('#select_single_item1').bind('click',function(){
+        var page = '';
+        getitemSerach(page,true);
+    });
+	//搜索
+	$('[id^="search_good_"]').bind('click',function(){
+	 	var page = '';
+	 	var idArr = $(this).attr("id").split("_");
+		var num = idArr[2];
+		getitemSerachForActivity(page,false,num);
 	});
 	
 	//搜索会员
 	$('#search_member').bind('click',function(){
 	 	var page = '';
-	 	getmemberSerach(page);
+	 	getmemberSerach(page,true);
 	});
 	
 	$('#search_country').bind('click',function(){
@@ -789,7 +1234,9 @@ $('[id^="withdrawalDetail_"]').bind("click", function(e) {
 			return '提现成功';
 		}else if(withDrawalNum==2){
 			return '提现失败';
-		}
+		} else if(withDrawalNum==3){
+            return '审核通过提现中';
+        }
 	}
 	
 

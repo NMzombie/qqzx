@@ -226,7 +226,7 @@ a:active {
     transition: all 0.5s;
 }
 
-#accordionThi .panel-heading a:before {
+#accordionThi .panel-heading a:before,#commonQ .panel-heading a:before, #refundQ .panel-heading a:before {
     content: '\e316';
     font-size: 24px;
     position: absolute;
@@ -240,7 +240,7 @@ a:active {
     transition: all 0.5s;
 }
 
-#accordionThi .panel-heading.active a:before {
+#accordionThi .panel-heading.active a:before, #commonQ .panel-heading.active a:before, #refundQ .panel-heading.active a:before{
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
     -webkit-transition: all 0.5s;
