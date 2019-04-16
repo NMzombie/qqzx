@@ -527,6 +527,7 @@ $(function(){
 									  '<td>'+ couponList[i].id +'</td>'+
 									  '<td>'+ couponList[i].name +'</td>'+
 									   '<td>'+ couponList[i].denomination +'</td>'+
+									   '<td>'+ couponList[i].thresholdPrice +'</td>'+
 							 	      '</tr>';
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponList[i].id){
@@ -535,6 +536,7 @@ $(function(){
 									 '<td>'+ couponList[i].id +'</td>'+
 									 '<td>'+ couponList[i].name +'</td>'+
 									 '<td>'+ couponList[i].denomination +'</td>'+
+									 '<td>'+ couponList[i].thresholdPrice +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
@@ -926,14 +928,19 @@ $(function(){
 		$('#myModal').hide();
 	    $('#myModal').removeClass('in');
 	    
+	    if(list_couponComId.length==0){
+	    	swal('请选择优惠券组合!');
+	    	return 
+	    }
 	    $.ajax({
 	    	url: "/admin/activity/couponcommanage/givingCouponCom.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val()+"&depositId="+ + $('#depositId').val()+"&requestNo="+$('#requestNo').val(),
             type: "get",
             success: function (data) {
+            	
                 if (data != null&&data.success) {
                 	swal('赠送成功!');
                 }else{
-                	swal('已赠送或优惠券已被领完！')
+                	swal('赠送失败!'+data.errorInfo)
                 }
                 $('#myModal').hide();
             }
