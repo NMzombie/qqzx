@@ -84,6 +84,7 @@ ul {
   float: left;
   width: 1.75rem;
   line-height: 0.62rem;
+  height: 0.62rem;
   background-color: #FF7D0F;
   color: #fff;
   text-align: center;
@@ -100,6 +101,7 @@ ul {
   float: left;
   width: 1.75rem;
   line-height: 0.62rem;
+  height: 0.62rem;
   text-align: center;
   font-size: 0.3rem;
   font-family: PingFangSC-Medium,sans-serif;
