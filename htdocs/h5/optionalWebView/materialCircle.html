@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <title>素材圈</title>
+  <script src="../js/flexible.js"></script>
+  <link rel="stylesheet" href="material-circle.css">
+  <script src="../js/jquery-1.10.2.js"></script>
+  <script src="../js/moment.min.js"></script>
+  <script src="../js/cn.js"></script>
+  <script src="../js/util.js"></script>
+</head>
+<body>
+
+<div class="top_menu">
+  <div class="common li-active">最新发布<div class="bottom-line"></div></div>
+  <div class="common">最多下载<div class="bottom-line"></div></div>
+  <div class="common">官方素材<div class="bottom-line"></div></div>
+</div>
+<div class="ul">
+  <div class="bottom_content" style="left: 0;">
+    <div class="body_1"></div>
+    <div class="body_1"></div>
+    <div class="body_1"></div>
+  </div>
+</div>
+<script type="text/javascript">
+  function connectWebViewJavascriptBridge (callback) {
+    if (window.WebViewJavascriptBridge) {
+      callback(window.WebViewJavascriptBridge)
+    } else {
+      document.addEventListener('WebViewJavascriptBridgeReady', function () {
+        callback(window.WebViewJavascriptBridge)
+      }, false)
+      if (window.WVJBCallbacks) {
+        return window.WVJBCallbacks.push(callback)
+      }
+      window.WVJBCallbacks = [callback]
+      var WVJBIframe = document.createElement('iframe')
+      WVJBIframe.style.display = 'none'
+      WVJBIframe.src = 'https://__bridge_loaded__'
+      document.documentElement.appendChild(WVJBIframe)
+      setTimeout(function () {
+        document.documentElement.removeChild(WVJBIframe)
+      }, 0)
+    }
+  }
+  // 注册回调函数，第一次连接时调用 初始化函数
+  // bridge.init 只有android需要调用初始化，可以使用Object.keys(bridge) 打开查看对象，ios没有init方法
+  connectWebViewJavascriptBridge(function (bridge) {
+    try {
+      bridge.init(function (message, responseCallback) {
+        console.log('JS got a message', message)
+        var data = {
+          'Javascript Responds': 'CMYH!'
+        }
+        console.log('JS responding with', data)
+        responseCallback(data)
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  })
+  let allList = []
+  // const baseUrl = 'http://qqzx.xc2018.com.cn'
+  let baseUrl = ''
+  getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
+  // 绑定token
+  let token = ''
+  getUserInfo()
+  function getUserInfo (){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
+        token = JSON.parse(response).token
+        // 默认信息
+        addData(0, 1, token)
+
+        let newInd = 1
+        let moreInd = 1
+        let basicInd = 1
+        // tab切换功能（滑动）
+        $('.bottom_content')[0].style.left = "0%"
+        var startX = '',disX =''
+        $('.top_menu').on('click','.common',function(){
+          var index = $(this).index()
+          if (index === 1) {
+            $('.body_1').eq(0).html('')
+            $('.body_1').eq(2).html('')
+            addData(1, newInd, token)
+          } else if (index === 2) {
+            $('.body_1').eq(0).html('')
+            $('.body_1').eq(1).html('')
+            addData(2, moreInd, token)
+          } else {
+            $('.body_1').eq(1).html('')
+            $('.body_1').eq(2).html('')
+            addData(0, basicInd, token)
+          }
+          $('.bottom_content').css('left','-' + index * 100 + '%')
+          $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
+        })
+        $('.bottom_content').on('touchstart','.body_1',function(e){
+          startX = e.originalEvent.changedTouches[0].clientX
+        })
+        $('.bottom_content').on('touchmove','.body_1',function(e){
+          e.stopPropagation()
+        })
+        $('.bottom_content').on('touchend','.body_1',function(e){
+          disX = e.originalEvent.changedTouches[0].clientX - startX
+          var leftNum = parseInt($('.bottom_content')[0].style.left)
+          let order
+          if(disX > 0 && disX > 100) {
+            if(leftNum <= -100) {
+              $('.bottom_content')[0].style.left = leftNum + 100 + "%"
+              order = -parseInt($('.bottom_content')[0].style.left)/100
+              $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+            }
+          } else if(disX < 0 && disX < -100) {
+            if ((-parseInt($('.bottom_content')[0].style.left))/100 === 2) {
+              return
+            }
+            if(leftNum >= -100) {
+              $('.bottom_content')[0].style.left = leftNum - 100 + "%"
+              order = (-parseInt($('.bottom_content')[0].style.left))/100
+              $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+            }
+          }
+          if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
+            if (order === 1) {
+              $('.body_1').eq(0).html('')
+              $('.body_1').eq(2).html('')
+              addData(1, moreInd, token)
+            } else if (order === 2) {
+              $('.body_1').eq(0).html('')
+              $('.body_1').eq(1).html('')
+              addData(2, basicInd, token)
+            } else {
+              $('.body_1').eq(1).html('')
+              $('.body_1').eq(2).html('')
+              addData(0, newInd, token)
+            }
+          }
+        })
+      })
+    } else {
+      setTimeout(() => {
+        getUserInfo()
+      }, 50)
+    }
+  }
+
+
+
+
+  // 调试数据
+  // token = '47b92f4319a24d3684c6e19f765598'
+  // // 默认信息
+  // addData(0, 1, token)
+  //
+  // let newInd = 1
+  // let moreInd = 1
+  // let basicInd = 1
+  // // tab切换功能（滑动）
+  // $('.bottom_content')[0].style.left = "0%"
+  // var startX = '',disX =''
+  // $('.top_menu').on('click','.common',function(){
+  //   var index = $(this).index()
+  //   if (index === 1) {
+  //     $('.body_1').eq(0).html('')
+  //     $('.body_1').eq(2).html('')
+  //     addData(1, newInd, token)
+  //   } else if (index === 2) {
+  //     $('.body_1').eq(0).html('')
+  //     $('.body_1').eq(1).html('')
+  //     addData(2, moreInd, token)
+  //   } else {
+  //     $('.body_1').eq(1).html('')
+  //     $('.body_1').eq(2).html('')
+  //     addData(0, basicInd, token)
+  //   }
+  //   $('.bottom_content').css('left','-' + index * 100 + '%')
+  //   $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
+  // })
+  // $('.bottom_content').on('touchstart','.body_1',function(e){
+  //   startX = e.originalEvent.changedTouches[0].clientX
+  // })
+  // $('.bottom_content').on('touchmove','.body_1',function(e){
+  //   e.stopPropagation()
+  // })
+  // $('.bottom_content').on('touchend','.body_1',function(e){
+  //   disX = e.originalEvent.changedTouches[0].clientX - startX
+  //   var leftNum = parseInt($('.bottom_content')[0].style.left)
+  //   let order
+  //   if(disX > 0 && disX > 100) {
+  //     if(leftNum <= -100) {
+  //       $('.bottom_content')[0].style.left = leftNum + 100 + "%"
+  //       order = -parseInt($('.bottom_content')[0].style.left)/100
+  //       $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+  //     }
+  //   } else if(disX < 0 && disX < -100) {
+  //     if ((-parseInt($('.bottom_content')[0].style.left))/100 === 2) {
+  //       return
+  //     }
+  //     if(leftNum >= -100) {
+  //       $('.bottom_content')[0].style.left = leftNum - 100 + "%"
+  //       order = (-parseInt($('.bottom_content')[0].style.left))/100
+  //       $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+  //     }
+  //   }
+  //   if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
+  //     if (order === 1) {
+  //       $('.body_1').eq(0).html('')
+  //       $('.body_1').eq(2).html('')
+  //       addData(1, moreInd, token)
+  //     } else if (order === 2) {
+  //       $('.body_1').eq(0).html('')
+  //       $('.body_1').eq(1).html('')
+  //       addData(2, basicInd, token)
+  //     } else {
+  //       $('.body_1').eq(1).html('')
+  //       $('.body_1').eq(2).html('')
+  //       addData(0, newInd, token)
+  //     }
+  //   }
+  // })
+
+
+
+
+
+  // 查看全文
+  function seeMore(index) {
+    $('.content').eq(index).find('.open').hide()
+    $('.content').eq(index).find('.detail').removeClass('txt-cut')
+  }
+  // 点赞功能
+  function zanOperate(index, num, id) {
+    const att = $('.content').eq(index).find('.operate-item').eq(0).find('.icon')
+    const ht = $('.content').eq(index).find('.operate-item').eq(0).find('.value')
+    att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
+    const data = {
+          id
+        }
+    ht.html(num + 1)
+    $.ajax({
+      type: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
+      data: `data=${JSON.stringify(data)}`,
+      success: (res) => {
+      }
+    })
+    // if (att.attr('src').indexOf('zan.png') > -1) {
+    //   ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
+    //   att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
+    //   const data = {
+    //     id
+    //   }
+    //   $.ajax({
+    //     type: 'post',
+    //     headers: {
+    //       'Content-Type': 'application/x-www-form-urlencoded'
+    //     },
+    //     url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
+    //     data: `data=${JSON.stringify(data)}`,
+    //     success: (res) => {
+    //     }
+    //   })
+    // } else {
+    //   ht.html() === '1' ? ht.html('点赞') : ht.html(num)
+    //   att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
+    // }
+  }
+  // 下载功能
+  function downloadOperate(index, num, id) {
+    const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
+    if (ht.html() === JSON.stringify(num) || ht.html() === '下载') {
+      ht.html(num + 1)
+    }
+    const data = {
+      id
+    }
+    $.ajax({
+      type: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: `${baseUrl}/doc/api/common/auth/materialCircle/addDownloadNum.json?token=${token}`,
+      data: `data=${JSON.stringify(data)}`,
+      success: (res) => {
+      }
+    })
+    getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+  }
+  // 数据拼接
+  function addData (index, page, token) {
+    const data = {
+      type: index,
+      page
+    }
+    $.ajax({
+      type: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
+      data: `data=${JSON.stringify(data)}`,
+      success: (res) => {
+        allList = res.data.list
+        const data = res.data.list
+        for (let i = 0; i < data.length; i++) {
+          let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
+          if (data[i].recommendedReason.length >= 105) {
+            fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
+          }
+          fir += `</div></div><div class="img-list"><div class="image clearfix">`
+          let sec = ``
+          for (let j = 0; j < data[i].picUrls.length; j++) {
+            sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
+          }
+          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
+          let zan = ``
+          data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
+          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+          data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down += `<div class="value">${data[i].downloadNum}</div>`
+          const last = `</div></a></div></div>`
+          $('.body_1').eq(index).append(fir + sec + thi + zan + down + last)
+        }
+      }
+    })
+  }
+
+  // app js bridge
+  function getMaterialPic (picUrls, content) {
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls, content}, function (response) {
+        console.log(1, response)
+      })
+    } else {
+      setTimeout(() => {
+        getMaterialPic(picUrls, content)
+      }, 50)
+    }
+  }
+
+</script>
+</body>
+</html>
