@@ -24,10 +24,14 @@ $(function(){
 	});
 	
 	//选择优惠券组合信息
-	$("#give_coupon_com").bind("click", function(e) {
+	$('[id^="give_coupon_com_"]').bind("click", function(e) {
 		var page = '';
 		var mid = $(this).attr("mid");
+		var depositId = $(this).attr("depositId");
+		var requestNo = $(this).attr("requestNo");
 		$("#memberCoupon").val(mid);
+		$("#depositId").val(depositId);
+		$("#requestNo").val(requestNo);
 		getgivingCouponComSerach(page,true);
 	});
 	
@@ -522,7 +526,8 @@ $(function(){
 									  '<td><input type="checkbox" class="ckid" value="'+ couponList[i].id +'"/></td>'+
 									  '<td>'+ couponList[i].id +'</td>'+
 									  '<td>'+ couponList[i].name +'</td>'+
-									   '<td>'+ couponList[i].denomination +'</td>'+
+									   '<td>'+ priceFormat(couponList[i].denomination) +'</td>'+
+									   '<td>'+ priceFormat(couponList[i].thresholdPrice) +'</td>'+
 							 	      '</tr>';
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponList[i].id){
@@ -530,7 +535,8 @@ $(function(){
 									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
 									 '<td>'+ couponList[i].id +'</td>'+
 									 '<td>'+ couponList[i].name +'</td>'+
-									 '<td>'+ couponList[i].denomination +'</td>'+
+									 '<td>'+ priceFormat(couponList[i].denomination) +'</td>'+
+									 '<td>'+ priceFormat(couponList[i].thresholdPrice) +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
@@ -922,14 +928,19 @@ $(function(){
 		$('#myModal').hide();
 	    $('#myModal').removeClass('in');
 	    
+	    if(list_couponComId.length==0){
+	    	swal('请选择优惠券组合!');
+	    	return 
+	    }
 	    $.ajax({
-	    	url: "/admin/activity/couponcommanage/givingCouponCom.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val(),
+	    	url: "/admin/activity/couponcommanage/givingCouponCom.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val()+"&depositId="+ + $('#depositId').val()+"&requestNo="+$('#requestNo').val(),
             type: "get",
             success: function (data) {
+            	
                 if (data != null&&data.success) {
                 	swal('赠送成功!');
                 }else{
-                	swal(data.errorInfo)
+                	swal('赠送失败!'+data.errorInfo)
                 }
                 $('#myModal').hide();
             }
