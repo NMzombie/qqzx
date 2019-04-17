@@ -526,8 +526,8 @@ $(function(){
 									  '<td><input type="checkbox" class="ckid" value="'+ couponList[i].id +'"/></td>'+
 									  '<td>'+ couponList[i].id +'</td>'+
 									  '<td>'+ couponList[i].name +'</td>'+
-									   '<td>'+ couponList[i].denomination +'</td>'+
-									   '<td>'+ couponList[i].thresholdPrice +'</td>'+
+									   '<td>'+ priceFormat(couponList[i].denomination) +'</td>'+
+									   '<td>'+ priceFormat(couponList[i].thresholdPrice) +'</td>'+
 							 	      '</tr>';
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponList[i].id){
@@ -535,8 +535,8 @@ $(function(){
 									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
 									 '<td>'+ couponList[i].id +'</td>'+
 									 '<td>'+ couponList[i].name +'</td>'+
-									 '<td>'+ couponList[i].denomination +'</td>'+
-									 '<td>'+ couponList[i].thresholdPrice +'</td>'+
+									 '<td>'+ priceFormat(couponList[i].denomination) +'</td>'+
+									 '<td>'+ priceFormat(couponList[i].thresholdPrice) +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
