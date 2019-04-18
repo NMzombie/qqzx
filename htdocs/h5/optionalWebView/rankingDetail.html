@@ -105,7 +105,7 @@
     // getQueryString('dev') ? window.location.href = `rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1&dev=1` : window.location.href = `rankingDetail.html?activityId=${getQueryString('activityId')}&fullscreen=1`
   })
   let baseUrl = ''
-  getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
+  getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   getUserInfo(0)
   function getUserInfo (type){
     if (window.WebViewJavascriptBridge) {
@@ -133,7 +133,7 @@
 
 
   // 测试数据
-  // const token = '2bb6720fb83a4287b45992eb768259'
+  // const token = '6255964c85b4467c81458970765591'
   // // 总监排行（至尊）
   // const extremeData = {
   //   activityId: getQueryString('activityId'),
@@ -170,17 +170,17 @@
           const fir = `<div class="item clearfix"><div class="left-item t-left">`
           let sec = ''
           if (i === 0) {
-            sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/first.png" alt="" />`
+            sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/20190417/9414554792527041.png" alt="" />`
           } else if (i === 1) {
-            sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/second.png" alt="" />`
+            sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/20190417/9419535768155090.png" alt="" />`
           } else if (i === 2) {
-            sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/third.png" alt="" />`
+            sec = `<img class="ranking-img" src="http://file.wchoosemall.com/platform/manager/pic/20190417/9414554779934277.png" alt="" />`
           } else if (i >= 3 && i < 9) {
             sec = `<div class="ranking-num">0${i + 1}</div>`
           } else{
             sec = `<div class="ranking-num">${i + 1}</div>`
           }
-          const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left one-txt-cut">${extremeList[i].nickName}</div><div class="right-item t-right sales-num">${extremeList[i].salesNum}</div></div>`
+          const thi = `<img class="ranking-header" src="${extremeList[i].avatar}" /></div><div class="middle-item t-left one-txt-cut ft-32">${extremeList[i].nickName}</div><div class="right-item t-right sales-num ft-32">${extremeList[i].salesNum}</div></div>`
           $('.ranking-list').eq(type).append(fir + sec + thi)
         }
 
