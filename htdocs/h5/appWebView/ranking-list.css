@@ -76,7 +76,7 @@ body {
 .main {
   position: relative;
   z-index: 3;
-  margin-top: 3rem;
+  margin-top: 3.5rem;
   padding: 0.3rem 0.2rem 0.3rem 0.2rem;
 }
 .main .item {
