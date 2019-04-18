@@ -124,8 +124,7 @@ body {
 }
 .info-item {
   position: relative;
-  float: left;
-  margin-left: 0.24rem;
+  float: right;
 }
 .info-item .title {
   margin-top: 0.17rem;
