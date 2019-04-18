@@ -88,6 +88,8 @@ body {
   border-radius: 0.12rem;
 }
 .item .detail {
+  display: flex;
+  flex-flow: row;
   width: 100%;
   padding-bottom: 0.38rem;
   border-bottom: 0.01rem solid #d8d8d8;
@@ -123,8 +125,8 @@ body {
   position: static;
 }
 .info-item {
-  position: relative;
-  float: right;
+  margin-left: 0.24rem;
+  flex: 1;
 }
 .info-item .title {
   margin-top: 0.17rem;
