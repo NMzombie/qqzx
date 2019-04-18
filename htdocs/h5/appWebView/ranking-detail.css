@@ -73,7 +73,7 @@ ul {
 }
 .header {
   padding: 0.6rem 0 0.1rem 0;
-  background-color: #1D1D1D;
+  background-color: #FF7D0F;
 }
 .header .swiper {
   width: 3.7rem;
@@ -85,18 +85,18 @@ ul {
   width: 1.75rem;
   line-height: 0.62rem;
   height: 0.62rem;
-  background-color: #1D1D1D;
-  color: #F0C27F;
+  background-color: #FF7D0F;
+  color: #fff;
   text-align: center;
   font-size: 0.3rem;
-  border: 0.01rem solid #F0C27F;
+  border: 1px solid #fff;
   font-family: PingFangSC-Medium,sans-serif;
   font-weight: 500;
 }
 .header .swiper .right {
-  background-color: #1D1D1D;
-  color: #F0C27F;
-  border: 0.01rem solid #F0C27F;
+  background-color: #FF7D0F;
+  color: #fff;
+  border: 0.01rem solid #fff;
   position: relative;
   float: left;
   width: 1.75rem;
@@ -108,9 +108,9 @@ ul {
   font-weight: 500;
 }
 .header .swiper .select {
-  border: 0.01rem solid #F0C27F;
-  background-color: #F0C27F;
-  color: #1D1D1D;
+  border: 0.01rem solid #fff;
+  background-color: #fff;
+  color: #FF7D0F;
 }
 .top_menu {
   width: 100%;
@@ -121,9 +121,9 @@ ul {
   font-size: 0.28rem;
   font-family: PingFangSC-Medium,sans-serif;
   font-weight:500;
-  color: #F0C27F;
+  color:rgba(255,255,255,1);
   line-height: 0.86rem;
-  background-color: #1D1D1D;
+  background-color: #FF7D0F;
 }
 
 .common {
@@ -168,7 +168,7 @@ ul {
   height: 0.04rem;
   margin: 0 auto;
   bottom: 0.03rem;
-  background-color: #F0C27F;
+  background-color: #fff;
 }
 
 .body_1 .left-item {
@@ -180,9 +180,6 @@ ul {
   position: relative;
   float: left;
   width: 2.3rem;
-}
-.ft-32 {
-  font-size: 0.32rem;
 }
 .body_1 .right-item {
   position: relative;
@@ -215,7 +212,8 @@ ul {
   position: relative;
   float: left;
   top: 0.4rem;
-  width: 0.54rem;
+  width: 0.48rem;
+  height: 0.4rem;
 }
 .ranking-list .item .ranking-header {
   position: relative;
