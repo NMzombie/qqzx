@@ -127,10 +127,11 @@ body {
 .info-item {
   margin-left: 0.24rem;
   flex: 1;
+  overflow: hidden;
 }
 .info-item .title {
   margin-top: 0.17rem;
-  width: 4.84rem;
+  width: 100%;
   font-size: 0.28rem;
   font-family: PingFangSC-Medium, sans-serif;
   font-weight: 500;
