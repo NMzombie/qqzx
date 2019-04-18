@@ -13,9 +13,7 @@
 <body>
 <div class="header"></div>
 <div class="main">
-  <div class="item"></div>
-  <div class="item"></div>
-  <div class="item"></div>
+</div>
 </div>
 <script>
   fnResize()
@@ -101,11 +99,10 @@
           success: (res) => {
             rankingList = res.data.list
             for (let i = 0; i < rankingList.length; i++) {
-              $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></a></div><div class="item middle-left">${rankingList[i].memberSalesDTO.salesNum}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
               if (level >= 10) {
-                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="content clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
+                $('.main').append(`<div class="item clearfix"><div class="detail clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="img-item"><p class="clearfix"><img class="hidden" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></p></div></a><div class="info-item"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="info clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">¥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">市场价¥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div><div class="ranking clearfix"><div class="today">今日销量:<span>${rankingList[i].memberSalesDTO.salesNum}</span></div><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" class="rank-detail">查看排行＞</a></div></div>`)
               } else {
-                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="content clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
+                $('.main').append(`<div class="item clearfix"><div class="detail clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="img-item"><p class="clearfix"><img class="hidden" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></p></div></a><div class="info-item"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="info clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">¥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">市场价¥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div><div class="ranking clearfix"><div class="today">今日销量:<span>${rankingList[i].memberSalesDTO.salesNum}</span></div><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" class="rank-detail">查看排行＞</a></div></div>`)
               }
             }
           }
@@ -124,27 +121,26 @@
 
 
   // 测试数据
-  const token = '6255964c85b4467c81458970765591'
-  const level = 10
-  // $('.header-img').attr('src', JSON.parse(response).avatar)
-  $.ajax({
-    type: 'post',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    url: `${baseUrl}/doc/api/common/auth/memberSales/getItemSales.json?token=${token}`,
-    success: (res) => {
-      // rankingList = res.data.list
-      // for (let i = 0; i < rankingList.length; i++) {
-      //   $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></a></div><div class="item middle-left">${rankingList[i].memberSalesDTO.salesNum}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
-      //   if (level >= 10) {
-      //     $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
-      //   } else {
-      //     $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
-      //   }
-      // }
-    }
-  })
+  // const token = '6255964c85b4467c81458970765591'
+  // const level = 10
+  // // $('.header-img').attr('src', JSON.parse(response).avatar)
+  // $.ajax({
+  //   type: 'post',
+  //   headers: {
+  //     'Content-Type': 'application/x-www-form-urlencoded'
+  //   },
+  //   url: `${baseUrl}/doc/api/common/auth/memberSales/getItemSales.json?token=${token}`,
+  //   success: (res) => {
+  //     rankingList = res.data.list
+  //     for (let i = 0; i < rankingList.length; i++) {
+  //       if (level >= 10) {
+  //         $('.main').append(`<div class="item clearfix"><div class="detail clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="img-item"><p class="clearfix"><img class="hidden" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></p></div></a><div class="info-item"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="info clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">¥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">市场价¥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div><div class="ranking clearfix"><div class="today">今日销量:<span>${rankingList[i].memberSalesDTO.salesNum}</span></div><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" class="rank-detail">查看排行＞</a></div></div>`)
+  //       } else {
+  //         $('.main').append(`<div class="item clearfix"><div class="detail clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="img-item"><p class="clearfix"><img class="hidden" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></p></div></a><div class="info-item"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="info clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">¥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">市场价¥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div><div class="ranking clearfix"><div class="today">今日销量:<span>${rankingList[i].memberSalesDTO.salesNum}</span></div><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" class="rank-detail">查看排行＞</a></div></div>`)
+  //       }
+  //     }
+  //   }
+  // })
 
 
 

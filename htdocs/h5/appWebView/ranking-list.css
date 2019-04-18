@@ -1,5 +1,5 @@
 html {
-  background-color: #1d1d1d!important;
+  background-color: #1d1d1d;
   height: 100%;
 }
 body {
@@ -77,14 +77,118 @@ body {
   position: relative;
   z-index: 3;
   margin-top: 3rem;
-  padding: 0.3rem 0 0.3rem 0;
+  padding: 0.3rem 0.2rem 0.3rem 0.2rem;
 }
 .main .item {
   position: relative;
   background-color: #fff;
   margin: 0.3rem auto 0 auto;
-  width: 7.1rem;
-  height: 2.93rem;
+  padding: 0.38rem 0.24rem 0.2rem 0.24rem;
   box-shadow:0 5px 16px 0 rgba(116,13,13,0.5);
   border-radius: 0.12rem;
+}
+.item .detail {
+  width: 100%;
+  padding-bottom: 0.38rem;
+  border-bottom: 0.01rem solid #d8d8d8;
+}
+
+.img-item {
+  position: relative;
+  float: left;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 0.01rem solid #EEEEEE;
+  border-radius: 0.05rem;
+  overflow: hidden;
+}
+.img-item p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  width: 1.4rem;
+}
+.img-item img {
+  position:absolute;
+  top: -50%;
+  left: -50%;
+  display: block;
+  width: 1.4rem;
+}
+.img-item img.hidden {
+  visibility: hidden;
+  width: 1.4rem;
+  position: static;
+}
+.info-item {
+  position: relative;
+  float: left;
+  margin-left: 0.24rem;
+}
+.info-item .title {
+  margin-top: 0.17rem;
+  width: 4.84rem;
+  font-size: 0.28rem;
+  font-family: PingFangSC-Medium, sans-serif;
+  font-weight: 500;
+  color: rgba(26,22,21,1);
+}
+.info-item .info {
+  margin-top: 0.3rem;
+  height: 0.58rem;
+  line-height: 0.58rem;
+}
+.info-item .member {
+  position: relative;
+  float: left;
+  font-size: 0.3rem;
+  font-family: PingFangSC-Medium, sans-serif;
+  font-weight: 500;
+  color: rgba(26,22,21,1);
+}
+.info-item .market {
+  position: relative;
+  float: left;
+  margin-left: 0.14rem;
+  text-decoration: line-through;
+  font-size: 0.24rem;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight: 400;
+  color: rgba(102,102,102,1);
+}
+.info-item .share {
+  position: relative;
+  float: right;
+  text-align: center;
+  width: 1.4rem;
+  font-size: 0.26rem;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight: 400;
+  color: rgba(255,255,255,1);
+  height: 0.58rem;
+  background: rgba(198,17,14,1);
+  border-radius: 0.06rem;
+}
+.ranking {
+  margin-top: 0.2rem;
+  height: 0.37rem;
+  line-height: 0.37rem;
+}
+.ranking .today {
+  position: relative;
+  float: left;
+  font-size: 0.26rem;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight: 400;
+  color: rgba(155,155,155,1);
+}
+.ranking .rank-detail {
+  position: relative;
+  float: right;
+  font-size: 0.24rem;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight: 400;
+  color: rgba(198,17,14,1);
 }
