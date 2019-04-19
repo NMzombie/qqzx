@@ -73,7 +73,7 @@ ul {
 }
 .header {
   padding: 0.6rem 0 0.1rem 0;
-  background-color: #FF7D0F;
+  background-color: #A10000;
 }
 .header .swiper {
   width: 3.7rem;
@@ -84,31 +84,33 @@ ul {
   float: left;
   width: 1.75rem;
   line-height: 0.62rem;
-  background-color: #FF7D0F;
+  height: 0.62rem;
+  background-color: #A10000;
   color: #fff;
   text-align: center;
   font-size: 0.3rem;
-  border: 1px solid #fff;
+  border: 0.01rem solid #fff;
   font-family: PingFangSC-Medium,sans-serif;
   font-weight: 500;
 }
 .header .swiper .right {
-  background-color: #FF7D0F;
+  background-color: #A10000;
   color: #fff;
   border: 0.01rem solid #fff;
   position: relative;
   float: left;
   width: 1.75rem;
   line-height: 0.62rem;
+  height: 0.62rem;
   text-align: center;
   font-size: 0.3rem;
   font-family: PingFangSC-Medium,sans-serif;
   font-weight: 500;
 }
 .header .swiper .select {
-  border: 1px solid #fff;
+  border: 0.01rem solid #fff;
   background-color: #fff;
-  color: #FF7D0F;
+  color: #A10000;
 }
 .top_menu {
   width: 100%;
@@ -119,9 +121,9 @@ ul {
   font-size: 0.28rem;
   font-family: PingFangSC-Medium,sans-serif;
   font-weight:500;
-  color:rgba(255,255,255,1);
+  color: #fff;
   line-height: 0.86rem;
-  background-color: #FF7D0F;
+  background-color: #A10000;
 }
 
 .common {
@@ -179,6 +181,11 @@ ul {
   float: left;
   width: 2.3rem;
 }
+.ft-32 {
+  font-size: 0.32rem;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight:400;
+}
 .body_1 .right-item {
   position: relative;
   float: right;
@@ -210,14 +217,13 @@ ul {
   position: relative;
   float: left;
   top: 0.4rem;
-  width: 0.48rem;
-  height: 0.4rem;
+  width: 0.54rem;
 }
 .ranking-list .item .ranking-header {
   position: relative;
   float: left;
   margin-top: 0.25rem;
-  margin-left: 0.44rem;
+  margin-left: 0.4rem;
   width: 0.72rem;
   height: 0.72rem;
   border-radius: 100%;
