@@ -546,10 +546,10 @@ $(function(){
 	        		}
 
                     if(isSingle){
-                        pages(data.pages, data.page,isSingle);
+                    	pagesForCoupon(data.pages, data.page,isSingle);
                         ckOperCoupons();
                     }else {
-                        pages(data.pages, data.page,isSingle);
+                    	pagesForCoupon(data.pages, data.page,isSingle);
                         getArr();
                         ckIs();
                     }
@@ -725,6 +725,35 @@ $(function(){
             },//点击事件，用于通过Ajax来刷新整个list列表
             onPageClicked: function (event, originalEvent, type, page) {
             	getitemSerach(page,isSingle);
+            }
+        };
+        $('#example').bootstrapPaginator(options);
+	}
+	
+	//分页 运营赠送优惠券
+	function pagesForCoupon(pages,page,isSingle,num){
+		var pageCount = pages;
+        var currentPage = page;
+        var options = {
+            bootstrapMajorVersion: 2, //版本
+            currentPage: currentPage, //当前页数
+            totalPages: pageCount, //总页数
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "上一页";
+                    case "next":
+                        return "下一页";
+                    case "last":
+                        return "末页";
+                    case "page":
+                        return page;
+                }
+            },//点击事件，用于通过Ajax来刷新整个list列表
+            onPageClicked: function (event, originalEvent, type, page) {
+            	getoperationgivingCouponSerach(page,true);
             }
         };
         $('#example').bootstrapPaginator(options);
