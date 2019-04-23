@@ -936,7 +936,7 @@ $(function(){
                 	swal('赠送成功!');
                 	setTimeout(function(){
                 		window.location = $('#couponGive').attr("href");
-                	},500)
+                	},800)
                 }else{
                 	swal('赠送失败,已领过或优惠券数量发放完毕!')
                 }
@@ -968,6 +968,39 @@ $(function(){
             	
                 if (data != null&&data.success) {
                 	swal('赠送成功!');
+                }else{
+                	swal('赠送失败!'+data.errorInfo)
+                }
+                $('#myModal').hide();
+            }
+	    });
+	});
+	
+	
+	//优惠券组合确定按钮事件  for 会员
+	$('#coupon_com_member_btn_ok').bind("click", function() {
+		delete ckAll_goodId['on'];
+		var list_couponComId = [];
+		for(var i in ckAll_goodId){
+			list_couponComId.push(i);
+		}
+		$('#myModal').hide();
+	    $('#myModal').removeClass('in');
+	    
+	    if(list_couponComId.length==0){
+	    	swal('请选择优惠券组合!');
+	    	return 
+	    }
+	    $.ajax({
+	    	url: "/admin/activity/couponcommanage/givingCouponComForMember.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val(),
+            type: "get",
+            success: function (data) {
+            	
+                if (data != null&&data.success) {
+                	swal('赠送成功!');
+                	setTimeout(function(){
+                		window.location = $('#couponGive').attr("href");
+                	},800)
                 }else{
                 	swal('赠送失败!'+data.errorInfo)
                 }
