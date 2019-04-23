@@ -14,7 +14,7 @@
         let row = '<tr>'
         for (let index in arrData[i]) {
             const value = arrData[i][index] === null ? '' : arrData[i][index]
-            row += '<td>' + value + '</td>'
+            row += '<td style="vnd.ms-excel.numberformat:@">' + value + '</td>'
         }
         excel += row + '</tr>'
     }
