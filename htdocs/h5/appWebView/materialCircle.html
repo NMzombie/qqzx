@@ -10,6 +10,8 @@
   <script src="../js/moment.min.js"></script>
   <script src="../js/cn.js"></script>
   <script src="../js/util.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+  <script src="../js/swiper.min.js"></script>
 </head>
 <body>
 
@@ -23,6 +25,11 @@
     <div class="body_1"></div>
     <div class="body_1"></div>
     <div class="body_1"></div>
+  </div>
+</div>
+<div class="big_img">
+  <div class="swiper-container2">
+    <div class="swiper-wrapper"></div>
   </div>
 </div>
 <script type="text/javascript">
@@ -154,76 +161,76 @@
 
 
   // 调试数据
-  // token = '47b92f4319a24d3684c6e19f765598'
-  // // 默认信息
-  // addData(0, 1, token)
-  //
-  // let newInd = 1
-  // let moreInd = 1
-  // let basicInd = 1
-  // // tab切换功能（滑动）
-  // $('.bottom_content')[0].style.left = "0%"
-  // var startX = '',disX =''
-  // $('.top_menu').on('click','.common',function(){
-  //   var index = $(this).index()
-  //   if (index === 1) {
-  //     $('.body_1').eq(0).html('')
-  //     $('.body_1').eq(2).html('')
-  //     addData(1, newInd, token)
-  //   } else if (index === 2) {
-  //     $('.body_1').eq(0).html('')
-  //     $('.body_1').eq(1).html('')
-  //     addData(2, moreInd, token)
-  //   } else {
-  //     $('.body_1').eq(1).html('')
-  //     $('.body_1').eq(2).html('')
-  //     addData(0, basicInd, token)
-  //   }
-  //   $('.bottom_content').css('left','-' + index * 100 + '%')
-  //   $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
-  // })
-  // $('.bottom_content').on('touchstart','.body_1',function(e){
-  //   startX = e.originalEvent.changedTouches[0].clientX
-  // })
-  // $('.bottom_content').on('touchmove','.body_1',function(e){
-  //   e.stopPropagation()
-  // })
-  // $('.bottom_content').on('touchend','.body_1',function(e){
-  //   disX = e.originalEvent.changedTouches[0].clientX - startX
-  //   var leftNum = parseInt($('.bottom_content')[0].style.left)
-  //   let order
-  //   if(disX > 0 && disX > 100) {
-  //     if(leftNum <= -100) {
-  //       $('.bottom_content')[0].style.left = leftNum + 100 + "%"
-  //       order = -parseInt($('.bottom_content')[0].style.left)/100
-  //       $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
-  //     }
-  //   } else if(disX < 0 && disX < -100) {
-  //     if ((-parseInt($('.bottom_content')[0].style.left))/100 === 2) {
-  //       return
-  //     }
-  //     if(leftNum >= -100) {
-  //       $('.bottom_content')[0].style.left = leftNum - 100 + "%"
-  //       order = (-parseInt($('.bottom_content')[0].style.left))/100
-  //       $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
-  //     }
-  //   }
-  //   if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
-  //     if (order === 1) {
-  //       $('.body_1').eq(0).html('')
-  //       $('.body_1').eq(2).html('')
-  //       addData(1, moreInd, token)
-  //     } else if (order === 2) {
-  //       $('.body_1').eq(0).html('')
-  //       $('.body_1').eq(1).html('')
-  //       addData(2, basicInd, token)
-  //     } else {
-  //       $('.body_1').eq(1).html('')
-  //       $('.body_1').eq(2).html('')
-  //       addData(0, newInd, token)
-  //     }
-  //   }
-  // })
+  token = '47b92f4319a24d3684c6e19f765598'
+  // 默认信息
+  addData(0, 1, token)
+
+  let newInd = 1
+  let moreInd = 1
+  let basicInd = 1
+  // tab切换功能（滑动）
+  $('.bottom_content')[0].style.left = "0%"
+  var startX = '',disX =''
+  $('.top_menu').on('click','.common',function(){
+    var index = $(this).index()
+    if (index === 1) {
+      $('.body_1').eq(0).html('')
+      $('.body_1').eq(2).html('')
+      addData(1, newInd, token)
+    } else if (index === 2) {
+      $('.body_1').eq(0).html('')
+      $('.body_1').eq(1).html('')
+      addData(2, moreInd, token)
+    } else {
+      $('.body_1').eq(1).html('')
+      $('.body_1').eq(2).html('')
+      addData(0, basicInd, token)
+    }
+    $('.bottom_content').css('left','-' + index * 100 + '%')
+    $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
+  })
+  $('.bottom_content').on('touchstart','.body_1',function(e){
+    startX = e.originalEvent.changedTouches[0].clientX
+  })
+  $('.bottom_content').on('touchmove','.body_1',function(e){
+    e.stopPropagation()
+  })
+  $('.bottom_content').on('touchend','.body_1',function(e){
+    disX = e.originalEvent.changedTouches[0].clientX - startX
+    var leftNum = parseInt($('.bottom_content')[0].style.left)
+    let order
+    if(disX > 0 && disX > 100) {
+      if(leftNum <= -100) {
+        $('.bottom_content')[0].style.left = leftNum + 100 + "%"
+        order = -parseInt($('.bottom_content')[0].style.left)/100
+        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+      }
+    } else if(disX < 0 && disX < -100) {
+      if ((-parseInt($('.bottom_content')[0].style.left))/100 === 2) {
+        return
+      }
+      if(leftNum >= -100) {
+        $('.bottom_content')[0].style.left = leftNum - 100 + "%"
+        order = (-parseInt($('.bottom_content')[0].style.left))/100
+        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+      }
+    }
+    if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
+      if (order === 1) {
+        $('.body_1').eq(0).html('')
+        $('.body_1').eq(2).html('')
+        addData(1, moreInd, token)
+      } else if (order === 2) {
+        $('.body_1').eq(0).html('')
+        $('.body_1').eq(1).html('')
+        addData(2, basicInd, token)
+      } else {
+        $('.body_1').eq(1).html('')
+        $('.body_1').eq(2).html('')
+        addData(0, newInd, token)
+      }
+    }
+  })
 
 
 
@@ -274,6 +281,43 @@
     //   att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
     // }
   }
+
+  /*调起大图 S*/
+  var mySwiper = new Swiper('.swiper-container2', {
+    loop: false,
+    pagination: '.swiper-pagination2',
+  })
+  $(".body_1").on("click", ".m-demo",
+    function() {
+      var imgBox = $(this).parents(".img-list").find(".img-big");
+      let i = 0
+      for (let k = 0; k < $(imgBox).length; k++) {
+        if ($(imgBox[k]).attr('src') === $(this).find('.img-big').attr('src')) {
+          i = k
+        }
+      }
+      $(".big_img .swiper-wrapper").html("")
+      for(var j = 0 ,c = imgBox.length; j < c ;j++){
+        $(".big_img .swiper-wrapper").append('<div class="swiper-slide"><div class="cell"><img src="' + imgBox.eq(j).attr("src") + '" / ></div></div>');
+      }
+      mySwiper.updateSlidesSize();
+      mySwiper.updatePagination();
+      $(".big_img").css({
+        "z-index": 1001,
+        "opacity": "1"
+      });
+      mySwiper.slideTo(i, 0, false);
+      return false;
+    });
+
+  $(".big_img").on("click",
+    function() {
+      $(this).css({
+        "z-index": "-1",
+        "opacity": "0"
+      })
+    })
+
   // 下载功能
   function downloadOperate(index, num, id) {
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
@@ -319,7 +363,7 @@
           fir += `</div></div><div class="img-list"><div class="image clearfix">`
           let sec = ``
           for (let j = 0; j < data[i].picUrls.length; j++) {
-            sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
+            sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item img-big" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
           }
           const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
           let zan = ``
