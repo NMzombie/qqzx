@@ -546,10 +546,10 @@ $(function(){
 	        		}
 
                     if(isSingle){
-                        pages(data.pages, data.page,isSingle);
+                    	pagesForCoupon(data.pages, data.page,isSingle);
                         ckOperCoupons();
                     }else {
-                        pages(data.pages, data.page,isSingle);
+                    	pagesForCoupon(data.pages, data.page,isSingle);
                         getArr();
                         ckIs();
                     }
@@ -725,6 +725,35 @@ $(function(){
             },//点击事件，用于通过Ajax来刷新整个list列表
             onPageClicked: function (event, originalEvent, type, page) {
             	getitemSerach(page,isSingle);
+            }
+        };
+        $('#example').bootstrapPaginator(options);
+	}
+	
+	//分页 运营赠送优惠券
+	function pagesForCoupon(pages,page,isSingle,num){
+		var pageCount = pages;
+        var currentPage = page;
+        var options = {
+            bootstrapMajorVersion: 2, //版本
+            currentPage: currentPage, //当前页数
+            totalPages: pageCount, //总页数
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "上一页";
+                    case "next":
+                        return "下一页";
+                    case "last":
+                        return "末页";
+                    case "page":
+                        return page;
+                }
+            },//点击事件，用于通过Ajax来刷新整个list列表
+            onPageClicked: function (event, originalEvent, type, page) {
+            	getoperationgivingCouponSerach(page,true);
             }
         };
         $('#example').bootstrapPaginator(options);
@@ -907,7 +936,7 @@ $(function(){
                 	swal('赠送成功!');
                 	setTimeout(function(){
                 		window.location = $('#couponGive').attr("href");
-                	},500)
+                	},800)
                 }else{
                 	swal('赠送失败,已领过或优惠券数量发放完毕!')
                 }
@@ -939,6 +968,39 @@ $(function(){
             	
                 if (data != null&&data.success) {
                 	swal('赠送成功!');
+                }else{
+                	swal('赠送失败!'+data.errorInfo)
+                }
+                $('#myModal').hide();
+            }
+	    });
+	});
+	
+	
+	//优惠券组合确定按钮事件  for 会员
+	$('#coupon_com_member_btn_ok').bind("click", function() {
+		delete ckAll_goodId['on'];
+		var list_couponComId = [];
+		for(var i in ckAll_goodId){
+			list_couponComId.push(i);
+		}
+		$('#myModal').hide();
+	    $('#myModal').removeClass('in');
+	    
+	    if(list_couponComId.length==0){
+	    	swal('请选择优惠券组合!');
+	    	return 
+	    }
+	    $.ajax({
+	    	url: "/admin/activity/couponcommanage/givingCouponComForMember.json?couponComIds=" + list_couponComId +"&mid=" + $('#memberCoupon').val(),
+            type: "get",
+            success: function (data) {
+            	
+                if (data != null&&data.success) {
+                	swal('赠送成功!');
+                	setTimeout(function(){
+                		window.location = $('#couponGive').attr("href");
+                	},800)
                 }else{
                 	swal('赠送失败!'+data.errorInfo)
                 }
