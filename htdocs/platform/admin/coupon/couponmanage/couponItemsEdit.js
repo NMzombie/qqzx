@@ -532,7 +532,7 @@ $(function(){
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponList[i].id){
 						            tr1 = '<tr>'+
-									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ goodList[i].id +'"/></td>'+
+									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ couponList[i].id +'"/></td>'+
 									 '<td>'+ couponList[i].id +'</td>'+
 									 '<td>'+ couponList[i].name +'</td>'+
 									 '<td>'+ priceFormat(couponList[i].denomination) +'</td>'+
