@@ -10,6 +10,8 @@
   <script src="../js/moment.min.js"></script>
   <script src="../js/cn.js"></script>
   <script src="../js/util.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+  <script src="../js/swiper.min.js"></script>
 </head>
 <body>
 
@@ -23,6 +25,11 @@
     <div class="body_1"></div>
     <div class="body_1"></div>
     <div class="body_1"></div>
+  </div>
+</div>
+<div class="big_img">
+  <div class="swiper-container2">
+    <div class="swiper-wrapper"></div>
   </div>
 </div>
 <script type="text/javascript">
@@ -65,7 +72,7 @@
   let allList = []
   // const baseUrl = 'http://qqzx.xc2018.com.cn'
   let baseUrl = ''
-  getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
+  getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   // 绑定token
   let token = ''
   getUserInfo()
@@ -274,6 +281,43 @@
     //   att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
     // }
   }
+
+  /*调起大图 S*/
+  var mySwiper = new Swiper('.swiper-container2', {
+    loop: false,
+    pagination: '.swiper-pagination2',
+  })
+  $(".body_1").on("click", ".m-demo",
+    function() {
+      var imgBox = $(this).parents(".img-list").find(".img-big");
+      let i = 0
+      for (let k = 0; k < $(imgBox).length; k++) {
+        if ($(imgBox[k]).attr('src') === $(this).find('.img-big').attr('src')) {
+          i = k
+        }
+      }
+      $(".big_img .swiper-wrapper").html("")
+      for(var j = 0 ,c = imgBox.length; j < c ;j++){
+        $(".big_img .swiper-wrapper").append('<div class="swiper-slide"><div class="cell"><img src="' + imgBox.eq(j).attr("src") + '" / ></div></div>');
+      }
+      mySwiper.updateSlidesSize();
+      mySwiper.updatePagination();
+      $(".big_img").css({
+        "z-index": 1001,
+        "opacity": "1"
+      });
+      mySwiper.slideTo(i, 0, false);
+      return false;
+    });
+
+  $(".big_img").on("click",
+    function() {
+      $(this).css({
+        "z-index": "-1",
+        "opacity": "0"
+      })
+    })
+
   // 下载功能
   function downloadOperate(index, num, id) {
     const ht = $('.content').eq(index).find('.operate-item').eq(1).find('.value')
@@ -313,13 +357,13 @@
         const data = res.data.list
         for (let i = 0; i < data.length; i++) {
           let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
-          if (data[i].recommendedReason.length >= 105) {
+          if (data[i].recommendedReason.length >= 125) {
             fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
           }
           fir += `</div></div><div class="img-list"><div class="image clearfix">`
           let sec = ``
           for (let j = 0; j < data[i].picUrls.length; j++) {
-            sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
+            sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item img-big" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
           }
           const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
           let zan = ``
