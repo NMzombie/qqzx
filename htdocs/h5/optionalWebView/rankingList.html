@@ -5,30 +5,44 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,telephone=no">
   <title>今日爆款</title>
   <link rel="stylesheet" href="ranking-list.css">
+  <meta content="maximum-dpr=2" name="flexible" />
+  <!--<script src="../js/flexible.js"></script>-->
   <script src="../js/jquery-1.10.2.js"></script>
-  <script src="../js/flexible.js"></script>
   <script src="../js/util.js"></script>
 </head>
 <body>
-<div class="header">
-  <img src="http://file.wchoosemall.com/platform/manager/pic/ranking-title.png" alt="" />
+<div class="header"></div>
+<div class="main">
 </div>
-<div class="today-list">
-  <img class="header-img" src="http://file.wegoomall.cn/platform/manager/pic/20181213/5058458903637603.png" alt="" />
-  <div class="list clearfix">
-    <div class="list-title clearfix">
-      <div class="item left">爆款商品</div>
-      <div class="item middle-left">今日销售</div>
-      <!--<div class="item middle-right">今日收益</div>-->
-      <div class="item right">详情</div>
-    </div>
-    <div class="list-all"></div>
-  </div>
 </div>
-<div class="share-all">
-  <div class="share-title">爆款商品详情</div>
-  <div class="share-list"></div>
-</div>
+<script>
+  fnResize()
+  window.onresize = function () {
+    fnResize()
+  }
+  function fnResize () {
+    var deviceWidth = document.documentElement.clientWidth || window.innerWidth
+    if (deviceWidth >= 750) {
+      deviceWidth = 750
+    }
+    if (deviceWidth <= 320) {
+      deviceWidth = 320
+    }
+    document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px'
+  }
+  let day = `${new Date().getFullYear()}`
+  if (new Date().getMonth() < 9) {
+    day += `/0${new Date().getMonth() + 1}`
+  } else {
+    day += `/${new Date().getMonth()}`
+  }
+  if (new Date().getDate() < 10) {
+    day += `/0${new Date().getDate()}/18:30:00`
+  } else {
+    day += `/${new Date().getDate()}/18:30:00`
+  }
+  console.log((new Date(day).valueOf() - new Date().valueOf())/60/1000)
+</script>
 <script type="text/javascript">
   function connectWebViewJavascriptBridge (callback) {
     if (window.WebViewJavascriptBridge) {
@@ -67,7 +81,7 @@
     }
   })
   let baseUrl = ''
-  getQueryString('dev') ? baseUrl = 'http://qqzx.xc2018.com.cn' : baseUrl = 'http://api.wchoosemall.com'
+  getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   let rankingList = ''
   getUserInfo()
   function getUserInfo (){
@@ -85,13 +99,12 @@
           success: (res) => {
             rankingList = res.data.list
             for (let i = 0; i < rankingList.length; i++) {
-              $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></a></div><div class="item middle-left">${rankingList[i].memberSalesDTO.salesNum}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
               if (level >= 10) {
-                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="content clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
+                $('.main').append(`<div class="item clearfix"><div class="detail clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="img-item"><p class="clearfix"><img class="hidden" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></p></div></a><div class="info-item"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="info clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">¥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">市场价¥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})"><div class="ranking clearfix"><div class="today">今日销量:<span>${rankingList[i].memberSalesDTO.salesNum}</span></div><a class="rank-detail">查看排行＞</a></div></a></div>`)
               } else {
-                $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="content clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
+                $('.main').append(`<div class="item clearfix"><div class="detail clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="img-item"><p class="clearfix"><img class="hidden" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></p></div></a><div class="info-item"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="info clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">¥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">市场价¥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})"><div class="ranking clearfix"><div class="today">今日销量:<span>${rankingList[i].memberSalesDTO.salesNum}</span></div><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" class="rank-detail">查看排行＞</a></div></a></div>`)
               }
-             }
+            }
           }
         })
       })
@@ -108,7 +121,7 @@
 
 
   // 测试数据
-  // const token = '2bb6720fb83a4287b45992eb768259'
+  // const token = '6255964c85b4467c81458970765591'
   // const level = 10
   // // $('.header-img').attr('src', JSON.parse(response).avatar)
   // $.ajax({
@@ -120,11 +133,10 @@
   //   success: (res) => {
   //     rankingList = res.data.list
   //     for (let i = 0; i < rankingList.length; i++) {
-  //       $('.list-all').append(`<div class="list-goods clearfix"><div class="item left"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></a></div><div class="item middle-left">${rankingList[i].memberSalesDTO.salesNum}</div><div class="item right"><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" >查看排行</a></div></div>`)
   //       if (level >= 10) {
-  //         $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
+  //         $('.main').append(`<div class="item clearfix"><div class="detail clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="img-item"><p class="clearfix"><img class="hidden" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></p></div></a><div class="info-item"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="info clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">¥${priceFormat(rankingList[i].itemRankDTO.memberPrice)}</div><div class="market">市场价¥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div><div class="ranking clearfix"><div class="today">今日销量:<span>${rankingList[i].memberSalesDTO.salesNum}</span></div><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" class="rank-detail">查看排行＞</a></div></div>`)
   //       } else {
-  //         $('.share-list').append(`<div class="item bor-b clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><img class="left" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" /></a><div class="right"><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div><div class="content clearfix"><div class="member">￥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">￥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div>`)
+  //         $('.main').append(`<div class="item clearfix"><div class="detail clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="img-item"><p class="clearfix"><img class="hidden" src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /><img src="${rankingList[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /></p></div></a><div class="info-item"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="title one-txt-cut">${rankingList[i].itemRankDTO.name}</div></a><div class="info clearfix"><a href="javascript:void(0)" onclick="loadMore(${rankingList[i].itemRankDTO.itemId})" ><div class="member">¥${priceFormat(rankingList[i].itemRankDTO.marketPrice)}</div><div class="market">市场价¥${priceFormat(rankingList[i].itemRankDTO.showPrice)}</div></a><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share">分享</div></a></div></div></div><div class="ranking clearfix"><div class="today">今日销量:<span>${rankingList[i].memberSalesDTO.salesNum}</span></div><a href="javascript:void(0)" onclick="loadRanking(${rankingList[i].itemRankDTO.activityId})" class="rank-detail">查看排行＞</a></div></div>`)
   //       }
   //     }
   //   }
