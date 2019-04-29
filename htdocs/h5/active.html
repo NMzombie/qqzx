@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,telephone=no">
   <title>　</title>
-  <link rel="stylesheet" href="css/active.css">
+  <link rel="stylesheet" href="http://www.wchoosemall.com/htdocs/h5/css/active.css">
   <script>
     document.title = '\u200E'
     fnResize()
@@ -35,9 +35,9 @@
   </nav>
   <div class="act-con"></div>
 </div>
-<script src="./js/jquery-1.10.2.js"></script>
-<script src="./js/jquery.navScroll.js"></script>
-<script src="./js/util.js"></script>
+<script src="http://www.wchoosemall.com/htdocs/h5/js/jquery-1.10.2.js"></script>
+<script src="http://www.wchoosemall.com/htdocs/h5/js/jquery.navScroll.js"></script>
+<script src="http://www.wchoosemall.com/htdocs/h5/js/util.js"></script>
 <script type="text/javascript">
   // webview连接
   function connectWebViewJavascriptBridge (callback) {
@@ -160,10 +160,7 @@
                 }
               }
             }
-            // 新人活动
-            if (data.activity.activityCode === 'newMemberActivity') {
-              $('.coupon').remove()
-            }
+            $('.coupon').remove()
             // 商品清单
             const list = data.itemGroups
             for (let i = 0; i < list.length; i++) {
