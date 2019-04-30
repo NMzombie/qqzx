@@ -4,6 +4,8 @@ function priceFormat (value) {
   } else {
     if (value % 100 === 0) {
       return `${value / 100}.00`
+    } else if (value % 10 === 0) {
+      return `${value / 100}0`
     } else {
       return `${value / 100}`
     }
