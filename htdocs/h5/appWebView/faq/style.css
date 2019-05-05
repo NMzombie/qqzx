@@ -36,7 +36,7 @@ a:hover{
 .accordion .acc {
   margin-top: 0.2rem;
 }
-.accordion{background: #F7F7F7;width:100%;margin:auto;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}
+.accordion{overflow: hidden;background: #F7F7F7;width:100%;margin:auto;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}
 .accordion .link{
   background: #fff;
   cursor:pointer;
@@ -59,7 +59,7 @@ a:hover{
   position: relative;
   float: left;
   text-align: left;
-  width: 6.34rem;
+  width: 5.4rem;
 }
 .right .detail {
   padding-left: 0.4rem;
