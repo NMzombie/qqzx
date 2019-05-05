@@ -1,6 +1,6 @@
 *{margin:0;padding:0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 body{background:#F7F7F7;font-family:open sans,Arial,Helvetica,Sans-serif,Verdana,Tahoma}
-ul{list-style-type:none}
+ul{list-style-type:none;tap-highlight-color: rgba(0, 0, 0, 0);-webkit-tap-highlight-color: transparent;}
 a{color:#b63b4d;text-decoration:none}
 h1{color:#fff;font-size:24px;font-weight:400;text-align:center;margin-top:80px}
 h1 a{color:#c12c42;font-size:16px}
