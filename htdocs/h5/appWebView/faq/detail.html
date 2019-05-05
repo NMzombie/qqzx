@@ -1,4 +1,26 @@
-$(function () {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>　</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="detail.css" media="screen" type="text/css" />
+</head>
+<body>
+<div class="answer-list">
+  <div class="question clearfix">
+    <div class="ico">问</div>
+    <div class="title">什么是全球自选</div>
+  </div>
+  <div class="answer clearfix">
+    <div class="ico">答</div>
+    <div class="ans-title">全球自选，是由原阿里巴巴的团队和明星杨晶晶共同创立的社交电商新零售创业赋能平台。目前已经与微谷中国达成战略合作，致力于利用最前沿的人工智能技术为平台提供AI相关产品及商业解决方案 通过AI赋能助力平台会员及合作伙伴提升商业效率 和价值，实现社群运营精准流量帮扶。</div>
+  </div>
+</div>
+<script src='../../js/jquery-1.10.2.js'></script>
+<script src='../../js/util.js'></script>
+<script type="text/javascript">
+  document.title = '\u200E'
   const data = [
     {
       title: '关于自选',
@@ -147,40 +169,11 @@ $(function () {
       ]
     }
   ]
-  let fir = ''
-  for (let i = 0; i < data.length; i++) {
-    fir += `<li class="acc"><div class="link clearfix"><div class="left"><img src="${data[i].img}" alt="" /><div class="title">${data[i].title}</div><div class="fa fa-chevron-down"></div></div>`
-    if (data[i].contents.length <= 2) {
-      data[i].contents.length === 1 ? fir += `<div class="right"><a href="detail.html?id=${i}&index=0"><div class="detail one one-txt-cut">${data[i].contents[0].question}</div></a></div></li>` : fir += `<div class="right"><a href="detail.html?id=${i}&index=0"><div class="detail one-txt-cut">${data[i].contents[0].question}</div></a><a href="detail.html?id=${i}&index=1"><div class="detail one-txt-cut">${data[i].contents[1].question}</div></a></div></li>`
-    } else {
-      fir += `<div class="right"><a href="detail.html?id=${i}&index=0"><div class="detail one-txt-cut">${data[i].contents[0].question}</div></a><a href="detail.html?id=${i}&index=1"><div class="detail one-txt-cut">${data[i].contents[1].question}</div></a></div></div><ul class="submenu"><li>`
-      for (let j = 2; j < data[i].contents.length; j++) {
-        fir += `<div class="clearfix"><div class="left"></div><div class="right"><a href="detail.html?id=${i}&index=${j}"><div class="detail">${data[i].contents[j].question}</div></a></div></div>`
-      }
-      fir += `</li></ul></li>`
-    }
-  }
-  $('#accordion').append(fir)
-
-  // 下拉功能
-  var Accordion = function (el, multiple) {
-    this.el = el || {};
-    this.multiple = multiple || false;
-    var links = this.el.find('.left');
-    links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
-  }
-  Accordion.prototype.dropdown = function (e) {
-    var $el = e.data.el;
-    $this = $(this).parent(), $next = $this.next();
-    if ($this.parent().find('.submenu').find('.left').length <= 0) {
-      return
-    }
-    $next.slideToggle();
-    $this.parent().toggleClass('open');
-    if (!e.data.multiple) {
-      $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
-    }
-    ;
-  }
-  var accordion = new Accordion($('#accordion'), false);
-});
+  const id = getQueryString('id')
+  const ind = getQueryString('index')
+  $('title').html(data[id].title)
+  $('.question').find('.title').html(data[id].contents[ind].question)
+  // $('.answer').find('.title').val(data[id].contents[ind].answer)
+</script>
+</body>
+</html>
