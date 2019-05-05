@@ -25,7 +25,7 @@ $(function () {
       ]
     },
     {
-      title: '关于物流问题',
+      title: '关于物流',
       img: 'https://file.wegoomall.cn/platform/manager/pic/20190505/3595929944332341.png',
       contents: [
         {
@@ -107,7 +107,7 @@ $(function () {
       ]
     },
     {
-      title: '关于实名认证',
+      title: '关于实名',
       img: 'https://file.wegoomall.cn/platform/manager/pic/20190505/3595951776313469.png',
       contents: [
         {
@@ -121,7 +121,7 @@ $(function () {
       ]
     },
     {
-      title: '关于app操作',
+      title: '关于APP操作',
       img: 'https://file.wegoomall.cn/platform/manager/pic/20190505/3595957578741210.png',
       contents: [
         {
