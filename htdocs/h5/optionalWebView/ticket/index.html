@@ -57,7 +57,7 @@
   // 分享
   function shareItem(ind) {
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'id': list[ind].couponId, 'desc': '送你一张优惠券，快快收下吧', 'img': 'https://file.wchoosemall.com/platform/manager/pic/20190429/10622222793394494.png'}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'id': list[ind].couponId, 'desc': '送你一张优惠券，快快收下吧', 'img': 'https://file.wchoosemall.com/platform/manager/pic/20190429/10622222793394494.png', 'name': list[ind].name, 'time': list[i].grantWay === 2 ? '1' : '2', 'link': 'link'}, function (response) {
       })
     } else {
       setTimeout(() => {
