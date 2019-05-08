@@ -2,9 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
   <title>分享优惠券</title>
+  <link rel="stylesheet" href="index.css">
+  <script>
+    fnResize()
+    window.onresize = function () {
+      fnResize()
+    }
+    function fnResize () {
+      var deviceWidth = document.documentElement.clientWidth || window.innerWidth
+      if (deviceWidth >= 750) {
+        deviceWidth = 750
+      }
+      if (deviceWidth <= 320) {
+        deviceWidth = 320
+      }
+      document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px'
+    }
+  </script>
 </head>
 <body>
-
+<div class="list"></div>
+<script src="./../../js/jquery-1.10.2.js"></script>
+<script src="./../../js/util.js"></script>
+<script src="./../../js/moment.min.js"></script>
+<script type="text/javascript">
+  let baseUrl = ''
+  // getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
+  getQueryString('dev') ? baseUrl = 'http://192.168.0.115:8080' : baseUrl = 'http://api.wchoosemall.com'
+  let token = ''
+  let list = []
+  $.ajax({
+    type: 'post',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    url: `${baseUrl}/doc/api/common/auth/transferCoupon/findTransferCouponsByMid.json?token=${token}`,
+    success: (res) => {
+      const data = res.data
+      list = data.transferCouponVOList
+      let fir = ''
+      for (let i = 0; i < list.length; i++) {
+        fir += `<div class="ticket-bg"><div class="info-list clearfix"><div class="price-item"><div class="price">¥<span>${ticketFormat(list[i].denomination)}</span></div><div class="enough">满${ticketFormat(list[i].thresholdPrice)}可用</div></div><div class="ticket-item"><div class="name one-txt-cut">${list[i].name}</div><div class="time">`
+        if (list[i].grantWay === 2) {
+          fir += `有效天数 ${list[i].limitDays}天</div></div></div><div class="share-item clearfix"><div class="surplus">剩余${list[i].transferNum - list[i].receiveNum}张</div><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share-btn">去分享</div></a></div></div>`
+        } else {
+          fir += `有效期 ${moment(list[i].startDate).format('YYYY.MM.DD')}-${moment(list[i].endDate).format('YYYY.MM.DD')}</div></div></div><div class="share-item clearfix"><div class="surplus">剩余${list[i].transferNum - list[i].receiveNum}张</div><a href="javascript:void(0)" onclick="shareItem(${i})"><div class="share-btn">去分享</div></a></div></div>`
+        }
+      }
+      $('.list').append(fir)
+    }
+  })
+  // 分享
+  function shareItem(ind) {
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getShareInfo', {'id': list[ind].couponId, 'desc': '送你一张优惠券，快快收下吧', 'img': 'https://file.wchoosemall.com/platform/manager/pic/20190429/10622222793394494.png'}, function (response) {
+      })
+    } else {
+      setTimeout(() => {
+        shareItem(ind)
+      }, 50)
+    }
+  }
+</script>
 </body>
 </html>
