@@ -145,7 +145,7 @@ ul {
   font-family: PingFangSC-Regular, sans-serif;
   color: #CF1427;
   border-radius: 0.05rem;
-  border: #CF1427;
+  border: 1px solid #CF1427;
 }
 .content-title .title {
   position: relative;
