@@ -11,6 +11,9 @@ function priceFormat (value) {
     }
   }
 }
+function ticketFormat (value) {
+  return `${parseInt(value / 100)}`
+}
 function getQueryString(name) {
   var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
   var r = window.location.search.substr(1).match(reg);
