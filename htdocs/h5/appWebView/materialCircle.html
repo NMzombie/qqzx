@@ -373,7 +373,7 @@
       success: (res) => {
       }
     })
-    allList[index].videoUrl ? getMaterialPic([allList[index].videoUrl], allList[index].recommendedReason) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+    allList[index].videoUrl ? getMaterialPic(allList[index].picUrls, allList[index].recommendedReason, allList[index].videoUrl) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
   }
   // 数据拼接
   function addData (index, page, token) {
@@ -418,14 +418,14 @@
   }
 
   // app js bridge
-  function getMaterialPic (picUrls, content) {
+  function getMaterialPic (picUrls, content, videoUrl) {
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls, content}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getMaterialPic', {picUrls, content, videoUrl}, function (response) {
         console.log(1, response)
       })
     } else {
       setTimeout(() => {
-        getMaterialPic(picUrls, content)
+        getMaterialPic(picUrls, content, videoUrl)
       }, 50)
     }
   }
