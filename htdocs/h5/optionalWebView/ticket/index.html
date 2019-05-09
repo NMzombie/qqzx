@@ -34,6 +34,7 @@
   let token = ''
   getUserInfo()
   function getUserInfo (){
+    alert(111)
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         token = JSON.parse(response).token
