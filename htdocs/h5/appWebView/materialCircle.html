@@ -399,7 +399,8 @@
           fir += `</div></div><div class="img-list"><div class="image clearfix">`
           let sec = ``
           if (data[i].videoUrl) {
-            sec += `<video style="height: 8.5rem;" id="video${i}" src="${data[i].videoUrl}" poster="${data[i].videoPicUrl}"></video>`
+            sec += `<!--<video class="vjs-tech" style="height: 8.5rem;" data-setup='{}' id="video${i}" src="${data[i].videoUrl}" poster="${data[i].videoPicUrl}"></video>-->`
+            sec += `<video id="my-video" class="video-js" controls preload="auto" width="960" src="${data[i].videoUrl}" height="400" poster="${data[i].videoPicUrl}" data-setup="{}"></video>`
           } else {
             for (let j = 0; j < data[i].picUrls.length; j++) {
               sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item img-big" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
@@ -420,6 +421,11 @@
         //     videojs(`video${i}`)
         //   }
         // }
+        // var myPlayer = videojs('video3');
+        // videojs("video3").ready(function(){
+        //   var myPlayer = this;
+        //   myPlayer.play();
+        // });
       }
     })
   }
