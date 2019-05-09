@@ -373,7 +373,7 @@
       success: (res) => {
       }
     })
-    allList[index].videoUrl ? getMaterialPic(allList[index].videoUrl, allList[index].recommendedReason) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+    allList[index].videoUrl ? getMaterialPic([allList[index].videoUrl], allList[index].recommendedReason) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
   }
   // 数据拼接
   function addData (index, page, token) {
