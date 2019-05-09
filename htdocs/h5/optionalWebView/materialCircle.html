@@ -6,6 +6,7 @@
   <title>素材圈</title>
   <script src="../js/flexible.js"></script>
   <link rel="stylesheet" href="material-circle.css">
+  <link rel="stylesheet" href="./../css/video-js.min.css">
   <script src="../js/jquery-1.10.2.js"></script>
   <script src="../js/moment.min.js"></script>
   <script src="../js/cn.js"></script>
@@ -16,9 +17,10 @@
 <body>
 
 <div class="top_menu">
-  <div class="common li-active">最新发布<div class="bottom-line"></div></div>
-  <div class="common">最多下载<div class="bottom-line"></div></div>
-  <div class="common">官方素材<div class="bottom-line"></div></div>
+  <div class="common li-active">官方动态<div class="bottom-line"></div></div>
+  <div class="common">今日必推<div class="bottom-line"></div></div>
+  <div class="common">商品素材<div class="bottom-line"></div></div>
+  <div class="common">招商素材<div class="bottom-line"></div></div>
 </div>
 <div class="ul">
   <div class="bottom_content" style="left: 0;">
@@ -32,6 +34,8 @@
     <div class="swiper-wrapper"></div>
   </div>
 </div>
+<script src="./../js/video.min.js"></script>
+<script src="./../js/zh-CN.js"></script>
 <script type="text/javascript">
   function connectWebViewJavascriptBridge (callback) {
     if (window.WebViewJavascriptBridge) {
@@ -94,14 +98,22 @@
           if (index === 1) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(2).html('')
+            $('.body_1').eq(3).html('')
             addData(1, newInd, token)
           } else if (index === 2) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(1).html('')
+            $('.body_1').eq(3).html('')
             addData(2, moreInd, token)
+          } else if (index === 3) {
+            $('.body_1').eq(0).html('')
+            $('.body_1').eq(1).html('')
+            $('.body_1').eq(2).html('')
+            addData(3, basicInd, token)
           } else {
             $('.body_1').eq(1).html('')
             $('.body_1').eq(2).html('')
+            $('.body_1').eq(3).html('')
             addData(0, basicInd, token)
           }
           $('.bottom_content').css('left','-' + index * 100 + '%')
@@ -137,14 +149,22 @@
             if (order === 1) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(2).html('')
+              $('.body_1').eq(3).html('')
               addData(1, moreInd, token)
             } else if (order === 2) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(1).html('')
+              $('.body_1').eq(3).html('')
               addData(2, basicInd, token)
+            } else if (order === 3) {
+              $('.body_1').eq(0).html('')
+              $('.body_1').eq(1).html('')
+              $('.body_1').eq(2).html('')
+              addData(3, basicInd, token)
             } else {
               $('.body_1').eq(1).html('')
               $('.body_1').eq(2).html('')
+              $('.body_1').eq(3).html('')
               addData(0, newInd, token)
             }
           }
@@ -161,7 +181,7 @@
 
 
   // 调试数据
-  // token = '47b92f4319a24d3684c6e19f765598'
+  // token = '1b455b4f79a342fe865606545614766'
   // // 默认信息
   // addData(0, 1, token)
   //
@@ -176,14 +196,22 @@
   //   if (index === 1) {
   //     $('.body_1').eq(0).html('')
   //     $('.body_1').eq(2).html('')
+  //     $('.body_1').eq(3).html('')
   //     addData(1, newInd, token)
   //   } else if (index === 2) {
   //     $('.body_1').eq(0).html('')
   //     $('.body_1').eq(1).html('')
+  //     $('.body_1').eq(3).html('')
   //     addData(2, moreInd, token)
+  //   } else if (index === 3) {
+  //     $('.body_1').eq(0).html('')
+  //     $('.body_1').eq(1).html('')
+  //     $('.body_1').eq(2).html('')
+  //     addData(3, moreInd, token)
   //   } else {
   //     $('.body_1').eq(1).html('')
   //     $('.body_1').eq(2).html('')
+  //     $('.body_1').eq(3).html('')
   //     addData(0, basicInd, token)
   //   }
   //   $('.bottom_content').css('left','-' + index * 100 + '%')
@@ -219,14 +247,22 @@
   //     if (order === 1) {
   //       $('.body_1').eq(0).html('')
   //       $('.body_1').eq(2).html('')
+  //       $('.body_1').eq(3).html('')
   //       addData(1, moreInd, token)
   //     } else if (order === 2) {
   //       $('.body_1').eq(0).html('')
   //       $('.body_1').eq(1).html('')
+  //       $('.body_1').eq(3).html('')
   //       addData(2, basicInd, token)
+  //     } else if (order === 3) {
+  //       $('.body_1').eq(0).html('')
+  //       $('.body_1').eq(1).html('')
+  //       $('.body_1').eq(2).html('')
+  //       addData(3, basicInd, token)
   //     } else {
   //       $('.body_1').eq(1).html('')
   //       $('.body_1').eq(2).html('')
+  //       $('.body_1').eq(3).html('')
   //       addData(0, newInd, token)
   //     }
   //   }
@@ -350,7 +386,7 @@
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircle.json?token=${token}`,
+      url: `${baseUrl}/doc/es/materialCircle/findMaterialCircle.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
         allList = res.data.list
@@ -362,8 +398,12 @@
           }
           fir += `</div></div><div class="img-list"><div class="image clearfix">`
           let sec = ``
-          for (let j = 0; j < data[i].picUrls.length; j++) {
-            sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item img-big" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
+          if (data[i].videoUrl) {
+            sec += `<video style="width: 8.5rem;" id="test" src="${data[i].videoUrl}" poster="${data[i].videoPicUrl}"></video>`
+          } else {
+            for (let j = 0; j < data[i].picUrls.length; j++) {
+              sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item img-big" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
+            }
           }
           const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
           let zan = ``
@@ -373,6 +413,7 @@
           const last = `</div></a></div></div>`
           $('.body_1').eq(index).append(fir + sec + thi + zan + down + last)
         }
+        document.getElementById("test").play()
       }
     })
   }
