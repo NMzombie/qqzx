@@ -28,13 +28,49 @@
 <script src="./../../js/util.js"></script>
 <script src="./../../js/moment.min.js"></script>
 <script type="text/javascript">
+
+  function connectWebViewJavascriptBridge (callback) {
+    if (window.WebViewJavascriptBridge) {
+      callback(window.WebViewJavascriptBridge)
+    } else {
+      document.addEventListener('WebViewJavascriptBridgeReady', function () {
+        callback(window.WebViewJavascriptBridge)
+      }, false)
+      if (window.WVJBCallbacks) {
+        return window.WVJBCallbacks.push(callback)
+      }
+      window.WVJBCallbacks = [callback]
+      var WVJBIframe = document.createElement('iframe')
+      WVJBIframe.style.display = 'none'
+      WVJBIframe.src = 'https://__bridge_loaded__'
+      document.documentElement.appendChild(WVJBIframe)
+      setTimeout(function () {
+        document.documentElement.removeChild(WVJBIframe)
+      }, 0)
+    }
+  }
+  // 注册回调函数，第一次连接时调用 初始化函数
+  // bridge.init 只有android需要调用初始化，可以使用Object.keys(bridge) 打开查看对象，ios没有init方法
+  connectWebViewJavascriptBridge(function (bridge) {
+    try {
+      bridge.init(function (message, responseCallback) {
+        console.log('JS got a message', message)
+        var data = {
+          'Javascript Responds': 'CMYH!'
+        }
+        console.log('JS responding with', data)
+        responseCallback(data)
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  })
   let baseUrl = ''
   getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   // getQueryString('dev') ? baseUrl = 'http://192.168.0.115:8080' : baseUrl = 'http://api.wchoosemall.com'
   let token = ''
   getUserInfo()
   function getUserInfo (){
-    alert(111)
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         token = JSON.parse(response).token
