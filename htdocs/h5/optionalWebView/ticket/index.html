@@ -32,6 +32,7 @@
   getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   // getQueryString('dev') ? baseUrl = 'http://192.168.0.115:8080' : baseUrl = 'http://api.wchoosemall.com'
   let token = ''
+  getUserInfo()
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
