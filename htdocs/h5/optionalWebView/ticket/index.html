@@ -70,7 +70,6 @@
   let token = ''
   getUserInfo()
   function getUserInfo (){
-    alert(1)
     if (window.WebViewJavascriptBridge) {
       alert(2)
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
