@@ -17,13 +17,14 @@
 <body>
 
 <div class="top_menu">
-  <div class="common li-active">官方动态<div class="bottom-line"></div></div>
-  <div class="common">今日必推<div class="bottom-line"></div></div>
-  <div class="common">商品素材<div class="bottom-line"></div></div>
+  <div class="common li-active">今日必推<div class="bottom-line"></div></div>
   <div class="common">招商素材<div class="bottom-line"></div></div>
+  <div class="common">商品素材<div class="bottom-line"></div></div>
+  <div class="common">官方动态<div class="bottom-line"></div></div>
 </div>
 <div class="ul">
   <div class="bottom_content" style="left: 0;">
+    <div class="body_1"></div>
     <div class="body_1"></div>
     <div class="body_1"></div>
     <div class="body_1"></div>
@@ -85,11 +86,12 @@
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         token = JSON.parse(response).token
         // 默认信息
-        addData(0, 1, token)
+        addData(0, 1, 1, token)
 
-        let newInd = 1
-        let moreInd = 1
-        let basicInd = 1
+        let firInd = 1
+        let secInd = 1
+        let thiInd = 1
+        let fouInd = 1
         // tab切换功能（滑动）
         $('.bottom_content')[0].style.left = "0%"
         var startX = '',disX =''
@@ -99,22 +101,22 @@
             $('.body_1').eq(0).html('')
             $('.body_1').eq(2).html('')
             $('.body_1').eq(3).html('')
-            addData(1, newInd, token)
+            addData(1, 3, firInd, token)
           } else if (index === 2) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(1).html('')
             $('.body_1').eq(3).html('')
-            addData(2, moreInd, token)
+            addData(2, 2, secInd, token)
           } else if (index === 3) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(1).html('')
             $('.body_1').eq(2).html('')
-            addData(3, basicInd, token)
+            addData(3, 0, thiInd, token)
           } else {
             $('.body_1').eq(1).html('')
             $('.body_1').eq(2).html('')
             $('.body_1').eq(3).html('')
-            addData(0, basicInd, token)
+            addData(0 ,1, fouInd, token)
           }
           $('.bottom_content').css('left','-' + index * 100 + '%')
           $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
@@ -150,22 +152,22 @@
               $('.body_1').eq(0).html('')
               $('.body_1').eq(2).html('')
               $('.body_1').eq(3).html('')
-              addData(1, moreInd, token)
+              addData(1, 3, secInd, token)
             } else if (order === 2) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(1).html('')
               $('.body_1').eq(3).html('')
-              addData(2, basicInd, token)
+              addData(2, 2, thiInd, token)
             } else if (order === 3) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(1).html('')
               $('.body_1').eq(2).html('')
-              addData(3, basicInd, token)
+              addData(3, 0, thiInd, token)
             } else {
               $('.body_1').eq(1).html('')
               $('.body_1').eq(2).html('')
               $('.body_1').eq(3).html('')
-              addData(0, newInd, token)
+              addData(0, 1, fouInd, token)
             }
           }
         })
@@ -182,12 +184,12 @@
 
   // 调试数据
   // token = '1b455b4f79a342fe865606545614766'
+  // addData(0, 1, 1, token)
   // // 默认信息
-  // addData(0, 1, token)
-  //
-  // let newInd = 1
-  // let moreInd = 1
-  // let basicInd = 1
+  // let firInd = 1
+  // let secInd = 1
+  // let thiInd = 1
+  // let fouInd = 1
   // // tab切换功能（滑动）
   // $('.bottom_content')[0].style.left = "0%"
   // var startX = '',disX =''
@@ -197,22 +199,22 @@
   //     $('.body_1').eq(0).html('')
   //     $('.body_1').eq(2).html('')
   //     $('.body_1').eq(3).html('')
-  //     addData(1, newInd, token)
+  //     addData(1, 3, firInd, token)
   //   } else if (index === 2) {
   //     $('.body_1').eq(0).html('')
   //     $('.body_1').eq(1).html('')
   //     $('.body_1').eq(3).html('')
-  //     addData(2, moreInd, token)
+  //     addData(2, 2, secInd, token)
   //   } else if (index === 3) {
   //     $('.body_1').eq(0).html('')
   //     $('.body_1').eq(1).html('')
   //     $('.body_1').eq(2).html('')
-  //     addData(3, moreInd, token)
+  //     addData(3, 0, thiInd, token)
   //   } else {
   //     $('.body_1').eq(1).html('')
   //     $('.body_1').eq(2).html('')
   //     $('.body_1').eq(3).html('')
-  //     addData(0, basicInd, token)
+  //     addData(0, 1, fouInd, token)
   //   }
   //   $('.bottom_content').css('left','-' + index * 100 + '%')
   //   $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
@@ -248,22 +250,22 @@
   //       $('.body_1').eq(0).html('')
   //       $('.body_1').eq(2).html('')
   //       $('.body_1').eq(3).html('')
-  //       addData(1, moreInd, token)
+  //       addData(1, 3, secInd, token)
   //     } else if (order === 2) {
   //       $('.body_1').eq(0).html('')
   //       $('.body_1').eq(1).html('')
   //       $('.body_1').eq(3).html('')
-  //       addData(2, basicInd, token)
+  //       addData(2, 2, thiInd, token)
   //     } else if (order === 3) {
   //       $('.body_1').eq(0).html('')
   //       $('.body_1').eq(1).html('')
   //       $('.body_1').eq(2).html('')
-  //       addData(3, basicInd, token)
+  //       addData(3, 0, thiInd, token)
   //     } else {
   //       $('.body_1').eq(1).html('')
   //       $('.body_1').eq(2).html('')
   //       $('.body_1').eq(3).html('')
-  //       addData(0, newInd, token)
+  //       addData(0, 1, fouInd, token)
   //     }
   //   }
   // })
@@ -376,7 +378,7 @@
     allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, allList[index].videoUrl) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
   }
   // 数据拼接
-  function addData (index, page, token) {
+  function addData (inde, index, page, token) {
     const data = {
       type: index,
       page
@@ -391,27 +393,29 @@
       success: (res) => {
         allList = res.data.list
         const data = res.data.list
-        for (let i = 0; i < data.length; i++) {
-          let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
-          if (data[i].recommendedReason.length >= 125) {
-            fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
-          }
-          fir += `</div></div><div class="img-list"><div class="image clearfix">`
-          let sec = ``
-          if (data[i].videoUrl) {
-            sec += `<video id="video${i}" class="video-js" controls preload="auto" width="960" src="${data[i].videoUrl}" height="400" poster="${data[i].videoPicUrl}" data-setup="{}"></video>`
-          } else {
-            for (let j = 0; j < data[i].picUrls.length; j++) {
-              sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item img-big" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
+        if (data) {
+          for (let i = 0; i < data.length; i++) {
+            let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
+            if (data[i].recommendedReason.length >= 125) {
+              fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
             }
+            fir += `</div></div><div class="img-list"><div class="image clearfix">`
+            let sec = ``
+            if (data[i].videoUrl) {
+              sec += `<video id="video${i}" class="video-js" controls preload="auto" width="960" src="${data[i].videoUrl}" height="400" poster="${data[i].videoPicUrl}" data-setup="{}"></video>`
+            } else {
+              for (let j = 0; j < data[i].picUrls.length; j++) {
+                sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item img-big" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
+              }
+            }
+            const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
+            let zan = ``
+            data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
+            let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+            data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down += `<div class="value">${data[i].downloadNum}</div>`
+            const last = `</div></a></div></div>`
+            $('.body_1').eq(inde).append(fir + sec + thi + zan + down + last)
           }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
-          let zan = ``
-          data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
-          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
-          data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down += `<div class="value">${data[i].downloadNum}</div>`
-          const last = `</div></a></div></div>`
-          $('.body_1').eq(index).append(fir + sec + thi + zan + down + last)
         }
       }
     })
