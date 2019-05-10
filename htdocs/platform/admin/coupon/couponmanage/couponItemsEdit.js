@@ -574,14 +574,14 @@ $(function(){
 				    		var tr1 = '<tr>'+
 									  '<td><input type="checkbox" class="ckid" value="'+ couponComList[i].id +'"/></td>'+
 									  '<td>'+ couponComList[i].name +'</td>'+
-									  '<td>'+ couponComList[i].couponIdCounts +'</td>'+
+									  '<td title="'+couponComList[i].couponIdCounts+'">'+ couponComList[i].couponIdCounts.substring(0, 35) +'</td>'+
 							 	      '</tr>';
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponComList[i].id){
 						            tr1 = '<tr>'+
 									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ couponComList[i].id +'"/></td>'+
 									 '<td>'+ couponComList[i].name +'</td>'+
-									 '<td>'+ couponComList[i].couponIdCounts +'</td>'+
+									 '<td title="'+couponComList[i].couponIdCounts+'">'+ couponComList[i].couponIdCounts.substring(0, 35) +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
