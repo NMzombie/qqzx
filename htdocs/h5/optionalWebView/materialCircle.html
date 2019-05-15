@@ -182,7 +182,7 @@
 
 
 
-  // 调试数据
+  // // 调试数据
   // token = '1b455b4f79a342fe865606545614766'
   // addData(0, 1, 1, token)
   // // 默认信息
@@ -375,7 +375,7 @@
       success: (res) => {
       }
     })
-    allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, allList[index].videoUrl) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+    allList[index].videoUrl ? getMaterialPic(allList[index].picUrls, allList[index].recommendedReason, [allList[index].videoUrl]) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
   }
   // 数据拼接
   function addData (inde, index, page, token) {
@@ -427,7 +427,7 @@
       })
     } else {
       setTimeout(() => {
-        getMaterialPic(picUrls, content)
+        getMaterialPic(picUrls, content, videoUrl)
       }, 50)
     }
   }
