@@ -73,7 +73,7 @@
 
 
 
-  // token = '2a0b66e5f27a4b2b90e313fcf614766'
+  // token = '8d6ec0a98e384cb6b48799e82614867'
   // $.ajax({
   //   type: 'post',
   //   headers: {
@@ -143,7 +143,7 @@
   }
   function shareItem(ind) {
     if (window.WebViewJavascriptBridge) {
-      window.WebViewJavascriptBridge.callHandler('getShareTicket', {'id': list[ind].couponId, 'desc': '送你一张优惠券，快快收下吧', 'img': 'https://file.wchoosemall.com/platform/manager/pic/20190509/4137278132320155.png', 'name': list[ind].name, 'time': list[ind].grantWay === 2 ? `有效天数 ${list[ind].limitDays}天` : `有效期 ${moment(list[ind].startDate).format('YYYY.MM.DD')}-${moment(list[ind].endDate).format('YYYY.MM.DD')}`, 'link': getQueryString('dev') ? `http://devshop.wegoomall.cn/ticket?id=${list[ind].id}&linksign=${list[ind].linksign}` : `http://qqzxshop.wchoosemall.com/ticket?id=${list[ind].id}&linksign=${list[ind].linksign}`}, function (response) {
+      window.WebViewJavascriptBridge.callHandler('getShareTicket', {'id': list[ind].couponId, 'desc': '送你一张优惠券，快快收下吧', 'img': 'https://file.wchoosemall.com/platform/manager/pic/20190509/4137278132320155.png', 'name': list[ind].name, 'time': list[ind].grantWay === 2 ? `有效天数 ${list[ind].limitDays}天` : `有效期 ${moment(list[ind].startDate).format('YYYY.MM.DD')}-${moment(list[ind].endDate).format('YYYY.MM.DD')}`, 'link': getQueryString('dev') ? `http://devshop.wegoomall.cn/ticket?id=${list[ind].id}&linksign=${list[ind].linksign}&inviterId=${list[ind].mid}` : `http://qqzxshop.wchoosemall.com/ticket?id=${list[ind].id}&linksign=${list[ind].linksign}&inviterId=${list[ind].mid}`}, function (response) {
       })
     } else {
       setTimeout(() => {
