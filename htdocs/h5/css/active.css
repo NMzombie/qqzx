@@ -246,10 +246,10 @@ a {
   position: relative;
   float: left;
   width: 32.5%;
-  height: 4.3rem;
   background-color: #fff;
   margin-left: 0.09rem;
   margin-bottom: 0.19rem;
+  padding-bottom: 0.19rem;
 }
 
 .type-goods-2:nth-child(3n + 1) {
