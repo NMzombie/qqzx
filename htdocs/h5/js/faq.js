@@ -151,11 +151,11 @@ $(function () {
   for (let i = 0; i < data.length; i++) {
     fir += `<li class="acc"><div class="link clearfix"><div class="left"><img src="${data[i].img}" alt="" /><div class="title">${data[i].title}</div><div class="fa fa-chevron-down"></div></div>`
     if (data[i].contents.length <= 2) {
-      data[i].contents.length === 1 ? fir += `<div class="right"><a href="detail.html?id=${i}&index=0"><div class="detail one one-txt-cut">${data[i].contents[0].question}</div></a></div></li>` : fir += `<div class="right"><a href="detail.html?id=${i}&index=0"><div class="detail one-txt-cut">${data[i].contents[0].question}</div></a><a href="detail.html?id=${i}&index=1"><div class="detail one-txt-cut">${data[i].contents[1].question}</div></a></div></li>`
+      data[i].contents.length === 1 ? fir += `<div class="right"><a href="faqDetail.html?id=${i}&index=0"><div class="detail one one-txt-cut">${data[i].contents[0].question}</div></a></div></li>` : fir += `<div class="right"><a href="faqDetail.html?id=${i}&index=0"><div class="detail one-txt-cut">${data[i].contents[0].question}</div></a><a href="faqDetail.html?id=${i}&index=1"><div class="detail one-txt-cut">${data[i].contents[1].question}</div></a></div></li>`
     } else {
-      fir += `<div class="right"><a href="detail.html?id=${i}&index=0"><div class="detail one-txt-cut">${data[i].contents[0].question}</div></a><a href="detail.html?id=${i}&index=1"><div class="detail one-txt-cut">${data[i].contents[1].question}</div></a></div></div><ul class="submenu"><li>`
+      fir += `<div class="right"><a href="faqDetail.html?id=${i}&index=0"><div class="detail one-txt-cut">${data[i].contents[0].question}</div></a><a href="faqDetail.html?id=${i}&index=1"><div class="detail one-txt-cut">${data[i].contents[1].question}</div></a></div></div><ul class="submenu"><li>`
       for (let j = 2; j < data[i].contents.length; j++) {
-        fir += `<div class="clearfix"><div class="left"></div><div class="right"><a href="detail.html?id=${i}&index=${j}"><div class="detail">${data[i].contents[j].question}</div></a></div></div>`
+        fir += `<div class="clearfix"><div class="left"></div><div class="right"><a href="faqDetail.html?id=${i}&index=${j}"><div class="detail">${data[i].contents[j].question}</div></a></div></div>`
       }
       fir += `</li></ul></li>`
     }

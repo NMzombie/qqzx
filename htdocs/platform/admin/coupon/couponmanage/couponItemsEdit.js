@@ -574,14 +574,14 @@ $(function(){
 				    		var tr1 = '<tr>'+
 									  '<td><input type="checkbox" class="ckid" value="'+ couponComList[i].id +'"/></td>'+
 									  '<td>'+ couponComList[i].name +'</td>'+
-									  '<td>'+ couponComList[i].couponIdCounts +'</td>'+
+									  '<td title="'+couponComList[i].couponIdCounts+'">'+ couponComList[i].couponIdCounts.substring(0, 35) +'</td>'+
 							 	      '</tr>';
 				    		for (var j in ckAll_goodId) {
 				    			if(j == couponComList[i].id){
 						            tr1 = '<tr>'+
 									 '<td><input type="checkbox" class="ckid" checked="checked" value="'+ couponComList[i].id +'"/></td>'+
 									 '<td>'+ couponComList[i].name +'</td>'+
-									 '<td>'+ couponComList[i].couponIdCounts +'</td>'+
+									 '<td title="'+couponComList[i].couponIdCounts+'">'+ couponComList[i].couponIdCounts.substring(0, 35) +'</td>'+
 							 	     '</tr>';
 						        }
 				    		}
@@ -1328,6 +1328,57 @@ $('[id^="withdrawalDetail_"]').bind("click", function(e) {
           } 
     
     
-
+    function checkShareCouponForm(){
+        var couponId = $.trim($('#couponId').val());
+    	var transferNum = $.trim($('#transferNum').val());
+    	var shareLinkLimitDate = $.trim($('#shareLinkLimitDate').val());
+    	var mid = $('#memberCoupon').val();
+        if(!couponId){
+        	swal('优惠券ID不能为空！');
+            return false;
+        }
+        if(!transferNum){
+        	swal('张数不能为空！');
+            return false;
+        }
+        if(!shareLinkLimitDate){
+        	swal('有效期不能为空！');
+            return false;
+        }
+        $.ajax({
+                    url: "/admin/activity/couponmanage/sharingCoupon.json",
+                    data:{  "couponId":couponId,
+	                    	"transferNum":transferNum,
+	                    	"shareLinkLimitDate":shareLinkLimitDate,
+	                    	"mid":mid
+                    },
+                    type: "post",
+                    success:function(data){
+                        if(data.success){
+                        	swal({
+                        		title:'赠送成功!',
+                                showCloseButton: true,
+                                confirmButtonText: '确定',
+                                width:400,
+                                heigth:400
+                            }).then((result) => {
+                                    if(result.value){
+                                    	$('#couponId').val('');
+                                    	$('#transferNum').val('');
+                                    	$('#shareLinkLimitDate').val('');
+                                    	location.reload();
+                                    }
+                            })
+                            
+                        }else{
+                            swal(data.errorInfo);
+                        }
+                    },
+                    error:function(){
+                    	swal('请求出错');
+                    }
+         });
+        return false;
+    }
 
 	
