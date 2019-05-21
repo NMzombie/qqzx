@@ -73,6 +73,16 @@ body {
   background-repeat: no-repeat;
   background-size: 100%;
 }
+.ranking-his {
+  position: absolute;
+  z-index: 3;
+  top: 0.2rem;
+  right: 0.32rem;
+  font-size: 0.28rem;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight: 400;
+  color: rgba(255,255,255,1);
+}
 .main {
   position: relative;
   z-index: 3;
@@ -94,7 +104,6 @@ body {
   padding-bottom: 0.38rem;
   border-bottom: 0.01rem solid #d8d8d8;
 }
-
 .img-item {
   position: relative;
   float: left;
