@@ -430,7 +430,6 @@
   // 下拉
   function handleScroll () {
     if ($('.body_1').eq(state).html() === '') {
-      alert(111)
       return
     }
     // 变量scrollTop是滚动条滚动时，距离顶部的距离
@@ -441,6 +440,7 @@
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
     // 滚动条到底部的条件
     if (scrollTop + windowHeight === scrollHeight) {
+      alert(state)
       let type = 1
       let page = 1
       switch (state) {
@@ -465,7 +465,6 @@
           fouInd++
           break;
       }
-      alert(state)
       addData(state, type, page, token)
     }
   }
