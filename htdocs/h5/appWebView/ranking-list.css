@@ -76,7 +76,7 @@ body {
 .ranking-his {
   position: absolute;
   z-index: 3;
-  top: 0.6rem;
+  top: 0.55rem;
   right: 0.32rem;
   font-size: 0.28rem;
   font-family: PingFangSC-Regular, sans-serif;
