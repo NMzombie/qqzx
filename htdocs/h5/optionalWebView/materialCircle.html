@@ -429,7 +429,6 @@
   window.addEventListener('scroll', handleScroll)
   // 下拉
   function handleScroll () {
-    alert(state)
     if ($('.body_1').eq(state).html() === '') {
       return
     }
@@ -465,6 +464,7 @@
           fouInd++
           break;
       }
+      alert(state)
       addData(state, type, page, token)
     }
   }
