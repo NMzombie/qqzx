@@ -395,6 +395,7 @@
       success: (res) => {
         allList = res.data.list
         const data = res.data.list
+        alert(data)
         splicingData(data, inde)
       }
     })
@@ -440,7 +441,6 @@
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
     // 滚动条到底部的条件
     if (scrollTop + windowHeight === scrollHeight) {
-      alert(222)
       let type = 1
       let page = 1
       switch (state) {
