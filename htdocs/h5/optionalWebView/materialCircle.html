@@ -440,32 +440,32 @@
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
     // 滚动条到底部的条件
     if (scrollTop + windowHeight === scrollHeight) {
-      alert(firInd)
       let type = 1
       let page = 1
-      switch (state) {
-        case 0:
-          type = 1
-          page = firInd + 1
-          firInd++
-          break;
-        case 1:
-          type = 3
-          page = secInd + 1
-          secInd++
-          break;
-        case 2:
-          type = 2
-          page = thiInd + 1
-          thiInd++
-          break;
-        case 3:
-          type = 0
-          page = fouInd + 1
-          fouInd++
-          break;
-      }
-      addData(state, type, page, token)
+      alert(state)
+      // switch (state) {
+      //   case 0:
+      //     type = 1
+      //     page = firInd + 1
+      //     firInd++
+      //     break;
+      //   case 1:
+      //     type = 3
+      //     page = secInd + 1
+      //     secInd++
+      //     break;
+      //   case 2:
+      //     type = 2
+      //     page = thiInd + 1
+      //     thiInd++
+      //     break;
+      //   case 3:
+      //     type = 0
+      //     page = fouInd + 1
+      //     fouInd++
+      //     break;
+      // }
+      // addData(state, type, page, token)
     }
   }
 
