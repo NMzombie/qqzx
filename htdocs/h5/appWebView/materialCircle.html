@@ -102,6 +102,7 @@
         var startX = '',disX =''
         $('.top_menu').on('click','.common',function(){
           var index = $(this).index()
+          page = 1
           if (index === 1) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(2).html('')
@@ -160,6 +161,7 @@
               $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
             }
           }
+          page = 1
           firInd = 1
           secInd = 1
           thiInd = 1
