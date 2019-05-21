@@ -88,6 +88,7 @@
   let thiInd = 1
   let fouInd = 1
   let state = 0
+  let page = 1
   let loading = false
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
@@ -448,7 +449,6 @@
 
   window.addEventListener('scroll', handleScroll)
   // 下拉
-  let page = 1
   function handleScroll () {
     if ($('.body_1').eq(state).html() === '') {
       return
