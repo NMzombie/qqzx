@@ -81,6 +81,13 @@
   // 绑定token
   let token = ''
   getUserInfo()
+
+  // 默认信息
+  let firInd = 1
+  let secInd = 1
+  let thiInd = 1
+  let fouInd = 1
+  let state = 0
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
@@ -88,34 +95,35 @@
         // 默认信息
         addData(0, 1, 1, token)
 
-        let firInd = 1
-        let secInd = 1
-        let thiInd = 1
-        let fouInd = 1
         // tab切换功能（滑动）
         $('.bottom_content')[0].style.left = "0%"
         var startX = '',disX =''
         $('.top_menu').on('click','.common',function(){
           var index = $(this).index()
+          state = index
           if (index === 1) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(2).html('')
             $('.body_1').eq(3).html('')
+            firInd = 1
             addData(1, 3, firInd, token)
           } else if (index === 2) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(1).html('')
             $('.body_1').eq(3).html('')
+            secInd = 1
             addData(2, 2, secInd, token)
           } else if (index === 3) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(1).html('')
             $('.body_1').eq(2).html('')
+            thiInd = 1
             addData(3, 0, thiInd, token)
           } else {
             $('.body_1').eq(1).html('')
             $('.body_1').eq(2).html('')
             $('.body_1').eq(3).html('')
+            fouInd = 1
             addData(0 ,1, fouInd, token)
           }
           $('.bottom_content').css('left','-' + index * 100 + '%')
@@ -147,27 +155,36 @@
               $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
             }
           }
+          firInd = 1
+          secInd = 1
+          thiInd = 1
+          fouInd = 1
+          state = order
           if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
             if (order === 1) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(2).html('')
               $('.body_1').eq(3).html('')
+              secInd = 1
               addData(1, 3, secInd, token)
             } else if (order === 2) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(1).html('')
               $('.body_1').eq(3).html('')
+              thiInd = 1
               addData(2, 2, thiInd, token)
             } else if (order === 3) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(1).html('')
               $('.body_1').eq(2).html('')
-              addData(3, 0, thiInd, token)
+              fouInd = 1
+              addData(3, 0, fouInd, token)
             } else {
               $('.body_1').eq(1).html('')
               $('.body_1').eq(2).html('')
               $('.body_1').eq(3).html('')
-              addData(0, 1, fouInd, token)
+              firInd = 1
+              addData(0, 1, firInd, token)
             }
           }
         })
@@ -182,93 +199,98 @@
 
 
 
-  // // 调试数据
-  // token = '1b455b4f79a342fe865606545614766'
-  // addData(0, 1, 1, token)
-  // // 默认信息
-  // let firInd = 1
-  // let secInd = 1
-  // let thiInd = 1
-  // let fouInd = 1
-  // // tab切换功能（滑动）
-  // $('.bottom_content')[0].style.left = "0%"
-  // var startX = '',disX =''
-  // $('.top_menu').on('click','.common',function(){
-  //   var index = $(this).index()
-  //   if (index === 1) {
-  //     $('.body_1').eq(0).html('')
-  //     $('.body_1').eq(2).html('')
-  //     $('.body_1').eq(3).html('')
-  //     addData(1, 3, firInd, token)
-  //   } else if (index === 2) {
-  //     $('.body_1').eq(0).html('')
-  //     $('.body_1').eq(1).html('')
-  //     $('.body_1').eq(3).html('')
-  //     addData(2, 2, secInd, token)
-  //   } else if (index === 3) {
-  //     $('.body_1').eq(0).html('')
-  //     $('.body_1').eq(1).html('')
-  //     $('.body_1').eq(2).html('')
-  //     addData(3, 0, thiInd, token)
-  //   } else {
-  //     $('.body_1').eq(1).html('')
-  //     $('.body_1').eq(2).html('')
-  //     $('.body_1').eq(3).html('')
-  //     addData(0, 1, fouInd, token)
-  //   }
-  //   $('.bottom_content').css('left','-' + index * 100 + '%')
-  //   $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
-  // })
-  // $('.bottom_content').on('touchstart','.body_1',function(e){
-  //   startX = e.originalEvent.changedTouches[0].clientX
-  // })
-  // $('.bottom_content').on('touchmove','.body_1',function(e){
-  //   e.stopPropagation()
-  // })
-  // $('.bottom_content').on('touchend','.body_1',function(e){
-  //   disX = e.originalEvent.changedTouches[0].clientX - startX
-  //   var leftNum = parseInt($('.bottom_content')[0].style.left)
-  //   let order
-  //   if(disX > 0 && disX > 100) {
-  //     if(leftNum <= -100) {
-  //       $('.bottom_content')[0].style.left = leftNum + 100 + "%"
-  //       order = -parseInt($('.bottom_content')[0].style.left)/100
-  //       $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
-  //     }
-  //   } else if(disX < 0 && disX < -100) {
-  //     if ((-parseInt($('.bottom_content')[0].style.left))/100 === 2) {
-  //       return
-  //     }
-  //     if(leftNum >= -100) {
-  //       $('.bottom_content')[0].style.left = leftNum - 100 + "%"
-  //       order = (-parseInt($('.bottom_content')[0].style.left))/100
-  //       $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
-  //     }
-  //   }
-  //   if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
-  //     if (order === 1) {
-  //       $('.body_1').eq(0).html('')
-  //       $('.body_1').eq(2).html('')
-  //       $('.body_1').eq(3).html('')
-  //       addData(1, 3, secInd, token)
-  //     } else if (order === 2) {
-  //       $('.body_1').eq(0).html('')
-  //       $('.body_1').eq(1).html('')
-  //       $('.body_1').eq(3).html('')
-  //       addData(2, 2, thiInd, token)
-  //     } else if (order === 3) {
-  //       $('.body_1').eq(0).html('')
-  //       $('.body_1').eq(1).html('')
-  //       $('.body_1').eq(2).html('')
-  //       addData(3, 0, thiInd, token)
-  //     } else {
-  //       $('.body_1').eq(1).html('')
-  //       $('.body_1').eq(2).html('')
-  //       $('.body_1').eq(3).html('')
-  //       addData(0, 1, fouInd, token)
-  //     }
-  //   }
-  // })
+  // 调试数据
+  token = 'ff604057ca654ab5afa348ae81149337'
+  addData(0, 1, 1, token)
+  // tab切换功能（滑动）
+  $('.bottom_content')[0].style.left = "0%"
+  var startX = '',disX =''
+  $('.top_menu').on('click','.common',function(){
+    var index = $(this).index()
+    state = index
+    if (index === 1) {
+      $('.body_1').eq(0).html('')
+      $('.body_1').eq(2).html('')
+      $('.body_1').eq(3).html('')
+      secInd = 1
+      addData(1, 3, secInd, token)
+    } else if (index === 2) {
+      $('.body_1').eq(0).html('')
+      $('.body_1').eq(1).html('')
+      $('.body_1').eq(3).html('')
+      thiInd = 1
+      addData(2, 2, thiInd, token)
+    } else if (index === 3) {
+      $('.body_1').eq(0).html('')
+      $('.body_1').eq(1).html('')
+      $('.body_1').eq(2).html('')
+      thiInd = 1
+      addData(3, 0, thiInd, token)
+    } else {
+      $('.body_1').eq(1).html('')
+      $('.body_1').eq(2).html('')
+      $('.body_1').eq(3).html('')
+      firInd = 1
+      addData(0, 1, firInd, token)
+    }
+    $('.bottom_content').css('left','-' + index * 100 + '%')
+    $('.top_menu .common').eq(index).addClass('li-active').siblings().removeClass('li-active')
+  })
+  $('.bottom_content').on('touchstart','.body_1',function(e){
+    startX = e.originalEvent.changedTouches[0].clientX
+  })
+  $('.bottom_content').on('touchmove','.body_1',function(e){
+    e.stopPropagation()
+  })
+  $('.bottom_content').on('touchend','.body_1',function(e){
+    disX = e.originalEvent.changedTouches[0].clientX - startX
+    var leftNum = parseInt($('.bottom_content')[0].style.left)
+    let order
+    if(disX > 0 && disX > 100) {
+      if(leftNum <= -100) {
+        $('.bottom_content')[0].style.left = leftNum + 100 + "%"
+        order = -parseInt($('.bottom_content')[0].style.left)/100
+        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+      }
+    } else if(disX < 0 && disX < -100) {
+      if ((-parseInt($('.bottom_content')[0].style.left))/100 === 2) {
+        return
+      }
+      if(leftNum >= -100) {
+        $('.bottom_content')[0].style.left = leftNum - 100 + "%"
+        order = (-parseInt($('.bottom_content')[0].style.left))/100
+        $('.top_menu .common').eq(order).addClass('li-active').siblings().removeClass('li-active')
+      }
+    }
+    firInd = 1
+    secInd = 1
+    thiInd = 1
+    fouInd = 1
+    state = order
+    if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
+      if (order === 1) {
+        $('.body_1').eq(0).html('')
+        $('.body_1').eq(2).html('')
+        $('.body_1').eq(3).html('')
+        addData(1, 3, secInd, token)
+      } else if (order === 2) {
+        $('.body_1').eq(0).html('')
+        $('.body_1').eq(1).html('')
+        $('.body_1').eq(3).html('')
+        addData(2, 2, thiInd, token)
+      } else if (order === 3) {
+        $('.body_1').eq(0).html('')
+        $('.body_1').eq(1).html('')
+        $('.body_1').eq(2).html('')
+        addData(3, 0, thiInd, token)
+      } else {
+        $('.body_1').eq(1).html('')
+        $('.body_1').eq(2).html('')
+        $('.body_1').eq(3).html('')
+        addData(0, 1, fouInd, token)
+      }
+    }
+  })
 
 
 
@@ -298,26 +320,6 @@
       success: (res) => {
       }
     })
-    // if (att.attr('src').indexOf('zan.png') > -1) {
-    //   ht.html() === '点赞' ? ht.html(1) : ht.html(num + 1)
-    //   att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan-selected.png')
-    //   const data = {
-    //     id
-    //   }
-    //   $.ajax({
-    //     type: 'post',
-    //     headers: {
-    //       'Content-Type': 'application/x-www-form-urlencoded'
-    //     },
-    //     url: `${baseUrl}/doc/api/common/auth/materialCircle/addFavoriteNum.json?token=${token}`,
-    //     data: `data=${JSON.stringify(data)}`,
-    //     success: (res) => {
-    //     }
-    //   })
-    // } else {
-    //   ht.html() === '1' ? ht.html('点赞') : ht.html(num)
-    //   att.attr('src', 'http://file.wchoosemall.com/platform/manager/pic/zan.png')
-    // }
   }
 
   /*调起大图 S*/
@@ -393,30 +395,77 @@
       success: (res) => {
         allList = res.data.list
         const data = res.data.list
-        for (let i = 0; i < data.length; i++) {
-          let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
-          if (data[i].recommendedReason.length >= 125) {
-            fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
-          }
-          fir += `</div></div><div class="img-list"><div class="image clearfix">`
-          let sec = ``
-          if (data[i].videoUrl) {
-            sec += `<video id="video${i}" class="video-js" controls preload="auto" width="960" src="${data[i].videoUrl}" height="400" poster="${data[i].videoPicUrl}" data-setup="{}"></video>`
-          } else {
-            for (let j = 0; j < data[i].picUrls.length; j++) {
-              sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item img-big" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
-            }
-          }
-          const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
-          let zan = ``
-          data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
-          let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
-          data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down += `<div class="value">${data[i].downloadNum}</div>`
-          const last = `</div></a></div></div>`
-          $('.body_1').eq(inde).append(fir + sec + thi + zan + down + last)
-        }
+        splicingData(data, inde)
       }
     })
+  }
+
+  // 添加数据
+  function splicingData (data, inde) {
+    for (let i = 0; i < data.length; i++) {
+      let fir = `<div class="content"><div class="header-item clearfix"><img class="header-img" src="${data[i].avatar}" alt="" /><div class="name-item"><div class="name">${data[i].nickName}</div><div class="time">${moment(data[i].createTime).from(data[i].currentTime)}发布</div></div></div><div class="art"><div class="content-item"><div class="content-title clearfix"><div class="content-tag">${data[i].customLabel}</div><div class="title one-txt-cut">${data[i].title}</div></div><div class="detail txt-cut">${data[i].recommendedReason}</div>`
+      if (data[i].recommendedReason.length >= 125) {
+        fir += `<div class="open"><a href="javascript:void(0)" onclick="seeMore(${i})">全文</a></div>`
+      }
+      fir += `</div></div><div class="img-list"><div class="image clearfix">`
+      let sec = ``
+      if (data[i].videoUrl) {
+        sec += `<video id="video${i}" class="video-js" controls preload="auto" width="960" src="${data[i].videoUrl}" height="400" poster="${data[i].videoPicUrl}" data-setup="{}"></video>`
+      } else {
+        for (let j = 0; j < data[i].picUrls.length; j++) {
+          sec += `<div class="m-demo"><p><img class="img-item hidden" src="${data[i].picUrls[j]}_400w.jpg" /><img class="img-item img-big" src="${data[i].picUrls[j]}_400w.jpg" /></p></div>`
+        }
+      }
+      const thi = `</div></div><div class="operate clearfix"><a href="javascript:void(0)" onclick="zanOperate(${i}, ${data[i].favoriteNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon zan" src="http://file.wchoosemall.com/platform/manager/pic/zan.png" />`
+      let zan = ``
+      data[i].favoriteNum === 0 ? zan += `<div class="value">点赞</div>` : zan += `<div class="value">${data[i].favoriteNum}</div>`
+      let down = `</div></a><a href="javascript:void(0)" onclick="downloadOperate(${i}, ${data[i].downloadNum}, ${data[i].id})"><div class="operate-item clearfix"><img class="icon" src="http://file.wchoosemall.com/platform/manager/pic/download.png" />`
+      data[i].downloadNum === 0 ? down += `<div class="value">下载</div>` : down += `<div class="value">${data[i].downloadNum}</div>`
+      const last = `</div></a></div></div>`
+      $('.body_1').eq(inde).append(fir + sec + thi + zan + down + last)
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll)
+  // 下拉
+  function handleScroll () {
+    if ($('.body_1').eq(state).html() === '') {
+      return
+    }
+    // 变量scrollTop是滚动条滚动时，距离顶部的距离
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    // 变量windowHeight是可视区的高度
+    const windowHeight = document.documentElement.clientHeight || document.body.clientHeight
+    // 变量scrollHeight是滚动条的总高度
+    const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
+    // 滚动条到底部的条件
+    if (scrollTop + windowHeight === scrollHeight) {
+      let type = 1
+      let page = 1
+      switch (state) {
+        case 0:
+          type = 1
+          page = firInd + 1
+          firInd++
+          break;
+        case 1:
+          type = 3
+          page = secInd + 1
+          secInd++
+          break;
+        case 2:
+          type = 2
+          page = thiInd + 1
+          thiInd++
+          break;
+        case 3:
+          type = 0
+          page = fouInd + 1
+          fouInd++
+          break;
+      }
+      addData(state, type, page, token)
+    }
   }
 
   // app js bridge
