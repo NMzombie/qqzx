@@ -395,6 +395,7 @@
       success: (res) => {
         allList = res.data.list
         const data = res.data.list
+        alert(1)
         alert(inde)
         splicingData(data, inde)
       }
@@ -465,6 +466,7 @@
           fouInd++
           break;
       }
+      alert(state)
       addData(state, type, page, token)
     }
   }
