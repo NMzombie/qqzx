@@ -100,6 +100,7 @@
         $('.bottom_content')[0].style.left = "0%"
         var startX = '',disX =''
         $('.top_menu').on('click','.common',function(){
+          page = 1
           var index = $(this).index()
           if (index === 1) {
             $('.body_1').eq(0).html('')
@@ -140,6 +141,7 @@
           e.stopPropagation()
         })
         $('.bottom_content').on('touchend','.body_1',function(e){
+          page = 1
           disX = e.originalEvent.changedTouches[0].clientX - startX
           var leftNum = parseInt($('.bottom_content')[0].style.left)
           let order
