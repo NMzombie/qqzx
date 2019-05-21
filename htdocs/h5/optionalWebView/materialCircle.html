@@ -426,7 +426,9 @@
     }
   }
 
-  window.addEventListener('scroll', handleScroll)
+  setTimeout(() => {
+    window.addEventListener('scroll', handleScroll)
+  }, 500)
   // 下拉
   function handleScroll () {
     if ($('.body_1').eq(state).html() === '') {
@@ -442,30 +444,29 @@
     if (scrollTop + windowHeight === scrollHeight) {
       let type = 1
       let page = 1
-      alert(state)
-      // switch (state) {
-      //   case 0:
-      //     type = 1
-      //     page = firInd + 1
-      //     firInd++
-      //     break;
-      //   case 1:
-      //     type = 3
-      //     page = secInd + 1
-      //     secInd++
-      //     break;
-      //   case 2:
-      //     type = 2
-      //     page = thiInd + 1
-      //     thiInd++
-      //     break;
-      //   case 3:
-      //     type = 0
-      //     page = fouInd + 1
-      //     fouInd++
-      //     break;
-      // }
-      // addData(state, type, page, token)
+      switch (state) {
+        case 0:
+          type = 1
+          page = firInd + 1
+          firInd++
+          break;
+        case 1:
+          type = 3
+          page = secInd + 1
+          secInd++
+          break;
+        case 2:
+          type = 2
+          page = thiInd + 1
+          thiInd++
+          break;
+        case 3:
+          type = 0
+          page = fouInd + 1
+          fouInd++
+          break;
+      }
+      addData(state, type, page, token)
     }
   }
 
