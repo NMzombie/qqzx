@@ -439,8 +439,8 @@
     // 变量scrollHeight是滚动条的总高度
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
     // 滚动条到底部的条件
-    alert(state)
     if (scrollTop + windowHeight === scrollHeight) {
+      alert(state)
       let type = 1
       let page = 1
       switch (state) {
