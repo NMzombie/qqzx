@@ -95,7 +95,7 @@
     }
   }
   function seeMore (id) {
-    window.location.href = `./rankingHistoryDetail.html?activityId=${id}`
+    getQueryString('dev') ? window.location.href = `./rankingHistoryDetail.html?activityId=${id}&dev=1` : window.location.href = `./rankingHistoryDetail.html?activityId=${id}`
   }
 </script>
 </body>

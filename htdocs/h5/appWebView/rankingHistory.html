@@ -80,7 +80,6 @@
           url: `${baseUrl}/doc/api/common/auth/memberSales/getHistoryItemSales.json?token=${token}`,
           success: (res) => {
             const data = res.data
-            alert(data)
             let fir = ''
             for (let i = 0; i < data.list.length; i++) {
               fir += `<div class="item"><div class="info clearfix"><img src="${data.list[i].itemRankDTO.picUrls[0]}_400w.jpg" alt="" /><div class="detail"><div class="title one-txt-cut">${data.list[i].itemRankDTO.name}</div><div class="price clearfix"><div class="member">¥${level >= 10 ? priceFormat(data.list[i].itemRankDTO.memberPrice) : priceFormat(data.list[i].itemRankDTO.marketPrice)}</div><div class="market">市场价¥${level >= 10 ? priceFormat(data.list[i].itemRankDTO.marketPrice) : priceFormat(data.list[i].itemRankDTO.showPrice)}</div></div></div></div><div class="date clearfix"><div class="limit">活动时间：${moment(data.list[i].itemRankDTO.startDate).format('YYYY-MM-DD')}至${moment(data.list[i].itemRankDTO.endDate).format('YYYY-MM-DD')}</div><a href="javascript:void(0)" onclick="seeMore(${data.list[i].itemRankDTO.activityId})"><div class="more">查看排行＞</div></a></div></div>`
@@ -96,7 +95,7 @@
     }
   }
   function seeMore (id) {
-    window.location.href = `./rankingHistoryDetail.html?activityId=${id}`
+    getQueryString('dev') ? window.location.href = `./rankingHistoryDetail.html?activityId=${id}&dev=1` : window.location.href = `./rankingHistoryDetail.html?activityId=${id}`
   }
 </script>
 </body>
