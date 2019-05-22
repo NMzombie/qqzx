@@ -38,6 +38,7 @@
 <script src="./../js/video.min.js"></script>
 <script src="./../js/zh-CN.js"></script>
 <script type="text/javascript">
+  let page = 1
   function connectWebViewJavascriptBridge (callback) {
     if (window.WebViewJavascriptBridge) {
       callback(window.WebViewJavascriptBridge)
@@ -88,6 +89,7 @@
   let thiInd = 1
   let fouInd = 1
   let state = 0
+  let loading = false
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
@@ -100,6 +102,7 @@
         var startX = '',disX =''
         $('.top_menu').on('click','.common',function(){
           var index = $(this).index()
+          page = 1
           if (index === 1) {
             $('.body_1').eq(0).html('')
             $('.body_1').eq(2).html('')
@@ -163,6 +166,7 @@
           thiInd = 1
           fouInd = 1
           if (disX > 0 && disX > 100 || disX < 0 && disX < -100) {
+            page = 1
             if (order === 1) {
               $('.body_1').eq(0).html('')
               $('.body_1').eq(2).html('')
@@ -440,6 +444,7 @@
       const last = `</div></a></div></div>`
       $('.body_1').eq(inde).append(fir + sec + thi + zan + down + last)
     }
+    loading = false
   }
 
   window.addEventListener('scroll', handleScroll)
@@ -456,30 +461,34 @@
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
     // 滚动条到底部的条件
     if (scrollTop + windowHeight === scrollHeight) {
-      let type = 1
-      let page = 1
-      switch (state) {
-        case 0:
-          type = 1
-          page = firInd + 1
-          firInd++
-          break;
-        case 1:
-          type = 3
-          page = secInd + 1
-          secInd++
-          break;
-        case 2:
-          type = 2
-          page = thiInd + 1
-          thiInd++
-          break;
-        case 3:
-          type = 0
-          page = fouInd + 1
-          fouInd++
-          break;
+      if (loading) {
+        return
       }
+      loading = true
+      let type = 1
+      page++
+      // switch (state) {
+      //   case 0:
+      //     type = 1
+      //     page = firInd + 1
+      //     firInd++
+      //     break;
+      //   case 1:
+      //     type = 3
+      //     page = secInd + 1
+      //     secInd++
+      //     break;
+      //   case 2:
+      //     type = 2
+      //     page = thiInd + 1
+      //     thiInd++
+      //     break;
+      //   case 3:
+      //     type = 0
+      //     page = fouInd + 1
+      //     fouInd++
+      //     break;
+      // }
       addData(state, type, page, token)
     }
   }
