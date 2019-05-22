@@ -65,6 +65,7 @@
     }
   })
   let baseUrl = ''
+  alert(1)
   getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   getUserInfo()
   function getUserInfo (){
@@ -72,6 +73,8 @@
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         const token = JSON.parse(response).token
         const level = JSON.parse(response).level
+        alert(token)
+        alert(level)
         $.ajax({
           type: 'post',
           headers: {
