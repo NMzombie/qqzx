@@ -72,7 +72,6 @@
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         const token = JSON.parse(response).token
         const level = JSON.parse(response).level
-        alert(`${baseUrl}/doc/api/common/auth/memberSales/getHistoryItemSales.json?token=${token}`)
         $.ajax({
           type: 'post',
           headers: {
