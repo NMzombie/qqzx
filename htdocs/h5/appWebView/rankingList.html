@@ -6,7 +6,7 @@
   <title>今日爆款</title>
   <link rel="stylesheet" href="ranking-list.css">
   <meta content="maximum-dpr=2" name="flexible" />
-  <!--<script src="../js/flexible.js"></script>-->
+  <script src="../js/ua.js"></script>
   <script src="../js/jquery-1.10.2.js"></script>
   <script src="../js/util.js"></script>
 </head>
@@ -30,6 +30,9 @@
       deviceWidth = 320
     }
     document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px'
+  }
+  if (browser.versions.android) {
+    $('.ranking-his').css('top', '0.5rem')
   }
   let day = `${new Date().getFullYear()}`
   if (new Date().getMonth() < 9) {
