@@ -90,7 +90,6 @@
   function getStatusBar (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getStatusBar', {}, function (response) {
-        alert(response/100 + 0.25)
         const val = response / 100 + 0.25
         if (browser.versions.android) {
           $('.ranking-his').css('top', `${val}rem`)
