@@ -80,7 +80,9 @@
   getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   // 绑定token
   let token = ''
-  getUserInfo()
+  setTimeout(() => {
+    getUserInfo()
+  }, 300)
 
   // 默认信息
   let firInd = 1
