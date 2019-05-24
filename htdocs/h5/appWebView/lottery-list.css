@@ -56,34 +56,26 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
 }
 *{margin:0;padding:0}
 .item-list {
-  padding: 0.12rem;
+  padding: 0.24rem;
 }
 .item {
   margin: 0.12rem auto;
-  width: 7rem;
-  height: 2.3rem;
+  padding: 0.6rem 0.28rem;
   background-color: rgba(255,255,255,1);
   border-radius: 0.08rem;
 }
 .item .ope-item {
-  padding: 0.48rem 0.28rem 0.4rem 0.28rem;
-}
-.item .ope-item .name {
   position: relative;
   float: left;
-  width: 4.5rem;
-  font-size: 0.36rem;
-  font-family: PingFangSC-Medium, sans-serif;
-  font-weight: 500;
-  color: rgba(51,51,51,1);
 }
-.item .ope-item .btn {
+.item .share-btn {
   position: relative;
   float: right;
-  text-align: center;
+  margin-top: 0.27rem;
   width: 1.3rem;
   height: 0.56rem;
   line-height: 0.56rem;
+  text-align: center;
   background: linear-gradient(90deg,rgba(255,60,60,1) 0%,rgba(234,21,21,1) 100%);
   border-radius: 0.28rem;
   font-size: 0.24rem;
@@ -91,25 +83,15 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
   font-weight: 500;
   color: rgba(255,255,255,1);
 }
-.item .line {
-  background-color: #D8D8D8;
-  margin: 0 0.28rem;
-  height: 1px;
+.item .ope-item .name {
+  width: 4.5rem;
+  font-size: 0.36rem;
+  font-family: PingFangSC-Medium, sans-serif;
+  font-weight: 500;
+  color: rgba(51,51,51,1);
 }
-.item .detail-item {
-  padding: 0.25rem 0.28rem 0 0.28rem;
-}
-.item .detail-item .limit {
-  position: relative;
-  float: left;
-  font-size: 0.26rem;
-  font-family: PingFangSC-Regular, sans-serif;
-  font-weight: 400;
-  color: rgba(102,102,102,1);
-}
-.item .detail-item .view-more {
-  position: relative;
-  float: right;
+.item .ope-item .limit {
+  margin-top: 0.2rem;
   font-size: 0.26rem;
   font-family: PingFangSC-Regular, sans-serif;
   font-weight: 400;
