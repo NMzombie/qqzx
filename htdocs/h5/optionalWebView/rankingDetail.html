@@ -84,11 +84,10 @@
   function getStatusBar (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getStatusBar', {}, function (response) {
-        alert(response)
-        // const val = response / 100 + 0.6
-        // if (browser.versions.android) {
-        //   $('.header').css('padding-top', `${val}rem`)
-        // }
+        const val = response / 100 + 0.9
+        if (browser.versions.android) {
+          $('.header').css('padding-top', `${val}rem`)
+        }
       })
     } else {
       setTimeout(() => {
