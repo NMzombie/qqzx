@@ -88,6 +88,20 @@
   getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   let rankingList = ''
   getUserInfo()
+  getStatusBar()
+  // 获取Android顶部高度
+  function getStatusBar (){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getStatusBar', {}, function (response) {
+        alert(response)
+      })
+    } else {
+      setTimeout(() => {
+        getStatusBar()
+      }, 50)
+    }
+  }
+  // 获取用户信息
   function getUserInfo (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
