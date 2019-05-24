@@ -84,6 +84,7 @@
   function getStatusBar (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getStatusBar', {}, function (response) {
+        alert(response / 100 + 1.2)
         const val = response / 100 + 1.2
         if (browser.versions.android) {
           $('.header').css('padding-top', `${val}rem`)
