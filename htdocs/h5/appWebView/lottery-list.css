@@ -93,6 +93,25 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
 }
 .item .line {
   background-color: #D8D8D8;
-  height: 0.01rem;
-  width: 100%;
+  margin: 0 0.28rem;
+  height: 1px;
+}
+.item .detail-item {
+  padding: 0.25rem 0.28rem 0 0.28rem;
+}
+.item .detail-item .limit {
+  position: relative;
+  float: left;
+  font-size: 0.26rem;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight: 400;
+  color: rgba(102,102,102,1);
+}
+.item .detail-item .view-more {
+  position: relative;
+  float: right;
+  font-size: 0.26rem;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-weight: 400;
+  color: rgba(102,102,102,1);
 }
