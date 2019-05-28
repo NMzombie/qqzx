@@ -107,7 +107,6 @@
       window.WebViewJavascriptBridge.callHandler('getUserInfo', {}, function (response) {
         const token = JSON.parse(response).token
         const level = JSON.parse(response).level
-        $('.header-img').attr('src', JSON.parse(response).avatar)
         $.ajax({
           type: 'post',
           headers: {
@@ -141,7 +140,6 @@
   // 测试数据
   // const token = 'c1a0b35ad0854986b2f81b5cf614709'
   // const level = 10
-  // // $('.header-img').attr('src', JSON.parse(response).avatar)
   // $.ajax({
   //   type: 'post',
   //   headers: {
