@@ -8,6 +8,8 @@ $(function(){
 	var ckAll_countryCode = {};
 	var ckAll_memberID = {};
 	
+	var ckAll_coupon = {};
+	
 	//选择关联商品信息
 	$("#select_pro").bind("click", function(e) {
 		
@@ -18,7 +20,13 @@ $(function(){
 	
 	//选择关联优惠券运营赠送信息
 	$("#select_coupon").bind("click", function(e) {
-		
+		var page = '';
+		getoperationgivingCouponSerach(page,true);
+	});
+	
+	$('[id^="select_coupon_prize_"]').bind("click", function(e) {
+		var prizeId = $(this).attr("prizeId");
+		$("#prizeIdInCoupon").val(prizeId);
 		var page = '';
 		getoperationgivingCouponSerach(page,true);
 	});
@@ -508,8 +516,8 @@ $(function(){
         });
 	}
 	
-	//获取运营赠送优惠券信息
-	function getoperationgivingCouponSerach(page,isSingle){
+	//获取运营赠送优惠券信息  *******提升为全局函数
+	getoperationgivingCouponSerach = function (page,isSingle){
 		var id = $('#coupon_id').val();
 	 	var name = $('#coupon_name').val();
 		$.ajax({
@@ -946,6 +954,15 @@ $(function(){
 	    });
 	});
 	
+	//确定按钮事件
+	$('#coupon_prize_btn_ok').bind("click", function() {
+		var prizeIdInCoupon = $("#prizeIdInCoupon").val();
+		$("#objectId_"+prizeIdInCoupon).val(ckAll_coupon.couponId);
+		$("#objectName_"+prizeIdInCoupon).val(ckAll_coupon.couponName);
+		$('#myModal').hide();
+	    $('#myModal').removeClass('in');
+	    toContentData();
+	});
 	
 	//优惠券组合确定按钮事件
 	$('#coupon_com_btn_ok').bind("click", function() {
@@ -1157,13 +1174,16 @@ $(function(){
     function ckOperCoupons(){
         $("input[type='checkbox']").each(function() {
             $(this).on("click",function(){
+            	
                 $("input[type='checkbox']").each(function() {
                     this.checked = false;
                 });
                 this.checked = true;
                 ckAll_goodId = {};
+                ckAll_coupon = {};
                 ckAll_goodId[this.value] = this.value;
-
+                ckAll_coupon.couponId = this.value;
+                ckAll_coupon.couponName = $(this).parent().next().next().text();
             });
         });
     }
