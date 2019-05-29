@@ -114,6 +114,7 @@ ul {
 }
 .top_menu {
   width: 100%;
+  padding-top: 0.6rem;
   height: 0.86rem;
   display: flex;
   text-align: center;
