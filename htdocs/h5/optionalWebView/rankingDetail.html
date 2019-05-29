@@ -80,6 +80,9 @@
       console.log(e)
     }
   })
+  if (browser.versions.android) {
+    $('.header').css('padding', `0.8rem 0 0.1rem 0`)
+  }
   getStatusBar()
   // 获取Android顶部高度
   function getStatusBar (){
