@@ -72,7 +72,7 @@ ul {
   width: 100%
 }
 .header {
-  padding: 0.6rem 0 0.1rem 0;
+  padding: 0.1rem 0 0.1rem 0;
   background-color: #A10000;
 }
 .header .swiper {
@@ -114,7 +114,7 @@ ul {
 }
 .top_menu {
   width: 100%;
-  padding-top: 0.6rem;
+  padding-top: 0.26rem;
   height: 0.86rem;
   display: flex;
   text-align: center;
