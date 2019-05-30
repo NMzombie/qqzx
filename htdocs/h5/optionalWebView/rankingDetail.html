@@ -80,7 +80,7 @@
       console.log(e)
     }
   })
-  if (browser.versions.android || browser.versions.ios) {
+  if (browser.versions.android) {
     $('.header').css('padding', `0.68rem 0 0.1rem 0`)
   }
   getStatusBar()
@@ -89,7 +89,7 @@
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getStatusBar', {}, function (response) {
         const val = response / 100 + 0.05
-        if (browser.versions.android || browser.versions.ios) {
+        if (browser.versions.android) {
           $('.header').css('padding', `${val}rem 0 0.1rem 0`)
         }
       })

@@ -86,15 +86,12 @@
   let rankingList = ''
   getUserInfo()
   getStatusBar()
-  if (browser.versions.ios) {
-    $('.ranking-his').css('top', `0.55rem`)
-  }
   // 获取Android顶部高度
   function getStatusBar (){
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getStatusBar', {}, function (response) {
         const val = response / 100 + 0.25
-        if (browser.versions.android || browser.versions.ios) {
+        if (browser.versions.android) {
           $('.ranking-his').css('top', `${val}rem`)
         }
       })
