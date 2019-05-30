@@ -185,6 +185,7 @@
       url: `${baseUrl}/doc/api/common/auth/memberSales/${url}.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
+        $('.ranking-list').eq(type).html('')
         const extremeList = res.data.list
         for (let i = 0; i < extremeList.length; i++) {
           const fir = `<div class="item clearfix"><div class="left-item t-left">`
