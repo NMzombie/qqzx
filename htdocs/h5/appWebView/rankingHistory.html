@@ -67,7 +67,7 @@
   let baseUrl = ''
   getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   getUserInfo()
-  if (browser.versions.android) {
+  if (browser.versions.ios) {
     $('.item-list').css('margin-top', `0.6rem`)
   }
   getStatusBar()
@@ -76,7 +76,7 @@
     if (window.WebViewJavascriptBridge) {
       window.WebViewJavascriptBridge.callHandler('getStatusBar', {}, function (response) {
         const val = response / 100 + 0.25
-        if (browser.versions.android) {
+        if (browser.versions.ios) {
           $('.item-list').css('margin-top', `${val}rem`)
         }
       })
