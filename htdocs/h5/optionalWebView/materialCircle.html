@@ -414,6 +414,7 @@
       url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircleNew.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
+        console.log(res)
         allList = res.data.list
         const data = res.data.list
         splicingData(data, inde)
