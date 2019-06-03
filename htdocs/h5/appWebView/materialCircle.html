@@ -13,6 +13,7 @@
   <script src="../js/moment.min.js"></script>
   <script src="../js/cn.js"></script>
   <script src="../js/util.js"></script>
+  <script src="../js/ua.js"></script>
   <script src="../js/swiper.min.js"></script>
 </head>
 <body>
@@ -398,7 +399,11 @@
       success: (res) => {
       }
     })
-    allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, [allList[index].videoUrl]) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+    if (browser.versions.ios) {
+      allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, allList[index].videoUrl) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+    } else {
+      allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, [allList[index].videoUrl]) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+    }
   }
   // 数据拼接
   function addData (inde, index, page, token) {
