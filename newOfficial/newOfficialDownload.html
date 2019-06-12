@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <script src="js/jquery.js"></script>
+    <!-- 重置样式表 -->
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
+    <link rel="stylesheet" href="CSS/normalCSS.css">
+    <title>APP下载</title>
+    <style>
+        body{
+            background:rgba(255,255,255,1);
+        }
+        html {
+            overflow-y: scroll;
+        }
+        li{list-style-type:none;}
+        a {text-decoration: none;}
+        .background-image{
+            background: url("https://file.wchoosemall.com/platform/manager/pic/20190610/6915686305083820.png");
+            background-size: cover;
+            height: 640px;
+            width: 100%;
+            z-index: -999;
+        }
+        .use-process{
+            height: 710px;
+            background:rgba(255,255,255,1);
+            overflow: hidden;
+        }
+        .use-process-topic{
+            margin: 110px auto 147px auto;
+            display: flex;
+            justify-content: center;
+            min-width:1075px;
+            height:45px;
+            font-size:32px;
+            font-family:PingFangSC-Medium,sans-serif;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            line-height:45px;
+        }
+        .use-process-img{
+            width: 1048px;
+            height: 148px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto ;
+            padding: 0 10px;
+        }
+        .use-process-text-container{
+            width: 1048px;
+            margin: 0 auto 167px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+        .use-process-text{
+            width: 148px;
+            height: 93px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size:18px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:25px;
+        }
+        .banner-1{
+            min-width: 1140px;
+            height: 710px;
+            background:rgba(243,244,246,1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner-2{
+            min-width: 1170px;
+            height: 710px;
+            background:rgba(255,255,255,1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 30px;
+        }
+        .banner-1-container{
+            min-width: 1140px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .banner-1-content{
+            display: flex;
+            flex-direction: column;
+            height: 117px;
+            justify-content: space-between;
+        }
+        .banner-2-content{
+            display: flex;
+            flex-direction: column;
+            height: 147px;
+            justify-content: space-between;
+        }
+        .banner-1-topic{
+            font-size:32px;
+            font-family:PingFangSC-Medium,sans-serif;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            line-height:45px;
+        }
+        .banner-1-text{
+            font-size:16px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(155,155,155,1);
+            line-height:30px;
+            width: 384px;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+<!--侧边工具栏-->
+<div class="side-menu-container"></div>
+<div class="nav">
+    <div class="nav-2">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190606/6568484486060395.png" class="logo2" alt="">
+        <ul class="links">
+            <li><div class="nav-home" onclick="changeMenu(0)">首页</div></li>
+            <li><div class="nav-download" onclick="changeMenu(1)" style="color:rgba(212,32,24,1);">APP下载</div></li>
+            <li><div class="nav-consultation" onclick="changeMenu(2)">资讯</div></li>
+            <li><div class="nav-help" onclick="changeMenu(3)">帮助中心</div></li>
+            <li><div class="nav-about" onclick="changeMenu(4)">关于我们</div></li>
+        </ul>
+    </div>
+</div>
+<div class="background-image"></div>
+<div class="use-process">
+    <div class="use-process-topic">使用流程</div>
+    <div class="use-process-img">
+       <img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6916264746100841.png" alt="">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6916307594280248.png" alt="">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6916264756647137.png" alt="">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6916307594280248.png" alt="">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6916264757722325.png" alt="">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6916307594280248.png" alt="">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6916264766540577.png" alt="">
+    </div>
+    <div class="use-process-text-container">
+        <div class="use-process-text">下载APP</div>
+        <div class="use-process-text">注册全球自选</div>
+        <div class="use-process-text">输入邀请码</div>
+        <div class="use-process-text">购买特卖礼包</div>
+    </div>
+</div>
+<div class="banner-1">
+    <div class="banner-1-container">
+           <div class="banner-1-img"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14091761003540022.png" width="100%" height="100%" alt=""></div>
+           <div class="banner-1-content">
+               <div class="banner-1-topic">全球好物 甄选精品 专业货源</div>
+               <div class="banner-1-text">全球精选六大品类好货，品牌授权源头直选，人工质检正品保障，货优价廉，你想买的都在这里</div>
+           </div>
+    </div>
+</div>
+<div class="banner-2">
+    <div class="banner-1-container">
+        <div class="banner-2-content">
+            <div class="banner-1-topic">自用省钱 分享赚钱 超高奖励 </div>
+            <div class="banner-1-text">全球好货低价，精选爆款，满足嗨购需求；低投入，0风险；无需囤货，一件代发；加入会员即可享受超高返佣，与平台共享社交新零售市场万亿红利</div>
+        </div>
+        <div class="banner-1-img"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14257917999629541.png" width="100%" height="100%" alt=""></div>
+    </div>
+</div>
+<div class="banner-1">
+    <div class="banner-1-container">
+        <div class="banner-1-img"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14091760849662484.png" width="100%" height="100%" alt=""></div>
+        <div class="banner-1-content">
+            <div class="banner-1-topic">独立APP 扫码下载 方便快捷</div>
+            <div class="banner-1-text">
+                <div>手机轻轻一扫，全球好物随心购</div>
+                <div>在【全球自选】开启你的轻创业财富之旅，快来体验吧</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer" style="margin-top: 0">
+    <div class="footer-container"  style="height: 84px">
+        <div class="footer-nav">
+            <a href="">关于全球自选</a><div class="footer-line"></div>
+            <a href="">自选APP</a><div class="footer-line"></div>
+            <a href="">资讯动态</a><div class="footer-line"></div>
+            <a href="">常见问题</a>
+        </div>
+        <div style="white-space: nowrap; min-width: 508px">浙ICP备19001142号-1 © 2019-2010 杭州自选科技有限公司,All RIGHTS RESERVED.</div>
+        <div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6487721395327899.png" alt=""><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6487721385694615.png" style="margin-left:14px" alt=""></div>
+    </div>
+</div>
+</body>
+
+<script src="js/js.js"></script>
+<!--侧边工具栏组件-->
+<script type="text/javascript" src="js/sideMenu.js"></script>
+</html>

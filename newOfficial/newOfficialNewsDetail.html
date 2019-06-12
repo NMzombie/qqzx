@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <script src="js/jquery.js"></script>
+    <!-- 重置样式表 -->
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
+    <link rel="stylesheet" href="CSS/normalCSS.css">
+    <link rel="stylesheet" href="CSS/informationCss.css">
+    <link rel="stylesheet" href="CSS/myPagination.css">
+    <title>资讯中心</title>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        li{list-style-type:none;}
+        a {text-decoration: none;}
+        .news-detail-container{
+            width: 802px;
+            margin: 3px auto 12px auto;
+        }
+        .news-detail-topic{
+            height:33px;
+            font-size:24px;
+            font-family:PingFangSC-Medium,sans-serif;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            line-height:33px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-bottom: 11px;
+        }
+        .news-detail-bottom{
+            display: flex;
+        }
+        .news-detail-time{
+            width:139px;
+            height:20px;
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:20px;
+        }
+        .news-detail-heat{
+            margin-left: 42px;
+            height:20px;
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:20px;
+        }
+        .news-detail-content{
+            margin-top: 30px;
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:26px;
+        }
+        .news-detail-change{
+            width:880px;
+            height:122px;
+            background:rgba(247,247,247,1);
+            margin: 0 auto 30px auto;
+            overflow: hidden;
+        }
+        .news-detail-change-content{
+            max-width: 804px;
+            margin: 33px auto;
+            height: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:20px;
+        }
+        .rec-read{
+            width:64px;
+            height:22px;
+            font-size:16px;
+            font-family:PingFangSC-Medium,sans-serif;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            line-height:22px;
+            margin-left: 38px;
+            margin-bottom: 14px;
+        }
+        .rec-read-content{
+            width: 804px;
+            margin: 0 auto 39px auto;
+            height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .rec-read-content a{
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:20px;
+        }
+    </style>
+</head>
+<body>
+<!--侧边工具栏-->
+<div class="side-menu-container"  style="top:50%;"></div>
+<div class="nav">
+    <div class="nav-2">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190606/6568484486060395.png" class="logo2" alt="">
+        <ul class="links">
+            <li><div class="nav-home" onclick="changeMenu(0)">首页</div></li>
+            <li><div class="nav-download" onclick="changeMenu(1)">APP下载</div></li>
+            <li><div class="nav-consultation" onclick="changeMenu(2)"  style="color:rgba(212,32,24,1);">资讯</div></li>
+            <li><div class="nav-help" onclick="changeMenu(3)">帮助中心</div></li>
+            <li><div class="nav-about" onclick="changeMenu(4)">关于我们</div></li>
+        </ul>
+    </div>
+</div>
+<div class="background-image"></div>
+<div class="topic-top">
+    <div class="topic-top-text">资讯中心</div>
+    <div class="white-line"></div>
+</div>
+<div class="body-container">
+    <div class="news-center">
+        <div class="top-guide">
+            <div class="brown-icon"></div>
+            <div class="top-guide-content">
+                <div onclick="window.location.href='newOfficialHome.html'">首页</div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><div onclick="window.location.href='newOfficialInformation.html'">咨询中心</div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt="">自选动态
+            </div>
+        </div>
+        <div class="long-line"></div>
+        <div class="news-detail-container">
+            <div class="news-detail-topic">重磅！全球自选发布2018年Q4&全年财报：净收、净利双增长！</div>
+            <div class="news-detail-bottom">
+                <div class="news-detail-time">2019-04-24 18:10:09</div>
+                <div class="news-detail-heat">热度：<span style="color: #0e9aef">10</span></div>
+            </div>
+            <div class="news-detail-content">根据知识产权局商标局网站的介绍，华为于2018年8月24日发出申请，同年9月11日受理通知书发文，今年5月14日注册公告。专用权限期是从2019年5月14日到2029年5月13日。申请人为华为技术有限公司。<br><br>
+
+                使用该商标的商品/服务包括，智能手机、笔记本电脑、平板电脑、操作系统程序、图形加速器、模拟对话用聊天机器人软件、编译软件等二十多种软硬件商品/服务。<br><br>
+
+                近日，华为消费者业务CEO余承东在知名互联网人方兴东组建的老友群中透露，这是面向下一代技术而设计的操作系统，打通手机、电脑、平板、电视、汽车、智能穿戴，统一成一个操作系统。<br><br>
+
+                这个操作系统兼容全部安卓应用和所有Web应用。从“鸿蒙”涵盖的商品/服务来看，与余承东的介绍可以互相印证。<br><br>
+
+                余承东表示，华为自研操作系统最快今年秋天，最晚明年春天将可能面市。<br><br>
+
+                5月21日任正非接受国内媒体群访时，被问及“鸿蒙”系统是否在内部小范围使用，任正非未否认“鸿蒙”系统的存在。他说：“我们能做操作系统，但不一定是替代别人的做法，因为我们在人工智能、万物互联中本身也是需要，但是到底哪些用了、哪些没用，我不是很清楚。”<br><br>
+
+                但据英国金融时报报道，华为西欧业务副总裁Tim Watkins表示，华为的操作系统已在中国部分地区测试，预计很快能推出。<br><br>
+
+                值得一提的是，“鸿蒙”也符合华为一贯的命名方式。华为过往产品命名经常取自于神话传说，海思手机芯片系列名为“麒麟”，首款5G商用芯片名为“巴龙”，5G基站核心芯片名为“天罡”。甚至，华为还将紫龙、青鸟、朱雀、腾蛇、白虎等一众瑞兽祥禽也都给注册了。<br><br>
+
+                从命名来看，“鸿蒙”很符合当前国内操作系统的现状。鸿蒙原本是指中国神话传说的远古时代。传说盘古在开天地之前，世界是一团混沌的元气，这种自然的元气叫做鸿蒙，因此把那个时代称作鸿蒙时代。而当前，国内没有自己的PC和手机操作系统，也可以认为处于操作系统的“鸿蒙”阶段。<br><br>
+            </div>
+        </div>
+        <div class="news-detail-change">
+            <div class="news-detail-change-content">
+              <div class="change-pre">上一篇：社交电商驼小铃是什么?</div>
+              <div class="change-next">下一篇：淘宝新风口：淘宝启动国宝联萌计划</div>
+            </div>
+        </div>
+        <div class="rec-read">推荐阅读</div>
+        <div class="rec-read-content">
+            <a href="">社区团购怎么做?做好双链建设[供应链+团长链]</a>
+            <a href="">淘宝主图怎么优化?看完就知道！</a>
+            <a href="">微信小程序分销系统_小程序商城_小程序开发平台-Hishop销客多</a>
+            <a href="">微商系统开发</a>
+        </div>
+
+    </div>
+    <div class="sidebar">
+        <div class="new-rec">
+            <div class="top-guide">
+                <div class="brown-icon"></div>
+                <div class="top-guide-content">
+                    最新文章推荐
+                </div>
+            </div>
+            <div class="rec-line"></div>
+            <div class="new-rec-container">
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+            </div>
+        </div>
+        <div class="download">
+            <div class="download-img"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6902568180269020.png" width="159" height="159" alt=""></div>
+            <div class="download-text">
+                <div style="display: flex;justify-content: center">【全球自选】APP</div>
+                <div style="display: flex;justify-content: center;">购物享受批发价扫码立即下载</div>
+            </div>
+        </div>
+        <div class="hot-rec">
+            <div class="top-guide">
+                <div class="brown-icon"></div>
+                <div class="top-guide-content">
+                    最热文章推荐
+                </div>
+            </div>
+            <div class="rec-line"></div>
+            <div class="new-rec-container">
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="footer-container"  style="height: 84px">
+        <div class="footer-nav">
+            <a href="">关于全球自选</a><div class="footer-line"></div>
+            <a href="">自选APP</a><div class="footer-line"></div>
+            <a href="">资讯动态</a><div class="footer-line"></div>
+            <a href="">常见问题</a>
+        </div>
+        <div style="white-space: nowrap; min-width: 508px">浙ICP备19001142号-1 © 2019-2010 杭州自选科技有限公司,All RIGHTS RESERVED.</div>
+        <div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6487721395327899.png" alt=""><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6487721385694615.png" style="margin-left:14px" alt=""></div>
+    </div>
+</div>
+</body>
+
+<script src="js/js.js"></script>
+<!--侧边工具栏组件-->
+<script type="text/javascript" src="js/sideMenu.js"></script>
+</html>

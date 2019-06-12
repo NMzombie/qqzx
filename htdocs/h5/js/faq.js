@@ -159,6 +159,7 @@ $(function () {
       }
       fir += `</li></ul></li>`
     }
+
   }
   $('#accordion').append(fir)
 
