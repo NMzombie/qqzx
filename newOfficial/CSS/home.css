@@ -415,7 +415,7 @@
 
 .side-menu-container{
     width:238px;
-    height: 256px;
+    height: 192px;
     display: flex;
     justify-content: flex-end;
     position: fixed;
@@ -424,7 +424,7 @@
 }
 .side-menu{
     width:58px;
-    height: 256px;
+    height: 192px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -458,6 +458,6 @@
     display: none;
 }
 .tel-img{
-    margin-top: 132px;
+    margin-top: 66px;
     display: none;
 }
