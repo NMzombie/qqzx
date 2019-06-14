@@ -42,6 +42,9 @@ $(function () {
         $('html,body').animate({scrollTop:0},'slow');
     });
 
+    $(".morebox").on('click',function () {
+        window.location.href='newOfficialInformation.html'
+    })
 });
 function changeMenu(num) {
     if (num === 0) {

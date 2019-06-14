@@ -192,5 +192,6 @@ body{
 }
 .tel-img{
     margin-top: 66px;
-    display: none;
+    height: 58px;
+    display: block;
 }

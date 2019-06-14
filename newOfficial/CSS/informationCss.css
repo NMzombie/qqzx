@@ -139,7 +139,12 @@
     justify-content: space-between;
 }
 .news-content-topic{
+    width: auto;
+    display: inline-block;
     height:22px;
+
+}
+.news-content-topic a:hover, a:visited, a:link, a:active{
     font-size:16px;
     font-family:PingFangSC-Medium,sans-serif;
     font-weight:600;
@@ -200,7 +205,7 @@
     background:rgba(244,244,244,1);
     margin: 0 auto 22px auto;
 }
-.new-rec-container{
+.new-rec-container,.hot-rec-container{
     width: 272px;
     height: 156px;
     margin: 0 auto 29px auto;
@@ -208,8 +213,12 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.new-rec-container a{
-    height:20px;
+.new-rec-container div,.hot-rec-container div{
+    width: auto;
+    display: inline-block;
+
+}
+.new-rec-container a,.hot-rec-container a{
     font-size:14px;
     font-family:PingFangSC-Regular,sans-serif;
     font-weight:400;

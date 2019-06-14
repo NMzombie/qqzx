@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="copyright" content="全球自选 版权所有" />
+    <meta name="author" content="全球自选" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="yes" name="apple-touch-fullscreen">
@@ -12,7 +14,7 @@
     <link rel="stylesheet" href="CSS/normalCSS.css">
     <link rel="stylesheet" href="CSS/informationCss.css">
     <link rel="stylesheet" href="CSS/myPagination.css">
-    <title>资讯中心</title>
+    <title>全球自选资讯 - 社交电商新闻_新零售行业动态</title>
     <style>
         html {
             overflow-y: scroll;
@@ -103,7 +105,11 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .rec-read-content a{
+        .rec-read-content div{
+            width: auto;
+            display: inline-block;
+        }
+        .rec-read-content a:hover, a:visited, a:link, a:active{
             font-size:14px;
             font-family:PingFangSC-Regular,sans-serif;
             font-weight:400;
@@ -111,13 +117,22 @@
             line-height:20px;
         }
     </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e13d9d4b40bace93f3151eeee9c7a741";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
 <!--侧边工具栏-->
 <div class="side-menu-container"  style="top:50%;"></div>
 <div class="nav">
     <div class="nav-2">
-        <img src="https://file.wchoosemall.com/platform/manager/pic/20190606/6568484486060395.png" class="logo2" alt="">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190614/14605770643972654.png" class="logo2" alt="">
         <ul class="links">
             <li><div class="nav-home" onclick="changeMenu(0)">首页</div></li>
             <li><div class="nav-download" onclick="changeMenu(1)">APP下载</div></li>
@@ -174,10 +189,10 @@
         </div>
         <div class="rec-read">推荐阅读</div>
         <div class="rec-read-content">
-            <a href="">社区团购怎么做?做好双链建设[供应链+团长链]</a>
-            <a href="">淘宝主图怎么优化?看完就知道！</a>
-            <a href="">微信小程序分销系统_小程序商城_小程序开发平台-Hishop销客多</a>
-            <a href="">微商系统开发</a>
+            <div><a href="">社区团购怎么做?做好双链建设[供应链+团长链]</a></div>
+            <div><a href="">淘宝主图怎么优化?看完就知道！</a></div>
+            <div><a href="">微信小程序分销系统_小程序商城_小程序开发平台-Hishop销客多</a></div>
+            <div><a href="">微商系统开发</a></div>
         </div>
 
     </div>
@@ -191,11 +206,6 @@
             </div>
             <div class="rec-line"></div>
             <div class="new-rec-container">
-                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
-                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
-                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
-                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
-                <a>从线状风控到网状风控“京东快银”用数到网状风控“京东快银”用数</a>
             </div>
         </div>
         <div class="download">
@@ -239,6 +249,7 @@
 </body>
 
 <script src="js/js.js"></script>
+<script src="js/News-info.js"></script>
 <!--侧边工具栏组件-->
 <script type="text/javascript" src="js/sideMenu.js"></script>
 </html>
