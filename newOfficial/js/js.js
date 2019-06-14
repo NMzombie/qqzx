@@ -45,7 +45,7 @@ $(function () {
 });
 function changeMenu(num) {
     if (num === 0) {
-        window.location.href='newOfficialHome.html'
+        window.location.href='index.html'
     }
     if (num === 1) {
         window.location.href='newOfficialDownload.html'
