@@ -133,7 +133,7 @@ ul {
   padding: 0 0.36rem 0 1.24rem;
 }
 .content-title {
-  height: 0.42rem;
+  /*height: 0.42rem;*/
   line-height: 0.42rem;
 }
 .content-title .content-tag {
