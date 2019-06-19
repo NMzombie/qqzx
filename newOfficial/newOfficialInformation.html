@@ -67,13 +67,15 @@
         </div>
         <div class="long-line"></div>
         <div class="news-nav">
-            <div class="news-nav-text news-nav-text-choose">自选动态</div>
-            <div class="news-nav-text" onclick="alert('尚未开通')">媒体报道</div>
-            <div class="news-nav-text" onclick="alert('尚未开通')">行业动态</div>
+            <div class="news-nav-text news-nav-text-choose" onclick="dynamicClick()">自选动态</div>
+            <div class="news-nav-text" onclick="mediaClick()">媒体报道</div>
+            <div class="news-nav-text" onclick="industryClick()">行业动态</div>
         </div>
         <div class="news-content-container">
         </div>
-            <div id="pagination" class="pagination"></div>
+
+        <!--分页 开发中-->
+            <!--<div id="pagination" class="pagination"></div>-->
     </div>
     <div class="sidebar">
        <div class="new-rec">
@@ -112,10 +114,10 @@
 <div class="footer">
     <div class="footer-container"  style="height: 84px">
         <div class="footer-nav">
-            <a href="newOfficialAbout.html">关于全球自选</a><div class="footer-line"></div>
-            <a href="newOfficialDownload.html">自选APP</a><div class="footer-line"></div>
-            <a href="newOfficialInformation.html">资讯动态</a><div class="footer-line"></div>
-            <a href="newOfficialHelp.html">常见问题</a>
+            <a href="http://www.wchoosemall.com/newOfficial/newOfficialAbout.html">关于全球自选</a><div class="footer-line"></div>
+            <a href="http://www.wchoosemall.com/newOfficial/newOfficialDownload.html">自选APP</a><div class="footer-line"></div>
+            <a href="http://www.wchoosemall.com/newOfficial/newOfficialInformation.html">资讯动态</a><div class="footer-line"></div>
+            <a href="http://www.wchoosemall.com/newOfficial/newOfficialHelp.html">常见问题</a>
         </div>
         <div style="white-space: nowrap; min-width: 508px">浙ICP备19001142号-1 © 2019-2010 杭州自选科技有限公司,All RIGHTS RESERVED.</div>
         <div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6487721395327899.png" alt=""><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6487721385694615.png" style="margin-left:14px" alt=""></div>
@@ -126,32 +128,36 @@
 
 <script>
 $(function () {
-    window.onload = function () {
-        new Page({
-            id: 'pagination',
-            pageTotal: 1, //必填,总页数
-            pageAmount: 5,  //每页多少条
-            dataTotal: 5, //总共多少条数据
-            curPage:1, //初始页码,不填默认为1
-            pageSize: 5, //分页个数,不填默认为5
-            showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
-            showSkipInputFlag:true, //是否支持跳转,不填默认不显示
-            getPage: function (page) {
-                //获取当前页数
-                console.log(page);
-            }
+    // window.onload = function () {
+    //     new Page({
+    //         id: 'pagination',
+    //         pageTotal: 1, //必填,总页数
+    //         pageAmount: 5,  //每页多少条
+    //         dataTotal: 5, //总共多少条数据
+    //         curPage:1, //初始页码,不填默认为1
+    //         pageSize: 5, //分页个数,不填默认为5
+    //         showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
+    //         showSkipInputFlag:true, //是否支持跳转,不填默认不显示
+    //         getPage: function (page) {
+    //             //获取当前页数
+    //             console.log(page);
+    //         }
+    //     })
+    // };
+        $('.news-nav-text').click(function () {
+            $(this).addClass("news-nav-text-choose");
+            $(this).siblings().removeClass("news-nav-text-choose");
         })
-    };
-        // $('.news-nav-text').click(function () {
-        //     $(this).addClass("news-nav-text-choose");
-        //     $(this).siblings().removeClass("news-nav-text-choose");
-        // })
 
 })
 </script>
+<script src="js/moment.min.js"></script>
 <script src="js/js.js"></script>
-<script src="js/News-info.js"></script>
-<script src="js/myPagination.js"></script>
+<script src="../htdocs/h5/js/util.js"></script>
+<script src="js/News-info-home.js"></script>
+<script src="js/News-info-news.js"></script>
+<!--分页  开发中↓-->
+<!--<script src="js/myPagination.js"></script>-->
 <!--侧边工具栏组件-->
 <script type="text/javascript" src="js/sideMenu.js"></script>
 </html>

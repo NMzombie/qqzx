@@ -110,7 +110,7 @@
 }
 .news-content-container{
     width: 802px;
-    height: 864px;
+    min-height: 864px;
     margin: 0 auto 57px auto;
 }
 .news-content{
@@ -216,7 +216,14 @@
 .new-rec-container div,.hot-rec-container div{
     width: auto;
     display: inline-block;
-
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size:14px;
+    font-family:PingFangSC-Regular,sans-serif;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    line-height:20px;
 }
 .new-rec-container a,.hot-rec-container a{
     font-size:14px;

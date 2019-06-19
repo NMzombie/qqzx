@@ -2,19 +2,22 @@
     margin: 0 auto;
     position: relative;
     width: 100%;
-    min-width: 920px;
-    height: 900px;
+    /*height: 900px;*/
     zoom: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .flexslider ul{
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 
 .flexslider .slides li {
     width: 100%;
-    min-height: 900px;
+    /*height: 900px;*/
 }
 
 .flex-direction-nav {
@@ -44,10 +47,11 @@
 
 .flex-control-nav {
     width: 100%;
-    position: absolute;
-    bottom: 22px;
+    /*position: absolute;*/
+    /*bottom: 22px;*/
     text-align: center;
     padding: 0;
+    margin-top: -60px;
 }
 
 .flex-control-nav li {
@@ -134,7 +138,7 @@
     background-image: url("https://file.wchoosemall.com/platform/manager/pic/20190604/6391677053254793.png");
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 86px auto 20px;
+    margin: 146px auto 20px;
 }
 .red-icon{
     width:43px;
@@ -279,8 +283,13 @@
     background-color:#F8374D
 }
 .news-text-topic{
+    width: auto;
+    display: inline-block;
     margin: 12px 12px;
-    width:335px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width:335px;
     height:21px;
     font-size:15px;
     font-family:PingFangSC-Medium,sans-serif;
@@ -299,11 +308,15 @@
      line-height:17px;
      display: flex;
      flex-direction: column;
-     justify-content: space-between;
+     justify-content: flex-start;
+}
+.news-text-container>div{
+    margin-bottom: 12px;
 }
 .news-text-content{
     /*不换行*/
     width: auto;
+    max-width: 264px;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
@@ -419,6 +432,7 @@
     width: 330px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .footer-line{
     width:1px;

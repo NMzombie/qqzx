@@ -1,4 +1,5 @@
 $(function () {
+
     $('.side-menu-download').mouseover(function () {
         $(".side-menu-download .side-menu-text").css("color","white");
         $(".side-menu-download").css("background","rgba(238,39,28,1)");
@@ -44,22 +45,25 @@ $(function () {
 
     $(".morebox").on('click',function () {
         window.location.href='newOfficialInformation.html'
-    })
+    });
+
+
+
 });
 function changeMenu(num) {
     if (num === 0) {
-        window.location.href='index.html'
+        window.location.href=`${baseUrl}`
     }
     if (num === 1) {
-        window.location.href='newOfficialDownload.html'
+        window.location.href=`${baseUrl}/newOfficial/newOfficialDownload.html`
     }
     if (num === 2) {
-        window.location.href='newOfficialInformation.html'
+        window.location.href=`${baseUrl}/newOfficial/newOfficialInformation.html`
     }
     if (num === 3) {
-        window.location.href='newOfficialHelp.html'
+        window.location.href=`${baseUrl}/newOfficial/newOfficialHelp.html`
     }
     if (num === 4) {
-        window.location.href='newOfficialAbout.html'
+        window.location.href=`${baseUrl}/newOfficial/newOfficialAbout.html`
     }
 }
