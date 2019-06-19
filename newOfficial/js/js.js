@@ -44,7 +44,7 @@ $(function () {
     });
 
     $(".morebox").on('click',function () {
-        window.location.href='newOfficialInformation.html'
+        window.location.href=`${baseUrl}/newOfficial/newOfficialInformation.html`
     });
 
 });
