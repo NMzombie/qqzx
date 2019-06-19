@@ -287,8 +287,17 @@
 }
 .news-item-img{
     height: 177px;
-    background-color:#F8374D
+    background-color:#F8374D;
+    overflow: hidden;
 }
+.news-item-img img{
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.news-item-img img:hover{
+    transform: scale(1.05);
+}
+
 .news-text-topic{
     width: auto;
     display: inline-block;

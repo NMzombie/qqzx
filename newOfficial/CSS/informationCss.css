@@ -124,7 +124,16 @@
     width:200px;
     height:124px;
     background:rgba(216,216,216,1);
+    overflow: hidden;
 }
+.news-content-img img{
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.news-content-img img:hover{
+    transform: scale(1.05);
+}
+
 .news-content-aside{
     height: 124px;
     display: flex;
