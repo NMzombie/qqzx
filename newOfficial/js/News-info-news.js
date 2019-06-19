@@ -1,5 +1,3 @@
-let baseUrl = '';
-getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://www.wchoosemall.com';
 $(function () {
 const orderId = {
         order : "id"

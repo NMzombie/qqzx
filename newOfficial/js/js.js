@@ -1,3 +1,5 @@
+let baseUrl = '';
+window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://wchoosemall.com';
 $(function () {
     $('.side-menu-download').mouseover(function () {
         $(".side-menu-download .side-menu-text").css("color","white");
@@ -48,7 +50,7 @@ $(function () {
 });
 function changeMenu(num) {
     let baseUrl = '';
-    window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://dev.wegoomall.cn';
+    window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://wchoosemall.com';
     if (num === 0) {
         window.location.href=`${baseUrl}`
     }
