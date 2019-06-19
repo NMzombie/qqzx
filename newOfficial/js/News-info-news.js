@@ -4,7 +4,7 @@ const orderId = {
     };
 
 $.ajax({
-        type: 'get',
+        type: 'post',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -28,7 +28,7 @@ $.ajax({
     });
 
 $.ajax({
-        type: 'get',
+        type: 'post',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -48,7 +48,7 @@ $.ajax({
         order : "clickNum"
     };
 $.ajax({
-        type: 'get',
+        type: 'post',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -69,7 +69,7 @@ $.ajax({
 
 function dynamicClick() {
 $.ajax({
-        type: 'get',
+        type: 'post',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -97,7 +97,7 @@ $.ajax({
 
 function mediaClick() {
 $.ajax({
-        type: 'get',
+        type: 'post',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -122,7 +122,7 @@ $.ajax({
 
 function industryClick() {
 $.ajax({
-        type: 'get',
+        type: 'post',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
