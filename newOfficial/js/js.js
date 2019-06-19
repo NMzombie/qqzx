@@ -1,4 +1,6 @@
+// URL配置
 let baseUrl = '';
+// window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://localhost:63342/platfrom-htdocs';
 window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://wchoosemall.com';
 $(function () {
     $('.side-menu-download').mouseover(function () {
@@ -48,9 +50,8 @@ $(function () {
     });
 
 });
+// 正式环境：
 function changeMenu(num) {
-    let baseUrl = '';
-    window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://wchoosemall.com';
     if (num === 0) {
         window.location.href=`${baseUrl}`
     }
@@ -67,3 +68,5 @@ function changeMenu(num) {
         window.location.href=`${baseUrl}/newOfficial/newOfficialAbout.html`
     }
 }
+
+
