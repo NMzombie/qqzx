@@ -9,9 +9,6 @@ $(function () {
         // data: `data=${JSON.stringify(activityId)}`,
         success: (res) => {
             const data = res.data;
-            if (res.list.length === 0) {
-
-            } else {}
             let dynamic = 0;
             let media = 0;
             let industry = 0;
