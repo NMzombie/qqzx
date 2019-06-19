@@ -5,6 +5,7 @@ const orderId = {
     const orderHot = {
         order : "clickNum"
     };
+    // 默认加载自选动态
 $.ajax({
         type: 'post',
         headers: {
@@ -18,9 +19,9 @@ $.ajax({
             for (let i = 0; i < data.list.length; i++){
                 if (data.list[i].articleType === 0) {
                     if (content === '') {
-                        content = `<div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content = `<div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     } else {
-                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     }
                 }
             }
@@ -29,6 +30,7 @@ $.ajax({
 
         }
     });
+
     // 资讯页最新文章推荐
 $.ajax({
         type: 'post',
@@ -81,15 +83,13 @@ $.ajax({
            for (let i = 0; i < data.list.length; i++){
                if (data.list[i].articleType === 0) {
                     if (content === '') {
-                        content = `<div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content = `<div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     } else {
-                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     }
                 }
             }
             $('.news-content-container').html(content);
-           console.log(this)
-
         }
 });
 }
@@ -109,9 +109,9 @@ $.ajax({
             for (let i = 0; i < data.list.length; i++){
                 if (data.list[i].articleType === 1) {
                     if (content === '') {
-                        content = `<div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content = `<div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     } else {
-                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     }
                 }
             }
@@ -134,9 +134,9 @@ $.ajax({
             for (let i = 0; i < data.list.length; i++){
                 if (data.list[i].articleType === 2) {
                     if (content === '') {
-                        content = `<div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content = `<div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     } else {
-                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     }
                 }
             }
