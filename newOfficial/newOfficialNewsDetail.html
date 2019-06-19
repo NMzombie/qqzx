@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="copyright" content="全球自选 版权所有" />
+    <meta name="author" content="全球自选" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <!-- 重置样式表 -->
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <title>全球自选资讯 - 社交电商新闻_新零售行业动态</title>
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        li{list-style-type:none;}
+        a {text-decoration: none;}
+        body{
+            background:rgba(243,244,246,1);
+            margin: 0;
+            padding: 0;
+        }
+        .background-image{
+            background: url("https://file.wchoosemall.com/platform/manager/pic/20190606/6578197342686205.png");
+            background-size: cover;
+            height: 512px;
+            position: absolute;
+            top: 88px;
+            width: 100%;
+            z-index: -999;
+        }
+        .topic-top{
+            margin: 155px auto 0;
+            max-width:1138px;
+            height: 57px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-left: 20px;
+        }
+        .topic-top-text{
+            font-size:26px;
+            color:rgba(255,255,255,1);
+            line-height:35px;
+        }
+        .white-line{
+            width:38px;
+            height:4px;
+            background:rgba(255,255,255,1);
+        }
+        .body-container{
+            max-width: 1200px;
+            margin: 41px auto 56px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .news-center{
+            min-width: 880px;
+            width:880px;
+            background:rgba(255,255,255,1);
+            border-radius:6px;
+        }
+        .sidebar{
+            width: 307px;
+            height: 862px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 5px;
+        }
+        .top-guide{
+            margin: 0;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .brown-icon{
+            width:4px;
+            height:20px;
+            background:rgba(199,161,100,1);
+        }
+        .top-guide-content{
+            display: flex;
+            align-items: center;
+            font-size:16px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:22px;
+            margin-left: 13px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-right: 39px;
+        }
+        .top-guide-content div{
+            cursor: pointer;
+        }
+        .long-line{
+            width:845px;
+            height:1px;
+            background:rgba(244,244,244,1);
+            margin: 0 auto 27px auto;
+        }
+        .news-content-topic a:hover, a:visited, a:link, a:active{
+            font-size:16px;
+            font-family:PingFangSC-Medium,sans-serif;
+            font-weight:600;
+            color:rgba(51,51,51,1);
+            line-height:22px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .new-rec{
+            width:307px;
+            height:250px;
+            background:rgba(255,255,255,1);
+            border-radius:2px;
+        }
+        .rec-line{
+            width:274px;
+            height:1px;
+            background:rgba(244,244,244,1);
+            margin: 0 auto 22px auto;
+        }
+        .new-rec-container,.hot-rec-container{
+            width: 272px;
+            height: 156px;
+            margin: 0 auto 29px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .new-rec-container div,.hot-rec-container div{
+            width: auto;
+            display: inline-block;
+
+        }
+        .new-rec-container a,.hot-rec-container a{
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:20px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .download{
+            width:307px;
+            height:314px;
+            background:rgba(255,255,255,1);
+            border-radius:2px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .download-img{
+            margin: 49px auto 20px;
+            width:159px;
+            height:159px;
+        }
+        .download-text{
+            width: 215px;
+            height: 69px;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+        }
+        .download-text div{
+            overflow: hidden;
+            white-space: nowrap;
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:24px;
+        }
+        .hot-rec{
+            width:307px;
+            height:250px;
+            background:rgba(255,255,255,1);
+            box-shadow:0 4px 12px 0 rgba(237,237,237,1);
+            border-radius:2px;
+        }
+
+        .nav{
+            width: 100%;
+            height: 88px;
+            top:0;
+            position: absolute;
+            z-index: 999;
+            background-color: white;
+            box-shadow:0 2px 4px 0 rgba(206,206,206,0.5);
+        }
+        .nav .nav-2 {
+            position: relative;
+            width: 1168px;
+            margin: auto;
+            min-height: 88px;
+            padding-left: 20px;
+        }
+        .logo{
+            display: inline-block;
+            width:180px;
+            height:88px;
+        }
+        .logo2{
+            display: inline-block;
+            width:150px;
+            height:56px;
+            margin-top: 16px;
+        }
+
+
+        .links{
+            display: inline-block;
+            margin-left: 72px;
+            padding: 0;
+            height: 88px;
+            vertical-align: top;
+            margin-top: 0;
+        }
+        .nav .links li {
+            cursor: pointer;
+            display: inline-block;
+            list-style-type:none;
+            margin-right: 54px;
+            color: black;
+            margin-top: 29px;
+            height:22px;
+            font-size:16px;
+            font-family: PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            line-height:22px;
+
+        }
+
+        .footer{
+            margin-top: 60px;
+            min-width: 580px;
+            height:168px;
+            background:rgba(46,46,47,1);
+            overflow: hidden;
+        }
+        .footer-container{
+            margin: 39px auto 32px;
+            height: 118px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-size:12px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(255,255,255,1);
+            line-height:17px;
+        }
+        .footer-container .footer-nav a{
+            font-size:12px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:200;
+            color:rgba(255,255,255,1);
+            line-height:17px;
+        }
+
+        .footer-nav{
+            width: 330px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-line{
+            width:1px;
+            height:12px;
+            background:rgba(255,255,255,1);
+        }
+        .footer-bottom{
+            white-space: nowrap;
+            min-width: 508px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .side-menu-container{
+            width:238px;
+            height: 192px;
+            display: flex;
+            justify-content: flex-end;
+            position: fixed;
+            top:70%;
+            right: 60px;
+        }
+        .side-menu{
+            width:58px;
+            height: 192px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .side-menu-download,.side-menu-service,.side-menu-phone,.side-menu-top,.side-menu-top{
+            width:58px;
+            height:58px;
+            background:rgba(255,255,255,1);
+            box-shadow:0 1px 7px 0 rgba(204,211,215,1);
+            border-radius:3px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        /*.side-menu-download:hover,.side-menu-service:hover,.side-menu-phone:hover,.side-menu-top:hover,.side-menu-top:hover{*/
+        /*background:rgba(238,39,28,1);*/
+        /*}*/
+        /*.side-menu-download:hover .side-menu-text,.side-menu-service:hover .side-menu-text,.side-menu-phone:hover .side-menu-text,.side-menu-top:hover .side-menu-text,.side-menu-top:hover{*/
+        /*color:rgba(255,255,255,1);*/
+        /*}*/
+        .side-menu-text{
+            text-align: center;
+            font-size:12px;
+            color:black;
+            line-height:17px;
+            margin-top: 3px;
+        }
+        .erweima{
+            margin-top: -6px;
+            display: none;
+        }
+        .tel-img{
+            margin-top: 66px;
+            height: 58px;
+            display: none;
+        }
+
+        .pagination ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .pagination ul li {
+            padding: 0 10px;
+            vertical-align: top;
+            display: inline-block;
+            font-size: 14px;
+            min-width: 36px;
+            min-height: 32px;
+            line-height: 28px;
+            cursor: pointer;
+            box-sizing: border-box;
+            text-align: center;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            background:rgba(255,255,255,1);
+            color:rgba(0,0,0,0.65);
+            border-radius: 6px;
+            margin: 0 3px;
+            border: 1px solid #ebebeb;
+            height: 30px;
+        }
+
+        .pagination ul li:hover {
+            background-color: #F4F6F8;
+        }
+
+        .pagination  li.active {
+            background:rgba(212,32,24,1);
+            color: white;
+            /*cursor: not-allowed;*/
+        }
+
+        .pagination li.disabled {
+            /*cursor: not-allowed;*/
+        }
+        .pagination li.totalPage {
+            background: transparent;
+            cursor: default;
+            border: none;
+            padding: 0 6px;
+        }
+
+        .pagination li.totalPage:hover {
+            transform: none;
+            background-color: #ffffff;
+        }
+
+
+        .pagination li input {
+            -webkit-appearance: none;
+            background-color: #fff;
+            background-image: none;
+            border-radius: 4px;
+            border:1px solid rgba(217,217,217,1);
+            box-sizing: border-box;
+            color: #606266;
+            display: inline-block;
+            font-size: inherit;
+            outline: none;
+            padding: 3px 5px;
+            transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+            width: 48px;
+            height: 26px;
+            margin: 0 6px;
+        }
+
+        .pagination li input:focus{
+            border-color: #98A6AD;
+        }
+        .pagination{
+            user-select: none;
+        }
+
+        .pagination ul:nth-child(2){
+            border-radius: 6px;
+        }
+
+        input[type=number] {
+            -moz-appearance:textfield;
+        }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .news-detail-container{
+            width: 802px;
+            margin: 3px auto 12px auto;
+        }
+        .news-detail-topic{
+            height:33px;
+            font-size:24px;
+            font-family:PingFangSC-Medium,sans-serif;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            line-height:33px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-bottom: 11px;
+        }
+        .news-detail-bottom{
+            display: flex;
+        }
+        .news-detail-time{
+            width:139px;
+            height:20px;
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:20px;
+        }
+        .news-detail-heat{
+            margin-left: 42px;
+            height:20px;
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:20px;
+        }
+        .news-detail-content{
+            margin-top: 30px;
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:26px;
+        }
+        .news-detail-change{
+            width:880px;
+            height:122px;
+            background:rgba(247,247,247,1);
+            margin: 0 auto 30px auto;
+            overflow: hidden;
+        }
+        .news-detail-change-content{
+            max-width: 804px;
+            margin: 33px auto;
+            height: 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:20px;
+        }
+        .rec-read{
+            width:64px;
+            height:22px;
+            font-size:16px;
+            font-family:PingFangSC-Medium,sans-serif;
+            font-weight:500;
+            color:rgba(51,51,51,1);
+            line-height:22px;
+            margin-left: 38px;
+            margin-bottom: 14px;
+        }
+        .rec-read-content{
+            width: 804px;
+            margin: 0 auto 39px auto;
+            height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .rec-read-content div{
+            width: auto;
+            display: inline-block;
+        }
+        .rec-read-content div a:hover, a:visited, a:link, a:active{
+            font-size:14px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(102,102,102,1);
+            line-height:20px;
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e13d9d4b40bace93f3151eeee9c7a741";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+<body>
+<!--侧边工具栏-->
+<div class="side-menu-container"  style="top:50%;"></div>
+<div class="nav">
+    <div class="nav-2">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190614/14605770643972654.png" class="logo2" alt="">
+        <ul class="links">
+            <li><div class="nav-home" onclick="changeMenu(0)">首页</div></li>
+            <li><div class="nav-download" onclick="changeMenu(1)">APP下载</div></li>
+            <li><div class="nav-consultation" onclick="changeMenu(2)"  style="color:rgba(212,32,24,1);">资讯</div></li>
+            <li><div class="nav-help" onclick="changeMenu(3)">帮助中心</div></li>
+            <li><div class="nav-about" onclick="changeMenu(4)">关于我们</div></li>
+        </ul>
+    </div>
+</div>
+<div class="background-image"></div>
+<div class="topic-top">
+    <div class="topic-top-text">资讯中心</div>
+    <div class="white-line"></div>
+</div>
+<div class="body-container">
+    <div class="news-center">
+        <div class="top-guide">
+            <div class="brown-icon"></div>
+            <div class="top-guide-content">
+                <div onclick="window.location.href='newOfficialHome.html'">首页</div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><div onclick="window.location.href='newOfficialInformation.html'">资讯中心</div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt="">自选动态
+            </div>
+        </div>
+        <div class="long-line"></div>
+        <div class="news-detail-container">
+            <div class="news-detail-topic">重磅！全球自选发布2018年Q4&全年财报：净收、净利双增长！</div>
+            <div class="news-detail-bottom">
+                <div class="news-detail-time">2019-04-24 18:10:09</div>
+                <div class="news-detail-heat">热度：<span style="color: #0e9aef">10</span></div>
+            </div>
+            <div class="news-detail-content">根据知识产权局商标局网站的介绍，华为于2018年8月24日发出申请，同年9月11日受理通知书发文，今年5月14日注册公告。专用权限期是从2019年5月14日到2029年5月13日。申请人为华为技术有限公司。<br><br>
+
+                使用该商标的商品/服务包括，智能手机、笔记本电脑、平板电脑、操作系统程序、图形加速器、模拟对话用聊天机器人软件、编译软件等二十多种软硬件商品/服务。<br><br>
+
+                近日，华为消费者业务CEO余承东在知名互联网人方兴东组建的老友群中透露，这是面向下一代技术而设计的操作系统，打通手机、电脑、平板、电视、汽车、智能穿戴，统一成一个操作系统。<br><br>
+
+                这个操作系统兼容全部安卓应用和所有Web应用。从“鸿蒙”涵盖的商品/服务来看，与余承东的介绍可以互相印证。<br><br>
+
+                余承东表示，华为自研操作系统最快今年秋天，最晚明年春天将可能面市。<br><br>
+
+                5月21日任正非接受国内媒体群访时，被问及“鸿蒙”系统是否在内部小范围使用，任正非未否认“鸿蒙”系统的存在。他说：“我们能做操作系统，但不一定是替代别人的做法，因为我们在人工智能、万物互联中本身也是需要，但是到底哪些用了、哪些没用，我不是很清楚。”<br><br>
+
+                但据英国金融时报报道，华为西欧业务副总裁Tim Watkins表示，华为的操作系统已在中国部分地区测试，预计很快能推出。<br><br>
+
+                值得一提的是，“鸿蒙”也符合华为一贯的命名方式。华为过往产品命名经常取自于神话传说，海思手机芯片系列名为“麒麟”，首款5G商用芯片名为“巴龙”，5G基站核心芯片名为“天罡”。甚至，华为还将紫龙、青鸟、朱雀、腾蛇、白虎等一众瑞兽祥禽也都给注册了。<br><br>
+
+                从命名来看，“鸿蒙”很符合当前国内操作系统的现状。鸿蒙原本是指中国神话传说的远古时代。传说盘古在开天地之前，世界是一团混沌的元气，这种自然的元气叫做鸿蒙，因此把那个时代称作鸿蒙时代。而当前，国内没有自己的PC和手机操作系统，也可以认为处于操作系统的“鸿蒙”阶段。<br><br>
+
+            </div>
+        </div>
+        <div class="news-detail-change">
+            <div class="news-detail-change-content">
+              <div class="change-pre">上一篇：社交电商驼小铃是什么?</div>
+              <div class="change-next">下一篇：淘宝新风口：淘宝启动国宝联萌计划</div>
+            </div>
+        </div>
+        <div class="rec-read">推荐阅读</div>
+        <div class="rec-read-content">
+            <div><a href="">社区团购怎么做?做好双链建设[供应链+团长链]</a></div>
+            <div><a href="">淘宝主图怎么优化?看完就知道！</a></div>
+            <div><a href="">微信小程序分销系统_小程序商城_小程序开发平台-Hishop销客多</a></div>
+            <div><a href="">微商系统开发</a></div>
+        </div>
+
+    </div>
+    <div class="sidebar">
+        <div class="new-rec">
+            <div class="top-guide">
+                <div class="brown-icon"></div>
+                <div class="top-guide-content">
+                    最新文章推荐
+                </div>
+            </div>
+            <div class="rec-line"></div>
+            <div class="new-rec-container">
+            </div>
+        </div>
+        <div class="download">
+            <div class="download-img"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6902568180269020.png" width="159" height="159" alt=""></div>
+            <div class="download-text">
+                <div style="display: flex;justify-content: center">【全球自选】APP</div>
+                <div style="display: flex;justify-content: center;">购物享受批发价扫码立即下载</div>
+            </div>
+        </div>
+        <div class="hot-rec">
+            <div class="top-guide">
+                <div class="brown-icon"></div>
+                <div class="top-guide-content">
+                    最热文章推荐
+                </div>
+            </div>
+            <div class="rec-line"></div>
+            <div class="new-rec-container">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="footer-container"  style="height: 84px">
+        <div class="footer-nav">
+            <a href="">关于全球自选</a><div class="footer-line"></div>
+            <a href="">自选APP</a><div class="footer-line"></div>
+            <a href="">资讯动态</a><div class="footer-line"></div>
+            <a href="">常见问题</a>
+        </div>
+        <div style="white-space: nowrap; min-width: 508px">浙ICP备19001142号-1 © 2019-2010 杭州自选科技有限公司,All RIGHTS RESERVED.</div>
+        <div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6487721395327899.png" alt=""><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6487721385694615.png" style="margin-left:14px" alt=""></div>
+    </div>
+</div>
+</body>
+
+<script>
+$(function () {
+        $('.side-menu-container').append('<div class="erweima"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14264383535334955.png" width="172" height="160"></div><div class="tel-img"><div style="display: flex;align-items: center;height: 58px;"><img src="https://file.wchoosemall.com/platform/manager/pic/20190611/14333142298409843.png" alt=""></div></div><div class="side-menu"><div class="side-menu-download"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png" alt=""><div class="side-menu-text">APP下载</div></div><div class="side-menu-phone"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023614439296.png"><div class="side-menu-text">联系电话</div></div><div class="side-menu-top"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14093866610253686.png"></div></div>')
+
+
+        $('.side-menu-download').mouseover(function () {
+            $(".side-menu-download .side-menu-text").css("color","white");
+            $(".side-menu-download").css("background","rgba(238,39,28,1)");
+            $(".side-menu-download img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14097237432681566.png");
+            $(".erweima").css("display","block");
+        });
+        $(".side-menu-download").mouseleave(function(){
+            $(".side-menu-download .side-menu-text").css("color","black");
+            $(".side-menu-download").css("background","rgba(255,255,255,1)");
+            $(".side-menu-download img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png");
+            $(".erweima").css("display","none");
+        });
+
+
+        $('.side-menu-service').mouseover(function () {
+            $(".side-menu-service .side-menu-text").css("color","white");
+            $(".side-menu-service").css("background","rgba(238,39,28,1)");
+            $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14097237456162271.png");
+        });
+        $(".side-menu-service").mouseleave(function(){
+            $(".side-menu-service .side-menu-text").css("color","black");
+            $(".side-menu-service").css("background","rgba(255,255,255,1)");
+            $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14093866611316136.png");
+        });
+
+
+        $('.side-menu-phone').mouseover(function () {
+            $(".side-menu-phone .side-menu-text").css("color","white");
+            $(".side-menu-phone").css("background","rgba(238,39,28,1)");
+            $(".side-menu-phone img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14263394444181535.png");
+            $(".tel-img").css("display","block");
+        });
+        $(".side-menu-phone").mouseleave(function(){
+            $(".side-menu-phone .side-menu-text").css("color","black");
+            $(".side-menu-phone").css("background","rgba(255,255,255,1)");
+            $(".side-menu-phone img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14260023614439296.png");
+            $(".tel-img").css("display","none");
+        });
+
+        $(".side-menu-top").on('click',function(){
+            $('html,body').animate({scrollTop:0},'slow');
+        });
+
+        $(".morebox").on('click',function () {
+            window.location.href='newOfficialInformation.html'
+        })
+
+})
+
+function changeMenu(num) {
+    if (num === 0) {
+        window.location.href='index.html'
+    }
+    if (num === 1) {
+        window.location.href='newOfficialDownload.html'
+    }
+    if (num === 2) {
+        window.location.href='newOfficialInformation.html'
+    }
+    if (num === 3) {
+        window.location.href='newOfficialHelp.html'
+    }
+    if (num === 4) {
+        window.location.href='newOfficialAbout.html'
+    }
+}
+
+</script>
+</html>
