@@ -1,5 +1,4 @@
 $(function () {
-
     $('.side-menu-download').mouseover(function () {
         $(".side-menu-download .side-menu-text").css("color","white");
         $(".side-menu-download").css("background","rgba(238,39,28,1)");
@@ -12,7 +11,6 @@ $(function () {
         $(".side-menu-download img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png");
         $(".erweima").css("display","none");
     });
-
 
     $('.side-menu-service').mouseover(function () {
         $(".side-menu-service .side-menu-text").css("color","white");
@@ -47,10 +45,10 @@ $(function () {
         window.location.href='newOfficialInformation.html'
     });
 
-
-
 });
 function changeMenu(num) {
+    let baseUrl = '';
+    window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://dev.wegoomall.cn';
     if (num === 0) {
         window.location.href=`${baseUrl}`
     }

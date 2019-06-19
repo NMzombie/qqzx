@@ -1,7 +1,5 @@
 $(function () {
     // 首页新闻配置：
-    let baseUrl = '';
-    getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://www.wchoosemall.com';
     $.ajax({
         type: 'get',
         headers: {
