@@ -1,7 +1,7 @@
 // URL配置
 let baseUrl = '';
 // window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://localhost:63342/platfrom-htdocs';
-window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://dev.wegoomall.cn';
+window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://wchoosemall.com';
 $(function () {
     $('.side-menu-download').mouseover(function () {
         $(".side-menu-download .side-menu-text").css("color","white");
@@ -51,39 +51,22 @@ $(function () {
 
 });
 // 正式环境：
-// function changeMenu(num) {
-//     if (num === 0) {
-//         window.location.href=`${baseUrl}`
-//     }
-//     if (num === 1) {
-//         window.location.href=`${baseUrl}/newOfficial/newOfficialDownload.html`
-//     }
-//     if (num === 2) {
-//         window.location.href=`${baseUrl}/newOfficial/newOfficialInformation.html`
-//     }
-//     if (num === 3) {
-//         window.location.href=`${baseUrl}/newOfficial/newOfficialHelp.html`
-//     }
-//     if (num === 4) {
-//         window.location.href=`${baseUrl}/newOfficial/newOfficialAbout.html`
-//     }
-// }
-
-// 测试用：
 function changeMenu(num) {
     if (num === 0) {
-        window.location.href=``
+        window.location.href=`${baseUrl}`
     }
     if (num === 1) {
-        window.location.href=`http://localhost:63342/platfrom-htdocs/newOfficial/newOfficialDownload.html`
+        window.location.href=`${baseUrl}/newOfficial/newOfficialDownload.html`
     }
     if (num === 2) {
-        window.location.href=`http://localhost:63342/platfrom-htdocs/newOfficial/newOfficialInformation.html`
+        window.location.href=`${baseUrl}/newOfficial/newOfficialInformation.html`
     }
     if (num === 3) {
-        window.location.href=`http://localhost:63342/platfrom-htdocs/newOfficial/newOfficialHelp.html`
+        window.location.href=`${baseUrl}/newOfficial/newOfficialHelp.html`
     }
     if (num === 4) {
-        window.location.href=`http://localhost:63342/platfrom-htdocs/newOfficial/newOfficialAbout.html`
+        window.location.href=`${baseUrl}/newOfficial/newOfficialAbout.html`
     }
 }
+
+
