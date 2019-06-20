@@ -374,7 +374,8 @@
                 })(),
             // WebUploader实例
                 uploader,
-                actionUrl = editor.getActionUrl(editor.getOpt('videoActionName')),
+               // actionUrl = editor.getActionUrl(editor.getOpt('videoActionName')),
+                actionUrl = "/admin/uploadForUeditor.json";
                 fileMaxSize = editor.getOpt('videoMaxSize'),
                 acceptExtensions = (editor.getOpt('videoAllowFiles') || []).join('').replace(/\./g, ',').replace(/^[,]/, '');;
 
@@ -729,11 +730,12 @@
             });
 
             uploader.on('uploadSuccess', function (file, ret) {
+            	debugger
                 var $file = $('#' + file.id);
                 try {
                     var responseText = (ret._raw || ret),
                         json = utils.str2json(responseText);
-                    if (json.state == 'SUCCESS') {
+                    if (json.success) {
                         uploadVideoList.push({
                             'url': json.url,
                             'type': json.type,
