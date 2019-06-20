@@ -130,7 +130,7 @@
             background:rgba(244,244,244,1);
             margin: 0 auto 22px auto;
         }
-        .new-rec-container,.hot-rec-container{
+        .new-rec-container{
             width: 272px;
             height: 156px;
             margin: 0 auto 29px auto;
@@ -207,11 +207,6 @@
             min-height: 88px;
             padding-left: 20px;
         }
-        .logo{
-            display: inline-block;
-            width:180px;
-            height:88px;
-        }
         .logo2{
             display: inline-block;
             width:150px;
@@ -282,13 +277,6 @@
             height:12px;
             background:rgba(255,255,255,1);
         }
-        .footer-bottom{
-            white-space: nowrap;
-            min-width: 508px;
-            display: flex;
-            justify-content: center;
-        }
-
         .side-menu-container{
             width:238px;
             height: 192px;
@@ -305,7 +293,7 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .side-menu-download,.side-menu-service,.side-menu-phone,.side-menu-top,.side-menu-top{
+        .side-menu-download,.side-menu-phone,.side-menu-top,.side-menu-top{
             width:58px;
             height:58px;
             background:rgba(255,255,255,1);
@@ -370,28 +358,6 @@
             background-color: #F4F6F8;
         }
 
-        .pagination  li.active {
-            background:rgba(212,32,24,1);
-            color: white;
-            /*cursor: not-allowed;*/
-        }
-
-        .pagination li.disabled {
-            /*cursor: not-allowed;*/
-        }
-        .pagination li.totalPage {
-            background: transparent;
-            cursor: default;
-            border: none;
-            padding: 0 6px;
-        }
-
-        .pagination li.totalPage:hover {
-            transform: none;
-            background-color: #ffffff;
-        }
-
-
         .pagination li input {
             -webkit-appearance: none;
             background-color: #fff;
@@ -413,10 +379,6 @@
         .pagination li input:focus{
             border-color: #98A6AD;
         }
-        .pagination{
-            user-select: none;
-        }
-
         .pagination ul:nth-child(2){
             border-radius: 6px;
         }
@@ -509,7 +471,7 @@
         .rec-read-content{
             width: 804px;
             margin: 0 auto 39px auto;
-            height: 110px;
+            height: 140px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -543,11 +505,11 @@
     <div class="nav-2">
         <img src="https://file.wchoosemall.com/platform/manager/pic/20190614/14605770643972654.png" class="logo2" alt="">
         <ul class="links">
-            <li><div class="nav-home" onclick="changeMenu(0)">首页</div></li>
-            <li><div class="nav-download" onclick="changeMenu(1)">APP下载</div></li>
-            <li><div class="nav-consultation" onclick="changeMenu(2)"  style="color:rgba(212,32,24,1);">资讯</div></li>
-            <li><div class="nav-help" onclick="changeMenu(3)">帮助中心</div></li>
-            <li><div class="nav-about" onclick="changeMenu(4)">关于我们</div></li>
+            <li><a class="nav-home" href="../index.html" >首页</a></li>
+            <li><a class="nav-download" href="newOfficialDownload.html">APP下载</a></li>
+            <li><a class="nav-consultation" href="newOfficialInformation.html" style="color:rgba(212,32,24,1);">资讯</a></li>
+            <li><a class="nav-help" href="newOfficialHelp.html">帮助中心</a></li>
+            <li><a class="nav-about" href="newOfficialAbout.html">关于我们</a></li>
         </ul>
     </div>
 </div>
@@ -561,7 +523,7 @@
         <div class="top-guide">
             <div class="brown-icon"></div>
             <div class="top-guide-content">
-                <div onclick="window.location.href='newOfficialHome.html'">首页</div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><div onclick="window.location.href='newOfficialInformation.html'">资讯中心</div><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt="">自选动态
+                <a href="../index.html">首页</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a href="./newOfficialInformation.html">资讯中心</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a class="top-guide-name">自选动态</a>
             </div>
         </div>
         <div class="long-line"></div>
@@ -602,6 +564,7 @@
             <div><a href="">社区团购怎么做?做好双链建设[供应链+团长链]</a></div>
             <div><a href="">淘宝主图怎么优化?看完就知道！</a></div>
             <div><a href="">微信小程序分销系统_小程序商城_小程序开发平台-Hishop销客多</a></div>
+            <div><a href="">微商系统开发</a></div>
             <div><a href="">微商系统开发</a></div>
         </div>
 
@@ -655,7 +618,7 @@
 
 <script>
 $(function () {
-        $('.side-menu-container').append('<div class="erweima"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14264383535334955.png" width="172" height="160"></div><div class="tel-img"><div style="display: flex;align-items: center;height: 58px;"><img src="https://file.wchoosemall.com/platform/manager/pic/20190611/14333142298409843.png" alt=""></div></div><div class="side-menu"><div class="side-menu-download"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png" alt=""><div class="side-menu-text">APP下载</div></div><div class="side-menu-phone"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023614439296.png"><div class="side-menu-text">联系电话</div></div><div class="side-menu-top"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14093866610253686.png"></div></div>')
+        $('.side-menu-container').append('<div class="erweima"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14264383535334955.png" width="172" height="160" alt=""></div><div class="tel-img"><div style="display: flex;align-items: center;height: 58px;"><img src="https://file.wchoosemall.com/platform/manager/pic/20190611/14333142298409843.png" alt=""></div></div><div class="side-menu"><div class="side-menu-download"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png" alt=""><div class="side-menu-text">APP下载</div></div><div class="side-menu-phone"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023614439296.png"><div class="side-menu-text">联系电话</div></div><div class="side-menu-top"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14093866610253686.png"></div></div>')
 
 
         $('.side-menu-download').mouseover(function () {
@@ -707,23 +670,6 @@ $(function () {
 
 })
 
-function changeMenu(num) {
-    if (num === 0) {
-        window.location.href='index.html'
-    }
-    if (num === 1) {
-        window.location.href='newOfficialDownload.html'
-    }
-    if (num === 2) {
-        window.location.href='newOfficialInformation.html'
-    }
-    if (num === 3) {
-        window.location.href='newOfficialHelp.html'
-    }
-    if (num === 4) {
-        window.location.href='newOfficialAbout.html'
-    }
-}
 
 </script>
 </html>

@@ -123,6 +123,13 @@
     line-height:22px;
 
 }
+.nav .links li a {
+    font-size:16px;
+    font-family:PingFangSC-Regular,sans-serif;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height:22px;
+}
 .nav-home{
     color: #D42018;
 }
@@ -280,8 +287,17 @@
 }
 .news-item-img{
     height: 177px;
-    background-color:#F8374D
+    background-color:#F8374D;
+    overflow: hidden;
 }
+.news-item-img img{
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.news-item-img img:hover{
+    transform: scale(1.05);
+}
+
 .news-text-topic{
     width: auto;
     display: inline-block;

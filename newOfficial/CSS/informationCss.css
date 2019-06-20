@@ -63,20 +63,20 @@
 .top-guide-content{
     display: flex;
     align-items: center;
-    font-size:16px;
-    font-family:PingFangSC-Regular,sans-serif;
-    font-weight:400;
-    color:rgba(102,102,102,1);
-    line-height:22px;
     margin-left: 13px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     margin-right: 39px;
 }
-.top-guide-content div{
-    cursor: pointer;
+.top-guide .top-guide-content a{
+    font-size:16px;
+    font-family:PingFangSC-Regular,sans-serif;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    line-height:22px;
 }
+
 .long-line{
     width:845px;
     height:1px;
@@ -124,7 +124,16 @@
     width:200px;
     height:124px;
     background:rgba(216,216,216,1);
+    overflow: hidden;
 }
+.news-content-img img{
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.news-content-img img:hover{
+    transform: scale(1.05);
+}
+
 .news-content-aside{
     height: 124px;
     display: flex;

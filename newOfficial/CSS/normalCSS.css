@@ -31,7 +31,6 @@ body{
     margin-top: 16px;
 }
 
-
 .links{
     display: inline-block;
     margin-left: 72px;
@@ -48,11 +47,13 @@ body{
     color: black;
     margin-top: 29px;
     height:22px;
+}
+.nav .links li a{
     font-size:16px;
-    font-family: PingFangSC-Regular,sans-serif;
+    font-family:PingFangSC-Regular,sans-serif;
     font-weight:400;
+    color:rgba(51,51,51,1);
     line-height:22px;
-
 }
 .service-container{
     width:710px ;
