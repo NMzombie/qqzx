@@ -4,9 +4,9 @@
  * Time: 下午16:34
  * 上传图片对话框逻辑代码,包括tab: 远程图片/上传图片/在线图片/搜索图片
  */
-
+debugger
 (function () {
-
+debugger
     var remoteImage,
         uploadImage,
         onlineImage,
@@ -349,8 +349,8 @@
                 })(),
             // WebUploader实例
                 uploader,
-                //actionUrl = editor.getActionUrl(editor.getOpt('imageActionName')),
-                actionUrl = "/admin/upload.json",
+               // actionUrl = editor.getActionUrl(editor.getOpt('imageActionName')),
+                actionUrl = "/admin/uploadForUeditor.json";
                 acceptExtensions = (editor.getOpt('imageAllowFiles') || []).join('').replace(/\./g, ',').replace(/^[,]/, ''),
                 imageMaxSize = editor.getOpt('imageMaxSize'),
                 imageCompressBorder = editor.getOpt('imageCompressBorder');
@@ -717,15 +717,16 @@
             });
 
             uploader.on('uploadSuccess', function (file, ret) {
+            	debugger
                 var $file = $('#' + file.id);
                 try {
                     var responseText = (ret._raw || ret),
                         json = utils.str2json(responseText);
-                    if (json.state == 'SUCCESS') {
+                    if (json.success) {
                         _this.imageList.push(json);
                         $file.append('<span class="success"></span>');
                     } else {
-                        $file.find('.error').text(json.state).show();
+                        $file.find('.error').text(json.success).show();
                     }
                 } catch (e) {
                     $file.find('.error').text(lang.errorServerUpload).show();
@@ -775,6 +776,7 @@
             var i, data, list = [],
                 align = getAlign(),
                 prefix = editor.getOpt('imageUrlPrefix');
+            debugger
             for (i = 0; i < this.imageList.length; i++) {
                 data = this.imageList[i];
                 list.push({
