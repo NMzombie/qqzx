@@ -140,11 +140,9 @@
 
 }
 .introduce-topic{
-    width:189px;
+    width:200px;
+    text-align: center;
     height:44px;
-    background-image: url("https://file.wchoosemall.com/platform/manager/pic/20190604/6391677053254793.png");
-    background-size: contain;
-    background-repeat: no-repeat;
     margin: 146px auto 20px;
 }
 .red-icon{
@@ -178,11 +176,9 @@
     overflow: hidden;
 }
 .advantage-topic{
-    width:221px;
+    width:241px;
     height:44px;
-    background-image: url("https://file.wchoosemall.com/platform/manager/pic/20190604/6394533273981448.png");
-    background-size: contain;
-    background-repeat: no-repeat;
+    text-align: center;
     margin: 86px auto 20px;
 }
 .advantage-banner{
@@ -229,11 +225,9 @@
     text-align: center;
 }
 .news-topic{
-    width:126px;
+    width:146px;
     height:44px;
-    background-image: url("https://file.wchoosemall.com/platform/manager/pic/20190604/6398500013860202.png");
-    background-size: contain;
-    background-repeat: no-repeat;
+    text-align: center;
     margin: 86px auto 20px;
 }
 .news-banner{
@@ -339,7 +333,7 @@
     text-overflow: ellipsis;
     height: 17px;
 }
-.news-text-content a:hover, a:visited, a:link, a:active{
+.news-text-container .news-text-content a:hover, a:visited, a:link, a:active{
     font-size:12px;
     font-family:PingFangSC-Regular,sans-serif;
     font-weight:400;
@@ -356,11 +350,9 @@
     overflow: hidden;
 }
 .cooperation-topic{
-    width:252px;
+    width:272px;
     height:44px;
-    background-image: url("https://file.wchoosemall.com/platform/manager/pic/20190605/6480656478819480.png");
-    background-size: contain;
-    background-repeat: no-repeat;
+    text-align: center;
     margin: 82px auto 20px;
 }
 .cooperation-container{
@@ -409,6 +401,7 @@
     font-weight:500;
     color:rgba(51,51,51,1);
     line-height:37px;
+    margin: 0;
 }
 .service-time-text .company-address-text{
     font-size:14px;
@@ -459,7 +452,7 @@
 
 .side-menu-container{
     width:238px;
-    height: 192px;
+    height: 256px;
     display: flex;
     justify-content: flex-end;
     position: fixed;
@@ -468,7 +461,7 @@
 }
 .side-menu{
     width:58px;
-    height: 192px;
+    height: 256px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -502,6 +495,13 @@
     display: none;
 }
 .tel-img{
-    margin-top: 66px;
+    margin-top: 132px;
     display: none;
+}
+.weixin{
+    margin-top: 59px;
+    display: none;
+}
+.cooperation-content{
+    width: 1088px;
 }

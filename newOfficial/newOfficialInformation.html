@@ -38,10 +38,10 @@
 </head>
 <body>
 <!--侧边工具栏-->
-<div class="side-menu-container" style="top:50%;"></div>
+<div class="side-menu-container"></div>
 <div class="nav">
     <div class="nav-2">
-        <img src="https://file.wchoosemall.com/platform/manager/pic/20190614/14605770643972654.png" class="logo2" alt="">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190614/14605770643972654.png" class="logo2" alt="全球自选官网">
         <ul class="links">
             <li><a class="nav-home" href="../index.html" >首页</a></li>
             <li><a class="nav-download" href="newOfficialDownload.html">APP下载</a></li>
@@ -61,14 +61,14 @@
         <div class="top-guide">
             <div class="brown-icon"></div>
             <div class="top-guide-content">
-                <a href="../index.html">首页</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a href="./newOfficialInformation.html">资讯中心</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a class="top-guide-name">自选动态</a>
+                <a href="../index.html">首页</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a href="./newOfficialInformation.html">资讯中心</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a class="top-guide-name"></a>
             </div>
         </div>
         <div class="long-line"></div>
         <div class="news-nav">
-            <div class="news-nav-text news-nav-text-choose" onclick="dynamicClick()">自选动态</div>
-            <div class="news-nav-text" onclick="mediaClick()">媒体报道</div>
-            <div class="news-nav-text" onclick="industryClick()">行业动态</div>
+            <div class="news-nav-text" onclick="dynamicClick()" id="dynamic">自选动态</div>
+            <div class="news-nav-text" onclick="mediaClick()" id="media">媒体报道</div>
+            <div class="news-nav-text" onclick="industryClick()" id="industry">行业动态</div>
         </div>
         <div class="news-content-container">
         </div>
@@ -80,27 +80,28 @@
        <div class="new-rec">
           <div class="top-guide">
               <div class="brown-icon"></div>
-              <div class="top-guide-content">
+              <h3 class="top-guide-content">
                   最新文章推荐
-              </div>
+              </h3>
           </div>
           <div class="rec-line"></div>
           <div class="new-rec-container">
           </div>
       </div>
        <div class="download">
-           <div class="download-img"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6902568180269020.png" width="159" height="159" alt=""></div>
+           <div class="download-img"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6902568180269020.png" width="159" height="159" alt="全球自选APP"></div>
            <div class="download-text">
                <div style="display: flex;justify-content: center">【全球自选】APP</div>
                <div style="display: flex;justify-content: center;">购物享受批发价扫码立即下载</div>
+               <div style="display: flex;justify-content: center;">扫码立即下载</div>
            </div>
        </div>
        <div class="hot-rec">
            <div class="top-guide">
                <div class="brown-icon"></div>
-               <div class="top-guide-content">
+               <h3 class="top-guide-content">
                    最热文章推荐
-               </div>
+               </h3>
            </div>
            <div class="rec-line"></div>
            <div class="hot-rec-container">
@@ -143,11 +144,15 @@ $(function () {
     //         }
     //     })
     // };
-        $('.news-nav-text').click(function () {
-            $(".top-guide-name").text($(this).text());
-            $(this).addClass("news-nav-text-choose");
-            $(this).siblings().removeClass("news-nav-text-choose");
-        })
+
+     // $('.news-nav-text').click(function () {
+     //        $(".top-guide-name").text($(this).text());
+     //        $(this).addClass("news-nav-text-choose");
+     //        $(this).siblings().removeClass("news-nav-text-choose");
+     //    });
+
+
+
 
 })
 </script>

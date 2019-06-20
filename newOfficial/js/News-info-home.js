@@ -58,5 +58,18 @@ $(function () {
         }
     });
 
+    $('#dynamic-more').click(function () {
+        sessionStorage.setItem("type","dynamic")
+    });
+
+    $('#media-more').click(function () {
+        sessionStorage.setItem("type","media")
+    });
+
+    $('#industry-more').click(function () {
+        sessionStorage.setItem("type","industry")
+    });
 
 });
+
+

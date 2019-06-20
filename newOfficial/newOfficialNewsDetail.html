@@ -23,6 +23,9 @@
             margin: 0;
             padding: 0;
         }
+        h3,h1{
+            margin: 0;
+        }
         .background-image{
             background: url("https://file.wchoosemall.com/platform/manager/pic/20190606/6578197342686205.png");
             background-size: cover;
@@ -163,7 +166,7 @@
             align-items: center;
         }
         .download-img{
-            margin: 49px auto 20px;
+            margin: 49px auto 15px;
             width:159px;
             height:159px;
         }
@@ -237,6 +240,13 @@
             line-height:22px;
 
         }
+        .nav .links li a{
+            font-size:16px;
+            font-family:PingFangSC-Regular,sans-serif;
+            font-weight:400;
+            color:rgba(51,51,51,1);
+            line-height:22px;
+        }
 
         .footer{
             margin-top: 60px;
@@ -279,7 +289,7 @@
         }
         .side-menu-container{
             width:238px;
-            height: 192px;
+            height: 256px;
             display: flex;
             justify-content: flex-end;
             position: fixed;
@@ -323,7 +333,7 @@
             display: none;
         }
         .tel-img{
-            margin-top: 66px;
+            margin-top: 132px;
             height: 58px;
             display: none;
         }
@@ -392,9 +402,10 @@
             margin: 0;
         }
 
-        .news-detail-container{
+        .news-detail-container {
             width: 802px;
             margin: 3px auto 12px auto;
+            overflow: hidden;
         }
         .news-detail-topic{
             height:33px;
@@ -500,10 +511,10 @@
 </head>
 <body>
 <!--侧边工具栏-->
-<div class="side-menu-container"  style="top:50%;"></div>
+<div class="side-menu-container"></div>
 <div class="nav">
     <div class="nav-2">
-        <img src="https://file.wchoosemall.com/platform/manager/pic/20190614/14605770643972654.png" class="logo2" alt="">
+        <img src="https://file.wchoosemall.com/platform/manager/pic/20190614/14605770643972654.png" class="logo2" alt="全球自选官网">
         <ul class="links">
             <li><a class="nav-home" href="../index.html" >首页</a></li>
             <li><a class="nav-download" href="newOfficialDownload.html">APP下载</a></li>
@@ -573,27 +584,28 @@
         <div class="new-rec">
             <div class="top-guide">
                 <div class="brown-icon"></div>
-                <div class="top-guide-content">
+                <h3 class="top-guide-content">
                     最新文章推荐
-                </div>
+                </h3>
             </div>
             <div class="rec-line"></div>
             <div class="new-rec-container">
             </div>
         </div>
         <div class="download">
-            <div class="download-img"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6902568180269020.png" width="159" height="159" alt=""></div>
+            <div class="download-img"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/6902568180269020.png" width="159" height="159" alt="全球自选APP"></div>
             <div class="download-text">
                 <div style="display: flex;justify-content: center">【全球自选】APP</div>
                 <div style="display: flex;justify-content: center;">购物享受批发价扫码立即下载</div>
+                <div style="display: flex;justify-content: center;">扫码立即下载</div>
             </div>
         </div>
         <div class="hot-rec">
             <div class="top-guide">
                 <div class="brown-icon"></div>
-                <div class="top-guide-content">
+                <h3 class="top-guide-content">
                     最热文章推荐
-                </div>
+                </h3>
             </div>
             <div class="rec-line"></div>
             <div class="new-rec-container">
