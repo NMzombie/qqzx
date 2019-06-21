@@ -91,7 +91,7 @@
 
 .nav .nav-2 {
     position: relative;
-    width: 1168px;
+    max-width: 1168px;
     margin: auto;
     height: 88px;
     padding-left: 20px;
@@ -144,6 +144,9 @@
     text-align: center;
     height:44px;
     margin: 146px auto 20px;
+    font-size:32px;
+    color:rgba(51,51,51,1);
+    line-height:44px;
 }
 .red-icon{
     width:43px;
@@ -173,16 +176,25 @@
     width: 100%;
     height: 722px;
     background:rgba(243,244,246,1);
-    overflow: hidden;
+    overflow: scroll;
+}
+.advantage::-webkit-scrollbar {
+    display: none;
+}
+.news::-webkit-scrollbar {
+    display: none;
 }
 .advantage-topic{
     width:241px;
     height:44px;
     text-align: center;
     margin: 86px auto 20px;
+    font-size:32px;
+    color:rgba(51,51,51,1);
+    line-height:44px;
 }
 .advantage-banner{
-    min-width: 1186px;
+    /*min-width: 1186px;*/
     height: 354px;
     margin: 86px auto 126px;
     display: flex;
@@ -229,6 +241,9 @@
     height:44px;
     text-align: center;
     margin: 86px auto 20px;
+    font-size:32px;
+    color:rgba(51,51,51,1);
+    line-height:44px;
 }
 .news-banner{
     width:380px;
@@ -281,7 +296,7 @@
 }
 .news-item-img{
     height: 177px;
-    background-color:#F8374D;
+    background-color: rgb(141, 141, 141);
     overflow: hidden;
 }
 .news-item-img img{
@@ -347,13 +362,16 @@
     margin-top: 150px;
     width: 100%;
     background:rgba(243,244,246,1);
-    overflow: hidden;
+    overflow: scroll;
 }
 .cooperation-topic{
     width:272px;
     height:44px;
     text-align: center;
     margin: 82px auto 20px;
+    font-size:32px;
+    color:rgba(51,51,51,1);
+    line-height:44px;
 }
 .cooperation-container{
     max-width: 1270px;
@@ -448,8 +466,16 @@
     height:12px;
     background:rgba(255,255,255,1);
 }
-
-
+.friendly-link{
+    display: flex;
+}
+.friendly-link div,.friendly-link a{
+    font-size:12px;
+    font-family:PingFangSC-Regular,sans-serif;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    line-height:17px;
+}
 .side-menu-container{
     width:238px;
     height: 256px;
