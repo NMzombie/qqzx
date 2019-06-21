@@ -15,7 +15,6 @@ $(function () {
         $(".side-menu-download img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png");
         $(".erweima").css("display","none");
     });
-
     $('.side-menu-service').mouseover(function () {
         $(".side-menu-service .side-menu-text").css("color","white");
         $(".side-menu-service").css("background","rgba(238,39,28,1)");
