@@ -30,9 +30,12 @@
 .body-container{
     max-width: 1200px;
     margin: 41px auto 56px auto;
-
     display: flex;
     justify-content: space-between;
+    overflow: scroll;
+}
+.body-container::-webkit-scrollbar {
+    display: none;
 }
 .news-center{
     min-width: 880px;

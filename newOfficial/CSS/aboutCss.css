@@ -29,7 +29,7 @@
 }
 .introduce{
     margin: 41px auto 0;
-    width:1198px;
+    max-width:1198px;
     height:410px;
     background:rgba(255,255,255,1);
     box-shadow:0 8px 12px 0 rgba(208,214,226,0.54);
@@ -97,6 +97,10 @@
     margin: 44px auto 0;
     display: flex;
     padding-left: 20px;
+}
+.people img{
+    width: 236px;
+    height: 314px;
 }
 .develop{
     margin:0 auto;
@@ -175,11 +179,15 @@
     background:rgba(213,213,213,1);
 }
 .friends{
-    width: 1120px;
+    max-width: 1120px;
     height: 692px;
     margin: 32px auto 150px;
     display: flex;
     justify-content: space-between;
+    overflow: scroll;
+}
+.friends::-webkit-scrollbar {
+    display: none;
 }
 .col-1{
     width: 672px;

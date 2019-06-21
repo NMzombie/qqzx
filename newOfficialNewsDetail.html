@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="copyright" content="全球自选 版权所有" />
     <meta name="author" content="全球自选" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="yes" name="apple-touch-fullscreen">
     <meta content="telephone=no,email=no" name="format-detection">
@@ -60,6 +59,10 @@
             margin: 41px auto 56px auto;
             display: flex;
             justify-content: space-between;
+            overflow: scroll;
+        }
+        .body-container::-webkit-scrollbar {
+            display: none;
         }
         .news-center{
             min-width: 880px;
@@ -212,7 +215,7 @@
         }
         .nav .nav-2 {
             position: relative;
-            width: 1168px;
+            max-width: 1168px;
             margin: auto;
             min-height: 88px;
             padding-left: 20px;
@@ -527,11 +530,11 @@
     <div class="nav-2">
         <img src="https://file.wchoosemall.com/platform/manager/pic/20190614/14605770643972654.png" class="logo2" alt="全球自选官网">
         <ul class="links">
-            <li><a class="nav-home" href="../index.html" >首页</a></li>
-            <li><a class="nav-download" href="newOfficialDownload.html">APP下载</a></li>
-            <li><a class="nav-consultation" href="newOfficialInformation.html" style="color:rgba(212,32,24,1);">资讯</a></li>
-            <li><a class="nav-help" href="newOfficialHelp.html">帮助中心</a></li>
-            <li><a class="nav-about" href="newOfficialAbout.html">关于我们</a></li>
+            <li><a class="nav-home" href="index.html" >首页</a></li>
+            <li><a class="nav-download" href="app.html">APP下载</a></li>
+            <li><a class="nav-consultation" href="news.html" style="color:rgba(212,32,24,1);">资讯</a></li>
+            <li><a class="nav-help" href="help.html">帮助中心</a></li>
+            <li><a class="nav-about" href="about.html">关于我们</a></li>
         </ul>
     </div>
 </div>
@@ -545,7 +548,7 @@
         <div class="top-guide">
             <div class="brown-icon"></div>
             <div class="top-guide-content">
-                <a href="../index.html">首页</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a href="./newOfficialInformation.html">资讯中心</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a class="top-guide-name">自选动态</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a class="top-guide-name"></a>
+                <a href="index.html">首页</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a href="news.html">资讯中心</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a class="top-guide-name">自选动态</a><img src="https://file.wchoosemall.com/platform/manager/pic/20190605/6477903504460191.png" style="margin: 0 6px" width="6" height="9" alt=""><a class="top-guide-name"></a>
             </div>
         </div>
         <div class="long-line"></div>

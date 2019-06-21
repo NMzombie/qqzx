@@ -81,6 +81,7 @@
     background:rgba(255,255,255,1);
     border-radius:2px;
     padding-bottom: 30px;
+    overflow: hidden;
 }
 .help-content{
     width: 890px;
