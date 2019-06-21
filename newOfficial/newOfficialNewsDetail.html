@@ -305,12 +305,12 @@
         }
         .side-menu{
             width:58px;
-            height: 192px;
+            height: 256px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-        .side-menu-download,.side-menu-phone,.side-menu-top,.side-menu-top{
+        .side-menu-download,.side-menu-service,.side-menu-phone,.side-menu-top,.side-menu-top{
             width:58px;
             height:58px;
             background:rgba(255,255,255,1);
@@ -505,6 +505,10 @@
             color:rgba(102,102,102,1);
             line-height:20px;
         }
+        .weixin{
+            margin-top: 59px;
+            display: none;
+        }
     </style>
     <script>
         var _hmt = _hmt || [];
@@ -637,55 +641,52 @@
 
 <script>
 $(function () {
-        $('.side-menu-container').append('<div class="erweima"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14264383535334955.png" width="172" height="160" alt=""></div><div class="tel-img"><div style="display: flex;align-items: center;height: 58px;"><img src="https://file.wchoosemall.com/platform/manager/pic/20190611/14333142298409843.png" alt=""></div></div><div class="side-menu"><div class="side-menu-download"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png" alt=""><div class="side-menu-text">APP下载</div></div><div class="side-menu-phone"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023614439296.png"><div class="side-menu-text">联系电话</div></div><div class="side-menu-top"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14093866610253686.png"></div></div>')
+    $('.side-menu-container').append('<div class="erweima"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14264383535334955.png" width="172" height="160"></div><div class="tel-img"><div style="display: flex;align-items: center;height: 58px;"><img src="https://file.wchoosemall.com/platform/manager/pic/20190611/14333142298409843.png" alt=""></div></div><div class="weixin"><img src="https://file.wchoosemall.com/platform/manager/pic/20190620/15121197335439586.png"></div><div class="side-menu"><div class="side-menu-download"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png" alt=""><div class="side-menu-text">APP下载</div></div><div class="side-menu-service"><img src="https://file.wchoosemall.com/platform/manager/pic/20190620/14955171698605472.png"><div class="side-menu-text">公众号</div></div><div class="side-menu-phone"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14260023614439296.png"><div class="side-menu-text">联系电话</div></div><div class="side-menu-top"><img src="https://file.wchoosemall.com/platform/manager/pic/20190610/14093866610253686.png"></div></div>')
 
 
-        $('.side-menu-download').mouseover(function () {
-            $(".side-menu-download .side-menu-text").css("color","white");
-            $(".side-menu-download").css("background","rgba(238,39,28,1)");
-            $(".side-menu-download img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14097237432681566.png");
-            $(".erweima").css("display","block");
-        });
-        $(".side-menu-download").mouseleave(function(){
-            $(".side-menu-download .side-menu-text").css("color","black");
-            $(".side-menu-download").css("background","rgba(255,255,255,1)");
-            $(".side-menu-download img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png");
-            $(".erweima").css("display","none");
-        });
+    $('.side-menu-download').mouseover(function () {
+        $(".side-menu-download .side-menu-text").css("color","white");
+        $(".side-menu-download").css("background","rgba(238,39,28,1)");
+        $(".side-menu-download img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14097237432681566.png");
+        $(".erweima").css("display","block");
+    });
+    $(".side-menu-download").mouseleave(function(){
+        $(".side-menu-download .side-menu-text").css("color","black");
+        $(".side-menu-download").css("background","rgba(255,255,255,1)");
+        $(".side-menu-download img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png");
+        $(".erweima").css("display","none");
+    });
+    $('.side-menu-service').mouseover(function () {
+        $(".side-menu-service .side-menu-text").css("color","white");
+        $(".side-menu-service").css("background","rgba(238,39,28,1)");
+        $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190620/15121328703305570.png");
+        $(".weixin").css("display","block");
+    });
+    $(".side-menu-service").mouseleave(function(){
+        $(".side-menu-service .side-menu-text").css("color","black");
+        $(".side-menu-service").css("background","rgba(255,255,255,1)");
+        $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190620/14955171698605472.png");
+        $(".weixin").css("display","none");
+    });
 
 
-        $('.side-menu-service').mouseover(function () {
-            $(".side-menu-service .side-menu-text").css("color","white");
-            $(".side-menu-service").css("background","rgba(238,39,28,1)");
-            $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14097237456162271.png");
-        });
-        $(".side-menu-service").mouseleave(function(){
-            $(".side-menu-service .side-menu-text").css("color","black");
-            $(".side-menu-service").css("background","rgba(255,255,255,1)");
-            $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14093866611316136.png");
-        });
+    $('.side-menu-phone').mouseover(function () {
+        $(".side-menu-phone .side-menu-text").css("color","white");
+        $(".side-menu-phone").css("background","rgba(238,39,28,1)");
+        $(".side-menu-phone img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14263394444181535.png");
+        $(".tel-img").css("display","block");
+    });
+    $(".side-menu-phone").mouseleave(function(){
+        $(".side-menu-phone .side-menu-text").css("color","black");
+        $(".side-menu-phone").css("background","rgba(255,255,255,1)");
+        $(".side-menu-phone img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14260023614439296.png");
+        $(".tel-img").css("display","none");
+    });
 
+    $(".side-menu-top").on('click',function(){
+        $('html,body').animate({scrollTop:0},'slow');
+    });
 
-        $('.side-menu-phone').mouseover(function () {
-            $(".side-menu-phone .side-menu-text").css("color","white");
-            $(".side-menu-phone").css("background","rgba(238,39,28,1)");
-            $(".side-menu-phone img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14263394444181535.png");
-            $(".tel-img").css("display","block");
-        });
-        $(".side-menu-phone").mouseleave(function(){
-            $(".side-menu-phone .side-menu-text").css("color","black");
-            $(".side-menu-phone").css("background","rgba(255,255,255,1)");
-            $(".side-menu-phone img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14260023614439296.png");
-            $(".tel-img").css("display","none");
-        });
-
-        $(".side-menu-top").on('click',function(){
-            $('html,body').animate({scrollTop:0},'slow');
-        });
-
-        $(".morebox").on('click',function () {
-            window.location.href='newOfficialInformation.html'
-        })
 
 })
 
