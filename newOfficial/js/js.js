@@ -1,7 +1,7 @@
 // URL配置
 let baseUrl = '';
-window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://dev.wegoomall.cn';
-// window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://wchoosemall.com';
+// window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://dev.wegoomall.cn';
+window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://wchoosemall.com';
 $(function () {
     $('.side-menu-download').mouseover(function () {
         $(".side-menu-download .side-menu-text").css("color","white");
@@ -15,16 +15,17 @@ $(function () {
         $(".side-menu-download img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14260023591740866.png");
         $(".erweima").css("display","none");
     });
-
     $('.side-menu-service').mouseover(function () {
         $(".side-menu-service .side-menu-text").css("color","white");
         $(".side-menu-service").css("background","rgba(238,39,28,1)");
-        $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14097237456162271.png");
+        $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190620/15121328703305570.png");
+        $(".weixin").css("display","block");
     });
     $(".side-menu-service").mouseleave(function(){
         $(".side-menu-service .side-menu-text").css("color","black");
         $(".side-menu-service").css("background","rgba(255,255,255,1)");
-        $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190610/14093866611316136.png");
+        $(".side-menu-service img").attr("src","https://file.wchoosemall.com/platform/manager/pic/20190620/14955171698605472.png");
+        $(".weixin").css("display","none");
     });
 
 
@@ -44,30 +45,8 @@ $(function () {
     $(".side-menu-top").on('click',function(){
         $('html,body').animate({scrollTop:0},'slow');
     });
-
-    $(".morebox").on('click',function () {
-        window.location.href=`${baseUrl}/newOfficial/newOfficialInformation.html`
-    });
-
 });
-// 正式环境：
-// function changeMenu(num) {
-//     if (num === 0) {
-//         window.location.href=`${baseUrl}`
-//     }
-//     if (num === 1) {
-//         window.location.href=`${baseUrl}/newOfficial/newOfficialDownload.html`
-//     }
-//     if (num === 2) {
-//         window.location.href=`${baseUrl}/newOfficial/newOfficialInformation.html`
-//     }
-//     if (num === 3) {
-//         window.location.href=`${baseUrl}/newOfficial/newOfficialHelp.html`
-//     }
-//     if (num === 4) {
-//         window.location.href=`${baseUrl}/newOfficial/newOfficialAbout.html`
-//     }
-// }
+
 
 
 

@@ -3,6 +3,9 @@ body{
     margin: 0;
     padding: 0;
 }
+h3,h1{
+    margin: 0;
+}
 .nav{
     width: 100%;
     height: 88px;
@@ -94,6 +97,7 @@ body{
     font-weight:500;
     color:rgba(51,51,51,1);
     line-height:37px;
+    margin: 0;
 }
 .service-time-text .company-address-text{
     font-size:14px;
@@ -151,7 +155,7 @@ body{
 
 .side-menu-container{
     width:238px;
-    height: 192px;
+    height: 256px;
     display: flex;
     justify-content: flex-end;
     position: fixed;
@@ -160,7 +164,7 @@ body{
 }
 .side-menu{
     width:58px;
-    height: 192px;
+    height: 256px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -195,7 +199,11 @@ body{
     display: none;
 }
 .tel-img{
-    margin-top: 66px;
+    margin-top: 132px;
     height: 58px;
+    display: none;
+}
+.weixin{
+    margin-top: 59px;
     display: none;
 }

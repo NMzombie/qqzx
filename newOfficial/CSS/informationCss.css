@@ -69,7 +69,7 @@
     text-overflow: ellipsis;
     margin-right: 39px;
 }
-.top-guide .top-guide-content a{
+.top-guide .top-guide-content a,.top-guide-content{
     font-size:16px;
     font-family:PingFangSC-Regular,sans-serif;
     font-weight:400;
@@ -147,13 +147,13 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.news-content-topic{
+.news-content-topic h1{
     width: auto;
     display: inline-block;
     height:22px;
 
 }
-.news-content-topic a:hover, a:visited, a:link, a:active{
+.news-content-topic h1,.news-content-topic a:hover, a:visited, a:link, a:active{
     font-size:16px;
     font-family:PingFangSC-Medium,sans-serif;
     font-weight:600;
@@ -254,7 +254,7 @@
     align-items: center;
 }
 .download-img{
-    margin: 49px auto 20px;
+    margin: 49px auto 15px;
     width:159px;
     height:159px;
 }
