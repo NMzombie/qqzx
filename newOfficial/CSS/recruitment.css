@@ -1,13 +1,11 @@
+.recruitment_wrapper{
+    width: 1140px;
+    margin: 18px auto 0 auto;
+}
 a{
     text-decoration: none;
 }
-.ads_wrapper{
-    width: 100%;
-    background: url("https://file.wchoosemall.com/platform/manager/pic/20190626/15450014791781154.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 60px;
-}
+
 .ads{
     margin-top: 98px;
 }
