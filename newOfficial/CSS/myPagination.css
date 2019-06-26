@@ -28,6 +28,10 @@
     background-color: #F4F6F8;
 }
 
+.pagination ul li.active:hover {
+    background:rgba(212,32,24,1);
+}
+
 .pagination  li.active {
     background:rgba(212,32,24,1);
     color: white;
