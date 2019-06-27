@@ -7,6 +7,7 @@
   <script src="../js/flexible.js"></script>
   <link rel="stylesheet" href="ranking-history-detail.css">
   <script src="../js/jquery-1.10.2.js"></script>
+  <script src="../js/ua.js"></script>
   <script src="../js/util.js"></script>
 </head>
 <body>
@@ -73,6 +74,22 @@
       console.log(e)
     }
   })
+  getStatusBar()
+  // 获取Android顶部高度
+  function getStatusBar (){
+    if (window.WebViewJavascriptBridge) {
+      window.WebViewJavascriptBridge.callHandler('getStatusBar', {}, function (response) {
+        const val = response / 100
+        if (browser.versions.android) {
+          $('.top_menu').css('padding-top', `${val}rem`)
+        }
+      })
+    } else {
+      setTimeout(() => {
+        getStatusBar()
+      }, 50)
+    }
+  }
   let type = 0
   $('.header').find('.right').click(() => {
     if (type === 0) {
@@ -156,6 +173,7 @@
       url: `${baseUrl}/doc/api/common/auth/memberSales/${url}.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
+        $('.ranking-list').eq(type).html('')
         const extremeList = res.data.list
         for (let i = 0; i < extremeList.length; i++) {
           const fir = `<div class="item clearfix"><div class="left-item t-left">`

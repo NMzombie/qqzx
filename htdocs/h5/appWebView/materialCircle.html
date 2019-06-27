@@ -7,11 +7,13 @@
   <script src="../js/flexible.js"></script>
   <link rel="stylesheet" href="material-circle.css">
   <link rel="stylesheet" href="./../css/video-js.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
   <script src="../js/jquery-1.10.2.js"></script>
+  <script src="./../js/video.min.js"></script>
   <script src="../js/moment.min.js"></script>
   <script src="../js/cn.js"></script>
   <script src="../js/util.js"></script>
-  <link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+  <script src="../js/ua.js"></script>
   <script src="../js/swiper.min.js"></script>
 </head>
 <body>
@@ -35,8 +37,6 @@
     <div class="swiper-wrapper"></div>
   </div>
 </div>
-<script src="./../js/video.min.js"></script>
-<script src="./../js/zh-CN.js"></script>
 <script type="text/javascript">
   let page = 1
   function connectWebViewJavascriptBridge (callback) {
@@ -81,7 +81,9 @@
   getQueryString('dev') ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://api.wchoosemall.com'
   // 绑定token
   let token = ''
-  getUserInfo()
+  setTimeout(() => {
+    getUserInfo()
+  }, 300)
 
   // 默认信息
   let firInd = 1
@@ -210,7 +212,7 @@
 
 
   // 调试数据
-  // token = 'ff604057ca654ab5afa348ae81149337'
+  // token = 'c3cd41c997114edbb0798dd32614867'
   // addData(0, 1, 1, token)
   // // tab切换功能（滑动）
   // $('.bottom_content')[0].style.left = "0%"
@@ -397,7 +399,11 @@
       success: (res) => {
       }
     })
-    allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, [allList[index].videoUrl]) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+    if (browser.versions.ios) {
+      allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, allList[index].videoUrl) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+    } else {
+      allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, [allList[index].videoUrl]) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
+    }
   }
   // 数据拼接
   function addData (inde, index, page, token) {
@@ -489,7 +495,6 @@
       //     fouInd++
       //     break;
       // }
-      // alert(page)
       addData(state, type, page, token)
     }
   }

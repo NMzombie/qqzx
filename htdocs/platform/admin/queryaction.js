@@ -417,7 +417,7 @@ $(function() {
         var dataid = $(e.target).attr("dataid");
         var url = "/admin/ajax/display.json";
         swal({
-            title: '确认要'+(status =="true" ?falsemsg : truemsg)+'退款吗?',
+            title: '确认要'+(status =="true" ?falsemsg : truemsg)+'吗?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
