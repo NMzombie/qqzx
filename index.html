@@ -183,7 +183,6 @@
             type: "GET",
             dataType: "json",
             success: function(data) {
-                console.log(1, data);
                 mockData(data.data)
             }
         })
@@ -194,7 +193,6 @@
     // 获取本地json
     function mockData(res) {
       jsonData = res
-      console.log(res, 111)
       const data = res
       getCurData(data,'all')
     }
