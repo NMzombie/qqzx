@@ -1,3 +1,8 @@
+h3{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .flexslider {
     margin: 0 auto;
     position: relative;
@@ -225,6 +230,9 @@
     color:rgba(51,51,51,1);
     line-height:28px;
     margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .banner-text{
     margin: 10px auto 47px;
@@ -264,6 +272,9 @@
     color:rgba(51,51,51,1);
     line-height:22px;
     margin-left: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .morebox{
     display: flex;

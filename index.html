@@ -189,13 +189,13 @@
     }
     ajax_data(); //执行函数
 
-
     // 获取本地json
     function mockData(res) {
       jsonData = res
       const data = res
       getCurData(data,'all')
     }
+
     // 筛选职位数据
     function getCurData(data,curType) {
          $('.list_item').remove()
@@ -330,6 +330,7 @@
        }
     }
     // 区域
+
     function searchArea(i) {
        $('#area div').css('color','#333333')
        $('#area'+i).css('color','#F22036')
