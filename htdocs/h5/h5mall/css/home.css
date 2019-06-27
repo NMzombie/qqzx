@@ -371,6 +371,16 @@ ul, li {
     border-bottom: 1px solid #E5E5E5;
     margin: 0;
 }
+.fixednav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+.navbottom{
+    margin-top: 1.253333rem;;
+}
 .nav .navFirst li{
     height: 1.253333rem;
     white-space: nowrap;
@@ -441,6 +451,7 @@ ul, li {
     font-size: 0.32rem;
     line-height: 0.44rem;
     margin-bottom: 0.24rem;
+
 }
 .recommended ul li .videoClass .info .priceinfo span{
     color: #ff4400;
@@ -449,12 +460,15 @@ ul, li {
 .nav .navFirst li.active span:after {
     display: block;
     content: '';
-    width: 0.693333rem;
+    width: 0.7rem;
     height: 0.106667rem;
     background: #ecc184;
     border-radius: 0.053333rem;
     color: #ECC184;
     margin: 0 auto;
+}
+.nav .navFirst li.active span {
+    color: #ECC184;
 }
 
 .recommended ul li .videoClass .videoCover{

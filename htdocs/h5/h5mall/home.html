@@ -184,6 +184,18 @@
                         <h5>如何玩转全球自选app</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div>
                     </div><div class="videoCover"><img src="https://img.mall.xc2018.com.cn/mall/upload/20190626/161626_46_5e81.jpg" class="cover-img"><i class="iconfont icon-play">&#xe66e;</i><span class="peaple"><em class="iconfont icon-xuexi"></em><em>23人正在学习</em></span></div></div>
             </li>
+            <li>
+                <div class="videoClass">
+                    <div class="info">
+                        <h5>如何玩转全球自选app</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div>
+                    </div><div class="videoCover"><img src="https://img.mall.xc2018.com.cn/mall/upload/20190626/161626_46_5e81.jpg" class="cover-img"><i class="iconfont icon-play">&#xe66e;</i><span class="peaple"><em class="iconfont icon-xuexi"></em><em>23人正在学习</em></span></div></div>
+            </li>
+            <li>
+                <div class="videoClass">
+                    <div class="info">
+                        <h5>如何玩转全球自选app</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div>
+                    </div><div class="videoCover"><img src="https://img.mall.xc2018.com.cn/mall/upload/20190626/161626_46_5e81.jpg" class="cover-img"><i class="iconfont icon-play">&#xe66e;</i><span class="peaple"><em class="iconfont icon-xuexi"></em><em>23人正在学习</em></span></div></div>
+            </li>
         </ul>
     </div>
 </div>
@@ -194,6 +206,21 @@
         $('.navFirst li').click(function () {
             $(this).addClass("active")
             $(this).siblings().removeClass("active")
+        })
+
+        let nav=$(".navFirst"); //得到导航对象
+        let win=$(window); //得到窗口对象
+        let dc=$(document);//得到document文档对象。
+        let distance = nav.offset().top;
+        win.scroll(function(){
+            if(dc.scrollTop()>=distance){
+                //防止出现抖动
+                $(".recommended").addClass("navbottom");
+                nav.addClass("fixednav");
+            }else{
+                $(".recommended").removeClass("navbottom");
+                nav.removeClass("fixednav");
+            }
         })
     })
 </script>
