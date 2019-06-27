@@ -1,6 +1,7 @@
 .recruitment_wrapper{
     width: 1140px;
     margin: 18px auto 0 auto;
+    min-width: 580px;
 }
 a{
     text-decoration: none;

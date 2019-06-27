@@ -92,6 +92,7 @@
 .nav .nav-2 {
     position: relative;
     max-width: 1168px;
+    min-width: 825px;
     margin: auto;
     height: 88px;
     padding-left: 20px;

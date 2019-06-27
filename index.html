@@ -23,7 +23,7 @@
             <ul class="links">
                 <li><a class="nav-home" href="index.html" style="color:rgba(212,32,24,1);" >首页</a></li>
                 <li><a class="nav-home" href="./recruitment.html">公司介绍</a></li>
-                <li><a class="nav-download" href="app.html">APP下载</a></li>
+                <!--<li><a class="nav-download" href="app.html">APP下载</a></li>-->
                 <li><a class="nav-consultation" href="news.html">资讯</a></li>
                 <li><a class="nav-help" href="help.html">帮助中心</a></li>
                 <li><a class="nav-about" href="about.html">关于我们</a></li>
@@ -176,7 +176,21 @@
 <script src="newOfficial/js/js.js"></script>
 <script src="newOfficial/js/moment.min.js"></script>
 <script>
-    let jsonData = []
+    let jsonData = [];
+    function ajax_data() {
+        $.ajax({
+            url: "newOfficial/mock.json",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                console.log(1, data);
+                mockData(data.data)
+            }
+        })
+    }
+    ajax_data(); //执行函数
+
+
     // 获取本地json
     function mockData(res) {
       jsonData = res
@@ -420,7 +434,6 @@
       $('#area1').css('color','#F22036')
     })
 </script>
-<script type="text/javascript" src="newOfficial/mock.json?callback=mockData"></script>
 <!--侧边工具栏组件-->
 <script type="text/javascript" src="newOfficial/js/sideMenu.js"></script>
 <script src="newOfficial/js/sweetalert.min.js"></script>
