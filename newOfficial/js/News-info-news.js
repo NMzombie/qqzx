@@ -51,9 +51,9 @@ function information(type,page){
             for (let i = 0; i < data.list.length; i++){
                 if (data.list[i].articleType === type && data.page===page) {
                     if (content === '') {
-                        content = `<div class="news-content"><div class="news-content-img"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><h1>${data.list[i].title}</h1></a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content = `<div class="news-content"><div class="news-content-img"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm"><h1>${data.list[i].title}</h1></a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     } else {
-                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><h1>${data.list[i].title}</h1></a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm"><h1>${data.list[i].title}</h1></a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
                     }
                 }
             }
@@ -82,7 +82,7 @@ $.ajax({
             const data = res.data;
             let rec1 = '';
             for(let i=0; i<data.list.length; i++){
-                rec1 += `<div><a href="${baseUrl}/doc/news-${data.list[i].id}.htm">${data.list[i].title}</a></div>`
+                rec1 += `<div><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div>`
             }
             $('.new-rec-container').append(rec1);
         }
@@ -100,7 +100,7 @@ $.ajax({
             const data = res.data;
             let rec1 = '';
             for(let i=0; i<data.list.length; i++){
-                rec1 += `<div><a href="${baseUrl}/doc/news-${data.list[i].id}.htm">${data.list[i].title}</a></div>`
+                rec1 += `<div><a href="${baseUrl}/doc/wap/news-${data.list[i].id}.htm">${data.list[i].title}</a></div>`
             }
             $('.hot-rec-container').append(rec1);
         }
