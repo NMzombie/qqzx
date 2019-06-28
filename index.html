@@ -147,6 +147,7 @@
                 </div>
                 <div class="sub_wrapper">
                     <div class="sub" onclick="handleSub()">提交</div>
+                    <div class="sub" onclick="cancelSub()">取消</div>
                 </div>
             </div>
     </div>
@@ -309,6 +310,10 @@
        $('.modal_job').css('display','none')
        $('.modal_wrapper').css('display','none')
        swal("提交成功");
+    }
+    function cancelSub() {
+        $('.modal_job').css('display','none')
+        $('.modal_wrapper').css('display','none')
     }
     // 职位
     function searchJob(i) {

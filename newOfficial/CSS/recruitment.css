@@ -230,7 +230,10 @@ input::-webkit-input-placeholder {
 }
 .sub_wrapper{
     margin-top: 20px;
-    padding-left: 14px;
+    /*padding: 0 14px;*/
+    display: flex;
+    padding: 0 14px;
+    justify-content: space-between;
 }
 .sub{
     width: 84px;
