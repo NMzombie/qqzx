@@ -73,8 +73,6 @@ $(function () {
             $('.mode6 .recommend').append(content);
 
 
-
-
             $('.navFirst li').click(function () {
                 $(this).addClass("active")
                 $(this).siblings().removeClass("active")
@@ -98,3 +96,44 @@ $(function () {
     })
 
 });
+
+function navClick(i){
+   switch (i) {
+       case 0:
+           $.ajax({
+               url: "js/nav-info1.json",
+               type: "GET",
+               dataType: "json",
+               success: (res) => {
+                  const data=res.data;
+                  let content = '';
+                  // console.log(data.list[0].name)
+                   for(let i=0;i<data.list.length;i++){
+                        content +=`<li><div class="videoClass"><div class="info"><h5>${data.list[i].name}</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div></div><div class="videoCover"><img src="${data.list[i].picUrl}" class="cover-img"><i class="iconfont icon-play">&#xe66e;</i><span class="people"><span class="iconfont">&#xe633;</span><span class="learning">${data.list[i].listenCountDesc}</span></span></div></div></li>`
+                   }
+                   $('.recommended ul').html(content)
+               }
+           });
+           break;
+       case 1:
+           $.ajax({
+               url: "js/nav-info2.json",
+               type: "GET",
+               dataType: "json",
+               success: (res) => {
+                   const data=res.data;
+                   let content = '';
+                   // console.log(data.list[0].name)
+                   for(let i=0;i<data.list.length;i++){
+                       content +=`<li><div class="videoClass"><div class="info"><h5>${data.list[i].name}</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div></div><div class="videoCover"><img src="${data.list[i].picUrl}" class="cover-img"><i class="iconfont icon-play">&#xe66e;</i><span class="people"><span class="iconfont">&#xe633;</span><span class="learning">${data.list[i].listenCountDesc}</span></span></div></div></li>`
+                   }
+                   $('.recommended ul').html(content)
+               }
+           });
+           break;
+   }
+}
+
+window.onload = function () {
+    navClick(0)
+};
