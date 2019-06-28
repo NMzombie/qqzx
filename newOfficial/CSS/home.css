@@ -494,7 +494,7 @@ h3{
     display: flex;
     justify-content: flex-end;
     position: fixed;
-    top:70%;
+    top:60%;
     right: 60px;
 }
 .side-menu{
