@@ -20,11 +20,12 @@ ul, li {
     margin: 0;
 }
 .top{
-    width: 100%;
+    width: 9.36rem;
+    margin: 0 auto;
     height: 1.4933rem;
     display: flex;
     -webkit-box-align: center;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 .searchInput{
@@ -50,27 +51,26 @@ ul, li {
     color: transparent;
     text-shadow: 0 0 0 #363636;
 }
-.searchInput i{
-    font-size: 0.373333rem;
+.searchInput form i{
+    font-size: 0.6rem;
     color: #ABABAB;
     width: 0.92rem;
     height: 0.853333rem;
     text-align: center;
     line-height: 0.906667rem;
 }
-.top .message{
-    width: 0.586667rem;
-    height: 0.586667rem;
+/*.top .message{*/
+    /*width: 0.586667rem;*/
+    /*height: 0.586667rem;*/
+    /*position: relative;*/
+/*}*/
+#message{
     position: relative;
-}
-.message i{
-    font-size: 0.586667rem;
+    font-size: 0.7rem;
     line-height: 0.586667rem;
     color: #656565;
 }
-.message .iconfont:before{
 
-}
 
 .slide{
     width: 9.36rem;
@@ -530,4 +530,23 @@ ul, li {
     justify-content: center;
     align-items: center;
 }
-
+.videoClass .videoCover .people{
+    padding: 0 0.266667rem;
+    height: 0.64rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0.32rem;
+    position: absolute;
+    right: 0.266667rem;
+    bottom: 0.133333rem;
+}
+.videoClass .videoCover .people .iconfont{
+    font-size: 0.346667rem;
+    line-height: 0.64rem;
+    margin-right: 0.133333rem;
+}
+.videoClass .videoCover .people em{
+    font-size: 0.32rem;
+    font-weight: 400;
+    color: white;
+    line-height: 0.64rem;
+}

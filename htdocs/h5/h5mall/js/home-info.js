@@ -46,10 +46,54 @@ $(function () {
             $('.mode4').append(contentTop);
             content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
-                content += `<li><div class="graphic"><div class="info"><h5>${data[a].moduleViewInfoList[i].title}</h5><p>${data[a].moduleViewInfoList[i].titleDesc}</p></div><div class="coverList"><div class="cover oneover"><img class="cover-img" src="https://img.mall.xc2018.com.cn/mall/upload/20190625/182830_91_gjq9.jpg" lazy="loaded"></div></div></div></li>`
+                content += `<li><div class="graphic"><div class="info"><h5>${data[a].moduleViewInfoList[i].title}</h5><p>${data[a].moduleViewInfoList[i].titleDesc}</p></div><div class="coverList"><div class="cover oneover"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></div></div></div></li>`
             }
-            $('.recommend').append(content)
+            $('.mode4 .recommend').append(content);
 
+            //模块5
+            contentTop = '';
+            a++;
+            contentTop += `<div class="headerline"><div class="line"></div><div class="title">${data[a].moduleView.moduleName}</div><div class="more"><span>查看全部</span></div></div><div class="bottom-line"></div><div class="Ebook"><ul></ul></div><div class="spacer"></div>`;
+            $('.mode5').append(contentTop);
+            content='';
+            for(let i=0;i<data[a].moduleViewInfoList.length;i++){
+                content += `<li><div class="EbookSty"><img alt="" class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"><p>${data[a].moduleViewInfoList[i].title}</p><span></span></div></li>`
+            }
+            $('.Ebook ul').append(content)
+
+            //模块6
+            contentTop = '';
+            a++;
+            contentTop += `<div class="headerline"><div class="line"></div><div class="title">${data[a].moduleView.moduleName}</div><div class="more"><span>查看全部</span></div></div><div class="bottom-line"></div><ul class="recommend"></ul><div class="spacer"></div>`;
+            $('.mode6').append(contentTop);
+            content='';
+            for(let i=0;i<data[a].moduleViewInfoList.length;i++){
+                content += `<li><div class="graphic"><div class="info"><h5>${data[a].moduleViewInfoList[i].title}</h5><p>${data[a].moduleViewInfoList[i].titleDesc}</p></div><div class="coverList"><div class="cover oneover"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></div></div></div></li>`
+            }
+            $('.mode6 .recommend').append(content);
+
+
+
+
+            $('.navFirst li').click(function () {
+                $(this).addClass("active")
+                $(this).siblings().removeClass("active")
+            });
+
+            let nav=$(".navFirst");
+            let win=$(window);
+            let dc=$(document);
+            let distance = nav.offset().top;
+            win.scroll(function(){
+                if(dc.scrollTop()>=distance){
+                    //防止出现抖动
+                    $(".recommended").addClass("navbottom");
+                    nav.addClass("fixednav");
+                }else{
+                    $(".recommended").removeClass("navbottom");
+                    nav.removeClass("fixednav");
+                }
+            })
         }
     })
 

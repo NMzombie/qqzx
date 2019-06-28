@@ -36,87 +36,18 @@
     <div class="searchInput">
         <form>
             <i class="iconfont">&#xe613;</i>
-            <input placeholder="决胜未来的6大能力" type="search">
+            <input type="search">
         </form>
     </div>
-    <span class="message"><i class="iconfont">&#xe668;</i></span>
+    <i class="iconfont" id="message">&#xe668;</i>
 </div>
 <div class="slide" style="margin-bottom: 0px;"></div>
 <div class="mode1"></div>
 <div class="mode2"></div>
 <div class="mode3"></div>
-<div class="mode4">
-    <div class="headerline">
-        <div class="line"></div>
-        <div class="title">沟通技巧</div>
-        <div class="more"><span>查看全部</span></div>
-    </div>
-    <div class="bottom-line"></div>
-    <ul class="recommend">
-       <li>
-           <div class="graphic">
-               <div class="info">
-                   <h5>一对一沟通技巧</h5>
-                   <p>快速了解一对一沟通技巧，掌握让人快速理解的课程！</p>
-               </div>
-               <div class="coverList">
-                   <div class="cover oneover"><img class="cover-img" src="https://img.mall.xc2018.com.cn/mall/upload/20190625/182830_91_gjq9.jpg" lazy="loaded"></div>
-               </div>
-           </div>
-       </li>
-    </ul>
-    <div class="spacer"></div>
-</div>
-<div class="mode5">
-    <div class="headerline">
-        <div class="line"></div>
-        <div class="title">地推</div>
-        <div class="more"><span>查看全部</span></div>
-    </div>
-    <div class="bottom-line"></div>
-    <div class="Ebook">
-        <ul>
-            <li>
-                <div class="EbookSty">
-                    <img alt="" class="cover-img" src="https://img.mall.xc2018.com.cn/mall/upload/20190625/175825_36_3wgi.jpeg" lazy="loaded"><p>前期准备工作</p><span></span>
-                </div>
-            </li>
-            <li>
-                <div class="EbookSty">
-                    <img alt="" class="cover-img" src="https://img.mall.xc2018.com.cn/mall/upload/20190625/175858_55_w1kn.jpeg" lazy="loaded"><p>操作实施4大方法</p><span></span>
-                </div>
-            </li>
-            <li>
-                <div class="EbookSty">
-                    <img alt="" class="cover-img" src="https://img.mall.xc2018.com.cn/mall/upload/20190625/175903_96_fd9m.jpeg" lazy="loaded"><p>后期如何维护</p><span></span>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="spacer"></div>
-</div>
-<div class="mode6">
-    <div class="headerline">
-        <div class="line"></div>
-        <div class="title">线下沙龙</div>
-        <div class="more"><span>查看全部</span></div>
-    </div>
-    <div class="bottom-line"></div>
-    <ul class="recommend">
-        <li>
-            <div class="graphic">
-                <div class="info">
-                    <h5>如何做好线下沙龙</h5>
-                    <p>快速了解如何办好线下沙龙课程！</p>
-                </div>
-                <div class="coverList">
-                    <div class="cover oneover"><img class="cover-img" src="https://img.mall.xc2018.com.cn/mall/upload/20190625/184157_17_reum.jpg" lazy="loaded"></div>
-                </div>
-            </div>
-        </li>
-    </ul>
-    <div class="spacer"></div>
-</div>
+<div class="mode4"></div>
+<div class="mode5"></div>
+<div class="mode6"></div>
 <div class="nav">
     <ul class="navFirst">
        <li class="active"><span>推荐</span></li>
@@ -131,7 +62,11 @@
                 <div class="videoClass">
                     <div class="info">
                         <h5>如何玩转全球自选app</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div>
-                    </div><div class="videoCover"><img src="https://img.mall.xc2018.com.cn/mall/upload/20190626/161626_46_5e81.jpg" class="cover-img"><i class="iconfont icon-play">&#xe66e;</i><span class="peaple"><em class="iconfont icon-xuexi"></em><em>23人正在学习</em></span></div></div>
+                    </div>
+                    <div class="videoCover">
+                        <img src="https://img.mall.xc2018.com.cn/mall/upload/20190626/161626_46_5e81.jpg" class="cover-img">
+                        <i class="iconfont icon-play">&#xe66e;</i>
+                        <span class="people"><em class="iconfont"></em><em>23人正在学习</em></span></div></div>
             </li>
             <li>
                 <div class="videoClass">
@@ -151,27 +86,4 @@
 </body>
 
 <script src="js/home-info.js"></script>
-<script>
-    $(function () {
-        $('.navFirst li').click(function () {
-            $(this).addClass("active")
-            $(this).siblings().removeClass("active")
-        })
-
-        let nav=$(".navFirst"); //得到导航对象
-        let win=$(window); //得到窗口对象
-        let dc=$(document);//得到document文档对象。
-        let distance = nav.offset().top;
-        win.scroll(function(){
-            if(dc.scrollTop()>=distance){
-                //防止出现抖动
-                $(".recommended").addClass("navbottom");
-                nav.addClass("fixednav");
-            }else{
-                $(".recommended").removeClass("navbottom");
-                nav.removeClass("fixednav");
-            }
-        })
-    })
-</script>
 </html>
