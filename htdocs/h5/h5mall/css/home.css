@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'iconfont';  /* project id 1265285 */
-    src: url('//at.alicdn.com/t/font_1265285_wosotrysvu.eot');
-    src: url('//at.alicdn.com/t/font_1265285_wosotrysvu.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1265285_wosotrysvu.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_1265285_wosotrysvu.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1265285_wosotrysvu.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1265285_wosotrysvu.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.eot');
+    src: url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.svg#iconfont') format('svg');
 }
 .iconfont{
     font-family:"iconfont" !important;
@@ -21,8 +21,9 @@ ul, li {
 }
 .top{
     width: 100%;
-    height: 1.5rem;
+    height: 1.4933rem;
     display: flex;
+    -webkit-box-align: center;
     justify-content: space-around;
     align-items: center;
 }
@@ -36,11 +37,41 @@ ul, li {
     border: 1px solid #e5e5e5;
     border-radius: 0.16rem;
 }
-.message{
+.searchInput form{
+    display: flex;
+}
+.searchInput input{
+    -webkit-box-flex: 1;
+    display: block;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    padding-right: 1.066667rem;
+    font-size: 0.373333rem;
+    color: transparent;
+    text-shadow: 0 0 0 #363636;
+}
+.searchInput i{
+    font-size: 0.373333rem;
+    color: #ABABAB;
+    width: 0.92rem;
+    height: 0.853333rem;
+    text-align: center;
+    line-height: 0.906667rem;
+}
+.top .message{
     width: 0.586667rem;
     height: 0.586667rem;
     position: relative;
 }
+.message i{
+    font-size: 0.586667rem;
+    line-height: 0.586667rem;
+    color: #656565;
+}
+.message .iconfont:before{
+
+}
+
 .slide{
     width: 9.36rem;
     height: 3.626667rem;
@@ -460,7 +491,7 @@ ul, li {
 .nav .navFirst li.active span:after {
     display: block;
     content: '';
-    width: 0.7rem;
+    /*width: 0.7rem;*/
     height: 0.106667rem;
     background: #ecc184;
     border-radius: 0.053333rem;
