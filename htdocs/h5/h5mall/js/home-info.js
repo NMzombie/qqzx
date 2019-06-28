@@ -21,11 +21,11 @@ $(function () {
             contentTop = '';
             a++;
             console.log(a)
-            contentTop += `<div class="headerline"><div class="line"></div><div class="title">印象塑造</div><div class="more"><span>查看全部</span></div></div><div class="bottom-line"></div><div class="studyPlan"><ul class="vipul"></ul><div class="spacer"></div>`;
+            contentTop += `<div class="headerline"><div class="line"></div><div class="title">${data[a].moduleView.moduleName}</div><div class="more"><span>查看全部</span></div></div><div class="bottom-line"></div><div class="studyPlan"><ul class="vipul"></ul><div class="spacer"></div>`;
             $('.mode2').append(contentTop);
             content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
-                content += `<li><div class="cover"><img class="cover-img" src="https://img.mall.xc2018.com.cn/mall/upload/20190625/173116_33_0ywi.jpg" lazy="loaded"></div><div class="classInfo"><h4>如何塑造第一印象</h4><p>头像和昵称</p><p class="desc"><span class="desc1">已经有5人学习</span><span class="desc2">1讲|2课</span></p></div></li>`
+                content += `<li><div class="cover"><img class="cover-img" src="src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></div><div class="classInfo"><h4>如何塑造第一印象</h4><p>头像和昵称</p><p class="desc"><span class="desc1">已经有5人学习</span><span class="desc2">1讲|2课</span></p></div></li>`
             }
             $('.mode2 .vipul').append(content)
 
