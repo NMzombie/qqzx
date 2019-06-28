@@ -2,7 +2,7 @@
 let baseUrl = '';
 // window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://dev.wegoomall.cn';
 window.location.href.indexOf('dev') > -1 ? baseUrl = 'http://dev.wegoomall.cn' : baseUrl = 'http://wchoosemall.com';
-$('.nav-home').attr("href",baseUrl+"/doc/wap/indexWap.html");
+// $('.nav-home').attr("href",baseUrl+"/doc/wap/indexWap.html");
 $(function () {
     $('.side-menu-download').mouseover(function () {
         $(".side-menu-download .side-menu-text").css("color","white");
