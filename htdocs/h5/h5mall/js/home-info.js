@@ -12,7 +12,6 @@ $(function () {
             $('.mode1').append(contentTop);
             let content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
-                console.log(data[a].moduleViewInfoList[i].hrefUrl);
                 content += `<li><div class="cover"><a href="${data[a].moduleViewInfoList[i].hrefUrl}"><img alt="" class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}"></a></div><div class="videoInfo"><h4>${data[a].moduleViewInfoList[i].title}</h4><p class="desc">${data[a].moduleViewInfoList[i].titleDesc}</p><p class="price"></p></div></li>`
             }
             $('.videoHot ul').append(content);
@@ -108,7 +107,6 @@ function navClick(i){
                success: (res) => {
                   const data=res.data;
                   let content = '';
-                  // console.log(data.list[0].name)
                    for(let i=0;i<data.list.length;i++){
                         content +=`<li><div class="videoClass"><div class="info"><h5>${data.list[i].name}</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div></div><div class="videoCover"><a href="goodsDetail.html?id=${data.list[i].id}"><img src="${data.list[i].picUrl}" class="cover-img" alt=""></a><i class="iconfont icon-play">&#xe66e;</i><span class="people"><span class="iconfont">&#xe633;</span><span class="learning">${data.list[i].listenCountDesc}</span></span></div></div></li>`
                    }
@@ -124,7 +122,6 @@ function navClick(i){
                success: (res) => {
                    const data=res.data;
                    let content = '';
-                   // console.log(data.list[0].name)
                    for(let i=0;i<data.list.length;i++){
                        content +=`<li><div class="videoClass"><div class="info"><h5>${data.list[i].name}</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div></div><div class="videoCover"><a href="goodsDetail.html?id=${data.list[i].id}"><img src="${data.list[i].picUrl}" class="cover-img" alt=""></a><i class="iconfont icon-play">&#xe66e;</i><span class="people"><span class="iconfont">&#xe633;</span><span class="learning">${data.list[i].listenCountDesc}</span></span></div></div></li>`
                    }

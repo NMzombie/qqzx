@@ -402,7 +402,6 @@ ul, li {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    overflow-x: scroll;
     border-bottom: 1px solid #E5E5E5;
     margin: 0;
 }
