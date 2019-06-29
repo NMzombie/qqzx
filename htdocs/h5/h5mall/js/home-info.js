@@ -12,7 +12,8 @@ $(function () {
             $('.mode1').append(contentTop);
             let content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
-                content += `<li><div class="cover"><img class="cover-img" lazy="loaded" src="${data[a].moduleViewInfoList[i].imageUrl}"></div><div class="videoInfo"><h4>${data[a].moduleViewInfoList[i].title}</h4> <p class="desc">${data[a].moduleViewInfoList[i].titleDesc}</p><p class="price"></p></div></li>`
+                console.log(data[a].moduleViewInfoList[i].hrefUrl)
+                content += `<li><div class="cover"><a href="${data[a].moduleViewInfoList[i].hrefUrl}"><img class="cover-img" lazy="loaded" src="${data[a].moduleViewInfoList[i].imageUrl}"></a></div><div class="videoInfo"><h4>${data[a].moduleViewInfoList[i].title}</h4> <p class="desc">${data[a].moduleViewInfoList[i].titleDesc}</p><p class="price"></p></div></li>`
             }
             $('.videoHot ul').append(content)
 
@@ -24,7 +25,7 @@ $(function () {
             $('.mode2').append(contentTop);
             content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
-                content += `<li><div class="cover"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></div><div class="classInfo"><h4>${data[a].moduleViewInfoList[i].title}</h4><p>${data[a].moduleViewInfoList[i].titleDesc}</p><p class="desc"><span class="desc1">${data[a].moduleViewInfoList[i].desc1}</span><span class="desc2">${data[a].moduleViewInfoList[i].desc2}</span></p></div></li>`
+                content += `<li><div class="cover"><a href="${data[a].moduleViewInfoList[i].hrefUrl}"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></a></div><div class="classInfo"><h4>${data[a].moduleViewInfoList[i].title}</h4><p>${data[a].moduleViewInfoList[i].titleDesc}</p><p class="desc"><span class="desc1">${data[a].moduleViewInfoList[i].desc1}</span><span class="desc2">${data[a].moduleViewInfoList[i].desc2}</span></p></div></li>`
             }
             $('.mode2 .vipul').append(content)
 
@@ -35,7 +36,7 @@ $(function () {
             $('.mode3').append(contentTop);
             content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
-                content += `<li><div class="cover"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></div><div class="classInfo"><h4>${data[a].moduleViewInfoList[i].title}</h4><p>${data[a].moduleViewInfoList[i].titleDesc}</p><p class="desc"><span class="desc1">${data[a].moduleViewInfoList[i].desc1}</span><span class="desc2">${data[a].moduleViewInfoList[i].desc2}</span></p></div></li>`
+                content += `<li><div class="cover"><a href="${data[a].moduleViewInfoList[i].hrefUrl}"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></a></div><div class="classInfo"><h4>${data[a].moduleViewInfoList[i].title}</h4><p>${data[a].moduleViewInfoList[i].titleDesc}</p><p class="desc"><span class="desc1">${data[a].moduleViewInfoList[i].desc1}</span><span class="desc2">${data[a].moduleViewInfoList[i].desc2}</span></p></div></li>`
             }
             $('.mode3 .vipul').append(content)
 
@@ -46,7 +47,7 @@ $(function () {
             $('.mode4').append(contentTop);
             content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
-                content += `<li><div class="graphic"><div class="info"><h5>${data[a].moduleViewInfoList[i].title}</h5><p>${data[a].moduleViewInfoList[i].titleDesc}</p></div><div class="coverList"><div class="cover oneover"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></div></div></div></li>`
+                content += `<li><div class="graphic"><div class="info"><h5>${data[a].moduleViewInfoList[i].title}</h5><p>${data[a].moduleViewInfoList[i].titleDesc}</p></div><div class="coverList"><div class="cover oneover"><a href="${data[a].moduleViewInfoList[i].hrefUrl}"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></a></div></div></div></li>`
             }
             $('.mode4 .recommend').append(content);
 
@@ -57,7 +58,7 @@ $(function () {
             $('.mode5').append(contentTop);
             content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
-                content += `<li><div class="EbookSty"><img alt="" class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"><p>${data[a].moduleViewInfoList[i].title}</p><span></span></div></li>`
+                content += `<li><div class="EbookSty"><a href="${data[a].moduleViewInfoList[i].hrefUrl}"><img alt="" class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></a><p>${data[a].moduleViewInfoList[i].title}</p><span></span></div></li>`
             }
             $('.Ebook ul').append(content)
 
@@ -68,7 +69,7 @@ $(function () {
             $('.mode6').append(contentTop);
             content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
-                content += `<li><div class="graphic"><div class="info"><h5>${data[a].moduleViewInfoList[i].title}</h5><p>${data[a].moduleViewInfoList[i].titleDesc}</p></div><div class="coverList"><div class="cover oneover"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></div></div></div></li>`
+                content += `<li><div class="graphic"><div class="info"><h5>${data[a].moduleViewInfoList[i].title}</h5><p>${data[a].moduleViewInfoList[i].titleDesc}</p></div><div class="coverList"><div class="cover oneover"><a href="${data[a].moduleViewInfoList[i].hrefUrl}"><img class="cover-img" src="${data[a].moduleViewInfoList[i].imageUrl}" lazy="loaded"></a></div></div></div></li>`
             }
             $('.mode6 .recommend').append(content);
 
@@ -109,7 +110,7 @@ function navClick(i){
                   let content = '';
                   // console.log(data.list[0].name)
                    for(let i=0;i<data.list.length;i++){
-                        content +=`<li><div class="videoClass"><div class="info"><h5>${data.list[i].name}</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div></div><div class="videoCover"><img src="${data.list[i].picUrl}" class="cover-img"><i class="iconfont icon-play">&#xe66e;</i><span class="people"><span class="iconfont">&#xe633;</span><span class="learning">${data.list[i].listenCountDesc}</span></span></div></div></li>`
+                        content +=`<li><div class="videoClass"><div class="info"><h5>${data.list[i].name}</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div></div><div class="videoCover"><a href="goodsDetail.html?id=${data.list[i].id}"><img src="${data.list[i].picUrl}" class="cover-img" alt=""></a><i class="iconfont icon-play">&#xe66e;</i><span class="people"><span class="iconfont">&#xe633;</span><span class="learning">${data.list[i].listenCountDesc}</span></span></div></div></li>`
                    }
                    $('.recommended ul').html(content)
                }
@@ -125,7 +126,7 @@ function navClick(i){
                    let content = '';
                    // console.log(data.list[0].name)
                    for(let i=0;i<data.list.length;i++){
-                       content +=`<li><div class="videoClass"><div class="info"><h5>${data.list[i].name}</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div></div><div class="videoCover"><img src="${data.list[i].picUrl}" class="cover-img"><i class="iconfont icon-play">&#xe66e;</i><span class="people"><span class="iconfont">&#xe633;</span><span class="learning">${data.list[i].listenCountDesc}</span></span></div></div></li>`
+                       content +=`<li><div class="videoClass"><div class="info"><h5>${data.list[i].name}</h5><p></p><div class="priceinfo"><span>5讲/¥0.00</span></div></div><div class="videoCover"><a href="goodsDetail.html?id=${data.list[i].id}"><img src="${data.list[i].picUrl}" class="cover-img" alt=""></a><i class="iconfont icon-play">&#xe66e;</i><span class="people"><span class="iconfont">&#xe633;</span><span class="learning">${data.list[i].listenCountDesc}</span></span></div></div></li>`
                    }
                    $('.recommended ul').html(content)
                }

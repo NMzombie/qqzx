@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,user-scalable=0,telephone=no" name="viewport">
+    <link href="css/detail.css" rel="stylesheet">
+    <script src="../../../newOfficial/js/jquery.js"></script>
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        h5, h6 {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script>
+        document.title = '\u200E';
+        fnResize();
+        window.onresize = function () {
+            fnResize()
+        };
+
+        function fnResize() {
+            var deviceWidth = document.documentElement.clientWidth || window.innerWidth;
+            if (deviceWidth >= 750) {
+                deviceWidth = 750
+            }
+            if (deviceWidth <= 320) {
+                deviceWidth = 320
+            }
+            document.documentElement.style.fontSize = (deviceWidth / 10) + 'px'
+        }
+    </script>
+</head>
+<body>
+<div class="detialTop"></div>
+<div class="detailInfo">
+    <div class="goodsInfo"></div>
+    <div class="spacer"></div>
+</div>
+<div class="commentMinModule">
+    <div class="top">
+        <ul>
+            <li class="iconfont like">&#xe63b;</li>
+            <li class="iconfont like">&#xe63b;</li>
+            <li class="iconfont like">&#xe63b;</li>
+            <li class="iconfont like">&#xe63b;</li>
+            <li class="iconfont like halfLike">&#xe63b;</li>
+        </ul>
+        <div class="score">5分</div>
+        <div class="scoreBtn"><i class="iconfont icon-pingfen">&#xe678;</i> 评分</div>
+    </div>
+    <div class="spacer"></div>
+</div>
+<div class="classInfo"><h5><span>课程目录</span><i>共3节课</i></h5>
+    <ul>
+        <li>
+            <div class="left"><h6>第一节：如何塑造第一印象之头像和呢称塑造</h6>
+                <div class="time"><span>时长:06:33</span></div>
+            </div>
+            <div class="right iconfont">试看</div>
+        </li>
+        <li>
+            <div class="left"><h6>第二节：如何塑造第一印象之背景和签名塑造</h6>
+                <div class="time"><span>时长:02:16</span></div>
+            </div>
+            <div class="right iconfont">试看</div>
+        </li>
+        <li>
+            <div class="left"><h6>传完成了吧</h6>
+                <div class="time"><span>时长:05:19</span></div>
+            </div>
+            <div class="right iconfont icon-suo" style="font-size: 0.5rem;">&#xe626;</div>
+        </li>
+    </ul>
+</div>
+<div class="goodsDetailInfo">
+    <div class="container">
+        <div class="content">
+            <img src="https://img.mall.xc2018.com.cn/mall/upload/20190625/144844_34_zrcm.jpeg" alt="">
+            <img src="https://img.mall.xc2018.com.cn/mall/upload/20190625/144902_97_8vmz.jpg" alt="">
+        </div>
+    </div>
+</div>
+<div class="comment">
+<div class="moduleTitle">
+    <h4>精选留言</h4>
+    <div class="editComment">
+        <i class="iconfont icon-xieliuyan">&#xe678;</i><span>写留言</span>
+    </div>
+</div>
+    <div class="noCommentList">
+        <img src="https://img.mall.xc2018.com.cn/mall/upload/20190618/113313_18_dhu7.png" alt="">
+        <p>暂无留言</p>
+    </div>
+</div>
+</body>
+<script src="../js/util.js"></script>
+<script src="js/detail-info.js"></script>
+
+</html>
