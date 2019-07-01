@@ -36,7 +36,7 @@
             margin: 0;
         }
 
-        h5, h6, h4 {
+        h5, h6, h4 ,h6{
             margin: 0;
             padding: 0;
         }
@@ -67,6 +67,11 @@
             line-height: 0.746667rem;
             margin: 0 0.426667rem 0.426667rem;
             display: flex;
+        }
+        .mp4list .title h6{
+            font-size: 0.373333rem;
+            color: #989898;
+            margin-left: 0.32rem;
         }
         .mp4list ul li{
             width: 8.8rem;
@@ -113,26 +118,50 @@
     <video autoplay="autoplay" controls="controls" src="https://img.mall.xc2018.com.cn/mall/upload/20190625/145019_11_b4tt.mp4"></video>
 </div>
 <div class="mp4list">
-    <div class="title"><h4>课程目录</h4></div>
+    <div class="title"><h4>课程目录</h4><h6>共3节课</h6></div>
     <ul>
-        <li><span>第一节：如何塑造第一印象之头像和呢称塑造</span> <i class="iconfont icon-bofang active">&#xe662;</i></li>
-        <li><span>第二节：如何塑造第一印象之背景和签名塑造</span> <i class="iconfont icon-bofang">&#xe662;</i></li>
-        <li><span>传完成了吧</span> <i class="iconfont icon-suocopy">&#xe626;</i></li>
+        <li onclick="play(0)" span>第一节：如何塑造第一印象之头像和呢称塑造</span> <i class="iconfont icon-bofang active">&#xe662;</i></li>
+        <li onclick="play(1)"><span>第二节：如何塑造第一印象之背景和签名塑造</span> <i class="iconfont icon-bofang">&#xe662;</i></li>
+        <li onclick="play(2)"><span>传完成了吧</span> <i class="iconfont icon-suocopy">&#xe626;</i></li>
     </ul>
 </div>
 </body>
+<script src="../js/util.js"></script>
 <script>
-    // function list(i) {
-    //     $(".icon-bofang").eq(i).addClass("active");
-    //     $(".icon-bofang").eq(i).siblings().removeClass("active");
-    // }
-   $('.mp4list ul li').click(function () {
-       if( $(this).find(".icon-bofang").length===0){
-           alert("您还未解锁该节课哦！")
-       }else {
-           $(this).siblings().find("i").removeClass("active");
-           $(this).find("i").addClass("active")
-       }
-   });
+    function play(i) {
+        // if( $(this).find(".icon-bofang").length===0){
+        //     alert("您还未解锁该节课哦！")
+        // }else {
+        //     $(this).siblings().find("i").removeClass("active");
+        //     $(this).find("i").addClass("active")
+        // }
+        if($(".mp4list ul li").eq(i).find(".icon-bofang").length===0){
+            alert("您还未解锁该节课哦！")
+        }else {
+            $(".mp4list ul li").eq(i).find("i").addClass("active");
+            $(".mp4list ul li").eq(i).siblings().find("i").removeClass("active");
+        }
+        // $(".mp4list ul li").eq(i).addClass("active");
+        switch (i) {
+            case 0:
+                $("video").attr("src","https://img.mall.xc2018.com.cn/mall/upload/20190625/145019_11_b4tt.mp4");
+                break;
+            case 1:
+                $("video").attr("src","https://img.mall.xc2018.com.cn/mall/upload/20190625/164123_46_c7a1.mp4");
+                break
+        }
+    }
+  $(function () {
+      $(".mp4list ul li").eq(getQueryString('index')).onclick=play(parseInt(getQueryString('index')));
+  });
+   // $('.mp4list ul li').click(function () {
+   //     if( $(this).find(".icon-bofang").length===0){
+   //         alert("您还未解锁该节课哦！")
+   //     }else {
+   //         $(this).siblings().find("i").removeClass("active");
+   //         $(this).find("i").addClass("active")
+   //     }
+   // });
+
 </script>
 </html>
