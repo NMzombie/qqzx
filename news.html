@@ -65,15 +65,15 @@
         </div>
         <div class="long-line"></div>
         <div class="news-nav">
-            <div class="news-nav-text" onclick="dynamicClick()" id="dynamic">自选动态</div>
-            <div class="news-nav-text" onclick="mediaClick()" id="media">媒体报道</div>
-            <div class="news-nav-text" onclick="industryClick()" id="industry">行业动态</div>
+            <div class="news-nav-text" onclick="navClick(0)" id="dynamic">自选动态</div>
+            <div class="news-nav-text" onclick="navClick(1)" id="media">媒体报道</div>
+            <div class="news-nav-text" onclick="navClick(2)" id="industry">行业动态</div>
         </div>
         <div class="news-content-container">
         </div>
 
         <!--分页 开发中-->
-            <!--<div id="pagination" class="pagination"></div>-->
+            <div id="pagination" class="pagination"></div>
     </div>
     <div class="sidebar">
        <div class="new-rec">
@@ -155,7 +155,6 @@ $(function () {
 <script src="newOfficial/js/moment.min.js"></script>
 <script src="newOfficial/js/js.js"></script>
 <script src="htdocs/h5/js/util.js"></script>
-<script src="newOfficial/js/News-info-home.js"></script>
 <script src="newOfficial/js/News-info-news.js"></script>
 <!--分页  开发中↓-->
 <script src="newOfficial/js/myPagination.js"></script>
