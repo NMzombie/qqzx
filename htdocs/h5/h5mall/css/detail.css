@@ -128,10 +128,7 @@
     font-size: 0.45rem;
 }
 .commentMinModule .top ul .like{
-    -webkit-text-fill-color: transparent;
     color: #F7453D;
-    /*background-image: -webkit-gradient(linear, left top, right top, from(#F7453D), color-stop(0.5, #F7453D), to(#F7453D));*/
-    fill: #F7453D;
 }
 .classInfo{
     background: #fff;
