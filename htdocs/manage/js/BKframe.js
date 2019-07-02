@@ -29,7 +29,7 @@
             slide: '#breadcrumb',
             boxname: '',//设置你需要弹框模块的名称
             Promp: '.PrompClose ',//提示盒子
-            homepage:"home.html", // 默认显示页
+            homepage:"index.html", // 默认显示页
             prompt_btn: '.dropdown',
             iframe: '.show_iframe',
             fullscreen: '#fullscreen',

@@ -17,16 +17,16 @@ window.onload = function () {
     // });
 
     if(getQueryString('type')==='dynamic'){
-        $('#dynamic').onclick = navClick(0);
+       navClick(0);
     }
     if(getQueryString('type')==='media'){
-        $('#media').onclick = navClick(1);
+       navClick(1);
     }
     if(getQueryString('type')==='industry'){
-        $('#industry').onclick = navClick(2);
+       navClick(2);
     }
     if(window.location.href.indexOf('type') === -1){
-        $('#dynamic').onclick = navClick(0);
+       navClick(0);
     }
 
 };
@@ -40,7 +40,7 @@ function information(articleType,page){
     getData(data, 0)
 }
 
-const getData = function(data,type){
+function getData(data,type){
     $.ajax({
         type: 'post',
         headers: {
@@ -62,7 +62,7 @@ const getData = function(data,type){
             if (type === 0) {
                 new Page({
                     id: 'pagination',
-                    pageTotal: (data.total/5)>=1?data.total/5:1, //必填,总页数
+                    pageTotal: (data.total/5)>=1?Math.ceil(data.total/5):1, //必填,总页数
                     pageAmount: 5,  //每页多少条
                     dataTotal: data.total, //总共多少条数据
                     curPage:1, //初始页码,不填默认为1
@@ -76,13 +76,13 @@ const getData = function(data,type){
                             page:page
                         };
                         // 再执行一次函数，只是这次type不为0所以只执行到if(type === 0)上面部分，即只插入数据(递归)
-                        getData(data,1)
+                        getData(data)
                     }
                 });
             }
         }
     })
-};
+}
 $(function () {
 const orderId = {
         order : "id"
@@ -133,7 +133,6 @@ function navClick(type) {
     $(".news-nav-text").eq(type).siblings().removeClass("news-nav-text-choose");
     information(type,1);
     articleType = type;
-    console.log(articleType)
 }
 
 

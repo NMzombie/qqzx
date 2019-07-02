@@ -132,18 +132,27 @@
             <input class="item_input" type="text" placeholder="请输入工作所在地">
         </div>
         <div class="modal_body">
-            <!--<div class="item_des">
+            <div class="item_des">
                 <span class="item_dot">*</span>
-                <span class="item_word">验证码</span>
+                <span class="item_word">手机号</span>
             </div>
-
-            <div class="code_wrapper">
-                <input class="code_input" type="text" placeholder="请输入验证码">
-                <div class="code_des">换一张</div>
-                <div class="item_dot">*</div>
-            </div>
-            !-->
+            <input class="item_input" type="text" placeholder="请输入手机号">
         </div>
+        <!--<div class="modal_body">-->
+            <!--<div class="item_des">-->
+                <!--<span class="item_dot">*</span>-->
+                <!--<span class="item_word">验证码</span>-->
+            <!--</div>-->
+
+            <!--<div class="code_wrapper">-->
+                <!--<input class="code_input" type="text" placeholder="请输入验证码">-->
+                <!--<div class="code_text">-->
+                    <!--<div class="code_des">换一张</div>-->
+                    <!--<div class="item_dot">*</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
         <div class="sub_wrapper">
             <div class="sub" onclick="handleSub()">提交</div>
             <div class="sub" onclick="cancelSub()">取消</div>
@@ -281,7 +290,7 @@
     function stitchingDom(data) {
         let listContent = ''
         for(let i = 0;i<data.length;i++){
-            listContent += ' <div class="list_item">' +
+            listContent += '<div class="list_item">' +
                 '<div class="item_left">'+
                 '<div class="des_wrapper">'+
                 '<div class="item_job">'+data[i].job+'</div>'+
