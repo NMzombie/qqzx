@@ -194,9 +194,10 @@ ul, li {
     flex: 2;
     margin-right: 0.426667rem;
 }
-.more a{
-    font-size: 0.293333rem;
+.more a:link,.more a:visited{
+    color: #ecc184;
 }
+
 .vipul {
     width: 9.146667rem;
     margin: 0.413333rem auto 0;

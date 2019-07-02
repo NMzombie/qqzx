@@ -17,16 +17,16 @@ window.onload = function () {
     // });
 
     if(getQueryString('type')==='dynamic'){
-        $('#dynamic').onclick = navClick(0);
+       navClick(0);
     }
     if(getQueryString('type')==='media'){
-        $('#media').onclick = navClick(1);
+       navClick(1);
     }
     if(getQueryString('type')==='industry'){
-        $('#industry').onclick = navClick(2);
+       navClick(2);
     }
     if(window.location.href.indexOf('type') === -1){
-        $('#dynamic').onclick = navClick(0);
+       navClick(0);
     }
 
 };
