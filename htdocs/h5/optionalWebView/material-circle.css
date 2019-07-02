@@ -63,6 +63,14 @@ ul {
 .container {
   width: 100%
 }
+.loading {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  width: 3rem;
+  left: 3.5rem;
+  top: 5rem;
+}
 .top_menu {
   position: fixed;
   z-index: 2;
