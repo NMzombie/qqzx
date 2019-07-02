@@ -13,18 +13,20 @@ function getinfo(type,page,area){
         data: `data=${JSON.stringify(info)}`,
         success: (res) => {
             const data = res.data;
-            let state = 0;
-            let firArr = '';
-            let secArr = '';
-            for (let i = 0; i < data.list.length; i++) {
-                    if (state === 0) {
-                        firArr += `<div class="news-item-img"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><img src="${data.list[i].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><div class="news-text-topic">${data.list[i].title}</div></a>`
-                    } else if (state > 0 && state <= 3) {
-                        secArr += `<div style="display:flex;justify-content:space-between"><div class="news-text-content"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div></div>`
-                    }
-                state++
-            }
-            $(`.${area}`).append(`${firArr}<div class="news-text-container">${secArr}</div>`);
+           if(data.total!==0) {
+               let state = 0;
+               let firArr = '';
+               let secArr = '';
+               for (let i = 0; i < data.list.length; i++) {
+                   if (state === 0) {
+                       firArr += `<div class="news-item-img"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><img src="${data.list[i].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><div class="news-text-topic">${data.list[i].title}</div></a>`
+                   } else if (state > 0 && state <= 3) {
+                       secArr += `<div style="display:flex;justify-content:space-between"><div class="news-text-content"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm">${data.list[i].title}</a></div><div class="news-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div></div>`
+                   }
+                   state++
+               }
+               $(`.${area}`).append(`${firArr}<div class="news-text-container">${secArr}</div>`);
+           }
         }
     })
 }
