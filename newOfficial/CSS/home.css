@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'iconfont';  /* project id 1265285 */
+    src: url('//at.alicdn.com/t/font_1265285_5whqfe95o1v.eot');
+    src: url('//at.alicdn.com/t/font_1265285_5whqfe95o1v.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1265285_5whqfe95o1v.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1265285_5whqfe95o1v.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1265285_5whqfe95o1v.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1265285_5whqfe95o1v.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:24px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
 h3{
     overflow: hidden;
     white-space: nowrap;
@@ -492,7 +507,6 @@ h3{
     line-height:17px;
 }
 .side-menu-container{
-    width:238px;
     height: 256px;
     display: flex;
     justify-content: flex-end;
@@ -506,6 +520,9 @@ h3{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.side-menu-download:hover,.side-menu-service:hover,.side-menu-phone:hover{
+    color: white
 }
 .side-menu-download,.side-menu-service,.side-menu-phone,.side-menu-top,.side-menu-top{
     width:58px;

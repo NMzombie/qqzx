@@ -65,6 +65,39 @@
       "checkNum": "186",
       "communicationNum": "365",
       "date": "2019-06-26"
+    },
+    {
+      "jobType": "tech",
+      "job": "图像工程师",
+      "salary": "12k-18k",
+      "location": "滨江",
+      "year": "3-5年",
+      "degree": "本科",
+      "checkNum": "186",
+      "communicationNum": "165",
+      "date": "2019-07-02"
+    },
+    {
+      "jobType": "tech",
+      "job": "音视频开发工程师",
+      "salary": "10k-15k",
+      "location": "滨江",
+      "year": "1-3年",
+      "degree": "本科",
+      "checkNum": "546",
+      "communicationNum": "207",
+      "date": "2019-07-02"
+    },
+    {
+      "jobType": "tech",
+      "job": "音视频开发工程师",
+      "salary": "10k-15k",
+      "location": "滨江",
+      "year": "1-3年",
+      "degree": "本科",
+      "checkNum": "546",
+      "communicationNum": "207",
+      "date": "2019-07-02"
     }
   ]
 }
