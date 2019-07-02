@@ -8,7 +8,7 @@ $(function () {
             let a=0;
             // 模块1
             let contentTop = '';
-            contentTop += `<div class="headerline"><div class="line"></div> <div class="title">${data[a].moduleView.moduleName}</div></div><div class="bottom-line"></div><div class="videoHot"><ul></ul></div><div class="spacer"></div>`;
+            contentTop += `<div class="headerline"><div class="line"></div><div class="title">${data[a].moduleView.moduleName}</div></div><div class="bottom-line"></div><div class="videoHot"><ul></ul></div><div class="spacer"></div>`;
             $('.mode1').append(contentTop);
             let content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
@@ -20,7 +20,7 @@ $(function () {
             // 模块2
             contentTop = '';
             a++;
-            contentTop += `<div class="headerline"><div class="line"></div><div class="title">${data[a].moduleView.moduleName}</div><div class="more"><span>查看全部</span></div></div><div class="bottom-line"></div><div class="studyPlan"><ul class="vipul"></ul><div class="spacer"></div>`;
+            contentTop += `<div class="headerline"><div class="line"></div><div class="title">${data[a].moduleView.moduleName}</div><div class="more"><a href="${data[a].moduleView.hrefUrl}">查看全部</a></div></div><div class="bottom-line"></div><div class="studyPlan"><ul class="vipul"></ul><div class="spacer"></div>`;
             $('.mode2').append(contentTop);
             content='';
             for(let i=0;i<data[a].moduleViewInfoList.length;i++){
