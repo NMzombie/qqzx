@@ -264,6 +264,7 @@ input::-webkit-input-placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 39px;
 }
 .activeColor{
     color: tomato;

@@ -97,6 +97,7 @@ $(function () {
 
 });
 
+// 下方导航栏点击
 function navClick(i){
    switch (i) {
        case 0:
