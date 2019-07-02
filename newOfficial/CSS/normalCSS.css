@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'iconfont';  /* project id 1265285 */
+    src: url('//at.alicdn.com/t/font_1265285_2eux20fb6ft.eot');
+    src: url('//at.alicdn.com/t/font_1265285_2eux20fb6ft.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1265285_2eux20fb6ft.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1265285_2eux20fb6ft.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1265285_2eux20fb6ft.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1265285_2eux20fb6ft.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:24px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
 body{
     background:rgba(243,244,246,1);
     margin: 0;
@@ -172,6 +187,9 @@ h3,h1{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.side-menu-download:hover,.side-menu-service:hover,.side-menu-phone:hover{
+    color: white
 }
 .side-menu-download,.side-menu-service,.side-menu-phone,.side-menu-top,.side-menu-top{
     width:58px;

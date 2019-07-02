@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'iconfont';  /* project id 1265285 */
-    src: url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.eot');
-    src: url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1265285_g0rnv9l28rq.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_1265285_7tw4nlrrab5.eot');
+    src: url('//at.alicdn.com/t/font_1265285_7tw4nlrrab5.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1265285_7tw4nlrrab5.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1265285_7tw4nlrrab5.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1265285_7tw4nlrrab5.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1265285_7tw4nlrrab5.svg#iconfont') format('svg');
 }
 .iconfont{
     font-family:"iconfont" !important;
@@ -50,6 +50,10 @@ ul, li {
     font-size: 0.373333rem;
     color: transparent;
     text-shadow: 0 0 0 #363636;
+
+}
+.searchInput input:focus{
+    outline: none;
 }
 .searchInput form i{
     font-size: 0.6rem;
@@ -398,7 +402,6 @@ ul, li {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
-    overflow-x: scroll;
     border-bottom: 1px solid #E5E5E5;
     margin: 0;
 }
@@ -538,15 +541,22 @@ ul, li {
     position: absolute;
     right: 0.266667rem;
     bottom: 0.133333rem;
+    width: 2.9rem;
 }
-.videoClass .videoCover .people .iconfont{
-    font-size: 0.346667rem;
-    line-height: 0.64rem;
-    margin-right: 0.133333rem;
+.videoClass .videoCover .people .iconfont {
+    font-size: 0.4rem;
+    position: absolute;
+    bottom: 0.01rem;
+    right: 2.85rem;
 }
-.videoClass .videoCover .people em{
-    font-size: 0.32rem;
+.videoClass .videoCover .people span{
     font-weight: 400;
     color: white;
     line-height: 0.64rem;
+}
+.learning{
+    font-size: 0.4rem;
+    position: absolute;
+    text-align: right;
+    margin-left: 0.45rem;
 }
