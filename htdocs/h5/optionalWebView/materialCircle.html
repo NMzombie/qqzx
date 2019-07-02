@@ -473,6 +473,7 @@
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
     // 滚动条到底部的条件
     if (scrollTop + windowHeight === scrollHeight) {
+      alert(loading)
       if (loading) {
         return
       }
