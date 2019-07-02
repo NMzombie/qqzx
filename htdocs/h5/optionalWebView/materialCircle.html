@@ -413,9 +413,6 @@
   }
   // 数据拼接
   function addData (inde, index, page, token) {
-    console.log(0, inde)
-    console.log(1, index)
-    console.log(2, page)
     const data = {
       type: index,
       page
@@ -497,7 +494,6 @@
            type = 0
            break;
        }
-      console.log(11, state)
       addData(state, type, page, token)
     }
   }
