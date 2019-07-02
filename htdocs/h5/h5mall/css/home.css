@@ -540,16 +540,14 @@ ul, li {
     background: rgba(0, 0, 0, 0.4);
     border-radius: 0.32rem;
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     right: 0.266667rem;
     bottom: 0.133333rem;
-    width: 2.9rem;
+    width: 3rem;
 }
-.videoClass .videoCover .people .iconfont {
-    font-size: 0.4rem;
-    position: absolute;
-    bottom: 0.01rem;
-    right: 2.85rem;
-}
+
 .videoClass .videoCover .people span{
     font-weight: 400;
     color: white;
@@ -557,7 +555,5 @@ ul, li {
 }
 .learning{
     font-size: 0.4rem;
-    position: absolute;
-    text-align: right;
-    margin-left: 0.45rem;
+
 }
