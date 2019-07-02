@@ -254,3 +254,17 @@
     margin-bottom: 0.266667rem;
     font-weight: 500;
 }
+#share{
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: none;
+}
+#share img{
+    width: 80%;
+    display: block;
+    margin: 0.533333rem auto 0;
+}

@@ -21,7 +21,10 @@ $(function () {
             $('.container').append(contentImg);
 
             $('.share').click(function () {
-                console.log(1)
+                $('#share').css("display","block")
+            })
+            $('#share').click(function () {
+                $('#share').css("display","none")
             })
             // $('.share').onclick=click()
 
