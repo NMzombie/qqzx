@@ -26,11 +26,8 @@ $(function () {
             $('#share').click(function () {
                 $('#share').css("display","none")
             })
-            // $('.share').onclick=click()
 
         }
     });
 });
-function click() {
-    console.log(2)
-}
+
