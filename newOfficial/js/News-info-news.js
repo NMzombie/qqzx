@@ -50,12 +50,17 @@ function getData(data,type){
         data: `data=${JSON.stringify(data)}`,
         success: (res) => {
             const data = res.data;
+            // console.log(res.data.total)
             let content = '';
-            for (let i = 0; i < data.list.length; i++){
-                if (content === '') {
-                    content = `<div class="news-content"><div class="news-content-img"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><h1>${data.list[i].title}</h1></a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
-                } else {
-                    content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><img src="${data.list[i].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><h1>${data.list[i].title}</h1></a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+            if(res.data.total===0){
+               let content =''
+            }else {
+                for (let i = 0; i < data.list.length; i++) {
+                    if (content === '') {
+                        content = `<div class="news-content"><div class="news-content-img"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><img src="${data.list[0].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><h1>${data.list[i].title}</h1></a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                    } else {
+                        content += `<div class="line"></div><div class="news-content"><div class="news-content-img"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><img src="${data.list[i].picUrls}" width="100%" height="100%" alt="${data.list[i].title}"></a></div><div class="news-content-aside"><div class="news-content-text"><div class="news-content-topic"><a href="${baseUrl}/doc/news-${data.list[i].id}.htm"><h1>${data.list[i].title}</h1></a></div><div class="news-content-brief">${data.list[i].description}</div></div><div class="news-content-bottom"><div class="news-content-time">${moment(data.list[i].createTime).format('YYYY-MM-DD')}</div><div class="news-content-heat">热度：<span style="color: #0e9aef">${data.list[i].clickNum}</span></div></div></div></div>`
+                    }
                 }
             }
             $('.news-content-container').html(content);
@@ -64,7 +69,7 @@ function getData(data,type){
                     id: 'pagination',
                     pageTotal: (data.total/5)>=1?Math.ceil(data.total/5):1, //必填,总页数
                     pageAmount: 5,  //每页多少条
-                    dataTotal: data.total, //总共多少条数据
+                    dataTotal: data.total||0, //总共多少条数据
                     curPage:1, //初始页码,不填默认为1
                     pageSize: 5, //分页个数,不填默认为5
                     showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
