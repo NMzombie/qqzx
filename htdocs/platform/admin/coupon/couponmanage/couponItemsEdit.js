@@ -1448,4 +1448,10 @@ $('[id^="withdrawalDetail_"]').bind("click", function(e) {
         return false;
     }
 
+
+function formatStr(str) {
+	return  "'"+str+"'";
+}
+
+
 	
