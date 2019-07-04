@@ -76,7 +76,14 @@ $(function(){
 		getmemberSerach(page,true);
 	});
 
-    //关联会员多选
+	//关联仓库
+	$("#select_address").bind("click", function () {
+		debugger;
+		getAddressSearch();
+	});
+
+
+	//关联会员多选
     $("#select_member_pro").bind("click",function(e){
         var page = '';
         getmemberSerach(page,false);
@@ -707,6 +714,34 @@ $(function(){
         });
 	}
 
+	//获取需要关联的地址
+	function getAddressSearch() {
+		$.ajax({
+			url: "/admin/commondatamanage/addressSearch.json",
+			type: "get",
+			success: function (data) {
+				if (data != null) {
+					var addressList = data.data;
+					console.info(addressList);
+					var tpl = '';
+					for (var i = 0; i < addressList.length; i++) {
+						var tr1 =
+							'<tr>' +
+							'<td>' +
+							'<input type="checkbox" class="ckid" value="' + addressList[i].id + '"/>' +
+							'<input type="hidden" value="{whCode:'+ addressList[i].whCode+',whName:'+formatStr(addressList[i].name)+',id:'+addressList[i].id+'}"> </td>' +
+							'<td>' + addressList[i].whCode + '</td>' +
+							'<td>' + addressList[i].name + '</td>' +
+							'</tr>';
+						tpl += tr1;
+					}
+					$('#addressList').html(tpl);
+				}
+			}
+		});
+	}
+
+
 	//分页
 	function pages(pages,page,isSingle){
 		var pageCount = pages;
@@ -911,6 +946,20 @@ $(function(){
 		$('#goodsId').val(list_goodId);
 		
 	    $('#myModal').removeClass('in');
+	});
+
+	$('#addressOkBtn').bind("click", function () {
+		var jsonStr = "";
+		$("input:checkbox").each(function(){
+			if(this.checked===true){
+				var str = $(this).next().val();
+				if(str!==undefined) {
+					jsonStr += str;
+				}
+			}
+		});
+
+		$('#addressJson').val("["+jsonStr+"]");
 	});
 	
 	function compareGoodId(value1,value2){
