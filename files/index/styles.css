@@ -14538,7 +14538,7 @@
   border-width:0px;
   position:absolute;
   left:474px;
-  top:141px;
+  top:151px;
   width:1180px;
   height:60px;
 }
@@ -14625,8 +14625,8 @@
 }
 #u437_state0 {
   position:relative;
-  left:0px;
-  top:0px;
+  left:0;
+  top:0;
   width:406px;
   height:298px;
   background-image:none;
@@ -14647,12 +14647,12 @@
   width:406px;
   height:40px;
   background:inherit;
-  background-color:rgba(64, 59, 239, 1);
+  background-color: rgba(212,32,24,1);
   box-sizing:border-box;
   border-width:1px;
   border-style:solid;
-  border-color:rgba(0, 0, 255, 1);
-  border-radius:0px;
+  border-color:rgba(212,32,24,1);
+  border-radius:3px 3px 0 0;
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
   box-shadow:none;
@@ -14687,7 +14687,7 @@
   border-width:1px;
   border-style:solid;
   border-color:rgba(228, 228, 228, 1);
-  border-radius:0px;
+  border-radius:0 0 3px 3px;
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
   box-shadow:none;
@@ -14785,11 +14785,11 @@
   width:255px;
   height:34px;
   background:inherit;
-  background-color:rgba(64, 59, 239, 1);
+  background-color:rgba(212,32,24,1);
   box-sizing:border-box;
   border-width:1px;
   border-style:solid;
-  border-color:rgba(0, 0, 255, 1);
+  border-color:rgba(212,32,24,1);
   border-radius:3px;
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
