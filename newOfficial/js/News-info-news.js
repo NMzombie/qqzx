@@ -81,7 +81,7 @@ function getData(data,type){
                             page:page
                         };
                         // 再执行一次函数，只是这次type不为0所以只执行到if(type === 0)上面部分，即只插入数据(递归)
-                        getData(data)
+                        getData(data,1)
                     }
                 });
             }
