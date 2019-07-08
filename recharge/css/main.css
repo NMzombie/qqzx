@@ -30,7 +30,7 @@ a:focus {
 .tr_rechtext {
 	width: 100%;
 	padding: 10px;
-	background: #27b0d6;
+	background: rgba(248,36,59,1);
 	color: #fff;
 }
 
