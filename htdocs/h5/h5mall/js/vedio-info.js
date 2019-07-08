@@ -12,10 +12,11 @@ function play(a) {
         success: (res) => {
             const data = res.data;
             for(let i=0;i<data.list.length;i++){
-                if(getQueryString('id') === JSON.stringify(data.list[i].id)) {
+                if(getQueryString('id') === String(data.list[i].id)) {
                     $("video").attr("src", `${data.list[i].courseAudioVoList[a].url}`);
                 }
             }
+            // console.log(typeof getQueryString('id'))
         }
 
     });

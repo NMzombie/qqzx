@@ -1,20 +1,5 @@
 let articleType = 0;
 window.onload = function () {
-    // new Page({
-    //     id: 'pagination',
-    //     pageTotal: 5, //必填,总页数
-    //     pageAmount: 5,  //每页多少条
-    //     dataTotal: 5, //总共多少条数据
-    //     curPage:1, //初始页码,不填默认为1
-    //     pageSize: 5, //分页个数,不填默认为5
-    //     showPageTotalFlag:true, //是否显示数据统计,不填默认不显示
-    //     showSkipInputFlag:true, //是否支持跳转,不填默认不显示
-    //     getPage: function (page) {
-    //         //获取当前页数
-    //         // console.log(page);
-    //         information(articleType,page)
-    //     }
-    // });
 
     if(getQueryString('type')==='dynamic'){
        navClick(0);

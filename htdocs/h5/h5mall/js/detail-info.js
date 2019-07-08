@@ -10,7 +10,7 @@ $(function () {
             let contentImg='';
             let mp4='';
             for(let i=0;i<data.list.length;i++){
-                if(getQueryString('id') === JSON.stringify(data.list[i].id)){
+                if(getQueryString('id') === String(data.list[i].id)){
                     $('.classInfo i').text(`共${data.list[i].audioCount}节课`);
                     topImg +=`<img src="${JSON.parse(data.list[i].gallery)[0].img}" alt="">`;
                     // content += `<h4>${data.list[i].name}</h4><div class="priceInfo"><span class="price vipFree tag">会员免费</span></div><div class="buyer">${data.list[i].listenCountDesc}</div>`;
