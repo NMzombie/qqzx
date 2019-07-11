@@ -13,11 +13,12 @@
   <script src="../js/moment.min.js"></script>
   <script src="../js/cn.js"></script>
   <script src="../js/util.js"></script>
-  <script src="../js/ua.js"></script>
   <script src="../js/swiper.min.js"></script>
 </head>
 <body>
-
+<div class="loading">
+  <img src="http://www.fasebj.org/ux3/widgets/publication-content/images/spinner.gif" alt="" />
+</div>
 <div class="top_menu">
   <div class="common li-active">今日必推<div class="bottom-line"></div></div>
   <div class="common">招商素材<div class="bottom-line"></div></div>
@@ -103,6 +104,11 @@
         $('.bottom_content')[0].style.left = "0%"
         var startX = '',disX =''
         $('.top_menu').on('click','.common',function(){
+          page = 1
+          window.removeEventListener('scroll', this.handleScroll)
+          setTimeout(() => {
+            window.addEventListener('scroll', this.handleScroll)
+          }, 50)
           var index = $(this).index()
           page = 1
           if (index === 1) {
@@ -131,7 +137,7 @@
             $('.body_1').eq(2).html('')
             $('.body_1').eq(3).html('')
             fouInd = 1
-            state = 4
+            state = 0
             addData(0 ,1, fouInd, token)
           }
           $('.bottom_content').css('left','-' + index * 100 + '%')
@@ -195,7 +201,7 @@
               $('.body_1').eq(2).html('')
               $('.body_1').eq(3).html('')
               firInd = 1
-              state = 4
+              state = 0
               addData(0, 1, firInd, token)
             }
           }
@@ -212,13 +218,19 @@
 
 
   // 调试数据
-  // token = 'c3cd41c997114edbb0798dd32614867'
+  // token = '0e99409ecb5644ddac37cda90615042'
   // addData(0, 1, 1, token)
   // // tab切换功能（滑动）
   // $('.bottom_content')[0].style.left = "0%"
   // var startX = '',disX =''
   // $('.top_menu').on('click','.common',function(){
+  //   page = 1
+  //   window.removeEventListener('scroll', this.handleScroll)
+  //   setTimeout(() => {
+  //     window.addEventListener('scroll', this.handleScroll)
+  //   }, 50)
   //   var index = $(this).index()
+  //   console.log(22, index)
   //   if (index === 1) {
   //     $('.body_1').eq(0).html('')
   //     $('.body_1').eq(2).html('')
@@ -245,7 +257,7 @@
   //     $('.body_1').eq(2).html('')
   //     $('.body_1').eq(3).html('')
   //     firInd = 1
-  //     state = 4
+  //     state = 0
   //     addData(0, 1, firInd, token)
   //   }
   //   $('.bottom_content').css('left','-' + index * 100 + '%')
@@ -399,11 +411,7 @@
       success: (res) => {
       }
     })
-    if (browser.versions.ios) {
-      allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, allList[index].videoUrl) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
-    } else {
-      allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, [allList[index].videoUrl]) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
-    }
+    allList[index].videoUrl ? getMaterialPic([allList[index].videoPicUrl], allList[index].recommendedReason, [allList[index].videoUrl]) : getMaterialPic(allList[index].picUrls, allList[index].recommendedReason)
   }
   // 数据拼接
   function addData (inde, index, page, token) {
@@ -419,6 +427,10 @@
       url: `${baseUrl}/doc/api/common/auth/materialCircle/findMaterialCircleNew.json?token=${token}`,
       data: `data=${JSON.stringify(data)}`,
       success: (res) => {
+        setTimeout(() => {
+          $('.loading').hide()
+        }, 500)
+        console.log(res)
         allList = res.data.list
         const data = res.data.list
         splicingData(data, inde)
@@ -470,31 +482,24 @@
       if (loading) {
         return
       }
+      $('.loading').show()
       loading = true
       let type = 1
       page++
-      // switch (state) {
-      //   case 0:
-      //     type = 1
-      //     page = firInd + 1
-      //     firInd++
-      //     break;
-      //   case 1:
-      //     type = 3
-      //     page = secInd + 1
-      //     secInd++
-      //     break;
-      //   case 2:
-      //     type = 2
-      //     page = thiInd + 1
-      //     thiInd++
-      //     break;
-      //   case 3:
-      //     type = 0
-      //     page = fouInd + 1
-      //     fouInd++
-      //     break;
-      // }
+      switch (state) {
+        case 0:
+          type = 1
+          break;
+        case 1:
+          type = 3
+          break;
+        case 2:
+          type = 2
+          break;
+        case 3:
+          type = 0
+          break;
+      }
       addData(state, type, page, token)
     }
   }
